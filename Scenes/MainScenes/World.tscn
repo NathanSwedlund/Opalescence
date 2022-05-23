@@ -12,7 +12,7 @@
 [ext_resource path="res://Resources/Textures/Entities/Enemies/shooter.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Audio/Music/OPALESCNECEGame .wav" type="AudioStream" id=13]
+[ext_resource path="res://Resources/Audio/Music/OPALESCENCE.wav" type="AudioStream" id=13]
 [ext_resource path="res://Scenes/HelperScenes/PixelDynamicFont.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenes/HelperScenes/UI/Circle_progress_bar.gdshader" type="Shader" id=15]
 [ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=16]
