@@ -1,0 +1,167 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/UI/ChallengePage.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Audio/FX/MissionPanelSelect.wav" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanelBool.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanel.tscn" type="PackedScene" id=8]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.486842 )
+colors = PoolColorArray( 0.601562, 0.601562, 0.601562, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.988571, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 500, 300, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 80, 0 )
+initial_velocity = 200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_curve = SubResource( 2 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 45
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 2 )
+
+[node name="MissionPage" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( 0, 2 )
+scale = Vector2( 7.99219, 4.67969 )
+z_index = -2
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ChallengePanels" type="Node2D" parent="."]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
+position = Vector2( 1566, 124 )
+title = "Can Shoot"
+setting_name = "can_shoot"
+
+[node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
+position = Vector2( 1572, 229 )
+title = "Can Use Laser"
+setting_name = "can_laser"
+
+[node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
+position = Vector2( 1572, 346 )
+title = "Can Use Bombs"
+setting_name = "can_bomb"
+
+[node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 1570, 466 )
+title = "Player Speed Scale"
+max_val = 1.25
+min_val = 0.2
+score_mult_per_step = -0.2
+setting_name = "player_speed_scale"
+
+[node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 1574, 578 )
+title = "Player Speed Scale"
+max_val = 1.25
+min_val = 0.2
+score_mult_per_step = -0.2
+setting_name = "player_speed_scale"
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 500.048, 301.233 )
+z_index = -1
+amount = 50
+visibility_rect = Rect2( -100, -108.08, 224.976, 200 )
+process_material = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="Particles2D"]
+scale = Vector2( 1.00518, 0.590234 )
+texture = ExtResource( 5 )
+energy = 1.78
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Challenge" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 4.0
+margin_right = 663.0
+margin_bottom = 73.0
+custom_fonts/font = SubResource( 6 )
+text = "Challenge Mode"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighScore" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 68.0
+margin_right = 327.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 7 )
+text = "High Score: "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreMult" type="Label" parent="."]
+margin_left = 10.0
+margin_top = 548.0
+margin_right = 406.0
+margin_bottom = 588.0
+custom_fonts/font = SubResource( 8 )
+text = "Score Multiplier: X"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReadyButton" type="Button" parent="."]
+margin_left = 793.0
+margin_top = 526.0
+margin_right = 955.0
+margin_bottom = 562.0
+custom_fonts/font = SubResource( 9 )
+text = "Ready"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]

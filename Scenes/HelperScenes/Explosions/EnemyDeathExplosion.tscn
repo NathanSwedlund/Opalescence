@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=2]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.416216, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0432432, 0.0432432, 0.0432432, 0.956757, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+radial_accel_random = 0.62
+scale = 4.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 1.0
+orbit_velocity_random = 0.65
+radial_accel_random = 0.62
+scale = 3.0
+scale_random = 1.0
+color = Color( 0, 0, 0, 1 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+radial_accel_random = 0.62
+scale = 4.0
+scale_random = 1.0
+color = Color( 0, 0, 0, 1 )
+color_ramp = SubResource( 2 )
+
+[node name="EnemyDeathExplosion" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 2 )
+energy = 2.8
+
+[node name="Light2D2" type="Light2D" parent="."]
+rotation = 0.727802
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+energy = 3.0
+
+[node name="WhiteBlast" type="Particles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.85
+local_coords = false
+process_material = SubResource( 3 )
+
+[node name="DebrisOrbit" type="Particles2D" parent="."]
+amount = 30
+lifetime = 3.41
+speed_scale = 1.5
+explosiveness = 0.51
+local_coords = false
+process_material = SubResource( 4 )
+
+[node name="BlackBlast" type="Particles2D" parent="."]
+emitting = false
+amount = 50
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.85
+local_coords = false
+process_material = SubResource( 5 )

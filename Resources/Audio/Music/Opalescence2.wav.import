@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Opalescence2.wav-60365c9ae088fafcf1c3c71d4b4f7824.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Opalescence2.wav"
+dest_files=[ "res://.import/Opalescence2.wav-60365c9ae088fafcf1c3c71d4b4f7824.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

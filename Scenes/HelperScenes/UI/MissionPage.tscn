@@ -1,0 +1,537 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/HelperScenes/UI/MissionPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/UI/MissionPage.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=4]
+[ext_resource path="res://Resources/Audio/FX/MissionPanelSelect.wav" type="AudioStream" id=5]
+[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=7]
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.486842 )
+colors = PoolColorArray( 0.601562, 0.601562, 0.601562, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.988571, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 114.68, 180.662, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+spread = 0.0
+gravity = Vector3( 0, 80, 0 )
+initial_velocity = 200.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_curve = SubResource( 2 )
+color_ramp = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 45
+font_data = ExtResource( 7 )
+
+[node name="MissionPage" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( 0, 2 )
+scale = Vector2( 7.99219, 4.67969 )
+z_index = -2
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 140, 282 )
+z_index = -1
+amount = 50
+visibility_rect = Rect2( -100, -108.08, 224.976, 200 )
+process_material = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="Particles2D"]
+position = Vector2( 0, 138 )
+scale = Vector2( 0.3, 0.7 )
+texture = ExtResource( 6 )
+energy = 1.78
+
+[node name="PageSelector" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="MissionPanel" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 1, 0.235294, 0.176471, 1 )
+position = Vector2( 142.025, 269 )
+description = "Survive the onslaught of the shooters. They shoot faster and are invincible. Survive for thirty seconds! Only one life, and no powerups"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": false,
+"has_time_goal": true,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "Shooter Fury",
+"point_goal": 2000.0,
+"points_scale": 1.0,
+"right_bound": 1014,
+"time_goal": 30.0,
+"up_bound": 10
+}
+factory_settings = {
+"enemy_blocker_prob": 0.0,
+"enemy_chaser_prob": 0.0,
+"enemy_comet_prob": 0.0,
+"enemy_is_active": true,
+"enemy_shooter_prob": 1.0,
+"enemy_spawn_away_radius": 200,
+"enemy_time_max": 4,
+"enemy_time_min": 3,
+"point_colors": [ Color( 1, 0, 0, 1 ), Color( 1, 0.65, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0, 1, 1 ), Color( 0.68, 0.85, 0.9, 1 ), Color( 1, 0.75, 0.8, 1 ) ],
+"point_is_active": true,
+"point_time_max": 0.8,
+"point_time_min": 0.1,
+"powerup_barrage_prob": 1,
+"powerup_bomb_up_prob": 2,
+"powerup_bombastic_prob": 1,
+"powerup_bulet_time_prob": 1,
+"powerup_gravity_well_prob": 1,
+"powerup_incendiary_prob": 1,
+"powerup_is_active": false,
+"powerup_max_bomb_prob": 0.5,
+"powerup_max_up_prob": 1,
+"powerup_one_up_prob": 0.2,
+"powerup_opalescence_prob": 1,
+"powerup_oversheild_prob": 3,
+"powerup_time_max": 15,
+"powerup_time_min": 10,
+"powerup_unmaker_prob": 1,
+"powerup_vision_prob": 1
+}
+enemy_settings = {
+"blocker_health": 150,
+"blocker_point_reward": 1250,
+"chaser_base_health": 10,
+"chaser_min_scale": 0.15,
+"chaser_point_reward": 400,
+"shooter_health": 200000,
+"shooter_missile_damage": 5,
+"shooter_missile_health": 1,
+"shooter_missile_speed": 500,
+"shooter_point_reward": 600,
+"shooter_shoot_freq_range": [ 1.0, 2.0 ]
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": true,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 3,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.99,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 0,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel2" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 0.176471, 0.670588, 1, 1 )
+position = Vector2( 402.025, 269 )
+scale = Vector2( 0.8, 0.8 )
+description = "Get one million points as fast as possible!"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": true,
+"has_time_goal": false,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "1,000,000 Points",
+"point_goal": 1e+06,
+"points_scale": 131.0,
+"right_bound": 1014,
+"time_goal": 0.0,
+"up_bound": 10
+}
+factory_settings = {
+"enemy_blocker_prob": 0.05,
+"enemy_chaser_prob": 0.8,
+"enemy_comet_prob": 0.0,
+"enemy_is_active": false,
+"enemy_shooter_prob": 0.1,
+"enemy_spawn_away_radius": 200,
+"enemy_time_max": 4,
+"enemy_time_min": 3,
+"point_colors": [ Color( 1, 0, 0, 1 ), Color( 1, 0.65, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0, 1, 1 ), Color( 0.68, 0.85, 0.9, 1 ), Color( 1, 0.75, 0.8, 1 ) ],
+"point_is_active": true,
+"point_time_max": 0.8,
+"point_time_min": 0.1,
+"powerup_barrage_prob": 1,
+"powerup_bomb_up_prob": 2,
+"powerup_bombastic_prob": 1,
+"powerup_bulet_time_prob": 1,
+"powerup_gravity_well_prob": 1,
+"powerup_incendiary_prob": 0,
+"powerup_is_active": true,
+"powerup_max_bomb_prob": 0.0,
+"powerup_max_up_prob": 0,
+"powerup_one_up_prob": 0.0,
+"powerup_opalescence_prob": 0,
+"powerup_oversheild_prob": 0,
+"powerup_time_max": 15,
+"powerup_time_min": 10,
+"powerup_unmaker_prob": 0,
+"powerup_vision_prob": 0
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": false,
+"can_shoot": false,
+"can_shoot_laser": false,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 3,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.99,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 3,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel3" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 0.0666667, 0.192157, 1, 1 )
+position = Vector2( 662.025, 269 )
+scale = Vector2( 0.8, 0.8 )
+description = "Survive against the small chasers"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": true,
+"has_time_goal": false,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "Small Chasers",
+"point_goal": 3000.0,
+"points_scale": 1.0,
+"right_bound": 1014,
+"time_goal": 0.0,
+"up_bound": 10
+}
+factory_settings = {
+"enemy_blocker_prob": 0.0,
+"enemy_chaser_prob": 1.0,
+"enemy_comet_prob": 0.0,
+"enemy_is_active": true,
+"enemy_shooter_prob": 0.0,
+"enemy_spawn_away_radius": 200,
+"enemy_time_max": 4,
+"enemy_time_min": 3,
+"point_colors": [ Color( 1, 0, 0, 1 ), Color( 1, 0.65, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0, 1, 1 ), Color( 0.68, 0.85, 0.9, 1 ), Color( 1, 0.75, 0.8, 1 ) ],
+"point_is_active": true,
+"point_time_max": 0.8,
+"point_time_min": 0.1,
+"powerup_barrage_prob": 1,
+"powerup_bomb_up_prob": 2,
+"powerup_bombastic_prob": 1,
+"powerup_bulet_time_prob": 1,
+"powerup_gravity_well_prob": 1,
+"powerup_incendiary_prob": 1,
+"powerup_is_active": true,
+"powerup_max_bomb_prob": 0.5,
+"powerup_max_up_prob": 1,
+"powerup_one_up_prob": 0.2,
+"powerup_opalescence_prob": 1,
+"powerup_oversheild_prob": 3,
+"powerup_time_max": 15,
+"powerup_time_min": 10,
+"powerup_unmaker_prob": 1,
+"powerup_vision_prob": 1
+}
+enemy_settings = {
+"blocker_health": 150,
+"blocker_point_reward": 1250,
+"chaser_base_health": 10,
+"chaser_max_scale": 0.5,
+"chaser_min_scale": 0.1,
+"chaser_point_reward": 400,
+"shooter_health": 15,
+"shooter_missile_damage": 5,
+"shooter_missile_health": 1,
+"shooter_missile_speed": 400,
+"shooter_point_reward": 600,
+"shooter_shoot_freq_range": [ 1.0, 2.0 ]
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": false,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 3,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.99,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 3,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel4" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 0.133333, 0, 0.501961, 1 )
+position = Vector2( 911, 269 )
+scale = Vector2( 0.8, 0.8 )
+description = "All points make you much darker"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": true,
+"has_time_goal": false,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "DARKNESS",
+"point_goal": 55000.0,
+"points_scale": 1.0,
+"right_bound": 1014,
+"time_goal": 0.0,
+"up_bound": 10
+}
+factory_settings = {
+"enemy_blocker_prob": 0.05,
+"enemy_chaser_prob": 0.8,
+"enemy_comet_prob": 0.0,
+"enemy_is_active": true,
+"enemy_shooter_prob": 0.1,
+"enemy_spawn_away_radius": 200,
+"enemy_time_max": 4,
+"enemy_time_min": 3,
+"point_colors": [ Color( 0.298039, 0.298039, 0.298039, 1 ) ],
+"point_is_active": true,
+"point_time_max": 0.8,
+"point_time_min": 0.1,
+"powerup_barrage_prob": 1,
+"powerup_bomb_up_prob": 2,
+"powerup_bombastic_prob": 1,
+"powerup_bulet_time_prob": 1,
+"powerup_gravity_well_prob": 1,
+"powerup_incendiary_prob": 1,
+"powerup_is_active": true,
+"powerup_max_bomb_prob": 0.5,
+"powerup_max_up_prob": 1,
+"powerup_one_up_prob": 0.2,
+"powerup_opalescence_prob": 1,
+"powerup_oversheild_prob": 3,
+"powerup_time_max": 15,
+"powerup_time_min": 10,
+"powerup_unmaker_prob": 1,
+"powerup_vision_prob": 1
+}
+
+[node name="MissionPanel5" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
+position = Vector2( 1161, 271 )
+scale = Vector2( 0.8, 0.8 )
+description = "Press E or R-bumper to drop a bomb. You only have three, so use them wisely. Also, you can't shoot pellets or lasers for this one. Good Luck!"
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": true,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 6,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.9,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 1,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel6" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 0.968627, 0, 1, 1 )
+position = Vector2( 1396, 270 )
+scale = Vector2( 0.8, 0.8 )
+description = "Kill the enemies using powerups! They are the glowing spinning capsules. Collect them to gain a powepups. They will much more commonly here than usual. Have fun!"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": true,
+"has_time_goal": false,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "Powerups and bombs!",
+"point_goal": 60000.0,
+"right_bound": 1014,
+"time_goal": 0.0,
+"up_bound": 10
+}
+factory_settings = {
+"enemy_blocker_prob": 0.2,
+"enemy_chaser_prob": 0.0,
+"enemy_comet_prob": 0.0,
+"enemy_is_active": true,
+"enemy_shooter_prob": 0.8,
+"enemy_spawn_away_radius": 200,
+"enemy_time_max": 6,
+"enemy_time_min": 5,
+"point_colors": [ Color( 1, 0, 0, 1 ), Color( 1, 0.65, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0, 1, 1 ), Color( 0.68, 0.85, 0.9, 1 ), Color( 1, 0.75, 0.8, 1 ) ],
+"point_is_active": true,
+"point_time_max": 0.8,
+"point_time_min": 0.1,
+"powerup_barrage_prob": 1,
+"powerup_bomb_up_prob": 2,
+"powerup_bombastic_prob": 1,
+"powerup_bulet_time_prob": 1,
+"powerup_gravity_well_prob": 1,
+"powerup_incendiary_prob": 1,
+"powerup_is_active": true,
+"powerup_max_bomb_prob": 0.5,
+"powerup_max_up_prob": 1,
+"powerup_one_up_prob": 0.2,
+"powerup_opalescence_prob": 1,
+"powerup_oversheild_prob": 3,
+"powerup_time_max": 6,
+"powerup_time_min": 3,
+"powerup_unmaker_prob": 1,
+"powerup_vision_prob": 1
+}
+enemy_settings = {
+"blocker_health": 150,
+"blocker_point_reward": 1250,
+"chaser_base_health": 10,
+"chaser_min_scale": 0.15,
+"chaser_point_reward": 400,
+"shooter_health": 15,
+"shooter_missile_damage": 5,
+"shooter_missile_health": 1,
+"shooter_missile_speed": 400,
+"shooter_point_reward": 600,
+"shooter_shoot_freq_range": [ 1.0, 2.0 ]
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": true,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 3,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.99,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 3,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel7" parent="PageSelector" instance=ExtResource( 2 )]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 1628, 276 )
+scale = Vector2( 0.8, 0.8 )
+description = "Now that you Prove your new knoledge! Survive and get 50,000 points! Good Luck!"
+world_settings = {
+"down_bound": 590,
+"has_point_goal": true,
+"has_time_goal": false,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "Basics Complete",
+"point_goal": 50000.0,
+"right_bound": 1014,
+"time_goal": 0.0,
+"up_bound": 10
+}
+enemy_settings = {
+"blocker_health": 150,
+"blocker_point_reward": 1250,
+"chaser_base_health": 10,
+"chaser_min_scale": 0.15,
+"chaser_point_reward": 400,
+"shooter_health": 15,
+"shooter_missile_damage": 5,
+"shooter_missile_health": 1,
+"shooter_missile_speed": 400,
+"shooter_point_reward": 600,
+"shooter_shoot_freq_range": [ 1.0, 2.0 ]
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": true,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 3,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.99,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 3,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector"]
+stream = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+
+[node name="OpalescenceLabel" type="Label" parent="."]
+margin_left = 1.0
+margin_top = 29.0
+margin_right = 1015.0
+margin_bottom = 297.0
+custom_fonts/font = SubResource( 6 )
+text = "MISSION SELECT"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

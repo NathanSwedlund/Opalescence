@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Items/Point.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.785185, 0.888889, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.141176, 0.141176, 0.141176, 0.152941, 0.0588235, 0.0588235, 0.0588235, 0, 0, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 5.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+scale = 3.0
+color_ramp = SubResource( 4 )
+
+[node name="Point" type="KinematicBody2D"]
+collision_layer = 4
+script = ExtResource( 3 )
+speed = 15000
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 2 )
+
+[node name="OuterLight" type="Light2D" parent="."]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 1 )
+shadow_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+local_coords = false
+process_material = SubResource( 2 )
+
+[node name="InnerLight" type="Light2D" parent="."]
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 1 )
+energy = 2.0
+shadow_enabled = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

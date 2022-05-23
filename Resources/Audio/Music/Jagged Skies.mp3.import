@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Jagged Skies.mp3-2eaea17ec1b64da1a295b43169a00167.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Jagged Skies.mp3"
+dest_files=[ "res://.import/Jagged Skies.mp3-2eaea17ec1b64da1a295b43169a00167.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

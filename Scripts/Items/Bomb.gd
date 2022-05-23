@@ -1,0 +1,61 @@
+extends KinematicBody2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+export var rot_speed = 0.1
+export var scale_speed = Vector2(0.1, 0.1)
+export var scale_max = 1.5
+export var scale_min = 0.75
+var growing = true
+var exploding = false
+var damage = 10
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if(exploding == false):
+		rotate(rot_speed)
+		if(growing):
+			scale = scale + scale_speed
+		else:
+			scale = scale - scale_speed
+			
+		print(scale)
+			
+		if(scale.x > scale_max and growing):
+			growing = false
+		if(scale.x < scale_min and ! growing):
+			growing = true
+			
+		var collision = move_and_collide( Vector2(0.001,0.001))
+		if(collision != null):
+			if(collision.collider.is_in_group("Enemies")):
+				explode()
+	else:
+		for i in get_parent().find_node("Area2D").get_overlapping_bodies():
+			if(i.is_in_group("Enemies")):
+				print(i.get_groups())
+				i.take_damage(damage)
+
+func explode():
+	exploding = true
+	$AudioStreamPlayer.play()
+	$ExplosionTimer.start()
+	$OuterLight.scale *= 12
+	$InnerLight.energy *= 1.7
+	$InnerLight.scale *= 5
+	$Sprite.visible = false
+
+func change_color(color):
+	modulate = color
+	$OuterLight.color = color
+	$InnerLight.color = color
+	
+func _on_CountdownTimer_timeout():
+	explode()
+
+func _on_ExplosionTimer_timeout():
+	get_parent().queue_free()

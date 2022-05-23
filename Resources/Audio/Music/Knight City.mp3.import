@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Knight City.mp3-5f3d9f7ba49a0f7018ec3860375a30e0.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Knight City.mp3"
+dest_files=[ "res://.import/Knight City.mp3-5f3d9f7ba49a0f7018ec3860375a30e0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

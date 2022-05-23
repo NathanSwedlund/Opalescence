@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ChallengeSelect.wav-461cdc9d5f096c91006ce30ee4396181.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/ChallengeSelect.wav"
+dest_files=[ "res://.import/ChallengeSelect.wav-461cdc9d5f096c91006ce30ee4396181.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
