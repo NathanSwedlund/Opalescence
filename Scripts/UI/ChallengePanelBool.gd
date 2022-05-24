@@ -21,6 +21,7 @@ func _process(delta):
 	if(is_ui_selected):
 		if(Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_accept")):
 			update_selected(!is_selected)
+			$ChangeAudio.play()
 
 func update_selected(_selected):
 	is_selected = _selected

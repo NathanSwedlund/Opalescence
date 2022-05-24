@@ -1,13 +1,15 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/UI/ChallengePage.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Audio/FX/MissionPanelSelect.wav" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanelBool.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Resources/Textures/UI/healthImage.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=10]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -17,22 +19,21 @@ colors = PoolColorArray( 0.601562, 0.601562, 0.601562, 1, 1, 1, 1, 1 )
 gradient = SubResource( 4 )
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.988571, 0 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.826087, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=2]
 curve = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=3]
-emission_shape = 2
-emission_box_extents = Vector3( 500, 300, 1 )
+[sub_resource type="ParticlesMaterial" id=11]
 flag_disable_z = true
-direction = Vector3( 0, 1, 0 )
-spread = 0.0
-gravity = Vector3( 0, 80, 0 )
-initial_velocity = 200.0
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 9.8
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale = 3.0
+radial_accel = 100.0
+scale = 5.0
 scale_curve = SubResource( 2 )
 color_ramp = SubResource( 5 )
 
@@ -42,6 +43,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 25
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 20
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=8]
@@ -67,21 +72,25 @@ centered = false
 scale = Vector2( 0.6, 0.6 )
 
 [node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 48.3333, 211.667 )
 title = "Can Shoot"
 setting_name = "can_shoot"
 
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 54.3333, 316.667 )
 title = "Can Use Laser"
 setting_name = "can_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
+visible = false
 position = Vector2( 54.3333, 433.667 )
 title = "Can Use Bombs"
 setting_name = "can_bomb"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 52.3334, 553.667 )
 title = "Player Speed Scale"
 max_val = 1.25
@@ -90,14 +99,18 @@ score_mult_per_step = -0.2
 setting_name = "player_speed_scale"
 
 [node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 56.3335, 665.667 )
 title = "Enemy Health Scale"
 max_val = 2.1
 min_val = 0.2
+min_color = Color( 0, 1, 1, 1 )
+max_color = Color( 1, 0, 0, 1 )
 score_mult_per_step = 0.2
 setting_name = "enemy_health_scale"
 
 [node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 676.667, 206.667 )
 title = "Chaser Scale"
 max_val = 1.25
@@ -106,18 +119,22 @@ score_mult_per_step = -0.2
 setting_name = "chaser_gen_scale"
 
 [node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 680.667, 318.666 )
 title = "Shooter Missile Speed"
 min_val = 0.2
+min_color = Color( 0, 1, 1, 1 )
+max_color = Color( 1, 0, 0, 1 )
 score_mult_per_step = 0.1
 setting_name = "shooter_missile_speed_scale"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500.048, 301.233 )
 z_index = -1
-amount = 50
+amount = 200
+lifetime = 5.0
 visibility_rect = Rect2( -100, -108.08, 224.976, 200 )
-process_material = SubResource( 3 )
+process_material = SubResource( 11 )
 
 [node name="Light2D" type="Light2D" parent="Particles2D"]
 visible = false
@@ -129,32 +146,35 @@ energy = 1.78
 stream = ExtResource( 1 )
 autoplay = true
 
-[node name="SelectSound" type="AudioStreamPlayer" parent="."]
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
 [node name="Challenge" type="Label" parent="."]
 margin_left = 10.0
 margin_top = 4.0
-margin_right = 663.0
+margin_right = 434.0
 margin_bottom = 73.0
 custom_fonts/font = SubResource( 6 )
-text = "Challenge Mode"
+text = "Challenge"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HighScore" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 68.0
-margin_right = 327.0
-margin_bottom = 108.0
+margin_left = 447.0
+margin_top = 16.0
+margin_right = 764.0
+margin_bottom = 56.0
 custom_fonts/font = SubResource( 7 )
 text = "High Score: "
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="ChallengeOptionsLabel" type="Label" parent="."]
+margin_left = 322.0
+margin_top = 82.0
+margin_right = 639.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 10 )
+text = "Challenge Options"
+align = 1
 
 [node name="ScoreMult" type="Label" parent="."]
 margin_left = 10.0
@@ -180,4 +200,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HealthImage" type="Sprite" parent="."]
+position = Vector2( 507, 116 )
+scale = Vector2( 9.46018, 0.0447154 )
+texture = ExtResource( 9 )
+
+[node name="HealthImage2" type="Sprite" parent="."]
+position = Vector2( 489, 481 )
+scale = Vector2( 9.46018, 0.0406504 )
+texture = ExtResource( 9 )
+
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="PanelAppearTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]
+[connection signal="timeout" from="PanelAppearTimer" to="." method="_on_PanelAppearTimer_timeout"]

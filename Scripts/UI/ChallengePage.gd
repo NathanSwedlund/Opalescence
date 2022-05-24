@@ -12,6 +12,8 @@ func _ready():
 
 
 func _process(delta):
+	if(Input.is_action_just_pressed("ui_cancel")):
+		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 	if(Input.is_action_just_pressed("ui_down")):
 		var panel_num = (current_panel_selected + 1) % $ChallengePanels.get_child_count()
 		select_panel(panel_num)
@@ -23,6 +25,7 @@ func _process(delta):
 		_on_ReadyButton_pressed()
 
 func select_panel(panel_num):
+		$SelectAudio.play()
 		$ChallengePanels.get_child(current_panel_selected).is_ui_selected = false
 		$ChallengePanels.get_child(current_panel_selected).scale /= panel_selection_scale
 		$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = false
@@ -51,3 +54,14 @@ func _on_ReadyButton_pressed():
 
 	Settings.world["points_scale"] = score_mult
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
+
+
+var current_panel = 0
+func _on_PanelAppearTimer_timeout():
+	if(current_panel == $ChallengePanels.get_child_count()):
+		$PanelAppearTimer.stop()
+		return
+	
+	$ChallengePanels.get_child(current_panel).visible = true
+	$PanelAppearAudio.play()
+	current_panel += 1

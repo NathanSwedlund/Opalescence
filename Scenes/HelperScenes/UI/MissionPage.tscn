@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/HelperScenes/UI/MissionPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/UI/MissionPage.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=4]
-[ext_resource path="res://Resources/Audio/FX/MissionPanelSelect.wav" type="AudioStream" id=5]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=5]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=8]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -65,7 +66,10 @@ energy = 1.78
 [node name="PageSelector" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="MissionPanel" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="Pages" type="Node2D" parent="PageSelector"]
+
+[node name="MissionPanel" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 1, 0.235294, 0.176471, 1 )
 position = Vector2( 142.025, 269 )
 description = "Survive the onslaught of the shooters. They shoot faster and are invincible. Survive for thirty seconds! Only one life, and no powerups"
@@ -148,7 +152,8 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="MissionPanel2" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel2" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 0.176471, 0.670588, 1, 1 )
 position = Vector2( 402.025, 269 )
 scale = Vector2( 0.8, 0.8 )
@@ -219,7 +224,8 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="MissionPanel3" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel3" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 0.0666667, 0.192157, 1, 1 )
 position = Vector2( 662.025, 269 )
 scale = Vector2( 0.8, 0.8 )
@@ -304,7 +310,8 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="MissionPanel4" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel4" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 0.133333, 0, 0.501961, 1 )
 position = Vector2( 911, 269 )
 scale = Vector2( 0.8, 0.8 )
@@ -353,7 +360,8 @@ factory_settings = {
 "powerup_vision_prob": 1
 }
 
-[node name="MissionPanel5" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel5" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
 position = Vector2( 1161, 271 )
 scale = Vector2( 0.8, 0.8 )
@@ -381,7 +389,8 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="MissionPanel6" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel6" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 0.968627, 0, 1, 1 )
 position = Vector2( 1396, 270 )
 scale = Vector2( 0.8, 0.8 )
@@ -464,7 +473,8 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="MissionPanel7" parent="PageSelector" instance=ExtResource( 2 )]
+[node name="MissionPanel7" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 1628, 276 )
 scale = Vector2( 0.8, 0.8 )
@@ -520,7 +530,14 @@ player_settings = {
 [node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector"]
 stream = ExtResource( 5 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="PageSelector"]
+stream = ExtResource( 8 )
+
+[node name="PanelAppearTimer" type="Timer" parent="PageSelector"]
+wait_time = 0.08
+autostart = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 autoplay = true
 
@@ -535,3 +552,5 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="timeout" from="PageSelector/PanelAppearTimer" to="PageSelector" method="_on_PanelAppearTimer_timeout"]

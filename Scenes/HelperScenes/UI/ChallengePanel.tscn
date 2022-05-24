@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Textures/UI/MIssionFrame.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/UI/ChallengePanel.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -94,6 +95,9 @@ position = Vector2( 160, 81 )
 scale = Vector2( 0.359375, 0.0917969 )
 texture = ExtResource( 4 )
 energy = 1.78
+
+[node name="ChangeAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="pressed" from="IncreaseButton" to="." method="_on_IncreaseButton_pressed"]
 [connection signal="pressed" from="DecreaseButton" to="." method="_on_DecreaseButton_pressed"]
