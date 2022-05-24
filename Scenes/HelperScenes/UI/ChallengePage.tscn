@@ -64,25 +64,25 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="ChallengePanels" type="Node2D" parent="."]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.6, 0.6 )
 
 [node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 1566, 124 )
+position = Vector2( 48.3333, 211.667 )
 title = "Can Shoot"
 setting_name = "can_shoot"
 
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 1572, 229 )
+position = Vector2( 54.3333, 316.667 )
 title = "Can Use Laser"
 setting_name = "can_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 1572, 346 )
+position = Vector2( 54.3333, 433.667 )
 title = "Can Use Bombs"
 setting_name = "can_bomb"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
-position = Vector2( 1570, 466 )
+position = Vector2( 52.3334, 553.667 )
 title = "Player Speed Scale"
 max_val = 1.25
 min_val = 0.2
@@ -90,12 +90,27 @@ score_mult_per_step = -0.2
 setting_name = "player_speed_scale"
 
 [node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
-position = Vector2( 1574, 578 )
-title = "Player Speed Scale"
+position = Vector2( 56.3335, 665.667 )
+title = "Enemy Health Scale"
+max_val = 2.1
+min_val = 0.2
+score_mult_per_step = 0.2
+setting_name = "enemy_health_scale"
+
+[node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 676.667, 206.667 )
+title = "Chaser Scale"
 max_val = 1.25
 min_val = 0.2
 score_mult_per_step = -0.2
-setting_name = "player_speed_scale"
+setting_name = "chaser_gen_scale"
+
+[node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 680.667, 318.666 )
+title = "Shooter Missile Speed"
+min_val = 0.2
+score_mult_per_step = 0.1
+setting_name = "shooter_missile_speed_scale"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500.048, 301.233 )
@@ -105,6 +120,7 @@ visibility_rect = Rect2( -100, -108.08, 224.976, 200 )
 process_material = SubResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="Particles2D"]
+visible = false
 scale = Vector2( 1.00518, 0.590234 )
 texture = ExtResource( 5 )
 energy = 1.78

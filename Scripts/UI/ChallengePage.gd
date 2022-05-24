@@ -1,13 +1,38 @@
 extends Node2D
 
+var current_panel_selected = 0
+var panel_selection_scale = 1.1
+var score_mult = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$HighScore.text = "High Score: " + str(HighScore.get_score("challenge"))
-#	for c in $ChallengePanels.get_children():
-#		c.connect("update_score_mult", self, "update_global_score_mult")
-#		print(c.name)
+	var score = HighScore.get_score("challenge")
+	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
+	$HighScore.text = "High Score: " + score
 
-var score_mult = 1.0
+
+func _process(delta):
+	if(Input.is_action_just_pressed("ui_down")):
+		var panel_num = (current_panel_selected + 1) % $ChallengePanels.get_child_count()
+		select_panel(panel_num)
+	if(Input.is_action_just_pressed("ui_up")):
+		var panel_num = (current_panel_selected  - 1 + $ChallengePanels.get_child_count()) % $ChallengePanels.get_child_count()
+		select_panel(panel_num)
+	
+	if(Input.is_action_just_pressed("controller_start")):
+		_on_ReadyButton_pressed()
+
+func select_panel(panel_num):
+		$ChallengePanels.get_child(current_panel_selected).is_ui_selected = false
+		$ChallengePanels.get_child(current_panel_selected).scale /= panel_selection_scale
+		$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = false
+
+		current_panel_selected = panel_num
+		
+		$ChallengePanels.get_child(current_panel_selected).is_ui_selected = true
+		$ChallengePanels.get_child(current_panel_selected).scale *= panel_selection_scale
+		$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = true
+
 func update_global_score_mult():
 	print("update_global_score_mult")
 	score_mult = 1.0

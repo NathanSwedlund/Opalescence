@@ -12,8 +12,9 @@ var looking_for_point = true
 onready var base_color = modulate
 
 func _ready():
+	scale *= Settings.get_setting_if_exists(Settings.enemy, "blocker_gen_scale", 1.0)
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "blocker_point_reward", point_reward)
-	health = Settings.get_setting_if_exists(Settings.enemy, "blocker_health", health)
+	health = Settings.get_setting_if_exists(Settings.enemy, "blocker_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	add_to_group("Enemies")
 	add_to_group("Blockers")
 

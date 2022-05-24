@@ -13,10 +13,11 @@ onready var base_color = modulate
 var tags = {"enemy":true}
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scale *= Settings.get_setting_if_exists(Settings.enemy, "chaser_gen_scale", 1.0)
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "chaser_point_reward", point_reward)
 	add_to_group("Enemies")
 	add_to_group("Chasers")
-	base_health = Settings.get_setting_if_exists(Settings.enemy, "chaser_base_health", base_health)
+	base_health = Settings.get_setting_if_exists(Settings.enemy, "chaser_base_health", base_health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	speed = base_speed * 1/(scale.y)
 	health = scale.y * base_health
 	pass # Replace with function body.

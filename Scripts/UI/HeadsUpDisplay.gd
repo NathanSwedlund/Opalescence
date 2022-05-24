@@ -5,6 +5,10 @@ var can_unpause = false
 var pause_audio_pitch_scale = 0.66
 var is_pitching_music = false
 
+func _ready():
+	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
+		$BombDisplay.visible = false
+
 func _process(delta):
 #	if(game_is_over and Input.is_action_just_pressed("ui_cancel")):
 #		return_to_menu()
@@ -24,11 +28,13 @@ func _process(delta):
 			pause()
 			
 func unpause():
+	$PausePopup/Buttons.is_active = false
 	is_pitching_music = true
 	$PausePopup.hide()
 	get_tree().paused = false
 
 func pause():
+	$PausePopup/Buttons.is_active = true
 	is_pitching_music = true
 	can_unpause = false
 	$PausePopup/PausePopupBufferTimer.start()
@@ -58,10 +64,11 @@ func update_bombs(bomb_count):
 		$BombDisplay.get_child(i).visible = true
 	
 func update_points(points):
-	$PointsLabel.text = "Points: " + Global.point_num_to_string(points, ["b", "m"])
+	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 	
 func game_over(is_mission, mission_complete):
 	$GameOverPopup.show()
+	$GameOverPopup/Buttons.is_active = true
 	$GameOverPopup/GameOverLabel.text = "COMPLETE" if is_mission and mission_complete else "GAME OVER"
 	game_is_over = true
 	
@@ -70,6 +77,7 @@ func change_color(new_color):
 		c.modulate = new_color
 
 func reset():
+	$GameOverPopup/Buttons.is_active = false
 	$GameOverPopup.hide()
 
 func _on_RestartButton_pressed():

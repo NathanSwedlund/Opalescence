@@ -10,8 +10,9 @@ onready var base_color = modulate
 var point_reward = 550
 
 func _ready():
+	scale *= Settings.get_setting_if_exists(Settings.enemy, "shooter_gen_scale", 1.0)
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "shooter_point_reward", point_reward)
-	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_health", health)
+	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	shoot_freq_range = Settings.get_setting_if_exists(Settings.enemy, "shooter_shoot_freq_range", shoot_freq_range)
 	
 	add_to_group("Enemies")

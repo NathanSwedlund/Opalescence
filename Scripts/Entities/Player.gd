@@ -517,6 +517,7 @@ func _on_OpalescenceColorShift_timeout():
 	change_color( Color(r,g,b) )
 
 func _on_Unmaker_timeout():
+	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
 	powerup_count -= 1
 

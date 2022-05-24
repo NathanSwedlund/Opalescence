@@ -8,7 +8,7 @@ var direction
 var parent_shooter:Node2D
 
 func _ready():
-	speed  = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed",  speed)
+	speed  = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed",  speed) * Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed_scale",  1.0)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_health", health)
 	damage = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_damage", damage)
 		

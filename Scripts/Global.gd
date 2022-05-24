@@ -24,7 +24,7 @@ func round_float(_float, decimal_num):
 var suffix_nums = [1000000000.0, 1000000.0, 1000.0]
 func point_num_to_string(point_num, suffixes):
 	for i in range(len(suffixes)):
-		if(point_num > suffix_nums[i]):
+		if(abs(point_num) > suffix_nums[i]):
 			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i] 
 
 	return str(point_num)

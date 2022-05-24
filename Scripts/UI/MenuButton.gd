@@ -2,6 +2,7 @@ extends Button
 
 export var left_margin_on_hover = 600
 export var button_index = -1
+export var button_shift_index = -1
 var initital_left_margin
 
 onready var selection_controller = get_parent()

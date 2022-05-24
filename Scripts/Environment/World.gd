@@ -21,6 +21,7 @@ func game_over():
 	$HeadsUpDisplay/HealthDisplay.visible = false
 	$HeadsUpDisplay/TimeLabel.visible = false
 	
+	
 func _ready():
 	for s in songs_scenes:
 		songs.append(load(s))

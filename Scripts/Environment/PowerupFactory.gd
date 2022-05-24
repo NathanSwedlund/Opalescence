@@ -87,6 +87,16 @@ func _ready():
 		powerup_probabilities["vision"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_vision_prob", powerup_probabilities["vision"])
 		print(powerup_probabilities)
 		
+		if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
+			powerup_probabilities["bombastic"] = 0.0
+			powerup_probabilities["bomb_up"] = 0.0
+			powerup_probabilities["max_bomb"] = 0.0
+		if(Settings.get_setting_if_exists(Settings.player, "can_shoot", true) == false):
+			powerup_probabilities["incendiary"] = 0.0
+			powerup_probabilities["barrage"] = 0.0
+		if(Settings.get_setting_if_exists(Settings.player, "can_laser", true) == false):
+			powerup_probabilities["unmaker"] = 0.0
+			
 	reset_spawn_timer()
 
 func reset():
