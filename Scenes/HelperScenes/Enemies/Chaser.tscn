@@ -32,7 +32,7 @@ scale = Vector2( 1, 1.5 )
 occluder = SubResource( 1 )
 
 [node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.07
+wait_time = 0.1
 one_shot = true
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]

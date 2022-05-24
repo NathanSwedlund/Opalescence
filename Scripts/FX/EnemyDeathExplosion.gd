@@ -26,20 +26,25 @@ func _ready():
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
 
+var target_time = 1.0/70.0
+var current_time = 0.0
 func _process(delta):
-	$Light2D2.rotate(0.01)
-	if(is_growing):
-		if(scale.x >= max_size):
-			is_growing = false
+	current_time += delta
+	if(current_time > target_time):
+		current_time = 0.0
+		$Light2D2.rotate(0.01)
+		if(is_growing):
+			if(scale.x >= max_size):
+				is_growing = false
+			else:
+				scale *= grow_speed
 		else:
-			scale *= grow_speed
-	else:
-		if(scale.x <= min_size):
-			queue_free()
-		else:
-			scale *= shrink_speed
-			modulate.a *= shrink_speed
-			$Light2D.color.a *= shrink_speed
-			$Light2D2.color.a *= shrink_speed
+			if(scale.x <= min_size):
+				queue_free()
+			else:
+				scale *= shrink_speed
+				modulate.a *= shrink_speed
+				$Light2D.color.a *= shrink_speed
+				$Light2D2.color.a *= shrink_speed
 	
 	#$LightTimer.start()

@@ -3,13 +3,14 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var rot_speed = 0.1
-export var scale_speed = Vector2(0.1, 0.1)
+export var rot_speed = 20
+export var scale_speed = Vector2(6, 6)
 export var scale_max = 1.5
 export var scale_min = 0.75
 var growing = true
 var exploding = false
-var damage = 10
+var damage = 40
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -17,13 +18,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(exploding == false):
-		rotate(rot_speed)
+		rotate(rot_speed * delta)
 		if(growing):
-			scale = scale + scale_speed
+			scale = scale + scale_speed * delta
 		else:
-			scale = scale - scale_speed
-			
-		print(scale)
+			scale = scale - scale_speed * delta
 			
 		if(scale.x > scale_max and growing):
 			growing = false
@@ -38,7 +37,7 @@ func _process(delta):
 		for i in get_parent().find_node("Area2D").get_overlapping_bodies():
 			if(i.is_in_group("Enemies")):
 				print(i.get_groups())
-				i.take_damage(damage)
+				i.take_damage(damage * delta)
 
 func explode():
 	exploding = true

@@ -1,7 +1,7 @@
 extends Node
 
 var player = null
-
+var target_frame_rate = 60.0
 
 func save_var(path, _var):
 	print("Saving ", _var, " at ", path)

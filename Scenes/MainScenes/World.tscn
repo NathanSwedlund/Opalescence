@@ -222,7 +222,7 @@ powerup_probabilities = {
 "one_up": 0.2,
 "opalescence": 1.0,
 "oversheild": 3.0,
-"unmaker": 1.0,
+"unmaker": 1000.0,
 "vision": 1.0
 }
 

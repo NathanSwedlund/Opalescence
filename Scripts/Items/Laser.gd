@@ -10,11 +10,9 @@ var fade_in_time_ratio = 0.25
 var not_fading_time = 0.55
 var fade_out_time_ratio = 0.2
 
-export var damage = 1
-
+export var damage = 30
 export var fade_out_speed = 0.88
 export var fade_in_speed = 1.56
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +43,7 @@ func _process(_delta):
 			scale.y *= fade_out_speed
 			
 	for i in get_overlapping_bodies():
-		i.take_damage(damage)
+		i.take_damage(damage * _delta)
 
 func _on_FadeInTimer_timeout():
 	$NotFadingTimer.start()

@@ -67,6 +67,7 @@ energy = 3.0
 shadow_enabled = true
 
 [node name="InnerLight" type="Light2D" parent="."]
+visible = false
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 3 )
 energy = 3.0

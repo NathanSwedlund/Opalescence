@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var speed = 40
-export var rot_speed = 0.1
+export var rot_speed = 6
 
 # Will be set by pointFactory
 var player:Node2D
@@ -11,10 +11,11 @@ func _ready():
 	add_to_group("Powerups")
 	$OuterLight.color = get_parent().modulate
 	$InnerLight.color = get_parent().modulate
-	
+
 func _process(delta):
-	rotate(rot_speed)
+#	rotate(rot_speed*delta)
 	var dist = global_position.distance_squared_to(player.position)
+	print(rotation)
 	if(dist < player.gravity_radius*player.gravity_radius):
 #		print("move")
 		var position_diff = (player.position - global_position)

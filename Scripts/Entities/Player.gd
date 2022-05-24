@@ -7,6 +7,7 @@ export var shrink_scalar = 0.99
 
 onready var default_light_size = $OuterLight.scale
 export var min_scale = 0.5
+
 # Gravity Variables
 export var gravity_radius = 100
 export var gravity_pull_scale = 1
@@ -407,7 +408,9 @@ func get_powerup(_powerup, _color):
 	if(a != null):
 		a.play()
 
-	powerup_count += 1
+	if(_powerup in transformative_powerups):
+		powerup_count += 1
+		
 	change_color(_color)
 	$CanvasLayer/PowerupLabel.show_powerup(_powerup)
 	add_points(powerup_point_value)
