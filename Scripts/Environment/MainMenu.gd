@@ -45,6 +45,7 @@ func _on_BackButton_pressed():
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
+	Settings.world["mission_title"] = "standard"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func shift_button_selection(button_selection_num):
@@ -54,12 +55,9 @@ func shift_button_selection(button_selection_num):
 		current_shifting_index = 0
 		$ButtonShiftTimer.start()
 		button_selections[current_button_selection].is_active = false
-	
-
 
 func _on_ButtonShiftTimer_timeout():
 	var shifted_any = false
-	
 	for c in button_selections[current_button_selection].get_children():
 		if(c.button_shift_index == current_shifting_index):
 			c.visible = false

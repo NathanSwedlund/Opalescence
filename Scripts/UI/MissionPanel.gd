@@ -2,6 +2,9 @@ extends Node2D
 
 export var description = "Description"
 
+var index = 0
+var page_container = null
+
 export var world_settings = {
 		"is_mission":true,
 		"mission_title":"title",
@@ -99,8 +102,13 @@ func _ready():
 	if(world_settings["has_point_goal"]):
 		$Goal.text = "Goal: "+str(world_settings["point_goal"])+"pts"
 		$HighScore.text += "s"
+	
 	if(world_settings["has_time_goal"]):
 		$Goal.text = "Goal: "+str(world_settings["time_goal"])+"s"
 		$HighScore.text += "pts"
+		
 	$Description.text = description
-	
+
+func _on_Button_pressed():
+	if(page_container != null):
+		page_container.panel_pressed(index)

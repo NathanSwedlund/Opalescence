@@ -40,12 +40,14 @@ func _process(delta):
 				i.take_damage(damage * delta)
 
 func explode():
+	$ExplosionParticles.emitting = true
 	exploding = true
 	$AudioStreamPlayer.play()
 	$ExplosionTimer.start()
 	$OuterLight.scale *= 12
 	$InnerLight.energy *= 1.7
 	$InnerLight.scale *= 5
+	$InnerLight.energy *= 1.4
 	$Sprite.visible = false
 
 func change_color(color):

@@ -41,7 +41,6 @@ func _ready():
 		
 		time_min = Settings.get_setting_if_exists(Settings.factory, "enemy_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "enemy_time_max", time_max)
-		is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)
 		print("enemy_is_active", is_active)
 		print("time_max", time_max)
 
@@ -75,6 +74,7 @@ func spawn_enemy():
 		spawn_chaser()
 		
 func reset():
+	is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)	
 	_ready()
 
 func distance_to_closest_entity(point):
@@ -148,6 +148,7 @@ func spawn_blocker():
 func kill_all():
 	for c in $Enemies.get_children():
 		if(c.is_in_group("Enemies")):
+			c.point_reward = 0
 			c.die()
 
 func _on_Timer_timeout():

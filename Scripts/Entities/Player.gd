@@ -82,6 +82,7 @@ var is_shooting_indendiary = false
 
 export var use_global_settings = true
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
+var opalescence_shift_speed = 0.5
 
 func _ready():
 	if(use_global_settings):
@@ -119,6 +120,18 @@ func _ready():
 	default_bullets_per_burst = bullets_per_burst
 	reset()
 
+var shift_speed = 1
+var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
+var target_color = colors[randi()%len(colors)]
+func _process(delta):
+	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
+		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
+		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
+		modulate.b = move_toward(modulate.b, target_color.b, shift_speed * delta)
+		print("Opalescense aqcuired modulating, ", modulate)
+		change_color(modulate)
+		if(modulate == target_color):
+			target_color = colors[randi()%len(colors)]
 
 func reset():
 	$Cursor.player = self
@@ -322,9 +335,9 @@ func game_over():
 	
 	var is_mission = Settings.world["is_mission"]
 	var mission_complete = false
-	var score_title = Settings.world["mission_title"] if is_mission else "challenge"
+	var score_title = Settings.world["mission_title"]
 	
-	if(score_title == "challenge"):
+	if(score_title == "challenge" or score_title == "standard"):
 		HighScore.record_score(points, score_title)
 	else:
 		if(Settings.world["has_point_goal"] and Settings.world["point_goal"] <= points):
@@ -408,7 +421,7 @@ func get_powerup(_powerup, _color):
 	if(a != null):
 		a.play()
 
-	if(_powerup in transformative_powerups):
+	if(_powerup in transformative_powerups and has_powerup[_powerup] == false):
 		powerup_count += 1
 		
 	change_color(_color)
@@ -505,16 +518,10 @@ func _on_Incendiary_timeout():
 	is_shooting_indendiary = false
 
 func _on_Opalescence_timeout():
+	target_color = colors[randi()%len(colors)]
 	has_powerup["Opalescence"] = false
 	powerup_count -= 1
 	$PowerupTimers/OpalescenceColorShift.stop()
-
-func _on_OpalescenceColorShift_timeout():
-	var shift_speed = 0.7
-	var r = modulate.r+(randf()-0.5)*shift_speed
-	var g = modulate.g+(randf()-0.5)*shift_speed
-	var b = modulate.b+(randf()-0.5)*shift_speed
-	change_color( Color(r,g,b) )
 
 func _on_Unmaker_timeout():
 	$SoundFX/UnmakerAudio.stop()

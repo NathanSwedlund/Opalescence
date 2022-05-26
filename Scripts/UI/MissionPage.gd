@@ -17,11 +17,14 @@ var panel_num = 0
 func _ready():
 	Settings.reset_settings()
 	panels = $Pages.get_children()
-	panel_num = len(panels)-2 # The two audio nodes aren't panels
+	panel_num = len(panels) # The two audio nodes aren't panels
 	
 	for i in range(panel_num):
-		$Pages.get_children()[i].find_node("Description").visible = false
-		$Pages.get_children()[i].position.x = i * -shift_dist + first_panel_start_x
+		$Pages.get_child(i).find_node("Description").visible = false
+		$Pages.get_child(i).position.x = i * -shift_dist + first_panel_start_x
+		$Pages.get_child(i).index = i
+		$Pages.get_child(i).page_container = self
+		
 		print(i * -shift_dist + first_panel_start_x)
 		
 	$Pages.get_child(0).find_node("Description").visible = true
@@ -35,20 +38,7 @@ func _process(delta):
 
 	if(is_shifting == false):
 		if(Input.is_action_just_pressed("ui_accept")):
-			Settings.world = $Pages.get_child(selected).world_settings.duplicate()
-			Settings.player = $Pages.get_child(selected).player_settings.duplicate()
-			Settings.enemy = $Pages.get_child(selected).enemy_settings.duplicate()
-			Settings.factory = $Pages.get_child(selected).factory_settings.duplicate()
-			
-			# Adding any setting to the world settings if they werent included in the mission panel
-			var dicts = [Settings.world, Settings.player, Settings.enemy, Settings.factory]
-			var defaults = [Settings.world_default, Settings.player_default, Settings.enemy_default, Settings.factory_default]
-			for i in range(len(dicts)):
-				for key in defaults[i].keys():
-					if( (key in dicts[i]) == false ):
-						dicts[i][key] = defaults[i][key]
-			
-			get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
+			load_scene_from_panel()
 		
 		if(Input.is_action_just_pressed("ui_left") and selected != 0):
 			shift_right = false
@@ -66,6 +56,22 @@ func _process(delta):
 			position.x = move_toward(position.x, shift_dist * selected, delta * shift_speed)
 			if(position.x >= shift_dist * selected):
 				finish_shifting()
+
+func load_scene_from_panel():
+	Settings.world = $Pages.get_child(selected).world_settings.duplicate()
+	Settings.player = $Pages.get_child(selected).player_settings.duplicate()
+	Settings.enemy = $Pages.get_child(selected).enemy_settings.duplicate()
+	Settings.factory = $Pages.get_child(selected).factory_settings.duplicate()
+	
+	# Adding any setting to the world settings if they werent included in the mission panel
+	var dicts = [Settings.world, Settings.player, Settings.enemy, Settings.factory]
+	var defaults = [Settings.world_default, Settings.player_default, Settings.enemy_default, Settings.factory_default]
+	for i in range(len(dicts)):
+		for key in defaults[i].keys():
+			if( (key in dicts[i]) == false ):
+				dicts[i][key] = defaults[i][key]
+	
+	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func start_shifting():
 	print(selected)
@@ -94,3 +100,12 @@ func _on_PanelAppearTimer_timeout():
 	$PanelAppearAudio.play()
 	current_panel += 1
 
+func panel_pressed(_index):
+	if(_index == selected):
+		load_scene_from_panel()
+	elif(_index < selected):
+		shift_right = false
+		start_shifting()
+	else:
+		shift_right = true
+		start_shifting()

@@ -196,9 +196,6 @@ margin_bottom = 562.0
 custom_fonts/font = SubResource( 9 )
 text = "Ready"
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HealthImage" type="Sprite" parent="."]
 position = Vector2( 507, 116 )

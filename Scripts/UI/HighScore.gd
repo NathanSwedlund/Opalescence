@@ -26,8 +26,11 @@ func record_score(score, score_title, more_is_better=true):
 func get_score(score_title):
 	print(high_scores)
 	if( (score_title in high_scores.keys() ) == false):
+		print("\n Loading score, 0", score_title)
 		return 0
 	if(high_scores[score_title] == null):
+		print("\n Loading score, 0", score_title)
 		return 0
 	
+	print("\n Loading score ", score_title, high_scores[score_title])
 	return high_scores[score_title]

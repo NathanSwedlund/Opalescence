@@ -26,5 +26,4 @@ func point_num_to_string(point_num, suffixes):
 	for i in range(len(suffixes)):
 		if(abs(point_num) > suffix_nums[i]):
 			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i] 
-
 	return str(point_num)

@@ -70,7 +70,6 @@ func _ready():
 		time_min = Settings.get_setting_if_exists(Settings.factory, "powerup_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "powerup_time_max", time_max)
 		print("time_max_power ", time_max)
-		is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)
 
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
 		powerup_probabilities["bomb_up"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_bomb_up_prob", powerup_probabilities["bomb_up"])
@@ -100,6 +99,7 @@ func _ready():
 	reset_spawn_timer()
 
 func reset():
+	is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)	
 	reset_spawn_timer()
 	_ready()
 

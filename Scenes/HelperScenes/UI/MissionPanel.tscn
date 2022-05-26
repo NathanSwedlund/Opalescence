@@ -62,3 +62,12 @@ __meta__ = {
 [node name="MIssionFrame" type="Sprite" parent="."]
 scale = Vector2( 12, 17 )
 texture = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = -123.0
+margin_top = -174.0
+margin_right = 124.0
+margin_bottom = 172.0
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

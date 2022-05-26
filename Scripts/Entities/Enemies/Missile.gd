@@ -6,12 +6,15 @@ export var damage = 5
 
 var direction
 var parent_shooter:Node2D
+var explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
+export var expl_scale = 0.5
+var point_reward = 0
 
 func _ready():
 	speed  = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed",  speed) * Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed_scale",  1.0)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_health", health)
 	damage = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_damage", damage)
-		
+	
 	add_to_group("Enemies")
 	add_to_group("Missiles")
 	if(parent_shooter == null):
@@ -31,4 +34,9 @@ func take_damage(damage):
 	die()
 	
 func die():
+	var expl = explosion_scene.instance()
+	expl.scale_mod = expl_scale
+	expl.point_reward = point_reward
+	expl.global_position = global_position
+	get_parent().add_child(expl)
 	queue_free()

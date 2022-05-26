@@ -45,6 +45,7 @@ func update_global_score_mult():
 	$ScoreMult.text = "Score Multiplier: X" + str(score_mult)
 
 func _on_ReadyButton_pressed():
+	
 	for c in $ChallengePanels.get_children():
 		for d in [Settings.world, Settings.factory, Settings.enemy, Settings.player]:
 			for key in d.keys():
@@ -53,6 +54,7 @@ func _on_ReadyButton_pressed():
 					d[key] = c.current_val
 
 	Settings.world["points_scale"] = score_mult
+	Settings.world["mission_title"] = "challenge"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 

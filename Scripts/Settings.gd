@@ -2,12 +2,14 @@ extends Node
 
 var save_data = {}
 
-var sound
 
-var sound_default = {
+var saved_settings_default = {
 	"fx_volume_scale":1.0,
 	"music_volume_scale":1.0,
+	"less_flashy_mode":true,
+	"colors":[Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink],
 }
+var saved_settings = saved_settings_default.duplicate()
 
 var world_default = {
 	"is_mission":false,
@@ -28,7 +30,7 @@ var factory_default = {
 	"point_is_active":true,
 	"point_time_min":0.1,
 	"point_time_max":0.8,
-	"point_colors":[Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink],
+
 
 	"enemy_is_active":true,
 	"enemy_time_min":3,
@@ -49,7 +51,7 @@ var factory_default = {
 	"powerup_gravity_well_prob":1,
 	"powerup_incendiary_prob":1,
 	"powerup_max_bomb_prob":0.5,
-	"powerup_max_up_prob":1,
+	"powerup_max_up_prob":0.0,
 	"powerup_one_up_prob":0.2,
 	"powerup_opalescence_prob":1,
 	"powerup_oversheild_prob":3,
@@ -95,6 +97,8 @@ var player_default = {
 	"can_bomb":true,
 	"starting_bombs":3,
 	"powerup_point_value":1000,
+	"opalescence_shift_speed":0.7,
+	"opalescence_shift_speed_less_flashy":0.1,
 	"bullet_time_time_scale":0.2,
 	"vision_light_scale":3,
 	"gravity_well_pull_scale":6.0,
@@ -114,9 +118,15 @@ var save_path = "user://save.dat"
 func _ready():
 	var sound_settings_from_file = Global.load_var(sound_settings_path)
 	if(sound_settings_from_file == null):
-		sound = sound_default
+		saved_settings = saved_settings_default
 	else:
-		sound = sound_settings_from_file
+		saved_settings = sound_settings_from_file
+		
+	if(saved_settings["less_flashy_mode"]):
+		for c in range(len(saved_settings["colors"])):
+			saved_settings["colors"][c].r = move_toward(saved_settings["colors"][c].r, 1.0, 0.5)
+			saved_settings["colors"][c].g = move_toward(saved_settings["colors"][c].g, 1.0, 0.5)
+			saved_settings["colors"][c].b = move_toward(saved_settings["colors"][c].b, 1.0, 0.5)
 
 
 func get_setting_if_exists(setting_var, _name, _var):
