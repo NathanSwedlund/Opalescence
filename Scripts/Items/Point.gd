@@ -27,7 +27,7 @@ func _process(delta):
 		if(collision != null):
 			if(collision.collider.name == player.name):
 				player.gain_point(modulate)
-				queue_free()
+			queue_free()
 	
 	
 

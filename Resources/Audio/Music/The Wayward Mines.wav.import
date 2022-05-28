@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/The Wayward Mines.wav-f31b80e2be1eb01086ca4aeb12c00837.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/The Wayward Mines.wav"
+dest_files=[ "res://.import/The Wayward Mines.wav-f31b80e2be1eb01086ca4aeb12c00837.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

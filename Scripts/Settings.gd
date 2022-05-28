@@ -53,8 +53,8 @@ var factory_default = {
 	"powerup_max_bomb_prob":0.5,
 	"powerup_max_up_prob":0.0,
 	"powerup_one_up_prob":0.2,
-	"powerup_opalescence_prob":1,
-	"powerup_oversheild_prob":3,
+	"powerup_opalescence_prob":0.5,
+	"powerup_oversheild_prob":0.9,
 	"powerup_unmaker_prob":1,
 	"powerup_vision_prob":1,
 }
@@ -80,7 +80,7 @@ var enemy_default = {
 
 	"blocker_gen_scale":1.0,
 	"blocker_point_reward":1250,
-	"blocker_health":150,
+	"blocker_health":100,
 }
 var enemy = enemy_default.duplicate()
 
@@ -88,7 +88,7 @@ var player_default = {
 	"speed":480.0,
 	"player_speed_scale":1.0,
 	"starting_health":3,
-	"shrink_scalar":0.99,
+	"shrink_scalar":0.95,
 	"min_scale":0.5,
 	"gravity_radius":100.0,
 	"gravity_pull_scale":1.0,
