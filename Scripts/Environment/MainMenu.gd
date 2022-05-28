@@ -8,7 +8,8 @@ var target_button_selection
 var button_selections
 
 func _ready():
-	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2]
+	Settings.apply_sound_settings()	
+	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 
 func _on_ChallengeButton_pressed():
 #	Settings.settings["current_game_mode"] = "challenge"
@@ -59,14 +60,24 @@ func shift_button_selection(button_selection_num):
 func _on_ButtonShiftTimer_timeout():
 	var shifted_any = false
 	for c in button_selections[current_button_selection].get_children():
-		if(c.button_shift_index == current_shifting_index):
-			c.visible = false
-			shifted_any = true
+		if(has_meta("shift_index")):
+			if(c.button_shift_index == current_shifting_index):
+				c.visible = false
+				shifted_any = true
+		else:
+			if(c.button_index == current_shifting_index):
+				c.visible = false
+				shifted_any = true
 	
 	for c in button_selections[target_button_selection].get_children():
-		if(c.button_shift_index == current_shifting_index):
-			c.visible = true
-			shifted_any = true
+		if(has_meta("shift_index")):
+			if(c.button_shift_index == current_shifting_index):
+				c.visible = true
+				shifted_any = true
+		else:
+			if(c.button_index == current_shifting_index):
+				c.visible = true
+				shifted_any = true
 	
 	if(shifted_any):
 		$ButtonShiftAudio.play()
@@ -77,3 +88,24 @@ func _on_ButtonShiftTimer_timeout():
 		current_shifting_index = 0
 		is_shifting_button_selection = false
 		$ButtonShiftTimer.stop()
+
+func _on_OptionsButton_pressed():
+	shift_button_selection(2)
+
+func _on_OptionBackButton_pressed():
+	shift_button_selection(0)
+
+func _on_MusicVolumeOption_pressed(_value):
+	Settings.saved_settings["music_volume"] = _value
+	Settings.apply_sound_settings()
+
+
+func _on_SFXVolumeOption_pressed(_value):
+	Settings.saved_settings["fx_volume"] = _value
+	Settings.apply_sound_settings()
+
+
+func _on_PaleModeOption_pressed(is_selected):
+	Settings.saved_settings["less_flashy_mode"] = is_selected
+	print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
+	Settings.reset_colors()

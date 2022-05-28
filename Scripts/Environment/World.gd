@@ -4,7 +4,7 @@ export var point_multiplier = 1.0
 export var game_is_over = false
 
 
-var songs_scenes = [	"res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3"]
+var songs_scenes = ["res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3"]
 var songs = []
 var current_song = 0
 
@@ -28,6 +28,7 @@ func game_over():
 	$HeadsUpDisplay/TimeLabel.visible = false
 	
 func _ready():
+	Settings.apply_sound_settings()
 	for s in songs_scenes:
 		songs.append(load(s))
 		

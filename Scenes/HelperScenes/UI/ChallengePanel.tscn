@@ -18,10 +18,10 @@ font_data = ExtResource( 2 )
 size = 20
 font_data = ExtResource( 2 )
 
-[node name="ChallengePanel" type="Node2D"]
+[node name="FloatSelector" type="Node2D"]
 script = ExtResource( 3 )
 
-[node name="MIssionFrame" type="Sprite" parent="."]
+[node name="Frame" type="Sprite" parent="."]
 position = Vector2( 152, 82 )
 scale = Vector2( 15, 2.8 )
 texture = ExtResource( 1 )
@@ -58,22 +58,6 @@ margin_bottom = 76.0
 custom_fonts/font = SubResource( 2 )
 text = "Title
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ScoreMult" type="Label" parent="."]
-margin_left = 315.0
-margin_top = 56.0
-margin_right = 465.0
-margin_bottom = 119.0
-custom_fonts/font = SubResource( 2 )
-text = "X 1.0
-"
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Value" type="Label" parent="."]
 margin_left = 73.0

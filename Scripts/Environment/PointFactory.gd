@@ -12,7 +12,7 @@ export var time_min = 0.8
 export var time_max = 4.0
 export var is_active = true
 
-var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
+
 var color_count
 
 onready var player = get_parent().find_node("Player")
@@ -26,10 +26,9 @@ func _ready():
 		
 		time_min = Settings.get_setting_if_exists(Settings.factory, "point_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "point_time_max", time_max)
-		colors = Settings.get_setting_if_exists(Settings.factory, "point_colors", colors)
 	
 	print(left_bound)
-	color_count = len(colors)
+	color_count = len(Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white]))
 	randomize()
 	
 
@@ -41,7 +40,7 @@ func spawn_point():
 	point.position = Vector2(position_x, position_y)
 	print(point.position)
 	point.player = player
-	var c = colors[randi()%color_count]
+	var c = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])[randi()%color_count]
 	point.modulate = c
 	print(c)
 	$Points.add_child(point)

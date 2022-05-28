@@ -2,12 +2,13 @@ extends Node
 
 var save_data = {}
 
+var default_colors = [Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink]
 
 var saved_settings_default = {
-	"fx_volume_scale":1.0,
-	"music_volume_scale":1.0,
-	"less_flashy_mode":true,
-	"colors":[Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink],
+	"fx_volume":10,
+	"music_volume":10,
+	"less_flashy_mode":false,
+	"colors":null
 }
 var saved_settings = saved_settings_default.duplicate()
 
@@ -111,24 +112,28 @@ var player_default = {
 }
 
 var player = player_default.duplicate()
-
 var sound_settings_path = "user://settings.dat"
 var save_path = "user://save.dat"
 
 func _ready():
+	saved_settings["colors"] = default_colors
 	var sound_settings_from_file = Global.load_var(sound_settings_path)
 	if(sound_settings_from_file == null):
 		saved_settings = saved_settings_default
 	else:
 		saved_settings = sound_settings_from_file
-		
+	reset_colors()
+	
+func reset_colors():
+	saved_settings["colors"] = default_colors.duplicate()
 	if(saved_settings["less_flashy_mode"]):
 		for c in range(len(saved_settings["colors"])):
 			saved_settings["colors"][c].r = move_toward(saved_settings["colors"][c].r, 1.0, 0.5)
 			saved_settings["colors"][c].g = move_toward(saved_settings["colors"][c].g, 1.0, 0.5)
 			saved_settings["colors"][c].b = move_toward(saved_settings["colors"][c].b, 1.0, 0.5)
 
-
+	print("saved_settings[\"colors\"], ", saved_settings["colors"])
+	
 func get_setting_if_exists(setting_var, _name, _var):
 	if((_name in setting_var.keys() ) == false):
 		return _var
@@ -142,3 +147,21 @@ func reset_settings():
 	player = player_default.duplicate()
 	enemy = enemy_default.duplicate()
 	factory = factory_default.duplicate()
+	
+var min_vol = -10
+var max_vol = 10
+func apply_sound_settings():
+	for c in get_tree().get_nodes_in_group("Music"):
+		if(Settings.saved_settings["music_volume"] == 0):
+			c.volume_db = -80
+		else:
+			c.volume_db = Settings.saved_settings["music_volume"] - 10
+			print("c.volume_db, ", c.volume_db)
+			
+		
+	for c in get_tree().get_nodes_in_group("FX"):
+		if(Settings.saved_settings["fx_volume"] == 0):
+			c.volume_db = -80
+		else:
+			print("c.volume_db, ", c.volume_db)
+			c.volume_db = Settings.saved_settings["fx_volume"] - 10

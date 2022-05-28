@@ -234,7 +234,6 @@ powerup_probabilities = {
 "unmaker": 11111.0,
 "vision": 1.0
 }
-use_global_settings = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 300 )
@@ -252,10 +251,9 @@ powerup_times = {
 "Vision": 15.0
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="." groups=["Music"]]
 pause_mode = 2
 stream = ExtResource( 13 )
-volume_db = -80.0
 
 [node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
 pause_mode = 2
@@ -678,7 +676,7 @@ text = "3"
 [node name="CountdownTimer" type="Timer" parent="HeadsUpDisplay/CountdownLabel"]
 one_shot = true
 
-[node name="CountdownAudio" type="AudioStreamPlayer" parent="HeadsUpDisplay/CountdownLabel"]
+[node name="CountdownAudio" type="AudioStreamPlayer" parent="HeadsUpDisplay/CountdownLabel" groups=["FX"]]
 stream = ExtResource( 19 )
 volume_db = -10.0
 

@@ -69,7 +69,7 @@ scale = Vector2( 0.359375, 0.0917969 )
 texture = ExtResource( 4 )
 energy = 1.78
 
-[node name="ChangeAudio" type="AudioStreamPlayer" parent="."]
+[node name="ChangeAudio" type="AudioStreamPlayer" parent="." groups=["FX"]]
 stream = ExtResource( 5 )
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

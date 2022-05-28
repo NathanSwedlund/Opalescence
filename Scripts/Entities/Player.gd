@@ -83,6 +83,11 @@ var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeat
 var opalescence_shift_speed = 0.5
 
 func _ready():
+	for c in $SoundFX.get_children():
+		c.add_to_group("FX")
+		
+	Settings.apply_sound_settings()
+	
 	if(use_global_settings):
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
@@ -170,7 +175,6 @@ func gain_point(_color):
 
 	add_points(200)
 	spawn_get_point_label(200)
-
 
 	var explosion = point_explosion.instance()
 	explosion.modulate = modulate
