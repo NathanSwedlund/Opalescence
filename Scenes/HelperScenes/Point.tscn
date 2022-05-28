@@ -24,7 +24,7 @@ scale = 3.0
 color_ramp = SubResource( 4 )
 
 [node name="Point" type="KinematicBody2D"]
-collision_layer = 4
+collision_layer = 6
 script = ExtResource( 3 )
 speed = 15000
 

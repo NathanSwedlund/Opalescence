@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 export var speed = 4.0
 export var starting_health = 3
-
 export var shrink_scalar = 0.99
 
 onready var default_light_size = $OuterLight.scale
@@ -63,7 +62,7 @@ export var powerup_times = {
 	"Incendiary":5.0,
 	"Opalescence":10.0,
 	"OpalescenceColorShift":0.05,
-	"Unmaker":5.0,
+	"Unmaker":3.0,
 	"Vision":15.0
 	}
 
@@ -72,7 +71,6 @@ var has_powerup = {}
 var powerup_point_value = 1000
 var bullet_time_time_scale = 0.2
 var vision_light_scale = 3.0
-
 
 # Secondary fire variables
 var is_charging_laser = false
@@ -188,7 +186,6 @@ func change_color(new_color):
 	if(heads_up_display != null):
 		heads_up_display.change_color(new_color)
 
-
 func get_input():
 	velocity = Vector2.ZERO
 	if(Input.is_action_pressed("ui_left")):
@@ -243,7 +240,6 @@ func spawn_bullet():
 	bullet.small_bullet_explosion_scene = small_bullet_explosion_scene
 	get_parent().add_child(bullet)
 
-
 func drop_bomb():
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
@@ -255,8 +251,9 @@ func damage():
 	if(has_powerup["Opalescence"]):
 		get_parent().find_node("EnemyFactory").kill_all()
 	elif(has_powerup["OverSheild"]):
+		powerup_count -= 1
 		has_powerup["OverSheild"] = false
-		heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+		heads_up_display.update_health(current_health, has_powerup["OverSheild"])
 		get_parent().find_node("EnemyFactory").kill_all()
 		get_parent().find_node("PointFactory").kill_all()
 		get_parent().find_node("PowerupFactory").kill_all()
@@ -266,6 +263,9 @@ func damage():
 
 func die():
 	$SoundFX/PlayerExplosionSound.play()
+	for laser in get_tree().get_nodes_in_group("Lasers"):
+		laser.queue_free()
+		
 	bullets_to_shoot = default_bullets_per_burst
 
 	# summon explosion
@@ -427,6 +427,7 @@ func get_powerup(_powerup, _color):
 	change_color(_color)
 	$CanvasLayer/PowerupLabel.show_powerup(_powerup)
 	add_points(powerup_point_value)
+	spawn_get_point_label(powerup_point_value)
 	heads_up_display.update_points(points)
 
 	if(_powerup == "Barrage"):

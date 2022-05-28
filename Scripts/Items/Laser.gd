@@ -23,6 +23,7 @@ func _ready():
 	$FadeInTimer.start()
 	
 	add_to_group("Lasers")
+	
 	$Light2D.color = get_parent().modulate
 
 	$LaserParticleEffect.emitting = true
@@ -43,7 +44,8 @@ func _process(_delta):
 			scale.y *= fade_out_speed
 			
 	for i in get_overlapping_bodies():
-		i.take_damage(damage * _delta)
+		if(i.is_in_group("Enemies")):
+			i.take_damage(damage * _delta)
 
 func _on_FadeInTimer_timeout():
 	$NotFadingTimer.start()

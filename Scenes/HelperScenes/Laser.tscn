@@ -34,7 +34,7 @@ script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
 visible = false
-modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.313726 )
 position = Vector2( 554.453, -6.56668 )
 scale = Vector2( 20.1778, 0.604167 )
 texture = ExtResource( 4 )
@@ -88,10 +88,10 @@ occluder = SubResource( 3 )
 light_mask = 2
 
 [node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource( 6 )
-volume_db = 7.939
+volume_db = -80.0
 pitch_scale = 1.49
-autoplay = true
 
 [connection signal="timeout" from="FadeOutTimer" to="." method="_on_FadeOutTimer_timeout"]
 [connection signal="timeout" from="NotFadingTimer" to="." method="_on_NotFadingTimer_timeout"]

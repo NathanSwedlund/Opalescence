@@ -20,8 +20,6 @@ func _ready():
 	base_health = Settings.get_setting_if_exists(Settings.enemy, "chaser_base_health", base_health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	speed = base_speed * 1/(scale.y)
 	health = scale.y * base_health
-	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -38,6 +36,8 @@ func _process(delta):
 			elif(collision.collider.is_in_group("Enemies")):
 				collision.collider.take_damage(10)
 				die()
+			elif(collision.collider.is_in_group("Points")):
+				collision.collider.queue_free()
 #			if(collision.collider.is_in_group("Explosion") )
 #			elif(collision.collider.is_in_group("Lasers")):
 #				take_damage(collision.collider.damage)

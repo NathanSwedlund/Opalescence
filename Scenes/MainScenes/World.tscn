@@ -229,9 +229,9 @@ powerup_probabilities = {
 "max_bomb": 1.0,
 "max_up": 0.0,
 "one_up": 0.728,
-"opalescence": 40.798,
+"opalescence": 1.0,
 "oversheild": 3.0,
-"unmaker": 1.0,
+"unmaker": 11111.0,
 "vision": 1.0
 }
 use_global_settings = false
@@ -255,6 +255,7 @@ powerup_times = {
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 13 )
+volume_db = -80.0
 
 [node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
 pause_mode = 2

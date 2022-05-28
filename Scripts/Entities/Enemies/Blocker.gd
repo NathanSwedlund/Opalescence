@@ -27,6 +27,9 @@ func _physics_process(delta):
 				collision.collider.damage()
 			elif(collision.collider.is_in_group("Blockers")):
 				die()
+			elif(collision.collider.is_in_group("Points")):
+				collision.collider.queue_free()
+
 				
 	elif(is_instance_valid(point_to_cover) == false):
 		point_to_cover = null
