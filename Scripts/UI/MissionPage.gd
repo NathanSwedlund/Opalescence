@@ -15,6 +15,7 @@ var panel_num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Settings.apply_sound_settings()
 	Settings.reset_settings()
 	panels = $Pages.get_children()
 	panel_num = len(panels) # The two audio nodes aren't panels

@@ -19,7 +19,6 @@ export var is_active = true
 
 var play_time = 0
 var points = 0
-var powerup_count = 0
 const MAX_HEALTH = 3
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
 
@@ -52,6 +51,9 @@ var small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/Sm
 var can_shoot = true
 export var starting_bombs = 3
 var inf_bombs = false
+
+var bullet_audio_default_pitch = 1.0
+var incendiary_audio_pitch = 0.7
 
 # Powerup variables
 export var powerup_times = {
@@ -165,7 +167,7 @@ func spawn_get_point_label(points_num):
 	get_parent().add_child(gpl)
 
 func gain_point(_color):
-	if(powerup_count == 0 or (has_powerup["OverSheild"] and powerup_count == 1)):
+	if(powerup_count() == 0 or (has_powerup["OverSheild"] and powerup_count() == 1)):
 		change_color(_color)
 
 	if(has_powerup["Vision"]):
@@ -236,6 +238,9 @@ func get_direction_to_shoot():
 func spawn_bullet():
 	var bullet = bullet_scene.instance()
 	$SoundFX/BulletFireAudio.play()
+	if(has_powerup["Incendiary"]):
+		$SoundFX/IncendiaryBulletFire.play()
+		
 	bullet.direction = get_direction_to_shoot()
 	bullet.position = position
 	bullet.add_to_group("Bullets")
@@ -255,7 +260,6 @@ func damage():
 	if(has_powerup["Opalescence"]):
 		get_parent().find_node("EnemyFactory").kill_all()
 	elif(has_powerup["OverSheild"]):
-		powerup_count -= 1
 		has_powerup["OverSheild"] = false
 		heads_up_display.update_health(current_health, has_powerup["OverSheild"])
 		get_parent().find_node("EnemyFactory").kill_all()
@@ -315,7 +319,6 @@ func respawn():
 	_on_Unmaker_timeout()
 	_on_Vision_timeout()
 
-	powerup_count = 0
 	if(get_parent().find_node("EnemyFactory") != null):
 		get_parent().find_node("EnemyFactory").reset()
 	if(get_parent().find_node("PointFactory") != null):
@@ -357,6 +360,7 @@ func game_over():
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
+	print("powerup_count: ", powerup_count())
 	play_time += delta
 	if(heads_up_display != null):
 		heads_up_display.find_node("TimeLabel").text = "Time: "+str(int(play_time* 1000.0)/1000.0 )+"s"
@@ -414,19 +418,23 @@ func start_powerup_timer(time, color, _powerup):
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == false or timer.powerup_name == _powerup):
 			timer.powerup_name = _powerup
-			print("starting timer, ", timer)
+			#print("starting timer, ", timer)
 			timer.start_timer(time)
 			timer.modulate = color
 			break
 
+func powerup_count():
+	var pc = 0
+	for i in has_powerup.keys():
+		pc += 1 if has_powerup[i] else 0 
+	
+	return pc
+	
 func get_powerup(_powerup, _color):
 	print(_powerup)
 	var a = $SoundFX.find_node(_powerup+"Audio")
 	if(a != null):
 		a.play()
-
-	if(_powerup in transformative_powerups and has_powerup[_powerup] == false):
-		powerup_count += 1
 		
 	change_color(_color)
 	$CanvasLayer/PowerupLabel.show_powerup(_powerup)
@@ -460,6 +468,8 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/GravityWell.wait_time, _color, _powerup)
 	if(_powerup == "Incendiary"):
 		$PowerupTimers/Incendiary.start()
+		$SoundFX/BulletFireAudio.pitch_scale = incendiary_audio_pitch
+		$SoundFX/BulletHitFail.pitch_scale = incendiary_audio_pitch
 		start_powerup_timer($PowerupTimers/Incendiary.wait_time, _color, _powerup)
 		is_shooting_indendiary = true
 	if(_powerup == "MaxBomb"):
@@ -493,49 +503,43 @@ func get_powerup(_powerup, _color):
 
 func _on_Bombastic_timeout():
 	has_powerup["Bombastic"] = false
-	powerup_count -= 1
 	inf_bombs = false
 
 func _on_Barrage_timeout():
 	has_powerup["Barrage"] = false
-	powerup_count -= 1
 	bullets_per_burst = default_bullets_per_burst
 	$BulletBurstTimer.wait_time = default_bullets_burst_wait_time
 	$BulletBurstTimer.stop()
 	can_shoot = Settings.player["can_shoot"]
-	print(bullets_per_burst)
+	#print(bullets_per_burst)
 
 func _on_BulletTime_timeout():
 	has_powerup["BulletTime"] = false
-	powerup_count -= 1
 	Engine.time_scale = 1
 
 func _on_GravityWell_timeout():
 	has_powerup["GravityWell"] = false
-	powerup_count -= 1
 	gravity_radius = default_gravity_radius
 	gravity_pull_scale = default_gravity_pull_scale
-	print("default_gravity_radius ", default_gravity_radius)
+	#print("default_gravity_radius ", default_gravity_radius)
 
 func _on_Incendiary_timeout():
 	has_powerup["Incendiary"] = false
-	powerup_count -= 1
+	$SoundFX/BulletFireAudio.pitch_scale = bullet_audio_default_pitch
+	$SoundFX/BulletHitFail.pitch_scale = bullet_audio_default_pitch
 	is_shooting_indendiary = false
 
 func _on_Opalescence_timeout():
 	target_color = colors[randi()%len(colors)]
 	has_powerup["Opalescence"] = false
-	powerup_count -= 1
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
 	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
-	powerup_count -= 1
 
 func _on_Vision_timeout():
 	has_powerup["Vision"] = false
-	powerup_count -= 1
 	$OuterLight.scale = default_light_size
 
 func play_enemey_explosion_sound():

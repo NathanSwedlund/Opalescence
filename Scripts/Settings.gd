@@ -2,7 +2,7 @@ extends Node
 
 var save_data = {}
 
-var default_colors = [Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink]
+var default_colors = [Color.red, Color.orange, Color.yellow, Color.green, Color.cadetblue, Color.lightblue, Color.pink]
 
 var saved_settings_default = {
 	"fx_volume":10,
@@ -112,17 +112,22 @@ var player_default = {
 }
 
 var player = player_default.duplicate()
-var sound_settings_path = "user://settings.dat"
+var saved_settings_path = "user://settings.dat"
 var save_path = "user://save.dat"
+
+var current_main_menu_button_selection = 0
 
 func _ready():
 	saved_settings["colors"] = default_colors
-	var sound_settings_from_file = Global.load_var(sound_settings_path)
-	if(sound_settings_from_file == null):
+	var saved_settings_from_file = Global.load_var(saved_settings_path)
+	if(saved_settings_from_file == null):
 		saved_settings = saved_settings_default
 	else:
-		saved_settings = sound_settings_from_file
+		saved_settings = saved_settings_from_file
 	reset_colors()
+	
+func save_settings():
+	Global.save_var(saved_settings_path, saved_settings)
 	
 func reset_colors():
 	saved_settings["colors"] = default_colors.duplicate()
@@ -147,6 +152,9 @@ func reset_settings():
 	player = player_default.duplicate()
 	enemy = enemy_default.duplicate()
 	factory = factory_default.duplicate()
+	
+#func _process(delta):
+#	print(saved_settings["less_flashy_mode"])
 	
 var min_vol = -10
 var max_vol = 10

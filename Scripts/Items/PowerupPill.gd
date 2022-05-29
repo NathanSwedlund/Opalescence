@@ -14,7 +14,7 @@ func _ready():
 
 func _process(delta):
 	var dist = global_position.distance_squared_to(player.position)
-	print(rotation)
+#	print(rotation)
 	if(dist < player.gravity_radius*player.gravity_radius):
 		var position_diff = (player.position - global_position)
 		var position_diff_normalized = position_diff.normalized()

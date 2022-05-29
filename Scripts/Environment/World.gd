@@ -38,7 +38,7 @@ func _ready():
 	start_new_game()
 
 func start_new_game():
-	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Settings.world["mission_title"] + " " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
+	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
 	
 	$HeadsUpDisplay/CountdownLabel/CountdownAudio.pitch_scale = 1.0
 	countdown_current_value = countdown_amount

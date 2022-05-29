@@ -16,16 +16,18 @@ func _ready():
 	update_selected(is_selected)
 	
 func _process(delta):
-	if(is_ui_selected):
+	if(is_ui_selected and visible):
 		if(Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_accept")):
 			update_selected(!is_selected)
 			$ChangeAudio.play()
 
-func update_selected(_selected):
+func update_selected(_selected, emit_pressed = true):
 	is_selected = _selected
 	current_val = is_selected
 	$Button.text = "o" if is_selected else "-" 
-	emit_signal("pressed", is_selected)
+	
+	if(emit_pressed):
+		emit_signal("pressed", is_selected)
 
 func _on_Button_pressed():
 	update_selected(!is_selected)

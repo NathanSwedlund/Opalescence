@@ -40,6 +40,9 @@ func _process(delta):
 				i.take_damage(damage * delta)
 
 func explode():
+	if(exploding):
+		return
+		
 	$ExplosionParticles.emitting = true
 	exploding = true
 	$AudioStreamPlayer.play()

@@ -6,6 +6,7 @@ var score_mult = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Settings.apply_sound_settings()
 	var score = HighScore.get_score("challenge")
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score

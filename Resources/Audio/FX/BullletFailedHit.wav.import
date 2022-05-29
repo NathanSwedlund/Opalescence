@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BullletFailedHit.wav-72c9f9a91a8cdaee9caf1ef8cae4af8e.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/FX/BullletFailedHit.wav"
+dest_files=[ "res://.import/BullletFailedHit.wav-72c9f9a91a8cdaee9caf1ef8cae4af8e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

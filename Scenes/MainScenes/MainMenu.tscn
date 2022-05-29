@@ -79,6 +79,7 @@ button_count = 3
 is_active = true
 
 [node name="PlayButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+visible = false
 margin_left = 313.333
 margin_top = 1600.0
 margin_right = 1529.33
@@ -107,6 +108,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="OptionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+visible = false
 margin_left = 300.0
 margin_top = 2113.33
 margin_right = 2419.0
@@ -135,6 +137,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+visible = false
 margin_left = 333.333
 margin_top = 3246.67
 margin_right = 1549.33
@@ -421,6 +424,7 @@ down_bound = 500
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["Music"]]
 stream = ExtResource( 4 )
+volume_db = -80.0
 autoplay = true
 
 [node name="ButtonShiftTimer" type="Timer" parent="."]

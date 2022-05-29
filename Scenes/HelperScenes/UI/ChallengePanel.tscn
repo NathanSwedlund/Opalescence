@@ -59,6 +59,15 @@ custom_fonts/font = SubResource( 2 )
 text = "Title
 "
 
+[node name="ScoreMult" type="Label" parent="."]
+margin_left = 316.0
+margin_top = 67.0
+margin_right = 466.0
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 2 )
+text = "X
+"
+
 [node name="Value" type="Label" parent="."]
 margin_left = 73.0
 margin_top = 59.0

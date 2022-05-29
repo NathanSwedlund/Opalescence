@@ -142,11 +142,11 @@ scale = Vector2( 1.00518, 0.590234 )
 texture = ExtResource( 5 )
 energy = 1.78
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="." groups=["Music"]]
 stream = ExtResource( 1 )
 autoplay = true
 
-[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
+[node name="SelectAudio" type="AudioStreamPlayer" parent="." groups=["FX"]]
 stream = ExtResource( 6 )
 
 [node name="Challenge" type="Label" parent="."]
@@ -207,7 +207,7 @@ position = Vector2( 489, 481 )
 scale = Vector2( 9.46018, 0.0406504 )
 texture = ExtResource( 9 )
 
-[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="."]
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="." groups=["FX"]]
 stream = ExtResource( 10 )
 
 [node name="PanelAppearTimer" type="Timer" parent="."]

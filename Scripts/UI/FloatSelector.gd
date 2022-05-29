@@ -15,7 +15,7 @@ export var selected_scale = 1.2
 signal pressed(_value)
 	
 func _process(delta):
-	if(is_ui_selected):
+	if(is_ui_selected and visible):
 		if(Input.is_action_just_pressed("ui_left")):
 			_on_DecreaseButton_pressed()
 		if(Input.is_action_just_pressed("ui_right")):

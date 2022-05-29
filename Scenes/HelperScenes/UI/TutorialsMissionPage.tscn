@@ -551,17 +551,17 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector"]
+[node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector" groups=["FX"]]
 stream = ExtResource( 8 )
 
-[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="PageSelector"]
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="PageSelector" groups=["FX"]]
 stream = ExtResource( 5 )
 
 [node name="PanelAppearTimer" type="Timer" parent="PageSelector"]
 wait_time = 0.08
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["Music"]]
 stream = ExtResource( 6 )
 autoplay = true
 

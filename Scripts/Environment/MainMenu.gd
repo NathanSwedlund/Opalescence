@@ -4,15 +4,22 @@ var current_button_selection = 0
 var is_shifting_button_selection = false
 var current_shifting_index = 0
 var target_button_selection
-
 var button_selections
 
 func _ready():
 	Settings.apply_sound_settings()	
+	#print("Settings.saved_settings[\"fx_volume\"] ", Settings.saved_settings["fx_volume"])
+	#print("Settings.saved_settings[\"music_volume\"] ", Settings.saved_settings["music_volume"])
+	#print("Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
+
 	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
+	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
+	$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
+	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"])
+	shift_button_selection(Settings.current_main_menu_button_selection)
 
 func _on_ChallengeButton_pressed():
-#	Settings.settings["current_game_mode"] = "challenge"
+	Settings.current_main_menu_button_selection = current_button_selection
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/ChallengePage.tscn")
 
 var last_color = Color.white
@@ -22,18 +29,28 @@ func _process(_delta):
 		$MenuCanvas/OpalescenceLabel.modulate = last_color
 		$MenuCanvas/ButtonSelectionController1.modulate = last_color
 		$MenuCanvas/ButtonSelectionController2.modulate = last_color
+		$MenuCanvas/ButtonSelectionController3.modulate = last_color
 		for c in $MenuCanvas/ButtonSelectionController1.get_children():
 			c.get_node("Light2D").color = last_color
 		for c in $MenuCanvas/ButtonSelectionController2.get_children():
 			c.get_node("Light2D").color = last_color
+			
+	if(Input.is_action_just_pressed("ui_cancel")):
+		if(current_button_selection != 0):
+			shift_button_selection(0)
+		if(current_button_selection == 2):
+			Settings.save_settings()
+		
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
 func _on_ArcadeButton_pressed():
+	Settings.current_main_menu_button_selection = current_button_selection
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/MissionPage.tscn")
 
 func _on_TutorialsButton_pressed():
+	Settings.current_main_menu_button_selection = current_button_selection
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/TutorialsMissionPage.tscn")
 
 func toggle_button_selection():
@@ -50,12 +67,12 @@ func _on_StandardButton_pressed():
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func shift_button_selection(button_selection_num):
-	if(button_selection_num != current_button_selection):
-		target_button_selection = button_selection_num
-		is_shifting_button_selection = true
-		current_shifting_index = 0
-		$ButtonShiftTimer.start()
-		button_selections[current_button_selection].is_active = false
+#	if(button_selection_num != current_button_selection):
+	target_button_selection = button_selection_num
+	is_shifting_button_selection = true
+	current_shifting_index = 0
+	$ButtonShiftTimer.start()
+	button_selections[current_button_selection].is_active = false
 
 func _on_ButtonShiftTimer_timeout():
 	var shifted_any = false
@@ -93,6 +110,7 @@ func _on_OptionsButton_pressed():
 	shift_button_selection(2)
 
 func _on_OptionBackButton_pressed():
+	Settings.save_settings()
 	shift_button_selection(0)
 
 func _on_MusicVolumeOption_pressed(_value):
@@ -107,5 +125,5 @@ func _on_SFXVolumeOption_pressed(_value):
 
 func _on_PaleModeOption_pressed(is_selected):
 	Settings.saved_settings["less_flashy_mode"] = is_selected
-	print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
+	#print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	Settings.reset_colors()
