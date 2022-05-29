@@ -332,15 +332,12 @@ texture = ExtResource( 7 )
 margin_right = 40.0
 margin_bottom = 40.0
 rect_pivot_offset = Vector2( -518, 284 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="GameOverLabel" type="Label" parent="HeadsUpDisplay/GameOverPopup"]
-margin_left = 152.0
-margin_top = 78.0
-margin_right = 872.0
-margin_bottom = 178.0
+margin_left = 123.0
+margin_top = 119.0
+margin_right = 843.0
+margin_bottom = 219.0
 custom_fonts/font = SubResource( 18 )
 text = "Game Over"
 __meta__ = {

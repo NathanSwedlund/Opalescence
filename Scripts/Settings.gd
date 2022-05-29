@@ -156,14 +156,14 @@ func reset_settings():
 #func _process(delta):
 #	print(saved_settings["less_flashy_mode"])
 	
-var min_vol = -10
+var min_vol = -20
 var max_vol = 10
 func apply_sound_settings():
 	for c in get_tree().get_nodes_in_group("Music"):
 		if(Settings.saved_settings["music_volume"] == 0):
 			c.volume_db = -80
 		else:
-			c.volume_db = Settings.saved_settings["music_volume"] - 10
+			c.volume_db = Settings.saved_settings["music_volume"] + min_vol
 			print("c.volume_db, ", c.volume_db)
 			
 		
@@ -172,4 +172,4 @@ func apply_sound_settings():
 			c.volume_db = -80
 		else:
 			print("c.volume_db, ", c.volume_db)
-			c.volume_db = Settings.saved_settings["fx_volume"] - 10
+			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol

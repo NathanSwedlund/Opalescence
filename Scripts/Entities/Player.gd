@@ -120,7 +120,7 @@ func _ready():
 
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
-		print($PowerupTimers.find_node(pt).wait_time)
+		#print($PowerupTimers.find_node(pt).wait_time)
 
 	default_bullets_per_burst = bullets_per_burst
 	reset()
@@ -133,7 +133,7 @@ func _process(delta):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
 		modulate.b = move_toward(modulate.b, target_color.b, shift_speed * delta)
-		print("Opalescense aqcuired modulating, ", modulate)
+		#print("Opalescense aqcuired modulating, ", modulate)
 		change_color(modulate)
 		if(modulate == target_color):
 			target_color = colors[randi()%len(colors)]
@@ -304,7 +304,7 @@ func die():
 
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == true):
-			print("stopping timer, ", timer)
+			#print("stopping timer, ", timer)
 			timer.stop_timer()
 
 	heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
@@ -360,9 +360,9 @@ func game_over():
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
-	print("powerup_count: ", powerup_count())
+	#print("powerup_count: ", powerup_count())
 	play_time += delta
-	if(heads_up_display != null):
+	if(heads_up_display != null and !get_parent().game_is_over):
 		heads_up_display.find_node("TimeLabel").text = "Time: "+str(int(play_time* 1000.0)/1000.0 )+"s"
 	if(Settings.world["has_time_goal"] and play_time >= Settings.world["time_goal"]):
 		play_time = Settings.world["time_goal"]
@@ -418,7 +418,7 @@ func start_powerup_timer(time, color, _powerup):
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == false or timer.powerup_name == _powerup):
 			timer.powerup_name = _powerup
-			#print("starting timer, ", timer)
+			##print("starting timer, ", timer)
 			timer.start_timer(time)
 			timer.modulate = color
 			break
@@ -431,7 +431,7 @@ func powerup_count():
 	return pc
 	
 func get_powerup(_powerup, _color):
-	print(_powerup)
+	#print(_powerup)
 	var a = $SoundFX.find_node(_powerup+"Audio")
 	if(a != null):
 		a.play()
@@ -511,7 +511,7 @@ func _on_Barrage_timeout():
 	$BulletBurstTimer.wait_time = default_bullets_burst_wait_time
 	$BulletBurstTimer.stop()
 	can_shoot = Settings.player["can_shoot"]
-	#print(bullets_per_burst)
+	##print(bullets_per_burst)
 
 func _on_BulletTime_timeout():
 	has_powerup["BulletTime"] = false
@@ -521,7 +521,7 @@ func _on_GravityWell_timeout():
 	has_powerup["GravityWell"] = false
 	gravity_radius = default_gravity_radius
 	gravity_pull_scale = default_gravity_pull_scale
-	#print("default_gravity_radius ", default_gravity_radius)
+	##print("default_gravity_radius ", default_gravity_radius)
 
 func _on_Incendiary_timeout():
 	has_powerup["Incendiary"] = false

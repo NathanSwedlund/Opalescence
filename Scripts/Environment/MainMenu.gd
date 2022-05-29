@@ -8,9 +8,9 @@ var button_selections
 
 func _ready():
 	Settings.apply_sound_settings()	
-	#print("Settings.saved_settings[\"fx_volume\"] ", Settings.saved_settings["fx_volume"])
-	#print("Settings.saved_settings[\"music_volume\"] ", Settings.saved_settings["music_volume"])
-	#print("Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
+	##print("Settings.saved_settings[\"fx_volume\"] ", Settings.saved_settings["fx_volume"])
+	##print("Settings.saved_settings[\"music_volume\"] ", Settings.saved_settings["music_volume"])
+	##print("Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
 
 	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
@@ -125,5 +125,5 @@ func _on_SFXVolumeOption_pressed(_value):
 
 func _on_PaleModeOption_pressed(is_selected):
 	Settings.saved_settings["less_flashy_mode"] = is_selected
-	#print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
+	##print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	Settings.reset_colors()
