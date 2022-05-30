@@ -10,15 +10,15 @@ var powerup_name = ""
 func _ready():
 	add_to_group("PowerupTimerUIs")
 	#start_timer(wait_time)
-	
+
 func start_timer(_wait_time):
-	visible = true  
+	visible = true
 	is_timing = true
 	wait_time = _wait_time
 	time_left = wait_time
-	
+
 func stop_timer():
-	visible = false  
+	visible = false
 	is_timing = false
 	time_left = 0
 

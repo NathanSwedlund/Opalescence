@@ -88,9 +88,9 @@ func _ready():
 	speed *= global_scale.x
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")
-		
+
 	Settings.apply_sound_settings()
-	
+
 	if(use_global_settings):
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
@@ -115,14 +115,13 @@ func _ready():
 		can_shoot = Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
 		default_bullets_per_burst = Settings.get_setting_if_exists(Settings.player, "default_bullets_per_burst", default_bullets_per_burst)
 		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
-	
+
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
 
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
-		print("$PowerupTimers.find_node(pt).wait_time, ", pt, " ", $PowerupTimers.find_node(pt).wait_time)
 
 	default_bullets_per_burst = bullets_per_burst
 	reset()
@@ -135,7 +134,6 @@ func _process(delta):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
 		modulate.b = move_toward(modulate.b, target_color.b, shift_speed * delta)
-		#print("Opalescense aqcuired modulating, ", modulate)
 		change_color(modulate)
 		if(modulate == target_color):
 			target_color = colors[randi()%len(colors)]
@@ -157,7 +155,7 @@ func add_points(points_num):
 	points += points_num * Settings.world["points_scale"]
 	if(heads_up_display != null):
 		heads_up_display.update_points(points)
-		
+
 	if(Settings.world["has_point_goal"] and points >= Settings.world["point_goal"]):
 		game_over()
 
@@ -242,7 +240,7 @@ func spawn_bullet():
 	$SoundFX/BulletFireAudio.play()
 	if(has_powerup["Incendiary"]):
 		$SoundFX/IncendiaryBulletFire.play()
-		
+
 	bullet.direction = get_direction_to_shoot()
 	bullet.position = position
 	bullet.add_to_group("Bullets")
@@ -275,7 +273,7 @@ func die():
 	$SoundFX/PlayerExplosionSound.play()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
 		laser.queue_free()
-		
+
 	bullets_to_shoot = default_bullets_per_burst
 
 	# summon explosion
@@ -306,7 +304,6 @@ func die():
 
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == true):
-			#print("stopping timer, ", timer)
 			timer.stop_timer()
 
 	heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
@@ -334,18 +331,18 @@ func respawn():
 func game_over():
 	if(get_parent().game_is_over):
 		return
-	
+
 	get_parent().game_over()
-	
+
 	get_parent().find_node("EnemyFactory").is_active = false
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
-	
+
 	var is_mission = Settings.world["is_mission"]
 	var mission_complete = false
 	var score_title = Settings.world["mission_title"]
-	
+
 	if(score_title == "challenge" or score_title == "standard"):
 		HighScore.record_score(points, score_title)
 	else:
@@ -355,14 +352,13 @@ func game_over():
 		if(Settings.world["has_time_goal"] and Settings.world["time_goal"] <= play_time):
 			HighScore.record_score(points, score_title, true)
 			mission_complete = true
-			
+
 	points = 0
 	play_time = 0
 	heads_up_display.game_over(is_mission, mission_complete)
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
-	#print("powerup_count: ", powerup_count())
 	$Sprite.look_at(global_position + get_direction_to_shoot() )
 	play_time += delta
 	if(heads_up_display != null and !get_parent().game_is_over):
@@ -370,7 +366,7 @@ func _physics_process(delta):
 	if(Settings.world["has_time_goal"] and play_time >= Settings.world["time_goal"]):
 		play_time = Settings.world["time_goal"]
 		game_over()
-	
+
 	$OuterLight.scale.x = move_toward($OuterLight.scale.x, min_scale, delta* (1-shrink_scalar))
 	$OuterLight.scale.y = move_toward($OuterLight.scale.y, min_scale, delta* (1-shrink_scalar))
 
@@ -422,7 +418,6 @@ func start_powerup_timer(time, color, _powerup):
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == false or timer.powerup_name == _powerup):
 			timer.powerup_name = _powerup
-			##print("starting timer, ", timer)
 			timer.start_timer(time)
 			timer.modulate = color
 			break
@@ -430,16 +425,15 @@ func start_powerup_timer(time, color, _powerup):
 func powerup_count():
 	var pc = 0
 	for i in has_powerup.keys():
-		pc += 1 if has_powerup[i] else 0 
-	
+		pc += 1 if has_powerup[i] else 0
+
 	return pc
-	
+
 func get_powerup(_powerup, _color):
-	#print(_powerup)
 	var a = $SoundFX.find_node(_powerup+"Audio")
 	if(a != null):
 		a.play()
-		
+
 	change_color(_color)
 	$CanvasLayer/PowerupLabel.show_powerup(_powerup)
 	add_points(powerup_point_value)
@@ -496,7 +490,6 @@ func get_powerup(_powerup, _color):
 		var unmaker_particle_intensity = 2.0
 		spawn_laser(unmaker_scale, $PowerupTimers/Unmaker.wait_time, unmaker_particle_intensity)
 		$PowerupTimers/Unmaker.start()
-		print("$PowerupTimers/Unmaker.wait_time, ", $PowerupTimers/Unmaker.wait_time)
 		start_powerup_timer($PowerupTimers/Unmaker.wait_time, _color, _powerup)
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
@@ -517,7 +510,6 @@ func _on_Barrage_timeout():
 	$BulletBurstTimer.wait_time = default_bullets_burst_wait_time
 	$BulletBurstTimer.stop()
 	can_shoot = Settings.player["can_shoot"]
-	##print(bullets_per_burst)
 
 func _on_BulletTime_timeout():
 	has_powerup["BulletTime"] = false
@@ -527,7 +519,6 @@ func _on_GravityWell_timeout():
 	has_powerup["GravityWell"] = false
 	gravity_radius = default_gravity_radius
 	gravity_pull_scale = default_gravity_pull_scale
-	##print("default_gravity_radius ", default_gravity_radius)
 
 func _on_Incendiary_timeout():
 	has_powerup["Incendiary"] = false
@@ -541,7 +532,6 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
-	print("stopping UNMAKER")
 	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
 
@@ -551,4 +541,3 @@ func _on_Vision_timeout():
 
 func play_enemey_explosion_sound():
 	$SoundFX/EnemyExplosionSound.play()
-

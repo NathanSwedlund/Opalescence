@@ -15,13 +15,12 @@ func _ready():
 	if(point_reward != 0):
 		var gpl = point_get_label_scene.instance()
 		gpl.points_num = point_reward
-		print(gpl.points_num)
 		gpl.color = Color.white
 		gpl.position = position
 		get_parent().add_child(gpl)
-	
+
 		Global.player.add_points(point_reward)
-	
+
 	Global.player.play_enemey_explosion_sound()
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
@@ -46,5 +45,5 @@ func _process(delta):
 				modulate.a *= shrink_speed
 				$Light2D.color.a *= shrink_speed
 				$Light2D2.color.a *= shrink_speed
-	
+
 	#$LightTimer.start()

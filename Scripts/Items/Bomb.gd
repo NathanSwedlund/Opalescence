@@ -23,12 +23,12 @@ func _process(delta):
 			scale = scale + scale_speed * delta
 		else:
 			scale = scale - scale_speed * delta
-			
+
 		if(scale.x > scale_max and growing):
 			growing = false
 		if(scale.x < scale_min and ! growing):
 			growing = true
-			
+
 		var collision = move_and_collide( Vector2(0.001,0.001))
 		if(collision != null):
 			if(collision.collider.is_in_group("Enemies")):
@@ -36,13 +36,12 @@ func _process(delta):
 	else:
 		for i in get_parent().find_node("Area2D").get_overlapping_bodies():
 			if(i.is_in_group("Enemies")):
-				print(i.get_groups())
 				i.take_damage(damage * delta)
 
 func explode():
 	if(exploding):
 		return
-		
+
 	$ExplosionParticles.emitting = true
 	exploding = true
 	$AudioStreamPlayer.play()
@@ -57,7 +56,7 @@ func change_color(color):
 	modulate = color
 	$OuterLight.color = color
 	$InnerLight.color = color
-	
+
 func _on_CountdownTimer_timeout():
 	explode()
 

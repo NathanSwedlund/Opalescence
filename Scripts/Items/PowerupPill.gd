@@ -14,13 +14,12 @@ func _ready():
 
 func _process(delta):
 	var dist = global_position.distance_squared_to(player.global_position)
-#	print(rotation)
 	if(dist < player.gravity_radius*player.gravity_radius):
 		var position_diff = (player.global_position - global_position)
 		var position_diff_normalized = position_diff.normalized()
 		var speed_mod  = 1/( abs(position_diff.x)+abs(position_diff.y) ) * player.gravity_pull_scale
 		var move_speed = speed*delta * speed_mod
-		
+
 		var collision = move_and_collide( position_diff_normalized * move_speed)
 		if(collision != null):
 			if(collision.collider.name == player.name):

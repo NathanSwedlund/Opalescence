@@ -16,14 +16,13 @@ func _process(delta):
 		get_parent().find_node("AudioStreamPlayer2D").pitch_scale = move_toward(current_scale, target, delta)
 		if(pause_audio_pitch_scale == current_scale):
 			is_pitching_music = false
-			
+
 	if(game_is_over == false and Input.is_action_just_pressed("ui_cancel")):
-		print("get_tree().paused", get_tree().paused)
 		if(get_tree().paused):
 			unpause()
 		else:
 			pause()
-			
+
 func unpause():
 	$PausePopup/Buttons.is_active = false
 	is_pitching_music = true
@@ -37,31 +36,30 @@ func pause():
 	$PausePopup/PausePopupBufferTimer.start()
 	$PausePopup.show()
 	get_tree().paused = true
-	
+
 func return_to_menu():
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
 func update_health(health_count, has_sheild):
-	print("health_count, has_sheild, ", health_count, has_sheild)	
 	$HealthDisplay/Label.text = "x "+str(health_count)
 	$HealthDisplay/Shield.visible = has_sheild
-		
+
 func update_bombs(bomb_count):
 	for c in $BombDisplay.get_children():
 		c.visible = false
-		
+
 	for i in bomb_count:
 		$BombDisplay.get_child(i).visible = true
-	
+
 func update_points(points):
 	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
-	
+
 func game_over(is_mission, mission_complete):
 	$GameOverPopup.show()
 	$GameOverPopup/Buttons.is_active = true
 	$GameOverPopup/GameOverLabel.text = "COMPLETE" if is_mission and mission_complete else "GAME OVER"
 	game_is_over = true
-	
+
 func change_color(new_color):
 	for c in get_children():
 		if(c.get("modulate") != null):
@@ -81,7 +79,7 @@ func _on_MenuButton_pressed():
 
 func _on_ShopButton_pressed():
 	pass
-	
+
 func _on_ResumeButton_pressed():
 	unpause()
 

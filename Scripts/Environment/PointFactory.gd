@@ -19,43 +19,40 @@ onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(use_global_settings):
-		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound) 
+		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound)
 		right_bound = Settings.get_setting_if_exists(Settings.world, "right_bound", right_bound)
 		up_bound = Settings.get_setting_if_exists(Settings.world, "up_bound", up_bound)
 		down_bound = Settings.get_setting_if_exists(Settings.world, "down_bound", down_bound)
-		
+
 		time_min = Settings.get_setting_if_exists(Settings.factory, "point_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "point_time_max", time_max)
-	
-#	#print(left_bound)
+
 	color_count = len(Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white]))
 	randomize()
-	
+
 
 func spawn_point():
 	var point = point_scene.instance()
 	var position_x = rand_range(left_bound, right_bound)
 	var position_y = rand_range(up_bound, down_bound)
-	
+
 	point.position = Vector2(position_x, position_y)
-#	#print(point.position)
 	point.player = player
 	var c = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])[randi()%color_count]
 	point.modulate = c
-	#print(c)
 	$Points.add_child(point)
 
 func reset():
-	is_active = Settings.get_setting_if_exists(Settings.factory, "point_is_active", is_active)	
+	is_active = Settings.get_setting_if_exists(Settings.factory, "point_is_active", is_active)
 	_ready()
-	
+
 func kill_all():
 	for c in $Points.get_children():
 		c.queue_free()
 
 func _on_Timer_timeout():
 	if(is_active):
-		spawn_point()	
-	
+		spawn_point()
+
 	var time_until_next = rand_range(time_min, time_max)
 	$Timer.wait_time = time_until_next

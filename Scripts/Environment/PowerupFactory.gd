@@ -62,14 +62,13 @@ export var use_global_settings = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if(use_global_settings):
-		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound) 
+		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound)
 		right_bound = Settings.get_setting_if_exists(Settings.world, "right_bound", right_bound)
 		up_bound = Settings.get_setting_if_exists(Settings.world, "up_bound", up_bound)
 		down_bound = Settings.get_setting_if_exists(Settings.world, "down_bound", down_bound)
-		
+
 		time_min = Settings.get_setting_if_exists(Settings.factory, "powerup_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "powerup_time_max", time_max)
-#		print("time_max_power ", time_max)
 
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
 		powerup_probabilities["bomb_up"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_bomb_up_prob", powerup_probabilities["bomb_up"])
@@ -84,8 +83,7 @@ func _ready():
 		powerup_probabilities["oversheild"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_oversheild_prob", powerup_probabilities["oversheild"])
 		powerup_probabilities["unmaker"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_unmaker_prob", powerup_probabilities["unmaker"])
 		powerup_probabilities["vision"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_vision_prob", powerup_probabilities["vision"])
-#		print(powerup_probabilities)
-		
+
 		if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 			powerup_probabilities["bombastic"] = 0.0
 			powerup_probabilities["bomb_up"] = 0.0
@@ -95,11 +93,11 @@ func _ready():
 			powerup_probabilities["barrage"] = 0.0
 		if(Settings.get_setting_if_exists(Settings.player, "can_laser", true) == false):
 			powerup_probabilities["unmaker"] = 0.0
-			
+
 	reset_spawn_timer()
 
 func reset():
-	is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)	
+	is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)
 	reset_spawn_timer()
 	_ready()
 
@@ -110,29 +108,26 @@ func kill_all():
 
 func spawn_powerup():
 	if(!is_active):
-		return 
-		
+		return
+
 	var mult = 0.0 # multiple of probabilities
 	for key in powerup_probabilities:
 		mult += powerup_probabilities[key]
-		
+
 	var r = randf() * mult
-	
+
 	for key in powerup_probabilities:
 		r -= powerup_probabilities[key]
-#		print("find_node(key_to_name[key]) ", get_node(key_to_name[key]))
-#		print("key_to_name[key] ", key_to_name[key])
 		if(r <= 0 and get_node(key_to_name[key]) == null): # spawn the current powerup
 			var powerup = powerup_scenes[key].instance()
 			var position_x = rand_range(left_bound, right_bound)
 			var position_y = rand_range(up_bound, down_bound)
-			
+
 			powerup.position = Vector2(position_x, position_y)
-#			print("powerup.position", powerup.position)
 			powerup.get_node("PowerupPill").player = player
 			add_child(powerup)
 			break
-			
+
 
 func reset_spawn_timer():
 	$SpawnTimer.wait_time = rand_range(time_min, time_max)
@@ -141,4 +136,3 @@ func reset_spawn_timer():
 func _on_SpawnTimer_timeout():
 	spawn_powerup()
 	reset_spawn_timer()
-
