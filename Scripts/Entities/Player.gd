@@ -308,6 +308,10 @@ func die():
 			timer.stop_timer()
 
 	heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+	
+	is_charging_laser = false
+	$LaserChargeTimer.stop()
+	$SoundFX/LaserChargeAudio.stop()
 
 func respawn():
 	_on_Bombastic_timeout()
