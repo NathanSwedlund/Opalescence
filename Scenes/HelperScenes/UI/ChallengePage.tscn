@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -11,6 +11,23 @@
 [ext_resource path="res://Resources/Textures/UI/healthImage.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=12]
+
+[sub_resource type="DynamicFont" id=9]
+size = 30
+font_data = ExtResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 25.021, 1 )
+flag_disable_z = true
+direction = Vector3( -7.829, 0, 0 )
+spread = 138.1
+gravity = Vector3( -1500, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+scale = 3.0
+scale_random = 1.0
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -54,10 +71,6 @@ font_data = ExtResource( 2 )
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 30
-font_data = ExtResource( 2 )
-
 [node name="MissionPage" type="Node2D"]
 scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 4 )
@@ -69,6 +82,31 @@ scale = Vector2( 8.335, 4.93 )
 z_index = -2
 texture = ExtResource( 3 )
 centered = false
+
+[node name="ReadyButton" type="Button" parent="."]
+margin_left = 793.0
+margin_top = 526.0
+margin_right = 955.0
+margin_bottom = 562.0
+custom_fonts/font = SubResource( 9 )
+text = "Ready"
+flat = true
+script = ExtResource( 12 )
+left_margin_on_hover = 793
+
+[node name="Light2D" type="Light2D" parent="ReadyButton"]
+position = Vector2( 94.5999, 21.7554 )
+scale = Vector2( 0.3, 0.1 )
+texture = ExtResource( 5 )
+energy = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="ReadyButton"]
+position = Vector2( 610.017, 21.7554 )
+scale = Vector2( 0.3, 0.1 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 12 )
 
 [node name="ChallengePanels" type="Node2D" parent="."]
 scale = Vector2( 0.6, 0.6 )
@@ -218,15 +256,6 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="ReadyButton" type="Button" parent="."]
-margin_left = 793.0
-margin_top = 526.0
-margin_right = 955.0
-margin_bottom = 562.0
-custom_fonts/font = SubResource( 9 )
-text = "Ready"
-flat = true
 
 [node name="HealthImage" type="Sprite" parent="."]
 position = Vector2( 507, 116 )
