@@ -10,6 +10,7 @@ func _ready():
 	Settings.apply_sound_settings()
 
 	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
+	$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)
 	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 	$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
@@ -128,3 +129,8 @@ func _on_SFXVolumeOption_pressed(_value):
 func _on_PaleModeOption_pressed(is_selected):
 	Settings.saved_settings["less_flashy_mode"] = is_selected
 	Settings.reset_colors()
+
+
+func _on_FullscreenOption_pressed(is_selected):
+	Settings.saved_settings["fullscreen_mode"] = is_selected
+	OS.window_fullscreen = is_selected

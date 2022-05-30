@@ -8,8 +8,10 @@ var saved_settings_default = {
 	"fx_volume":20,
 	"music_volume":20,
 	"less_flashy_mode":false,
+	"fullscreen_mode":false,
 	"colors":null
 }
+
 var saved_settings = saved_settings_default.duplicate()
 
 var world_default = {
@@ -122,9 +124,12 @@ func _ready():
 	saved_settings["colors"] = default_colors
 	var saved_settings_from_file = Global.load_var(saved_settings_path)
 	if(saved_settings_from_file == null):
-		saved_settings = saved_settings_default
+		saved_settings = saved_settings_default.duplicate()
 	else:
-		saved_settings = saved_settings_from_file
+		saved_settings = saved_settings_default.duplicate()
+		for key in saved_settings_from_file:
+			saved_settings[key] = saved_settings_from_file[key]
+			
 	reset_colors()
 
 func save_settings():
