@@ -69,7 +69,7 @@ func _ready():
 		
 		time_min = Settings.get_setting_if_exists(Settings.factory, "powerup_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "powerup_time_max", time_max)
-		print("time_max_power ", time_max)
+#		print("time_max_power ", time_max)
 
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
 		powerup_probabilities["bomb_up"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_bomb_up_prob", powerup_probabilities["bomb_up"])
@@ -84,7 +84,7 @@ func _ready():
 		powerup_probabilities["oversheild"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_oversheild_prob", powerup_probabilities["oversheild"])
 		powerup_probabilities["unmaker"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_unmaker_prob", powerup_probabilities["unmaker"])
 		powerup_probabilities["vision"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_vision_prob", powerup_probabilities["vision"])
-		print(powerup_probabilities)
+#		print(powerup_probabilities)
 		
 		if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 			powerup_probabilities["bombastic"] = 0.0
@@ -120,15 +120,15 @@ func spawn_powerup():
 	
 	for key in powerup_probabilities:
 		r -= powerup_probabilities[key]
-		print("find_node(key_to_name[key]) ", get_node(key_to_name[key]))
-		print("key_to_name[key] ", key_to_name[key])
+#		print("find_node(key_to_name[key]) ", get_node(key_to_name[key]))
+#		print("key_to_name[key] ", key_to_name[key])
 		if(r <= 0 and get_node(key_to_name[key]) == null): # spawn the current powerup
 			var powerup = powerup_scenes[key].instance()
 			var position_x = rand_range(left_bound, right_bound)
 			var position_y = rand_range(up_bound, down_bound)
 			
 			powerup.position = Vector2(position_x, position_y)
-			print("powerup.position", powerup.position)
+#			print("powerup.position", powerup.position)
 			powerup.get_node("PowerupPill").player = player
 			add_child(powerup)
 			break

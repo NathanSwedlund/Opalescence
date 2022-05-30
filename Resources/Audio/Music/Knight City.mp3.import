@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Knight City.mp3-5f3d9f7ba49a0f7018ec3860375a30e0.mp3
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

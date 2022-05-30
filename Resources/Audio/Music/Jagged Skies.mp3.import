@@ -11,5 +11,5 @@ dest_files=[ "res://.import/Jagged Skies.mp3-2eaea17ec1b64da1a295b43169a00167.mp
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

@@ -42,27 +42,27 @@ func _ready():
 		
 		time_min = Settings.get_setting_if_exists(Settings.factory, "enemy_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "enemy_time_max", time_max)
-		print("enemy_is_active", is_active)
-		print("time_max", time_max)
+		#print("enemy_is_active", is_active)
+		#print("time_max", time_max)
 
 		enemy_probabilities["blocker"] = Settings.get_setting_if_exists(Settings.factory, "enemy_blocker_prob", enemy_probabilities["blocker"]) * Settings.get_setting_if_exists(Settings.factory, "blocker_spawn_scale", 1.0)
-		print("enemy blocker prob, ", enemy_probabilities["blocker"])
+		#print("enemy blocker prob, ", enemy_probabilities["blocker"])
 		enemy_probabilities["chaser"]  = Settings.get_setting_if_exists(Settings.factory, "enemy_chaser_prob", enemy_probabilities["chaser"])
 		enemy_probabilities["comet"]   = Settings.get_setting_if_exists(Settings.factory, "enemy_comet_prob", enemy_probabilities["comet"])
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])
 		
 	randomize()
-	print("enemy_is_active", is_active)
+	#print("enemy_is_active", is_active)
 
 
 func pick_enemy():
-	print(enemy_probabilities, "\n\n", default_enemy_probabilities, "\n\n")
+	#print(enemy_probabilities, "\n\n", default_enemy_probabilities, "\n\n")
 	# Between 0 and 1
 	var rand_num = randf() 
 	
 	for key in enemy_probabilities.keys():
 		rand_num -= enemy_probabilities[key]
-		print(key,  " ", rand_num)
+		#print(key,  " ", rand_num)
 		if(rand_num <= 0):
 			return key
 
@@ -102,7 +102,7 @@ func make_spawn_location():
 	var spawn_attempt_count = 0
 	
 	while(distance_to_closest_entity(random_location) < spawn_away_radius):
-		print("tried to spawn at ", random_location, " finding new point")
+		#print("tried to spawn at ", random_location, " finding new point")
 		position_x = rand_range(left_bound, right_bound)
 		position_y = rand_range(up_bound, down_bound)
 		random_location = Vector2(position_x, position_y)
@@ -120,7 +120,7 @@ func spawn_chaser():
 		
 	var enemy = chaser_scene.instance()
 	enemy.position = spawn_position
-	print(enemy.position)
+	#print(enemy.position)
 	enemy.scale *= rand_range(chaser_min_scale, chaser_max_scale)
 	enemy.player = player
 	$Enemies.add_child(enemy)
@@ -132,7 +132,7 @@ func spawn_shooter():
 		
 	var enemy = shooter_scene.instance()
 	enemy.position = spawn_position
-	print(enemy.position)
+	#print(enemy.position)
 	enemy.player = player
 	$Enemies.add_child(enemy)
 
@@ -146,7 +146,7 @@ func spawn_blocker():
 		
 	var enemy = blocker_scene.instance()
 	enemy.position = spawn_position
-	print(enemy.position)
+	#print(enemy.position)
 	$Enemies.add_child(enemy)
 
 func kill_all():
@@ -156,7 +156,7 @@ func kill_all():
 			c.die()
 
 func _on_Timer_timeout():
-	print("enemy_is_active: ", is_active)
+	#print("enemy_is_active: ", is_active)
 	if(is_active):
 		spawn_enemy()
 		

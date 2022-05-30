@@ -69,7 +69,13 @@ func reset():
 	start_new_game()
 
 func _on_AudioStreamPlayer2D_finished():
-	current_song = randi()%len(songs_scenes)
+	var new_song = randi()%len(songs_scenes)
+	while(current_song == new_song):
+		new_song = randi()%len(songs_scenes)
+	
+	print("OLD SONG IS, ", current_song, " NEW SONG IS, ", new_song)
+	current_song = new_song
+	
 	$AudioStreamPlayer2D.stream = songs[current_song]
 	$AudioStreamPlayer2D.play()
 

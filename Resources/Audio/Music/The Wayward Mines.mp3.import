@@ -11,5 +11,5 @@ dest_files=[ "res://.import/The Wayward Mines.mp3-568e989506f9e94b402428b5979807
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
