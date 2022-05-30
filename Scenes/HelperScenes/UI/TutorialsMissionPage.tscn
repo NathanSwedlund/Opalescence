@@ -42,11 +42,12 @@ size = 45
 font_data = ExtResource( 1 )
 
 [node name="MissionPage" type="Node2D"]
+scale = Vector2( 1.25, 1.2 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
-position = Vector2( 0, 2 )
-scale = Vector2( 7.99219, 4.67969 )
+position = Vector2( -36, -40 )
+scale = Vector2( 8.75, 5.27344 )
 z_index = -2
 texture = ExtResource( 2 )
 centered = false

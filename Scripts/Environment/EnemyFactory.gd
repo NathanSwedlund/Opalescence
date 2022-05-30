@@ -60,6 +60,7 @@ func pick_enemy():
 	
 	for key in enemy_probabilities.keys():
 		rand_num -= enemy_probabilities[key]
+		print(key,  " ", rand_num)
 		if(rand_num <= 0):
 			return key
 

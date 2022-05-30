@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 5
+export var speed = 2
 export var health = 150
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 
@@ -13,6 +13,7 @@ onready var base_color = modulate
 
 func _ready():
 	scale *= Settings.get_setting_if_exists(Settings.enemy, "blocker_gen_scale", 1.0)
+	speed *= global_scale.x
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "blocker_point_reward", point_reward)
 	health = Settings.get_setting_if_exists(Settings.enemy, "blocker_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	add_to_group("Enemies")

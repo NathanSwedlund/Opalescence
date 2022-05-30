@@ -42,11 +42,12 @@ size = 45
 font_data = ExtResource( 7 )
 
 [node name="MissionPage" type="Node2D"]
+scale = Vector2( 1.25, 1.2 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
-position = Vector2( 0, 2 )
-scale = Vector2( 7.99219, 4.67969 )
+position = Vector2( -38, -23 )
+scale = Vector2( 8.755, 5.097 )
 z_index = -2
 texture = ExtResource( 1 )
 centered = false
@@ -554,8 +555,5 @@ margin_bottom = 297.0
 custom_fonts/font = SubResource( 6 )
 text = "MISSION SELECT"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="timeout" from="PageSelector/PanelAppearTimer" to="PageSelector" method="_on_PanelAppearTimer_timeout"]

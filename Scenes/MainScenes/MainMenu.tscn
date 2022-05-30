@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Environment/MainMenu.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=13]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=14]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=15]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.24999, 506 )
@@ -30,7 +31,12 @@ orbit_velocity_random = 1.0
 scale = 3.0
 scale_random = 1.0
 
+[sub_resource type="DynamicFont" id=3]
+size = 500
+font_data = ExtResource( 15 )
+
 [node name="MainMenu" type="Node2D"]
+scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
@@ -72,8 +78,9 @@ position = Vector2( 12.75, 342.957 )
 shape = SubResource( 2 )
 
 [node name="MenuCanvas" type="CanvasLayer" parent="."]
+offset = Vector2( 0, 100 )
 scale = Vector2( 0.15, 0.15 )
-transform = Transform2D( 0.15, 0, 0, 0.15, 0, 0 )
+transform = Transform2D( 0.15, 0, 0, 0.15, 0, 100 )
 
 [node name="ButtonSelectionController1" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
@@ -386,15 +393,12 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="OpalescenceLabel" type="Label" parent="MenuCanvas"]
-margin_left = 2933.33
-margin_top = 526.667
-margin_right = 6244.33
-margin_bottom = 826.667
-custom_fonts/font = ExtResource( 3 )
+margin_left = 1660.0
+margin_top = -280.0
+margin_right = 7167.0
+margin_bottom = 220.0
+custom_fonts/font = SubResource( 3 )
 text = "OPALESCENCE"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Player" parent="." groups=["Points"] instance=ExtResource( 9 )]
 position = Vector2( 699, 399 )

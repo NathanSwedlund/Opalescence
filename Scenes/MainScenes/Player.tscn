@@ -182,16 +182,14 @@ one_shot = true
 
 [node name="PowerupLabel" type="Label" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0 )
-margin_top = 161.0
-margin_right = 1024.0
-margin_bottom = 194.0
+margin_left = 145.0
+margin_top = 164.0
+margin_right = 1169.0
+margin_bottom = 197.0
 custom_fonts/font = SubResource( 10 )
 text = "Bombastic"
 align = 1
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer" type="Timer" parent="CanvasLayer/PowerupLabel"]
 

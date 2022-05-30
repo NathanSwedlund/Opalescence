@@ -85,6 +85,7 @@ var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeat
 var opalescence_shift_speed = 0.5
 
 func _ready():
+	speed *= global_scale.x
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")
 		
