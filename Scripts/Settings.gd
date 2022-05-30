@@ -9,7 +9,8 @@ var saved_settings_default = {
 	"music_volume":20,
 	"less_flashy_mode":false,
 	"fullscreen_mode":false,
-	"colors":null
+	"colors":null,
+	"show_intro":true,
 }
 
 var saved_settings = saved_settings_default.duplicate()

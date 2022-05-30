@@ -14,11 +14,11 @@ func action_pressed(action):
 	return Input.is_action_just_pressed(action)
 
 func _process(_delta):
-	if(is_active):
+	if(is_active and get_child(selected_button).visible):
+		print(visible)
 		if(get_parent().is_class("Popup")):
 			if(get_parent().visible == false):
 				return 
-			
 		if(action_pressed("ui_down") or (action_pressed("ui_focus_next") and ! action_pressed("ui_focus_prev")) ):
 			selected_button = (selected_button + 1) % button_count
 			get_parent().get_parent().find_node("ButtonSelectAudio").play()

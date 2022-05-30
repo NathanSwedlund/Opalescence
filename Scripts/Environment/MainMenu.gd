@@ -6,15 +6,39 @@ var current_shifting_index = 0
 var target_button_selection
 var button_selections
 
-func _ready():
-	Settings.apply_sound_settings()
+var is_fading_in = true
+var is_fading_in_music = true
+var target_music_db = -40
+var current_music_db = -40
+var target_player_scale
+export var fade_speed = 0.7
+export var music_fade_speed = 8
 
-	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
-	$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)
-	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
-	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
-	$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
-	shift_button_selection(Settings.current_main_menu_button_selection, false)
+func _ready():
+	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
+	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
+	reset()
+	
+func reset():
+	if(is_fading_in):
+		$PointFactory.is_active = false
+		for c in $MenuCanvas.get_children():
+			c.modulate.a = 0.0
+		
+		target_player_scale = $Player.scale
+		$Player.modulate.a = 0.0
+		$Player.scale = Vector2.ZERO
+		
+	else:
+		$PointFactory.is_active = false
+		Settings.apply_sound_settings()
+		$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
+		$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
+		$MenuCanvas/ButtonSelectionController3/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
+		button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
+		shift_button_selection(Settings.current_main_menu_button_selection, false)
+		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
+		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
 
 func _on_ChallengeButton_pressed():
 	Settings.current_main_menu_button_selection = current_button_selection
@@ -22,23 +46,38 @@ func _on_ChallengeButton_pressed():
 
 var last_color = Color.white
 func _process(_delta):
-	if($Player.modulate != last_color):
-		last_color = $Player.modulate
-		$MenuCanvas/OpalescenceLabel.modulate = last_color
-		$MenuCanvas/ButtonSelectionController1.modulate = last_color
-		$MenuCanvas/ButtonSelectionController2.modulate = last_color
-		$MenuCanvas/ButtonSelectionController3.modulate = last_color
-		for c in $MenuCanvas/ButtonSelectionController1.get_children():
-			c.get_node("Light2D").color = last_color
-		for c in $MenuCanvas/ButtonSelectionController2.get_children():
-			c.get_node("Light2D").color = last_color
+	if(target_music_db != current_music_db):
+		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
+		$AudioStreamPlayer.volume_db = current_music_db
+		
+	if(is_fading_in):
+		$Player.scale.y = move_toward($Player.scale.y, target_player_scale.y, fade_speed*_delta)
+		$Player.scale.x = move_toward($Player.scale.x, target_player_scale.x, fade_speed*_delta)
+		$Player.modulate.a = move_toward($Player.modulate.a, 1.0, fade_speed*_delta)
+		for c in $MenuCanvas.get_children():
+			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
+			
+		if($Player.modulate.a == 1.0):
+			is_fading_in = false
+			reset()
+			Global.main_menu_has_faded = true
+	else:
+		if($Player.modulate != last_color):
+			last_color = $Player.modulate
+			$LabelContainer/OpalescenceLabel.modulate = last_color
+			$MenuCanvas/ButtonSelectionController1.modulate = last_color
+			$MenuCanvas/ButtonSelectionController2.modulate = last_color
+			$MenuCanvas/ButtonSelectionController3.modulate = last_color
+			for c in $MenuCanvas/ButtonSelectionController1.get_children():
+				c.get_node("Light2D").color = last_color
+			for c in $MenuCanvas/ButtonSelectionController2.get_children():
+				c.get_node("Light2D").color = last_color
 
-	if(Input.is_action_just_pressed("ui_cancel")):
-		if(current_button_selection == 2):
-			Settings.save_settings()
-		if(current_button_selection != 0):
-			shift_button_selection(0)
-
+		if(Input.is_action_just_pressed("ui_cancel")):
+			if(current_button_selection == 2):
+				Settings.save_settings()
+			if(current_button_selection != 0):
+				shift_button_selection(0)
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
@@ -134,3 +173,7 @@ func _on_PaleModeOption_pressed(is_selected):
 func _on_FullscreenOption_pressed(is_selected):
 	Settings.saved_settings["fullscreen_mode"] = is_selected
 	OS.window_fullscreen = is_selected
+
+
+func _on_ShowIntroOption_pressed(is_selected):
+	Settings.saved_settings["show_intro"] = is_selected

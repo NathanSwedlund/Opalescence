@@ -1,7 +1,6 @@
 extends Node2D
 
 export var description = "Description"
-
 var index = 0
 var page_container = null
 
@@ -24,7 +23,6 @@ export var factory_settings = {
 	"point_time_min":0.1,
 	"point_time_max":0.8,
 	"point_colors":[Color.red, Color.orange, Color.yellow, Color.green, Color.blue, Color.lightblue, Color.pink],
-
 	"enemy_is_active":true,
 	"enemy_time_min":3,
 	"enemy_time_max":4,

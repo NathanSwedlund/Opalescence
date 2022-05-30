@@ -15,7 +15,9 @@ _global_script_class_icons={
 [application]
 
 config/name="Opalescence"
-run/main_scene="res://Scenes/MainScenes/MainMenu.tscn"
+run/main_scene="res://Scenes/MainScenes/OpeningScene.tscn"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
 
 [autoload]
 

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/UI/OpeningScene.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=4]
+[ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=5]
+[ext_resource path="res://Resources/Audio/FX/OpeningSceneCharAppear.mp3" type="AudioStream" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 80
+font_data = ExtResource( 2 )
+
+[node name="OpeningScene" type="Node2D"]
+scale = Vector2( 1.25, 1.2 )
+script = ExtResource( 3 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( -16, -22 )
+scale = Vector2( 10.256, 5.96 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="LabelContainer" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
+
+[node name="Label" type="Label" parent="LabelContainer"]
+margin_left = 76.0
+margin_top = 223.0
+margin_right = 1187.0
+margin_bottom = 323.0
+custom_fonts/font = SubResource( 1 )
+text = "OPALESCENCE"
+
+[node name="CharTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="CharsFinished" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 1.0
+pitch_scale = 0.5
+script = ExtResource( 4 )
+default_vol = 1.0
+
+[node name="CharAppears" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 0.4
+script = ExtResource( 4 )
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="CharTimer" to="." method="_on_CharTimer_timeout"]
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

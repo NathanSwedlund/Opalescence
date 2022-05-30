@@ -3,6 +3,8 @@ extends Node
 var player = null
 var target_frame_rate = 60.0
 
+var main_menu_has_faded = false
+
 func save_var(path, _var):
 	print("Saving ", _var, " at ", path)
 	var file = File.new()

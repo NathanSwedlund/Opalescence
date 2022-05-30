@@ -32,7 +32,7 @@ scale = 3.0
 scale_random = 1.0
 
 [sub_resource type="DynamicFont" id=3]
-size = 500
+size = 80
 font_data = ExtResource( 15 )
 
 [node name="MainMenu" type="Node2D"]
@@ -43,6 +43,15 @@ script = ExtResource( 2 )
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
 position = Vector2( -16, -22 )
 scale = Vector2( 8.46875, 5 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Background2" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( -9.6, -16.6667 )
+scale = Vector2( 8.46875, 5 )
+z_index = 26
 texture = ExtResource( 1 )
 centered = false
 
@@ -334,11 +343,11 @@ process_material = SubResource( 1 )
 
 [node name="ButtonSelectionController3" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
-button_count = 5
+button_count = 6
 
 [node name="MusicVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 306.667, 973.333 )
+position = Vector2( 286.667, 533.333 )
 scale = Vector2( 5, 5 )
 title = "Music Volume"
 starting_val = 20.0
@@ -348,7 +357,7 @@ step = 1.0
 
 [node name="SFXVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 286.667, 1580 )
+position = Vector2( 266.667, 1140 )
 scale = Vector2( 5, 5 )
 title = "SFX Volume"
 starting_val = 20.0
@@ -359,54 +368,54 @@ button_index = 1
 
 [node name="PaleModeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
 visible = false
-position = Vector2( 280, 2146.67 )
+position = Vector2( 260, 1706.67 )
 scale = Vector2( 5, 5 )
 title = "Pale Mode"
 button_index = 2
 
 [node name="FullscreenOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
 visible = false
-position = Vector2( 293.333, 2693.34 )
+position = Vector2( 273.333, 2253.34 )
 scale = Vector2( 5, 5 )
 title = "Fullscreen Mode"
 button_index = 3
 
+[node name="ShowIntroOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
+visible = false
+position = Vector2( 2653.33, 513.333 )
+scale = Vector2( 5, 5 )
+title = "Show Intro Sequence"
+button_index = 4
+
 [node name="OptionBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController3"]
 visible = false
-margin_left = 333.333
-margin_top = 3246.67
-margin_right = 1549.33
-margin_bottom = 3792.67
+margin_left = 7073.33
+margin_top = 3353.33
+margin_right = 8289.33
+margin_bottom = 3899.33
 custom_fonts/font = ExtResource( 3 )
 text = "Back"
 flat = true
 script = ExtResource( 8 )
-button_index = 4
-button_shift_index = 4
+left_margin_on_hover = 7000
+button_index = 5
+button_shift_index = 5
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 1113.33, 306.666 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 1.78
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 433.334, 346.666 )
+rotation = 3.14159
 scale = Vector2( 6.667, 6.667 )
-emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
-
-[node name="OpalescenceLabel" type="Label" parent="MenuCanvas"]
-margin_left = 1660.0
-margin_top = -280.0
-margin_right = 7167.0
-margin_bottom = 220.0
-custom_fonts/font = SubResource( 3 )
-text = "OPALESCENCE"
 
 [node name="Player" parent="." groups=["Points"] instance=ExtResource( 9 )]
 position = Vector2( 699, 399 )
@@ -455,6 +464,19 @@ stream = ExtResource( 14 )
 pitch_scale = 0.7
 script = ExtResource( 12 )
 
+[node name="LabelContainer" type="Node2D" parent="."]
+position = Vector2( 0, -80 )
+scale = Vector2( 0.7, 0.7 )
+z_index = 1
+
+[node name="OpalescenceLabel" type="Label" parent="LabelContainer"]
+margin_left = 76.0
+margin_top = 223.0
+margin_right = 1187.0
+margin_bottom = 323.0
+custom_fonts/font = SubResource( 3 )
+text = "OPALESCENCE"
+
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="." method="_on_PlayButton_pressed"]
@@ -483,6 +505,7 @@ script = ExtResource( 12 )
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/SFXVolumeOption" to="." method="_on_SFXVolumeOption_pressed"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/PaleModeOption" to="." method="_on_PaleModeOption_pressed"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/FullscreenOption" to="." method="_on_FullscreenOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ShowIntroOption" to="." method="_on_ShowIntroOption_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="." method="_on_OptionBackButton_pressed"]

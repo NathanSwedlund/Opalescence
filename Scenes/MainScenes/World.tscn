@@ -215,6 +215,7 @@ down_bound = 550
 time_min = 5.0
 time_max = 10.0
 is_active = false
+use_global_settings = false
 default_enemy_probabilities = {
 "blocker": 0.0,
 "chaser": 0.0,
