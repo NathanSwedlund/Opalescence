@@ -22,7 +22,7 @@ func _ready():
 	
 	$LabelContainer/Label.text = ""
 	OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
-	Settings.saved_settings["fullscreen_mode"]
+
 	
 func _on_CharTimer_timeout():
 	$LabelContainer/Label.text += text[current_char_index]
@@ -32,6 +32,7 @@ func _on_CharTimer_timeout():
 	$CharAppears.pitch_scale += pitch_change_per_char
 	
 	if($LabelContainer/Label.text  == text):
+		$Particles2D.emitting = true
 		$CharsFinished.play()
 		$LabelContainer/Label.modulate = Color.white
 		chars_appearing = false

@@ -11,6 +11,7 @@ var saved_settings_default = {
 	"fullscreen_mode":false,
 	"colors":null,
 	"show_intro":true,
+	"show_epilepsy_warning":true,
 }
 
 var saved_settings = saved_settings_default.duplicate()

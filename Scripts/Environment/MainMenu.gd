@@ -8,10 +8,10 @@ var button_selections
 
 var is_fading_in = true
 var is_fading_in_music = true
-var target_music_db = -40
+var target_music_db = 0
 var current_music_db = -40
 var target_player_scale
-export var fade_speed = 0.7
+export var fade_speed = 1
 export var music_fade_speed = 8
 
 func _ready():
@@ -32,14 +32,19 @@ func reset():
 	else:
 		$PointFactory.is_active = false
 		Settings.apply_sound_settings()
-		$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
 		$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
+		
+		$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
 		$MenuCanvas/ButtonSelectionController3/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
+		$MenuCanvas/ButtonSelectionController3/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
 		button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 		shift_button_selection(Settings.current_main_menu_button_selection, false)
 		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
-
+		
+		$AudioStreamPlayer.volume_db = -80
+		$AudioStreamPlayer.play()
+		
 func _on_ChallengeButton_pressed():
 	Settings.current_main_menu_button_selection = current_button_selection
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/ChallengePage.tscn")
@@ -177,3 +182,7 @@ func _on_FullscreenOption_pressed(is_selected):
 
 func _on_ShowIntroOption_pressed(is_selected):
 	Settings.saved_settings["show_intro"] = is_selected
+
+
+func _on_ShowWarningOption_pressed(is_selected):
+	Settings.saved_settings["show_epilepsy_warning"] = is_selected

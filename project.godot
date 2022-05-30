@@ -15,9 +15,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Opalescence"
-run/main_scene="res://Scenes/MainScenes/OpeningScene.tscn"
-boot_splash/fullsize=false
+run/main_scene="res://Scenes/HelperScenes/UI/EpilepsyWarning.tscn"
+boot_splash/image="res://Resources/Textures/UI/Splashscreen.png"
 boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 
 [autoload]
 
