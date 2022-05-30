@@ -31,9 +31,6 @@ func _process(_delta):
 		is_in_controller_mode = true
 		
 		if(right_stick_direction != Vector2.ZERO):
-#			position = Vector2.UP * cursor_sep_from_player
-#			visible = false
-#		else:
 			visible = true
 			position = right_stick_direction.normalized() * cursor_sep_from_player
 

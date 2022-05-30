@@ -1,15 +1,15 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Textures/UI/healthImage.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Textures/Entities/player3.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Textures/UI/bombImage.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Resources/Textures/Entities/Enemies/shooter.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=12]
 [ext_resource path="res://Resources/Audio/Music/OPALESCENCE.wav" type="AudioStream" id=13]
@@ -30,6 +30,13 @@ size = 20
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=26]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="CanvasItemMaterial" id=27]
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=28]
 size = 20
 font_data = ExtResource( 9 )
 
@@ -208,7 +215,6 @@ down_bound = 550
 time_min = 5.0
 time_max = 10.0
 is_active = false
-use_global_settings = false
 default_enemy_probabilities = {
 "blocker": 1.0,
 "chaser": 0.0,
@@ -224,7 +230,7 @@ down_bound = 550
 time_min = 0.0
 time_max = 10.0
 powerup_probabilities = {
-"barrage": 1111.0,
+"barrage": 1.0,
 "bomb_up": 1.0,
 "bombastic": 1.0,
 "bullet_time": 1.0,
@@ -234,10 +240,11 @@ powerup_probabilities = {
 "max_up": 1.0,
 "one_up": 1.0,
 "opalescence": 1.0,
-"oversheild": 1.0,
+"oversheild": 1111.0,
 "unmaker": 1.0,
 "vision": 1.0
 }
+use_global_settings = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 300 )
@@ -292,26 +299,26 @@ text = ": "
 [node name="HealthDisplay" type="Node2D" parent="HeadsUpDisplay"]
 position = Vector2( 1031, 33 )
 
-[node name="Health1" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
-position = Vector2( 84, 10 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 6 )
-
-[node name="Health2" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
-position = Vector2( 100, 10 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 6 )
-
-[node name="Health3" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
-position = Vector2( 116, 10 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 6 )
-
-[node name="Sheild" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
-self_modulate = Color( 0.376471, 0.376471, 0.376471, 1 )
-position = Vector2( 156.95, 10 )
-scale = Vector2( 0.6, 0.6 )
+[node name="Shield" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
+modulate = Color( 1, 1, 1, 0.698039 )
+position = Vector2( -76, 16 )
+scale = Vector2( 0.792683, 0.731707 )
 texture = ExtResource( 10 )
+
+[node name="Sprite" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
+material = SubResource( 27 )
+position = Vector2( -76, 16 )
+rotation = 4.71239
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="HeadsUpDisplay/HealthDisplay"]
+margin_left = -39.0
+margin_top = 5.0
+margin_right = 21.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 28 )
+text = "x 3"
 
 [node name="BombDisplay" type="Node2D" parent="HeadsUpDisplay"]
 position = Vector2( 1082, 650 )
@@ -449,8 +456,8 @@ margin_bottom = 146.0
 
 [node name="Background" type="Sprite" parent="HeadsUpDisplay/PausePopup"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.72549 )
-position = Vector2( 0, 2 )
-scale = Vector2( 7.99219, 4.67969 )
+position = Vector2( -12, -112 )
+scale = Vector2( 10.2891, 5.89062 )
 texture = ExtResource( 5 )
 centered = false
 

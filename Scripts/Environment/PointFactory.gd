@@ -27,7 +27,7 @@ func _ready():
 		time_min = Settings.get_setting_if_exists(Settings.factory, "point_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "point_time_max", time_max)
 	
-	print(left_bound)
+#	print(left_bound)
 	color_count = len(Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white]))
 	randomize()
 	
@@ -38,7 +38,7 @@ func spawn_point():
 	var position_y = rand_range(up_bound, down_bound)
 	
 	point.position = Vector2(position_x, position_y)
-	print(point.position)
+#	print(point.position)
 	point.player = player
 	var c = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])[randi()%color_count]
 	point.modulate = c

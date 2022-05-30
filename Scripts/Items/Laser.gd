@@ -6,13 +6,13 @@ var is_fading_in = true
 export var max_fade_in_width = 30
 
 var total_time = 1.5
-var fade_in_time_ratio = 0.25
-var not_fading_time = 0.55
-var fade_out_time_ratio = 0.2
+var fade_in_time_ratio = 0.35
+var not_fading_time = 0.35
+var fade_out_time_ratio = 0.3
 
 export var damage = 30
 export var fade_out_speed = 0.88
-export var fade_in_speed = 1.56
+export var fade_in_speed = 1.2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,7 +27,7 @@ func _ready():
 	$Light2D.color = get_parent().modulate
 
 	$LaserParticleEffect.emitting = true
-	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -38,7 +38,9 @@ func _process(_delta):
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
 			scale.y *= fade_in_speed
-			is_fading_in = false
+			print("LASER, ", scale.y)
+#		else:
+#			 is_fading_in = false
 	else:
 		if(scale.y > min_fade_out_width):
 			scale.y *= fade_out_speed

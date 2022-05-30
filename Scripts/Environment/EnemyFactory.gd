@@ -25,11 +25,12 @@ export var default_enemy_probabilities = {
 	"blocker": 0.1	
 }
 
-var enemy_probabilities = default_enemy_probabilities.duplicate()
+var enemy_probabilities
 
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	enemy_probabilities = default_enemy_probabilities.duplicate()
 	if(use_global_settings):
 		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound) 
 		right_bound = Settings.get_setting_if_exists(Settings.world, "right_bound", right_bound)
@@ -55,6 +56,7 @@ func _ready():
 
 
 func pick_enemy():
+	print(enemy_probabilities, "\n\n", default_enemy_probabilities, "\n\n")
 	# Between 0 and 1
 	var rand_num = randf() 
 	

@@ -490,7 +490,7 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
 	if(_powerup == "OverSheild"):
 		$SheildSprite.visible = true
-		heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
 		spawn_laser(unmaker_scale, powerup_times["Unmaker"])
 		$PowerupTimers/Unmaker.start()

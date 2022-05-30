@@ -42,16 +42,9 @@ func return_to_menu():
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
 func update_health(health_count, has_sheild):
-	for c in $HealthDisplay.get_children():
-		c.visible = false
-		
-	for i in health_count:
-		$HealthDisplay.get_child(i).visible = true
-		
-	if(has_sheild):
-		get_node("HealthDisplay/Sheild").visible = true
-	else:
-		get_node("HealthDisplay/Sheild").visible = false
+	print("health_count, has_sheild, ", health_count, has_sheild)	
+	$HealthDisplay/Label.text = "x "+str(health_count)
+	$HealthDisplay/Shield.visible = has_sheild
 		
 func update_bombs(bomb_count):
 	for c in $BombDisplay.get_children():

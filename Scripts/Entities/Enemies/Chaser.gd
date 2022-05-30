@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var base_speed = 70
+export var base_speed = 300
 
 var speed
 var player:Node2D
