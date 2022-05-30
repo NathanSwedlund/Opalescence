@@ -95,16 +95,17 @@ script = ExtResource( 12 )
 left_margin_on_hover = 793
 
 [node name="Light2D" type="Light2D" parent="ReadyButton"]
+visible = false
 position = Vector2( 94.5999, 21.7554 )
 scale = Vector2( 0.3, 0.1 )
 texture = ExtResource( 5 )
 energy = 2.0
 
 [node name="Particles2D" type="Particles2D" parent="ReadyButton"]
-position = Vector2( 610.017, 21.7554 )
-scale = Vector2( 0.3, 0.1 )
+position = Vector2( 62.9999, 17.3333 )
+scale = Vector2( 1.526, 0.662 )
 emitting = false
-amount = 20
+amount = 10
 lifetime = 1.5
 process_material = SubResource( 12 )
 

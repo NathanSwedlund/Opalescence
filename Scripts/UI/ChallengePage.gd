@@ -25,9 +25,8 @@ func _process(delta):
 
 func select_next(going_up=true):
 	var change_num = 1 if going_up else -1
-	print("change_num, ", change_num)
-	print("selecting_ready_button, ", selecting_ready_button)
-	print("current_panel_selected, ", current_panel_selected)
+	$SelectAudio.play()
+	
 	if( (!going_up and current_panel_selected == 0) or (going_up and current_panel_selected==$ChallengePanels.get_child_count()-1)):
 		if(!selecting_ready_button):
 			deselect_panel(current_panel_selected)
@@ -50,7 +49,6 @@ func select_next(going_up=true):
 			selecting_ready_button = false
 		
 func select_panel(panel_num):
-	$SelectAudio.play()
 	$ChallengePanels.get_child(current_panel_selected).is_ui_selected = true
 	$ChallengePanels.get_child(current_panel_selected).scale *= panel_selection_scale
 	$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = true
