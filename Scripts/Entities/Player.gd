@@ -189,7 +189,7 @@ func change_color(new_color):
 	modulate = new_color
 	$OuterLight.color = new_color
 	$InnerLight.color = new_color
-	$CanvasLayer/PowerupLabel.modulate = new_color
+	$CanvasLayer/PowerupLabel.modulate = Color(new_color.r, new_color.g, new_color.b, $CanvasLayer/PowerupLabel.modulate.a)
 	if(heads_up_display != null):
 		heads_up_display.change_color(new_color)
 
