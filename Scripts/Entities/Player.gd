@@ -396,11 +396,12 @@ func _on_BulletBurstTimer_timeout():
 	else:
 		$BulletCooldownTimer.start()
 
-func spawn_laser(_scale=1.0, _laser_time=-1.0):
+func spawn_laser(_scale=1.0, _laser_time=-1.0, _particle_intensity_scale=1.0):
 	var laser = laser_scene.instance()
 	laser.scale *= _scale
 	if(_laser_time != -1.0):
 		laser.total_time = _laser_time
+		laser.particle_intensity_scale = _particle_intensity_scale
 	add_child(laser)
 
 func _on_LaserChargeTimer_timeout():
@@ -492,9 +493,11 @@ func get_powerup(_powerup, _color):
 		$SheildSprite.visible = true
 		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
-		spawn_laser(unmaker_scale, $PowerupTimers/Barrage.wait_time)
+		var unmaker_particle_intensity = 2.0
+		spawn_laser(unmaker_scale, $PowerupTimers/Unmaker.wait_time, unmaker_particle_intensity)
 		$PowerupTimers/Unmaker.start()
-		start_powerup_timer($PowerupTimers/Barrage.wait_time, _color, _powerup)
+		print("$PowerupTimers/Unmaker.wait_time, ", $PowerupTimers/Unmaker.wait_time)
+		start_powerup_timer($PowerupTimers/Unmaker.wait_time, _color, _powerup)
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
 		start_powerup_timer($PowerupTimers/Vision.wait_time, _color, _powerup)
@@ -538,7 +541,7 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
-	print("stopping")
+	print("stopping UNMAKER")
 	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
 

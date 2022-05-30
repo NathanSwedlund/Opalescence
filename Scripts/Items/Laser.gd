@@ -14,8 +14,14 @@ export var damage = 30
 export var fade_out_speed = 1.1
 export var fade_in_speed = 2.0
 
+export var particle_intensity_scale = 1.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(particle_intensity_scale != 1.0):
+		$LaserParticleEffect.lifetime *= particle_intensity_scale/1.5
+		$LaserParticleEffect.amount *= particle_intensity_scale*3
+
 	$FadeInTimer.wait_time = fade_in_time_ratio * total_time
 	$FadeOutTimer.wait_time = fade_out_time_ratio * total_time
 	$NotFadingTimer.wait_time = not_fading_time * total_time
