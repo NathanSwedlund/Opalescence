@@ -538,6 +538,7 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
+	print("stopping")
 	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
 

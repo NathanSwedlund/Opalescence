@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Textures/Items/Laser.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Items/Laser.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/FX/LaserParticleEffect.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=4]
-[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Textures/FX/Light.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Audio/FX/Unmaker.wav" type="AudioStream" id=6]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 40.1352 )
@@ -74,8 +75,8 @@ script = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="."]
 light_mask = 3
-position = Vector2( -329.583, 0.133334 )
-scale = Vector2( 1.65446, -0.0174479 )
+position = Vector2( -365.416, 0.133334 )
+scale = Vector2( 1.72445, -0.0174479 )
 texture = ExtResource( 5 )
 energy = 2.0
 shadow_enabled = true
@@ -87,11 +88,13 @@ light_mask = 2
 occluder = SubResource( 3 )
 light_mask = 2
 
-[node name="LaserSound" type="AudioStreamPlayer2D" parent="."]
+[node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = 6.118
 pitch_scale = 1.49
 autoplay = true
+script = ExtResource( 7 )
+default_vol = 6.0
 
 [connection signal="timeout" from="FadeOutTimer" to="." method="_on_FadeOutTimer_timeout"]
 [connection signal="timeout" from="NotFadingTimer" to="." method="_on_NotFadingTimer_timeout"]

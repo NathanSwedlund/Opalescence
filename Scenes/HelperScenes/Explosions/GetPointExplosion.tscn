@@ -35,13 +35,11 @@ explosiveness = 0.85
 process_material = SubResource( 5 )
 script = ExtResource( 2 )
 
+[node name="Timer" type="Timer" parent="."]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
-volume_db = -5.0
 autoplay = true
 script = ExtResource( 3 )
-default_vol = -18.0
-
-[node name="Timer" type="Timer" parent="."]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

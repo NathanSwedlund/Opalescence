@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Textures/Entities/Enemies/blocker.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/Blocker.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Audio/FX/EnemyDamage.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=4]
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 0, -41, 11, -30, 28, -30, 29, -13, 40, -0.5, 29, 11, 29.5, 28, 12, 28.5, 0, 40.5, -12.5, 28.5, -28.5, 28.5, -28.5, 12, -40.5, -0.5, -28.5, -13, -29, -29.5, -12.5, -29.5 )
@@ -33,6 +34,7 @@ occluder = SubResource( 1 )
 
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [connection signal="timeout" from="PointCheckTimer" to="." method="_on_PointCheckTimer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

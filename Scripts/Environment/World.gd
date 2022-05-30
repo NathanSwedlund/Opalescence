@@ -73,9 +73,7 @@ func _on_AudioStreamPlayer2D_finished():
 	while(current_song == new_song):
 		new_song = randi()%len(songs_scenes)
 	
-	print("OLD SONG IS, ", current_song, " NEW SONG IS, ", new_song)
 	current_song = new_song
-	
 	$AudioStreamPlayer2D.stream = songs[current_song]
 	$AudioStreamPlayer2D.play()
 

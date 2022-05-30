@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/FX/EnemyLight.png" type="Texture" id=3]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.416216, 1 )
@@ -53,17 +54,18 @@ color_ramp = SubResource( 2 )
 [node name="EnemyDeathExplosion" type="Node2D"]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
+max_size = 1.6
+shrink_speed = 0.95
 
 [node name="Light2D" type="Light2D" parent="."]
-scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
-energy = 2.8
+energy = 3.3
 
 [node name="Light2D2" type="Light2D" parent="."]
 rotation = 0.727802
 scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 2 )
-energy = 3.0
+texture = ExtResource( 3 )
+energy = 6.0
 
 [node name="WhiteBlast" type="Particles2D" parent="."]
 emitting = false

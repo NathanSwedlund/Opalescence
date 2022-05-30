@@ -5,13 +5,16 @@ export var is_music = false
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready():	
 	if(is_music):
 		add_to_group("Music")
+		if(Settings.saved_settings["music_volume"] == 0):
+			volume_db = -80
+		else:
+			volume_db = default_vol + Settings.saved_settings["music_volume"] + Settings.min_vol
 	else:
 		add_to_group("FX")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+		if(Settings.saved_settings["fx_volume"] == 0):
+			volume_db = -80
+		else:
+			volume_db = default_vol + Settings.saved_settings["fx_volume"] + Settings.min_vol
