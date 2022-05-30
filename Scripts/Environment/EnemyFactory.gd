@@ -29,13 +29,14 @@ var enemy_probabilities
 
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
+export var bound_buffer = 30
 func _ready():
 	enemy_probabilities = default_enemy_probabilities.duplicate()
 	if(use_global_settings):
-		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound)
-		right_bound = Settings.get_setting_if_exists(Settings.world, "right_bound", right_bound)
-		up_bound = Settings.get_setting_if_exists(Settings.world, "up_bound", up_bound)
-		down_bound = Settings.get_setting_if_exists(Settings.world, "down_bound", down_bound)
+		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound) + bound_buffer
+		right_bound = Settings.get_setting_if_exists(Settings.world, "right_bound", right_bound) - bound_buffer
+		up_bound = Settings.get_setting_if_exists(Settings.world, "up_bound", up_bound) + bound_buffer
+		down_bound = Settings.get_setting_if_exists(Settings.world, "down_bound", down_bound) - bound_buffer
 
 		chaser_min_scale = Settings.get_setting_if_exists(Settings.enemy, "chaser_min_scale", chaser_min_scale)
 		chaser_max_scale = Settings.get_setting_if_exists(Settings.enemy, "chaser_max_scale", chaser_max_scale)

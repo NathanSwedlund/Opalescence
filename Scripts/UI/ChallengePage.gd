@@ -49,7 +49,6 @@ func select_next(going_up=true):
 			select_panel(current_panel_selected)
 			selecting_ready_button = false
 		
-
 func select_panel(panel_num):
 	$SelectAudio.play()
 	$ChallengePanels.get_child(current_panel_selected).is_ui_selected = true
