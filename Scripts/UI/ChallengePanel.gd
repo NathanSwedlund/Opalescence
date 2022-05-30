@@ -2,7 +2,7 @@ extends Node2D
 
 export var title = "Title"
 export var starting_val = 1.0
-var current_val = starting_val
+var current_val
 
 export var max_val = 2.0
 export var min_val = 0.0
@@ -24,20 +24,31 @@ func _process(delta):
 			_on_IncreaseButton_pressed()
 
 func _ready():
+	current_val = starting_val
 	$Title.text = title
 	update_current_val(current_val)
 
 func _on_DecreaseButton_pressed():
 	if(min_val < current_val - step):
-		$ChangeAudio.play()
-		update_score_mult(score_mult * ( 1 - score_mult_per_step) )
+		$ChangeAudio.play()			
 		update_current_val(current_val - step)
+	
+		var steps_from_start = (current_val-starting_val)/step
+		print("steps_from_start, ", steps_from_start)
+		var new_score_mult = pow(score_mult_per_step, steps_from_start)
+		print("new_score_mult, ", new_score_mult)
+		update_score_mult(new_score_mult)
 
 func _on_IncreaseButton_pressed():
 	if(max_val > current_val + step):
 		$ChangeAudio.play()
-		update_score_mult(score_mult * ( 1 + score_mult_per_step) )
 		update_current_val(current_val + step)
+		
+		var steps_from_start = (current_val-starting_val)/step
+		print("steps_from_start, ", steps_from_start)
+		var new_score_mult = pow(score_mult_per_step, steps_from_start)
+		print("new_score_mult, ", new_score_mult)
+		update_score_mult(new_score_mult)
 
 func update_current_val(val):
 	current_val = val

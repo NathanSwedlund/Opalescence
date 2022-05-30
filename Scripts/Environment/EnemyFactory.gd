@@ -44,7 +44,8 @@ func _ready():
 		print("enemy_is_active", is_active)
 		print("time_max", time_max)
 
-		enemy_probabilities["blocker"] = Settings.get_setting_if_exists(Settings.factory, "enemy_blocker_prob", enemy_probabilities["blocker"])
+		enemy_probabilities["blocker"] = Settings.get_setting_if_exists(Settings.factory, "enemy_blocker_prob", enemy_probabilities["blocker"]) * Settings.get_setting_if_exists(Settings.factory, "blocker_spawn_scale", 1.0)
+		print("enemy blocker prob, ", enemy_probabilities["blocker"])
 		enemy_probabilities["chaser"]  = Settings.get_setting_if_exists(Settings.factory, "enemy_chaser_prob", enemy_probabilities["chaser"])
 		enemy_probabilities["comet"]   = Settings.get_setting_if_exists(Settings.factory, "enemy_comet_prob", enemy_probabilities["comet"])
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])

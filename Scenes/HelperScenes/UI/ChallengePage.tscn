@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/UI/ChallengePage.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanelBool.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Resources/Textures/UI/healthImage.png" type="Texture" id=9]
@@ -73,61 +73,86 @@ centered = false
 scale = Vector2( 0.6, 0.6 )
 
 [node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 48.3333, 211.667 )
 title = "Can Shoot"
 setting_name = "can_shoot"
 
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 54.3333, 316.667 )
 title = "Can Use Laser"
 setting_name = "can_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
-visible = false
 position = Vector2( 54.3333, 433.667 )
 title = "Can Use Bombs"
 setting_name = "can_bomb"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
 position = Vector2( 52.3334, 553.667 )
 title = "Player Speed Scale"
 max_val = 1.25
 min_val = 0.2
-score_mult_per_step = -0.2
+score_mult_per_step = 0.8
 setting_name = "player_speed_scale"
 
 [node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
 position = Vector2( 56.3335, 665.667 )
 title = "Enemy Health Scale"
 max_val = 2.1
 min_val = 0.2
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
-score_mult_per_step = 0.2
+score_mult_per_step = 1.2
 setting_name = "enemy_health_scale"
 
 [node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 676.667, 206.667 )
+position = Vector2( 546.667, 206.667 )
 title = "Chaser Scale"
 max_val = 1.25
 min_val = 0.2
-score_mult_per_step = -0.2
+score_mult_per_step = 0.8
 setting_name = "chaser_gen_scale"
 
 [node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 680.667, 318.666 )
+position = Vector2( 550.667, 318.666 )
 title = "Shooter Missile Speed"
 min_val = 0.2
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
-score_mult_per_step = 0.1
+score_mult_per_step = 1.1
 setting_name = "shooter_missile_speed_scale"
+
+[node name="ChallengePanel11" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 551.667, 431.667 )
+title = "Light Fade Scale"
+max_val = 10.0
+min_val = 0.5
+min_color = Color( 0, 1, 0.976471, 1 )
+max_color = Color( 1, 0, 0, 1 )
+step = 0.5
+score_mult_per_step = 1.2
+setting_name = "light_fade_scale"
+
+[node name="ChallengePanel12" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 553.333, 546.667 )
+title = "Blocker Spawn Chance"
+max_val = 3.1
+min_val = 0.5
+min_color = Color( 0, 1, 1, 1 )
+max_color = Color( 1, 0, 0, 1 )
+step = 0.2
+score_mult_per_step = 1.1
+setting_name = "blocker_spawn_scale"
+
+[node name="ChallengePanel13" parent="ChallengePanels" instance=ExtResource( 8 )]
+position = Vector2( 556.667, 655 )
+title = "Default Player Lives"
+starting_val = 3.0
+max_val = 5.1
+min_val = 0.9
+step = 1.0
+score_mult_per_step = 0.5
+setting_name = "starting_health"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500.048, 301.233 )
@@ -151,9 +176,8 @@ is_music = true
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -5.0
+pitch_scale = 0.7
 script = ExtResource( 11 )
-default_vol = -5.0
 
 [node name="Challenge" type="Label" parent="."]
 margin_left = 10.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scripts/UI/PowerupTimer.gd" type="Script" id=18]
 [ext_resource path="res://Resources/Audio/FX/countdown.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=20]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.24999, 506 )
@@ -681,6 +682,11 @@ stream = ExtResource( 19 )
 volume_db = -10.0
 script = ExtResource( 20 )
 default_vol = -20.0
+
+[node name="ButtonSelectAudio" type="AudioStreamPlayer" parent="HeadsUpDisplay"]
+stream = ExtResource( 21 )
+pitch_scale = 0.7
+script = ExtResource( 20 )
 
 [connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
 [connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]

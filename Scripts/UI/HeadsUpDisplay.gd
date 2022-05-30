@@ -10,9 +10,6 @@ func _ready():
 		$BombDisplay.visible = false
 
 func _process(delta):
-#	if(game_is_over and Input.is_action_just_pressed("ui_cancel")):
-#		return_to_menu()
-
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
 		var current_scale = get_parent().find_node("AudioStreamPlayer2D").pitch_scale
@@ -74,7 +71,8 @@ func game_over(is_mission, mission_complete):
 	
 func change_color(new_color):
 	for c in get_children():
-		c.modulate = new_color
+		if(c.get("modulate") != null):
+			c.modulate = new_color
 
 func reset():
 	$GameOverPopup/Buttons.is_active = false

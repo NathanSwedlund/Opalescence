@@ -94,6 +94,7 @@ func _ready():
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
 		shrink_scalar = Settings.get_setting_if_exists(Settings.player, "shrink_scalar", shrink_scalar)
+		shrink_scalar = 1 + (shrink_scalar - 1) *  Settings.get_setting_if_exists(Settings.player, "light_fade_scale", 1.0)
 		min_scale = Settings.get_setting_if_exists(Settings.player, "min_scale", min_scale)
 		gravity_radius = Settings.get_setting_if_exists(Settings.player, "gravity_radius", gravity_radius)
 		gravity_pull_scale = Settings.get_setting_if_exists(Settings.player, "gravity_pull_scale", gravity_pull_scale)

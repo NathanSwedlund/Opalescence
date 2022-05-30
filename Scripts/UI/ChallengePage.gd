@@ -11,7 +11,6 @@ func _ready():
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score
 
-
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
 		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
@@ -42,11 +41,10 @@ func update_global_score_mult():
 	score_mult = 1.0
 	for c in $ChallengePanels.get_children():
 		score_mult *= c.score_mult
-		
+	
 	$ScoreMult.text = "Score Multiplier: X" + str(score_mult)
 
 func _on_ReadyButton_pressed():
-	
 	for c in $ChallengePanels.get_children():
 		for d in [Settings.world, Settings.factory, Settings.enemy, Settings.player]:
 			for key in d.keys():
@@ -58,13 +56,11 @@ func _on_ReadyButton_pressed():
 	Settings.world["mission_title"] = "challenge"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
-
 var current_panel = 0
 func _on_PanelAppearTimer_timeout():
 	if(current_panel == $ChallengePanels.get_child_count()):
 		$PanelAppearTimer.stop()
 		return
-	
 	$ChallengePanels.get_child(current_panel).visible = true
 	$PanelAppearAudio.play()
 	current_panel += 1

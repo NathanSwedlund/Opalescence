@@ -13,13 +13,13 @@ func _ready():
 	print("1. Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
 	print("2. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 
-	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false)
+	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
 	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 	$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
 	print("3. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	print("4. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
-	shift_button_selection(Settings.current_main_menu_button_selection)
+	shift_button_selection(Settings.current_main_menu_button_selection, false)
 
 func _on_ChallengeButton_pressed():
 	Settings.current_main_menu_button_selection = current_button_selection
@@ -67,10 +67,13 @@ func _on_BackButton_pressed():
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
+	Settings.reset_settings()
 	Settings.world["mission_title"] = "standard"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
-func shift_button_selection(button_selection_num):
+var play_shift_audio = true
+func shift_button_selection(button_selection_num, _play_shift_audio=true):
+	play_shift_audio = _play_shift_audio
 #	if(button_selection_num != current_button_selection):
 	target_button_selection = button_selection_num
 	is_shifting_button_selection = true
@@ -101,7 +104,8 @@ func _on_ButtonShiftTimer_timeout():
 				shifted_any = true
 	
 	if(shifted_any):
-		$ButtonShiftAudio.play()
+		if(play_shift_audio):
+			$ButtonShiftAudio.play()
 		current_shifting_index += 1
 	else:
 		button_selections[target_button_selection].is_active = true
@@ -109,6 +113,7 @@ func _on_ButtonShiftTimer_timeout():
 		current_shifting_index = 0
 		is_shifting_button_selection = false
 		$ButtonShiftTimer.stop()
+		play_shift_audio = true
 
 func _on_OptionsButton_pressed():
 	shift_button_selection(2)
