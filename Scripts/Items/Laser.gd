@@ -7,18 +7,20 @@ export var max_fade_in_width = 30
 
 var total_time = 1.5
 var fade_in_time_ratio = 0.35
-var not_fading_time = 0.35
-var fade_out_time_ratio = 0.3
+var not_fading_time = 0.55
+var fade_out_time_ratio = 0.1
 
 export var damage = 30
-export var fade_out_speed = 0.88
-export var fade_in_speed = 1.2
+export var fade_out_speed = 1.1
+export var fade_in_speed = 2.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$FadeInTimer.wait_time = fade_in_time_ratio * total_time
 	$FadeOutTimer.wait_time = fade_out_time_ratio * total_time
 	$NotFadingTimer.wait_time = not_fading_time * total_time
+	print("total_time, ", total_time)
+	print($FadeInTimer.wait_time, " ", $NotFadingTimer.wait_time, " ", $FadeOutTimer.wait_time)
 	
 	$FadeInTimer.start()
 	
@@ -37,13 +39,13 @@ func _process(_delta):
 	
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
-			scale.y *= fade_in_speed
+			scale.y *= fade_in_speed * (1-fade_in_time_ratio)
 			print("LASER, ", scale.y)
 #		else:
 #			 is_fading_in = false
 	else:
 		if(scale.y > min_fade_out_width):
-			scale.y *= fade_out_speed
+			scale.y *= fade_out_speed * (1-fade_out_time_ratio)
 			
 	for i in get_overlapping_bodies():
 		if(i.is_in_group("Enemies")):

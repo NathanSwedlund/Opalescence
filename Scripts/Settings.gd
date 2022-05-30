@@ -5,8 +5,8 @@ var save_data = {}
 var default_colors = [Color.red, Color.orange, Color.yellow, Color.green, Color.cadetblue, Color.lightblue, Color.pink]
 
 var saved_settings_default = {
-	"fx_volume":10,
-	"music_volume":10,
+	"fx_volume":20,
+	"music_volume":20,
 	"less_flashy_mode":false,
 	"colors":null
 }

@@ -122,7 +122,7 @@ func _ready():
 
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
-		#print($PowerupTimers.find_node(pt).wait_time)
+		print("$PowerupTimers.find_node(pt).wait_time, ", pt, " ", $PowerupTimers.find_node(pt).wait_time)
 
 	default_bullets_per_burst = bullets_per_burst
 	reset()
@@ -492,7 +492,7 @@ func get_powerup(_powerup, _color):
 		$SheildSprite.visible = true
 		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
-		spawn_laser(unmaker_scale, powerup_times["Unmaker"])
+		spawn_laser(unmaker_scale, $PowerupTimers/Barrage.wait_time)
 		$PowerupTimers/Unmaker.start()
 		start_powerup_timer($PowerupTimers/Barrage.wait_time, _color, _powerup)
 	if(_powerup == "Vision"):
