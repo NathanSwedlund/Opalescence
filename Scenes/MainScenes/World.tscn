@@ -220,7 +220,7 @@ down_bound = 550
 time_min = 0.0
 time_max = 10.0
 powerup_probabilities = {
-"barrage": 1.0,
+"barrage": 1111.0,
 "bomb_up": 1.0,
 "bombastic": 1.0,
 "bullet_time": 1.0,
@@ -234,6 +234,7 @@ powerup_probabilities = {
 "unmaker": 1.0,
 "vision": 1.0
 }
+use_global_settings = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 300 )

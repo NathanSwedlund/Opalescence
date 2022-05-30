@@ -10,12 +10,15 @@ func _ready():
 	Settings.apply_sound_settings()	
 	##print("Settings.saved_settings[\"fx_volume\"] ", Settings.saved_settings["fx_volume"])
 	##print("Settings.saved_settings[\"music_volume\"] ", Settings.saved_settings["music_volume"])
-	##print("Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
+	print("1. Settings.saved_settings[\"less_flashy_mode\"] ", Settings.saved_settings["less_flashy_mode"])
+	print("2. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 
+	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false)
 	button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
 	$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 	$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
-	$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"])
+	print("3. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
+	print("4. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	shift_button_selection(Settings.current_main_menu_button_selection)
 
 func _on_ChallengeButton_pressed():
@@ -36,10 +39,10 @@ func _process(_delta):
 			c.get_node("Light2D").color = last_color
 			
 	if(Input.is_action_just_pressed("ui_cancel")):
-		if(current_button_selection != 0):
-			shift_button_selection(0)
 		if(current_button_selection == 2):
 			Settings.save_settings()
+		if(current_button_selection != 0):
+			shift_button_selection(0)
 		
 
 func _on_QuitButton_pressed():
@@ -60,6 +63,7 @@ func _on_PlayButton_pressed():
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
+#	print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
@@ -124,6 +128,8 @@ func _on_SFXVolumeOption_pressed(_value):
 
 
 func _on_PaleModeOption_pressed(is_selected):
+	print("5. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	Settings.saved_settings["less_flashy_mode"] = is_selected
 	##print("Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])
 	Settings.reset_colors()
+	print("6. Settings.saved_settings[\"less_flashy_mode\"], ", Settings.saved_settings["less_flashy_mode"])

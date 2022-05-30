@@ -233,7 +233,7 @@ func shoot():
 	spawn_bullet()
 
 func get_direction_to_shoot():
-	return ($Cursor.position).normalized()
+	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
 
 func spawn_bullet():
 	var bullet = bullet_scene.instance()

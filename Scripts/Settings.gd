@@ -137,7 +137,7 @@ func reset_colors():
 			saved_settings["colors"][c].g = move_toward(saved_settings["colors"][c].g, 1.0, 0.5)
 			saved_settings["colors"][c].b = move_toward(saved_settings["colors"][c].b, 1.0, 0.5)
 
-	print("saved_settings[\"colors\"], ", saved_settings["colors"])
+#	print("saved_settings[\"colors\"], ", saved_settings["colors"])
 	
 func get_setting_if_exists(setting_var, _name, _var):
 	if((_name in setting_var.keys() ) == false):
@@ -164,12 +164,8 @@ func apply_sound_settings():
 			c.volume_db = -80
 		else:
 			c.volume_db = Settings.saved_settings["music_volume"] + min_vol
-			print("c.volume_db, ", c.volume_db)
-			
-		
 	for c in get_tree().get_nodes_in_group("FX"):
 		if(Settings.saved_settings["fx_volume"] == 0):
 			c.volume_db = -80
 		else:
-			print("c.volume_db, ", c.volume_db)
 			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol

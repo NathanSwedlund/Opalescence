@@ -13,7 +13,7 @@ signal pressed(is_selected)
 
 func _ready():
 	$Title.text = title
-	update_selected(is_selected)
+	update_selected(is_selected, false)
 	
 func _process(delta):
 	if(is_ui_selected and visible):
