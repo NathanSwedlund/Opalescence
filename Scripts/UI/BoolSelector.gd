@@ -39,4 +39,3 @@ func select():
 func deselect():
 	scale /= selected_scale
 	is_ui_selected = false
-	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Resources/Audio/Music/G-One.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/HelperScenes/UI/MissionPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=9]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -551,19 +552,23 @@ player_settings = {
 "vision_light_scale": 3
 }
 
-[node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector" groups=["FX"]]
+[node name="SelectSound" type="AudioStreamPlayer" parent="PageSelector"]
 stream = ExtResource( 8 )
+script = ExtResource( 9 )
 
-[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="PageSelector" groups=["FX"]]
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="PageSelector"]
 stream = ExtResource( 5 )
+script = ExtResource( 9 )
 
 [node name="PanelAppearTimer" type="Timer" parent="PageSelector"]
 wait_time = 0.08
 autostart = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." groups=["Music"]]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
+script = ExtResource( 9 )
+is_music = true
 
 [node name="OpalescenceLabel" type="Label" parent="."]
 margin_left = 1.0

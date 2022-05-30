@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/ChallengePanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Resources/Textures/UI/healthImage.png" type="Texture" id=9]
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=11]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -142,12 +143,17 @@ scale = Vector2( 1.00518, 0.590234 )
 texture = ExtResource( 5 )
 energy = 1.78
 
-[node name="Music" type="AudioStreamPlayer" parent="." groups=["Music"]]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 autoplay = true
+script = ExtResource( 11 )
+is_music = true
 
-[node name="SelectAudio" type="AudioStreamPlayer" parent="." groups=["FX"]]
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -5.0
+script = ExtResource( 11 )
+default_vol = -5.0
 
 [node name="Challenge" type="Label" parent="."]
 margin_left = 10.0
@@ -207,8 +213,9 @@ position = Vector2( 489, 481 )
 scale = Vector2( 9.46018, 0.0406504 )
 texture = ExtResource( 9 )
 
-[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="." groups=["FX"]]
+[node name="PanelAppearAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="PanelAppearTimer" type="Timer" parent="."]
 wait_time = 0.05

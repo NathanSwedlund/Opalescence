@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/GainPoint2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scripts/FX/GetPointExplosion.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=3]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.0250569, 0.42963, 1 )
@@ -38,6 +39,8 @@ script = ExtResource( 2 )
 stream = ExtResource( 1 )
 volume_db = -5.0
 autoplay = true
+script = ExtResource( 3 )
+default_vol = -18.0
 
 [node name="Timer" type="Timer" parent="."]
 

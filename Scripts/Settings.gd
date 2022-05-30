@@ -163,9 +163,10 @@ func apply_sound_settings():
 		if(Settings.saved_settings["music_volume"] == 0):
 			c.volume_db = -80
 		else:
-			c.volume_db = Settings.saved_settings["music_volume"] + min_vol
+			c.volume_db = Settings.saved_settings["music_volume"] + min_vol + c.default_vol
 	for c in get_tree().get_nodes_in_group("FX"):
 		if(Settings.saved_settings["fx_volume"] == 0):
 			c.volume_db = -80
 		else:
-			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol
+			print(c.name)
+			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol + c.default_vol

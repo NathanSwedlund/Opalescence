@@ -13,11 +13,10 @@ func _ready():
 	add_to_group("Points")
 	$OuterLight.color = modulate
 	$InnerLight.color = modulate
-	
+
 func _process(delta):
 	var dist = position.distance_squared_to(player.position)
 	if(dist < player.gravity_radius*player.gravity_radius):
-#		print("move")
 		var position_diff = (player.position - position)
 		var position_diff_normalized = position_diff.normalized()
 		var speed_mod  = 1/( abs(position_diff.x)+abs(position_diff.y) ) * player.gravity_pull_scale
@@ -28,8 +27,6 @@ func _process(delta):
 			if(collision.collider.name == player.name):
 				player.gain_point(modulate)
 			queue_free()
-	
-	
 
 func decay():
 	$InnerLight.scale *= shrink_scalar
