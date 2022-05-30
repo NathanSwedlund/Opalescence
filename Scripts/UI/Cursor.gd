@@ -21,7 +21,8 @@ func _process(_delta):
 		mouse_direction_from_player = (mouse_position - player.global_position).normalized()
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
-		
+	
+	
 	$Sprite.visible = is_in_controller_mode
 	right_stick_direction = Vector2.ZERO
 	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
@@ -29,10 +30,10 @@ func _process(_delta):
 	if(right_stick_direction != Vector2.ZERO or is_in_controller_mode):
 		is_in_controller_mode = true
 		
-		if(right_stick_direction == Vector2.ZERO):
-			position = Vector2.UP * cursor_sep_from_player
-			visible = false
-		else:
+		if(right_stick_direction != Vector2.ZERO):
+#			position = Vector2.UP * cursor_sep_from_player
+#			visible = false
+#		else:
 			visible = true
 			position = right_stick_direction.normalized() * cursor_sep_from_player
 
