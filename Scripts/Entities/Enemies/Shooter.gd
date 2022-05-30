@@ -26,12 +26,12 @@ func reset_shoot_timer():
 	
 func _process(delta):
 	if(player != null):
-		look_at(player.position)
+		look_at(player.global_position)
 
 func shoot():
 	$ShootAudio.play()
 	var missile = missile_scene.instance()
-	var direction_to_player = position.direction_to(player.position).normalized()
+	var direction_to_player = global_position.direction_to(player.global_position).normalized()
 	missile.rotation = (Vector2.ZERO).angle_to_point(direction_to_player)
 	missile.direction = direction_to_player
 	missile.parent_shooter = self
