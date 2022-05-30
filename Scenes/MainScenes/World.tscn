@@ -234,7 +234,6 @@ powerup_probabilities = {
 "unmaker": 1.0,
 "vision": 1.0
 }
-use_global_settings = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 300 )
