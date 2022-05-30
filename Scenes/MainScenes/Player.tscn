@@ -187,7 +187,6 @@ margin_top = 164.0
 margin_right = 1169.0
 margin_bottom = 197.0
 custom_fonts/font = SubResource( 10 )
-text = "Bombastic"
 align = 1
 script = ExtResource( 8 )
 

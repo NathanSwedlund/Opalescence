@@ -239,12 +239,11 @@ powerup_probabilities = {
 "max_bomb": 0.0,
 "max_up": 1.0,
 "one_up": 1.0,
-"opalescence": 1.0,
+"opalescence": 111111.0,
 "oversheild": 1.0,
-"unmaker": 11111.0,
+"unmaker": 1.0,
 "vision": 1.0
 }
-use_global_settings = false
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 300 )
