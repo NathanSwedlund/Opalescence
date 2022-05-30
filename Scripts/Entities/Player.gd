@@ -363,6 +363,7 @@ func game_over():
 
 func _physics_process(delta):
 	#print("powerup_count: ", powerup_count())
+	$Sprite.look_at(global_position + get_direction_to_shoot() )
 	play_time += delta
 	if(heads_up_display != null and !get_parent().game_is_over):
 		heads_up_display.find_node("TimeLabel").text = "Time: "+str(int(play_time* 1000.0)/1000.0 )+"s"

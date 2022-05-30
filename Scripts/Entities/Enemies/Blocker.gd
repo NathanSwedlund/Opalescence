@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 2
+export var speed = 1
 export var health = 150
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 
