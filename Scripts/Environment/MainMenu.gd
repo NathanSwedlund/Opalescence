@@ -17,6 +17,7 @@ export var music_fade_speed = 8
 func _ready():
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
+	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
 	reset()
 	
 func reset():
@@ -30,7 +31,7 @@ func reset():
 		$Player.scale = Vector2.ZERO
 		
 	else:
-		$PointFactory.is_active = false
+		$PointFactory.is_active = true
 		Settings.apply_sound_settings()
 		$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
 		
@@ -52,6 +53,7 @@ func _on_ChallengeButton_pressed():
 var last_color = Color.white
 func _process(_delta):
 	if(target_music_db != current_music_db):
+		target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol	
 		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
 		$AudioStreamPlayer.volume_db = current_music_db
 		
@@ -66,6 +68,7 @@ func _process(_delta):
 			is_fading_in = false
 			reset()
 			Global.main_menu_has_faded = true
+			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
 			last_color = $Player.modulate

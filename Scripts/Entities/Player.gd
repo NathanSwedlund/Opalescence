@@ -477,6 +477,7 @@ func get_powerup(_powerup, _color):
 		is_shooting_indendiary = true
 	if(_powerup == "MaxBomb"):
 		current_bombs = MAX_BOMBS
+		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
 	if(_powerup == "MaxUp"):
 		current_health = MAX_HEALTH

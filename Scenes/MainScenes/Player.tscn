@@ -231,53 +231,77 @@ one_shot = true
 
 [node name="BarrageAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 10 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="BombasticAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 10 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="BombUpAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 15 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="BulletTimeAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 16 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="BulletFireAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 18 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="BulletHitFail" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 24 )
+volume_db = 10.0
 pitch_scale = 1.47
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="DropBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 19 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="GravityWellAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 11 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="IncendiaryAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 10 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="IncendiaryBulletFire" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 25 )
+volume_db = 10.0
 pitch_scale = 0.41
 script = ExtResource( 26 )
+default_vol = 10.0
 
-[node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
-stream = ExtResource( 22 )
+[node name="MaxBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 15 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="OneUpAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 23 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="OpalescenceAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 20 )
@@ -285,20 +309,32 @@ script = ExtResource( 26 )
 
 [node name="OverSheildAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 14 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 22 )
 script = ExtResource( 26 )
 
 [node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 13 )
+volume_db = 10.0
 pitch_scale = 0.7
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="VisionAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 12 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="LaserChargeAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 17 )
+volume_db = 10.0
 script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 21 )
