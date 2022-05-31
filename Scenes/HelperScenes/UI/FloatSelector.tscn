@@ -4,7 +4,7 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
 [ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/UI/FloatSelector.gd" type="Script" id=4]
-[ext_resource path="res://Resources/Textures/UI/MIssionFrame.png" type="Texture" id=5]
+[ext_resource path="res://Resources/Textures/UI/SelectionFrame.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=6]
 
 [sub_resource type="DynamicFont" id=1]
@@ -23,45 +23,35 @@ font_data = ExtResource( 1 )
 script = ExtResource( 4 )
 
 [node name="MIssionFrame" type="Sprite" parent="."]
-position = Vector2( 152, 82 )
-scale = Vector2( 15, 2.8 )
+position = Vector2( 150, 65 )
+scale = Vector2( 2.8, 2.8 )
 texture = ExtResource( 5 )
 
 [node name="IncreaseButton" type="Button" parent="."]
-margin_left = 228.0
+margin_left = 228.8
 margin_top = 30.0
-margin_right = 290.0
-margin_bottom = 108.0
 custom_fonts/font = SubResource( 1 )
 text = ">"
 flat = true
 
 [node name="DecreaseButton" type="Button" parent="."]
-margin_left = 9.99998
-margin_top = 33.0
-margin_right = 72.0
-margin_bottom = 111.0
+margin_left = 10.8
+margin_top = 30.0
 custom_fonts/font = SubResource( 1 )
 text = "<"
 flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Title" type="Label" parent="."]
-margin_left = 2.0
-margin_top = 13.0
-margin_right = 152.0
-margin_bottom = 76.0
+margin_right = 163.0
+margin_bottom = 43.0
 custom_fonts/font = SubResource( 2 )
 text = "Title
 "
 
 [node name="Value" type="Label" parent="."]
-margin_left = 73.0
-margin_top = 59.0
-margin_right = 223.0
-margin_bottom = 122.0
+margin_top = 37.0
+margin_right = 300.0
+margin_bottom = 115.0
 custom_fonts/font = SubResource( 3 )
 text = "0.0
 "

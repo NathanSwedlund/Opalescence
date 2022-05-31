@@ -294,25 +294,25 @@ autostart = true
 
 [node name="Chaser" type="Sprite" parent="."]
 position = Vector2( 511.6, 115 )
-scale = Vector2( 12.089, 0.204301 )
+scale = Vector2( 12.089, 0.12 )
 texture = ExtResource( 13 )
 
 [node name="Chaser2" type="Sprite" parent="."]
 position = Vector2( 511.6, 500 )
 rotation = 3.14159
-scale = Vector2( 12.089, 0.204301 )
+scale = Vector2( 12.089, 0.12 )
 texture = ExtResource( 13 )
 
 [node name="Chaser3" type="Sprite" parent="."]
-position = Vector2( 989.51, 303.246 )
+position = Vector2( 1005.46, 306.673 )
 rotation = 1.5708
-scale = Vector2( 4.55526, 0.163035 )
+scale = Vector2( 4.55526, 0.12 )
 texture = ExtResource( 13 )
 
 [node name="Chaser4" type="Sprite" parent="."]
-position = Vector2( 24.733, 303.246 )
+position = Vector2( 18.9902, 305.874 )
 rotation = -1.5708
-scale = Vector2( 4.55526, 0.163035 )
+scale = Vector2( 4.55526, 0.12 )
 texture = ExtResource( 13 )
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]

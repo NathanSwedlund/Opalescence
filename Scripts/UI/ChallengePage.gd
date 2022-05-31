@@ -10,33 +10,37 @@ export var panels_per_col = 5
 export var starting_panel_loc = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
+var more_pale_mod = 0.7
 func _ready():
 	Settings.apply_sound_settings()
 	var score = HighScore.get_score("challenge")
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score
+	select_panel(current_panel_selected)
 	for i in range($ChallengePanels.get_child_count()):
 		var c = $ChallengePanels.get_child(i)
 		# setting position
 		var col_num = i/panels_per_col
 		var row_nun = i-(col_num*panels_per_col)
 		c.position = Vector2(starting_panel_loc.x+col_num*col_sep, starting_panel_loc.y+row_nun*row_sep) 
+		randomize()
 		
 		# setting colors
 		if(c.get("min_is_harder") != null): # float selector
-			if(!c.min_is_harder):
-				c.max_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
-				c.min_color = Color.white
+			if(c.min_is_harder):
+				c.max_color = Settings.saved_settings["colors"][randi()%len(Settings.saved_settings["colors"])]
+				c.min_color = Color(c.max_color.r+more_pale_mod, c.max_color.g+more_pale_mod, c.max_color.b+more_pale_mod)
 			else:
-				c.min_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
-				c.max_color = Color.white
+				c.min_color = Settings.saved_settings["colors"][randi()%len(Settings.saved_settings["colors"])]
+				c.max_color = Color(c.min_color.r+more_pale_mod, c.min_color.g+more_pale_mod, c.min_color.b+more_pale_mod)
+				
 		elif(c.get("selected_is_harder") != null):
-			if(!c.selected_is_harder):
-				c.unselected_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
-				c.selected_color = Color.white
+			if(c.selected_is_harder):
+				c.unselected_color = Settings.saved_settings["colors"][randi()%len(Settings.saved_settings["colors"])]
+				c.selected_color = Color(c.unselected_color.r+more_pale_mod, c.unselected_color.g+more_pale_mod, c.unselected_color.b+more_pale_mod)
 			else:
-				c.selected_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
-				c.unselected_color = Color.white
+				c.selected_color = Settings.saved_settings["colors"][randi()%len(Settings.saved_settings["colors"])]
+				c.unselected_color = Color(c.selected_color.r+more_pale_mod, c.selected_color.g+more_pale_mod, c.selected_color.b+more_pale_mod)
 		c.update_color()
 
 var selecting_ready_button = false
