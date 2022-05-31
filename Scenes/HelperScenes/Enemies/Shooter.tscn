@@ -10,7 +10,7 @@
 extents = Vector2( 27.9307, 27.5772 )
 
 [sub_resource type="OccluderPolygon2D" id=2]
-polygon = PoolVector2Array( 40, 0, 0, -41, -40, 0, 0, 40 )
+polygon = PoolVector2Array( 40, 0, 0, -41, -40, 0, 0, 40, 26.2153, 13.7847 )
 
 [node name="Shooter" type="KinematicBody2D"]
 collision_layer = 32
@@ -24,6 +24,7 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -2.14577e-06, -0.500006 )
 texture = ExtResource( 1 )
 
 [node name="ShootTimer" type="Timer" parent="."]

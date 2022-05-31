@@ -4,6 +4,11 @@ var current_panel_selected = 0
 var panel_selection_scale = 1.1
 var score_mult = 1.0
 
+export var col_sep = 400
+export var row_sep = 100
+export var panels_per_col = 5
+export var starting_panel_loc = Vector2.ZERO
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Settings.apply_sound_settings()
@@ -12,6 +17,12 @@ func _ready():
 	$HighScore.text = "High Score: " + score
 	for i in range($ChallengePanels.get_child_count()):
 		var c = $ChallengePanels.get_child(i)
+		# setting position
+		var col_num = i/panels_per_col
+		var row_nun = i-(col_num*panels_per_col)
+		c.position = Vector2(starting_panel_loc.x+col_num*col_sep, starting_panel_loc.y+row_nun*row_sep) 
+		
+		# setting colors
 		if(c.get("min_is_harder") != null): # float selector
 			if(!c.min_is_harder):
 				c.max_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
@@ -89,6 +100,7 @@ func _on_ReadyButton_pressed():
 				if(c.setting_name == key):
 					d[key] = c.current_val
 
+	Settings.player["starting_health"] = $ChallengePanels/ChallengePanel13.current_val+1 # health + 1
 	Settings.world["points_scale"] = score_mult
 	Settings.world["mission_title"] = "challenge"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")

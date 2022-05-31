@@ -10,9 +10,9 @@ var incendiary = false
 var small_bullet_explosion_scene
 func _ready():
 	if(incendiary):
-		speed *= 2
-		damage_mod = 2
-		scale *= 2
+		speed *= 2.2
+		damage_mod = 3
+		scale *= 2.2
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,6 +27,8 @@ func _process(delta):
 		
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
+		explosion.rotation = $Sprite.rotation
+		print($Sprite.rotation)
 		explosion.modulate = modulate
 		
 		if(incendiary):

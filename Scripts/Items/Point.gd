@@ -31,6 +31,7 @@ func _process(delta):
 func decay():
 	$InnerLight.scale *= shrink_scalar
 	$OuterLight.scale *= shrink_scalar
+	$Sprite.scale *= shrink_scalar
 	decay_stage += 1
 	
 	if(decay_stage > max_decay_stage):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=12]
+[ext_resource path="res://Resources/Textures/Entities/Enemies/chaser.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=9]
 size = 30
@@ -74,6 +75,9 @@ font_data = ExtResource( 2 )
 [node name="MissionPage" type="Node2D"]
 scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 4 )
+col_sep = 500
+row_sep = 120
+starting_panel_loc = Vector2( 70, 220 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
@@ -248,10 +252,10 @@ text = "High Score: "
 align = 1
 
 [node name="ChallengeOptionsLabel" type="Label" parent="."]
-margin_left = 322.0
-margin_top = 82.0
-margin_right = 639.0
-margin_bottom = 122.0
+margin_left = 316.8
+margin_top = 75.0
+margin_right = 672.8
+margin_bottom = 115.0
 custom_fonts/font = SubResource( 10 )
 text = "Challenge Options"
 align = 1
@@ -269,11 +273,13 @@ __meta__ = {
 }
 
 [node name="HealthImage" type="Sprite" parent="."]
+visible = false
 position = Vector2( 507, 116 )
 scale = Vector2( 9.46018, 0.0447154 )
 texture = ExtResource( 9 )
 
 [node name="HealthImage2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 489, 481 )
 scale = Vector2( 9.46018, 0.0406504 )
 texture = ExtResource( 9 )
@@ -285,6 +291,29 @@ script = ExtResource( 11 )
 [node name="PanelAppearTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+
+[node name="Chaser" type="Sprite" parent="."]
+position = Vector2( 511.6, 115 )
+scale = Vector2( 12.089, 0.204301 )
+texture = ExtResource( 13 )
+
+[node name="Chaser2" type="Sprite" parent="."]
+position = Vector2( 511.6, 500 )
+rotation = 3.14159
+scale = Vector2( 12.089, 0.204301 )
+texture = ExtResource( 13 )
+
+[node name="Chaser3" type="Sprite" parent="."]
+position = Vector2( 989.51, 303.246 )
+rotation = 1.5708
+scale = Vector2( 4.55526, 0.163035 )
+texture = ExtResource( 13 )
+
+[node name="Chaser4" type="Sprite" parent="."]
+position = Vector2( 24.733, 303.246 )
+rotation = -1.5708
+scale = Vector2( 4.55526, 0.163035 )
+texture = ExtResource( 13 )
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]
 [connection signal="timeout" from="PanelAppearTimer" to="." method="_on_PanelAppearTimer_timeout"]

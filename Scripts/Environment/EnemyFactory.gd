@@ -29,7 +29,7 @@ var enemy_probabilities
 
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
-export var bound_buffer = 30
+export var bound_buffer = 50
 func _ready():
 	enemy_probabilities = default_enemy_probabilities.duplicate()
 	if(use_global_settings):

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=1]
-[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/FX/pixel.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Items/Point.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -15,7 +15,7 @@ gradient = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 1
-emission_sphere_radius = 5.0
+emission_sphere_radius = 20.0
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.1
@@ -29,7 +29,7 @@ script = ExtResource( 3 )
 speed = 15000
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 
 [node name="OuterLight" type="Light2D" parent="."]
