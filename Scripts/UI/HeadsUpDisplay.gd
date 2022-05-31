@@ -38,7 +38,8 @@ func pause():
 	get_tree().paused = true
 
 func return_to_menu():
-	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
+	get_tree().change_scene(Global.return_scene)
+		
 
 func update_health(health_count, has_sheild):
 	$HealthDisplay/Label.text = "x "+str(health_count-1)

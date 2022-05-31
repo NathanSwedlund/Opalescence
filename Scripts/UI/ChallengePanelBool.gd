@@ -31,6 +31,12 @@ func update_selected(_selected):
 	current_val = is_selected
 	$Button.text = "o" if is_selected else "-" 
 	
+func update_current_val(val):
+	update_selected(val)
+	
+func get_current_val():
+	return is_selected
+	
 func update_score_mult(_selected):
 #	emit_signal("update_score_mult")
 	score_mult = score_mult_selected if _selected else score_mult_unselected

@@ -28,6 +28,7 @@ func reset():
 		
 		target_player_scale = $Player.scale
 		$Player.modulate.a = 0.0
+		$VersionLabel.modulate.a = 0.0
 		$Player.scale = Vector2.ZERO
 		
 	else:
@@ -61,6 +62,7 @@ func _process(_delta):
 		$Player.scale.y = move_toward($Player.scale.y, target_player_scale.y, fade_speed*_delta)
 		$Player.scale.x = move_toward($Player.scale.x, target_player_scale.x, fade_speed*_delta)
 		$Player.modulate.a = move_toward($Player.modulate.a, 1.0, fade_speed*_delta)
+		$VersionLabel.modulate.a = move_toward($VersionLabel.modulate.a, 1.0, fade_speed*_delta)
 		for c in $MenuCanvas.get_children():
 			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
 			
@@ -76,6 +78,7 @@ func _process(_delta):
 			$MenuCanvas/ButtonSelectionController1.modulate = last_color
 			$MenuCanvas/ButtonSelectionController2.modulate = last_color
 			$MenuCanvas/ButtonSelectionController3.modulate = last_color
+			$VersionLabel.modulate = last_color
 			for c in $MenuCanvas/ButtonSelectionController1.get_children():
 				c.get_node("Light2D").color = last_color
 			for c in $MenuCanvas/ButtonSelectionController2.get_children():

@@ -8,7 +8,7 @@ export var col_sep = 400
 export var row_sep = 100
 export var panels_per_col = 5
 export var starting_panel_loc = Vector2.ZERO
-
+export var ui_name = "ChallengePage"
 # Called when the node enters the scene tree for the first time.
 var more_pale_mod = 0.7
 func _ready():
@@ -43,9 +43,13 @@ func _ready():
 				c.unselected_color = Color(c.selected_color.r+more_pale_mod, c.selected_color.g+more_pale_mod, c.selected_color.b+more_pale_mod)
 		c.update_color()
 
+	if(ui_name in Global.ui_states.keys()):
+		load_challenge_panel_state()
+
 var selecting_ready_button = false
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
+		save_challenge_panel_state()
 		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 	if(Input.is_action_just_pressed("ui_down")):
 		select_next(true)
@@ -106,6 +110,8 @@ func _on_ReadyButton_pressed():
 	Settings.player["starting_health"] = $ChallengePanels/ChallengePanel13.current_val+1 # health + 1
 	Settings.world["points_scale"] = score_mult
 	Settings.world["mission_title"] = "challenge"
+	save_challenge_panel_state()
+	Global.return_scene = "res://Scenes/HelperScenes/UI/ChallengePage.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 var current_panel = 0
@@ -116,3 +122,12 @@ func _on_PanelAppearTimer_timeout():
 	$ChallengePanels.get_child(current_panel).visible = true
 	$PanelAppearAudio.play()
 	current_panel += 1
+	
+func save_challenge_panel_state():
+	Global.ui_states[ui_name] = []
+	for c in $ChallengePanels.get_children():
+		Global.ui_states[ui_name].append(c.get_current_val())
+
+func load_challenge_panel_state():
+	for i in range($ChallengePanels.get_child_count()):
+		$ChallengePanels.get_child(i).update_current_val(Global.ui_states[ui_name][i])

@@ -26,7 +26,11 @@ func _ready():
 	
 	OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
 
+var first_char_timer_pass = true
 func _on_CharTimer_timeout():
+	if(first_char_timer_pass):
+		first_char_timer_pass = false
+		return
 	if(current_char_index  == len("OPALESCENCE")):
 		$FadeInLabels.visible = false
 		$LabelContainer/Label.visible = true
@@ -40,6 +44,7 @@ func _on_CharTimer_timeout():
 		
 	$FadeInLabels.get_child(current_char_index).fade_in()
 	$CharAppears.play()
+	print("CHAR")
 	$CharAppears.pitch_scale += pitch_change_per_char
 	current_char_index += 1
 

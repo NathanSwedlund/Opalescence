@@ -35,23 +35,21 @@ func _on_DecreaseButton_pressed():
 		$ChangeAudio.play()
 		update_current_val(current_val - step)
 
-		var steps_from_start = (current_val-starting_val)/step
-		var new_score_mult = pow(score_mult_per_step, steps_from_start)
-		update_score_mult(new_score_mult)
-
 func _on_IncreaseButton_pressed():
 	if(max_val > current_val + step):
 		$ChangeAudio.play()
 		update_current_val(current_val + step)
 
-		var steps_from_start = (current_val-starting_val)/step
-		var new_score_mult = pow(score_mult_per_step, steps_from_start)
-		update_score_mult(new_score_mult)
-
 func update_current_val(val):
 	current_val = val
 	update_color()
 	$Value.text = str(Global.round_float(current_val, 1))
+	var steps_from_start = (current_val-starting_val)/step
+	var new_score_mult = pow(score_mult_per_step, steps_from_start)
+	update_score_mult(new_score_mult)
+	
+func get_current_val():
+	return current_val
 
 func update_score_mult(_mult):
 	score_mult = _mult

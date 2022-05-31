@@ -5,17 +5,17 @@ var index = 0
 var page_container = null
 
 export var world_settings = {
-		"is_mission":true,
-		"mission_title":"title",
-		"has_point_goal":false,
-		"point_goal":0.0,
-		"time_goal":0.0,
-		"has_time_goal":false,
-		"left_bound":10,
-		"right_bound":1014,
-		"up_bound":10,
-		"down_bound":590,
-		"points_scale":1.0,
+	"is_mission":true,
+	"mission_title":"title",
+	"has_point_goal":false,
+	"point_goal":0.0,
+	"time_goal":0.0,
+	"has_time_goal":false,
+	"left_bound":10,
+	"right_bound":1014,
+	"up_bound":10,
+	"down_bound":590,
+	"points_scale":1.0,
 }
 
 export var factory_settings = {

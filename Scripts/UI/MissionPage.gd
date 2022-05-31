@@ -13,30 +13,25 @@ var selected_scale = 1.25
 var panels = null
 var panel_num = 0
 
-# Called when the node enters the scene tree for the first time.
+export var scene_page_selector_is_in = ""
+export var ui_name = ""
+
+func about_to_change_scenes():
+	Global.ui_states[ui_name] = current_panel
+
 func _ready():
 	Settings.apply_sound_settings()
 	Settings.reset_settings()
 	panels = $Pages.get_children()
 	panel_num = len(panels) # The two audio nodes aren't panels
 	
-	for i in range(panel_num):
-		$Pages.get_child(i).find_node("Description").visible = false
-		$Pages.get_child(i).position.x = i * -shift_dist + first_panel_start_x
-		$Pages.get_child(i).index = i
-		$Pages.get_child(i).page_container = self
-		if(i != selected):
-			$Pages.get_child(i).modulate.a = 0.2
-		
-		print(i * -shift_dist + first_panel_start_x)
-		
-	$Pages.get_child(0).find_node("Description").visible = true
-	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(0).modulate
-	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
+	if(ui_name in Global.ui_states.keys()):
+		var state =  Global.ui_states[ui_name]
+		select(ui_name)
+	else:
+		select(current_panel)
 
-	get_parent().find_node("Particles2D").modulate = $Pages.get_child(0).modulate
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
@@ -66,6 +61,10 @@ func _process(delta):
 				finish_shifting()
 
 func load_scene_from_panel():
+	Global.ui_states[ui_name] = selected
+	print(Global.ui_states)
+	
+	Global.return_scene = scene_page_selector_is_in
 	Settings.world = $Pages.get_child(selected).world_settings.duplicate()
 	Settings.player = $Pages.get_child(selected).player_settings.duplicate()
 	Settings.enemy = $Pages.get_child(selected).enemy_settings.duplicate()
@@ -126,3 +125,33 @@ func panel_pressed(_index):
 	else:
 		shift_right = true
 		start_shifting()
+
+func _on_NextPanelButton_pressed():
+	if(selected != panel_num-1):
+		shift_right = true
+		start_shifting()
+
+func _on_LastPanelButton_pressed():
+	if(selected != 0):
+		shift_right = false
+		start_shifting()
+		
+func select(p):
+	selected = p
+	print("PPPPPP", p)
+	for i in range(panel_num):
+		$Pages.get_child(i).find_node("Description").visible = false
+		$Pages.get_child(i).position.x = i * -shift_dist + first_panel_start_x
+		$Pages.get_child(i).index = i
+		$Pages.get_child(i).page_container = self
+		if(i != selected):
+			$Pages.get_child(i).modulate.a = 0.2
+		
+	$Pages.get_child(selected).find_node("Description").visible = true
+	$Pages.position.x += shift_dist * selected
+	
+	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(p).modulate
+	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
+	get_parent().find_node("Particles2D").modulate = $Pages.get_child(p).modulate
