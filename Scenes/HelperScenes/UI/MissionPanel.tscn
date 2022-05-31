@@ -45,17 +45,17 @@ text = "Goal: pts"
 autowrap = true
 
 [node name="Description" type="Label" parent="."]
-margin_left = 26.0
-margin_top = 225.0
-margin_right = 732.0
-margin_bottom = 260.0
+margin_left = 3.0
+margin_top = 180.0
+margin_right = 709.0
+margin_bottom = 215.0
 custom_fonts/font = SubResource( 1 )
 text = "Description"
 align = 1
 valign = 1
 autowrap = true
 
-[node name="MIssionFrame" type="Sprite" parent="."]
+[node name="MissionFrame" type="Sprite" parent="."]
 scale = Vector2( 4, 5 )
 texture = ExtResource( 2 )
 

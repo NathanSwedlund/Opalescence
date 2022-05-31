@@ -25,6 +25,8 @@ func _ready():
 		$Pages.get_child(i).position.x = i * -shift_dist + first_panel_start_x
 		$Pages.get_child(i).index = i
 		$Pages.get_child(i).page_container = self
+		if(i != selected):
+			$Pages.get_child(i).modulate.a = 0.2
 		
 		print(i * -shift_dist + first_panel_start_x)
 		
@@ -83,6 +85,7 @@ func start_shifting():
 	print(selected)
 	$Pages.get_child(selected).scale /= selected_scale
 	$Pages.get_children()[selected].find_node("Description").visible = false
+	$Pages.get_children()[selected].modulate.a = 0.2
 	
 	selected += 1 if shift_right else -1
 
@@ -97,7 +100,9 @@ func finish_shifting():
 	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
 	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
 	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.a = 1.0
 	$Pages.get_children()[selected].find_node("Description").visible = true
+	$Pages.get_children()[selected].modulate.a = 1.0
 	$SelectSound.play()
 	position.x = shift_dist * selected			
 	is_shifting = false

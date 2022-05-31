@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/MissionPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=9]
+[ext_resource path="res://Resources/Textures/UI/MissionContainerFrame.png" type="Texture" id=10]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -72,8 +73,9 @@ script = ExtResource( 3 )
 
 [node name="MissionPanel" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.176471, 0.670588, 1, 1 )
+modulate = Color( 0.384314, 0, 1, 1 )
 position = Vector2( 142.025, 269 )
+scale = Vector2( 1.05, 1.05 )
 description = "Use the arrow keys, WASD, or the left control stick to move and collect the points. Reach the point goal to complete the mission"
 world_settings = {
 "down_bound": 590,
@@ -142,9 +144,9 @@ player_settings = {
 
 [node name="MissionPanel2" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.176471, 0.670588, 1, 1 )
+modulate = Color( 0.0901961, 0.168627, 1, 1 )
 position = Vector2( 402.025, 269 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Avoid the chasers (black triangles). make them collide with eachother to destroy them"
 world_settings = {
 "down_bound": 590,
@@ -213,9 +215,9 @@ player_settings = {
 
 [node name="MissionPanel3" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.0666667, 0.192157, 1, 1 )
+modulate = Color( 0.0666667, 0.823529, 1, 1 )
 position = Vector2( 662.025, 269 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Use your pellet gun (LMB/L-trigger) to destroy your foes. You can also use your laser (RMB/R-Trigger). The laser is more powerful but requires and charge and cooldown. Aim using mouse of the right control stick"
 world_settings = {
 "down_bound": 590,
@@ -284,9 +286,9 @@ player_settings = {
 
 [node name="MissionPanel4" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.313726, 0.0666667, 1, 1 )
+modulate = Color( 0.137255, 0.780392, 0.0823529, 1 )
 position = Vector2( 911, 269 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Shooters are the stationary diamonds that shoot missiles at you. Blockers are the large stars. They cover up points so you cant get them. Each are harder to kill than chasers, but reward more points and are immune to pellets"
 world_settings = {
 "down_bound": 590,
@@ -333,9 +335,9 @@ factory_settings = {
 
 [node name="MissionPanel5" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
+modulate = Color( 0.811765, 0.815686, 0.101961, 1 )
 position = Vector2( 1161, 271 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Press E or R-bumper to drop a bomb. You only have three, so use them wisely. Also, you can't shoot pellets or lasers for this one. Good Luck!"
 world_settings = {
 "down_bound": 590,
@@ -417,9 +419,9 @@ player_settings = {
 
 [node name="MissionPanel6" parent="PageSelector/Pages" instance=ExtResource( 7 )]
 visible = false
-modulate = Color( 0.968627, 0, 1, 1 )
+modulate = Color( 0.890196, 0.478431, 0, 1 )
 position = Vector2( 1396, 270 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Kill the enemies using powerups! They are the glowing spinning capsules. Collect them to gain a powepups. They will much more commonly here than usual. Have fun!"
 world_settings = {
 "down_bound": 590,
@@ -503,7 +505,7 @@ player_settings = {
 visible = false
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 1628, 276 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.84, 0.84 )
 description = "Now that you Prove your new knoledge! Survive for three minutes! Good Luck!"
 world_settings = {
 "down_bound": 590,
@@ -582,5 +584,10 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MissionContainerFrame" type="Sprite" parent="."]
+position = Vector2( 513.2, 353.333 )
+scale = Vector2( 5.276, 5.4 )
+texture = ExtResource( 10 )
 
 [connection signal="timeout" from="PageSelector/PanelAppearTimer" to="PageSelector" method="_on_PanelAppearTimer_timeout"]
