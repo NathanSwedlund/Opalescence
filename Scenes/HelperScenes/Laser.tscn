@@ -39,6 +39,9 @@ scale = Vector2( 1.2, 0.1 )
 collision_layer = 8
 collision_mask = 2
 script = ExtResource( 2 )
+max_fade_in_width = 45
+fade_out_speed = 0.01
+fade_in_speed = 300.0
 
 [node name="Background" type="Sprite" parent="."]
 visible = false
