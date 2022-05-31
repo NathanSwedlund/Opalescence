@@ -57,7 +57,6 @@ custom_fonts/font = SubResource( 1 )
 text = "OPALESCENCE"
 
 [node name="FadeInLabels" type="Node2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="FadeInLabel" parent="FadeInLabels" instance=ExtResource( 7 )]
 margin_left = 76.0
@@ -154,7 +153,7 @@ autostart = true
 [node name="CharsFinished" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = 1.0
-pitch_scale = 0.5
+pitch_scale = 0.8
 script = ExtResource( 4 )
 default_vol = 20.0
 
@@ -169,12 +168,13 @@ position = Vector2( 481.6, 270 )
 emitting = false
 amount = 4000
 lifetime = 3.0
+one_shot = true
 explosiveness = 0.97
 fract_delta = false
 process_material = SubResource( 4 )
 
 [node name="WaitTimer" type="Timer" parent="."]
-wait_time = 2.5
+wait_time = 3.0
 
 [connection signal="timeout" from="CharTimer" to="." method="_on_CharTimer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

@@ -44,7 +44,6 @@ func _ready():
 		c.update_color()
 
 var selecting_ready_button = false
-
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
 		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
