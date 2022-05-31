@@ -55,6 +55,7 @@ func die():
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
 	explosion.point_reward = point_reward
+	explosion.scale_mod = scale.x
 	get_parent().add_child(explosion)
 	queue_free()
 

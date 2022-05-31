@@ -186,10 +186,10 @@ setting_name = "blocker_spawn_scale"
 
 [node name="ChallengePanel13" parent="ChallengePanels" instance=ExtResource( 8 )]
 position = Vector2( 556.667, 655 )
-title = "Default Player Lives"
-starting_val = 3.0
-max_val = 5.1
-min_val = 0.9
+title = "Starting Extra Lives"
+starting_val = 2.0
+max_val = 5.099
+min_val = -0.1
 step = 1.0
 score_mult_per_step = 0.5
 setting_name = "starting_health"

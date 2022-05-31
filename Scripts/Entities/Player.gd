@@ -310,8 +310,10 @@ func die():
 	heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
 	
 	is_charging_laser = false
+	can_shoot = false
 	$LaserChargeTimer.stop()
 	$SoundFX/LaserChargeAudio.stop()
+	$LaserChargeEffect.emitting = false
 
 func respawn():
 	_on_Bombastic_timeout()
@@ -332,6 +334,8 @@ func respawn():
 	change_color(Color.white)
 	position = respawn_position
 	visible = true
+	
+	can_shoot = Settings.player["can_shoot"]
 
 func game_over():
 	if(get_parent().game_is_over):

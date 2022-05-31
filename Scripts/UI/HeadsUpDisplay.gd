@@ -41,7 +41,7 @@ func return_to_menu():
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
 func update_health(health_count, has_sheild):
-	$HealthDisplay/Label.text = "x "+str(health_count)
+	$HealthDisplay/Label.text = "x "+str(health_count-1)
 	$HealthDisplay/Shield.visible = has_sheild
 
 func update_bombs(bomb_count):

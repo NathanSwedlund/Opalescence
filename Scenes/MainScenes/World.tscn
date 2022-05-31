@@ -215,7 +215,6 @@ down_bound = 550
 time_min = 5.0
 time_max = 10.0
 is_active = false
-use_global_settings = false
 default_enemy_probabilities = {
 "blocker": 0.0,
 "chaser": 0.0,
@@ -356,12 +355,12 @@ text = "Game Over"
 [node name="Buttons" type="Node2D" parent="HeadsUpDisplay/GameOverPopup"]
 scale = Vector2( 0.15, 0.15 )
 script = ExtResource( 16 )
-button_count = 3
+button_count = 2
 
 [node name="RestartButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
 margin_left = 353.0
 margin_top = 1453.33
-margin_right = 2410.33
+margin_right = 2472.0
 margin_bottom = 1999.33
 custom_fonts/font = ExtResource( 14 )
 text = "Restart"
@@ -388,36 +387,6 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 2 )
 
-[node name="ShopButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
-margin_left = 353.0
-margin_top = 2087.0
-margin_right = 1569.0
-margin_bottom = 2633.0
-custom_fonts/font = ExtResource( 14 )
-text = "Shop"
-flat = true
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-button_index = 1
-
-[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
-visible = false
-position = Vector2( 362.416, 313.337 )
-scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 1.78
-
-[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
-visible = false
-position = Vector2( 877.833, 313.337 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
-amount = 20
-lifetime = 1.5
-process_material = SubResource( 2 )
-
 [node name="MenuButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
 margin_left = 353.0
 margin_top = 2720.0
@@ -430,7 +399,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-button_index = 2
+button_index = 1
 
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton"]
 visible = false
@@ -448,6 +417,38 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 19 )
 
+[node name="ShopButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
+visible = false
+margin_left = 353.0
+margin_top = 2087.0
+margin_right = 1569.0
+margin_bottom = 2633.0
+custom_fonts/font = ExtResource( 14 )
+text = "Shop"
+flat = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+button_index = 0
+button_shift_index = 0
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
+visible = false
+position = Vector2( 362.416, 313.337 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 12 )
+energy = 1.78
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
+visible = false
+position = Vector2( 877.833, 313.337 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
+
 [node name="PausePopup" type="Popup" parent="HeadsUpDisplay"]
 margin_left = -11.0
 margin_top = 106.0
@@ -464,7 +465,7 @@ centered = false
 [node name="Buttons" type="Node2D" parent="HeadsUpDisplay/PausePopup"]
 scale = Vector2( 0.15, 0.15 )
 script = ExtResource( 16 )
-button_count = 3
+button_count = 2
 
 [node name="ResumeButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
 margin_left = 353.0
@@ -491,34 +492,6 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 2 )
 
-[node name="OptionsButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
-margin_left = 353.0
-margin_top = 2087.0
-margin_right = 2472.0
-margin_bottom = 2633.0
-custom_fonts/font = ExtResource( 14 )
-text = "Options"
-flat = true
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-button_index = 1
-
-[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
-position = Vector2( 375.749, 323 )
-scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 3.25
-
-[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
-position = Vector2( 891.166, 323 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
-amount = 20
-lifetime = 1.5
-process_material = SubResource( 2 )
-
 [node name="MenuButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
 margin_left = 353.0
 margin_top = 2720.0
@@ -531,7 +504,7 @@ script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-button_index = 2
+button_index = 1
 
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/MenuButton"]
 position = Vector2( 375.749, 323 )
@@ -546,6 +519,37 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 19 )
+
+[node name="OptionsButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
+visible = false
+margin_left = 353.0
+margin_top = 2087.0
+margin_right = 2472.0
+margin_bottom = 2633.0
+custom_fonts/font = ExtResource( 14 )
+text = "Options"
+flat = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+button_index = 1
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
+visible = false
+position = Vector2( 375.749, 323 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 12 )
+energy = 3.25
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
+visible = false
+position = Vector2( 891.166, 323 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
 
 [node name="PausePopupBufferTimer" type="Timer" parent="HeadsUpDisplay/PausePopup"]
 wait_time = 0.2
@@ -695,21 +699,21 @@ script = ExtResource( 20 )
 [connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" method="mouse_exited"]
 [connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay" method="_on_RestartButton_pressed"]
-[connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_exited"]
-[connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay" method="_on_ShopButton_pressed"]
 [connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" method="mouse_exited"]
 [connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay" method="_on_MenuButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay" method="_on_ShopButton_pressed"]
 [connection signal="popup_hide" from="HeadsUpDisplay/PausePopup" to="HeadsUpDisplay/PausePopup/Buttons" method="deactivate"]
 [connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" method="mouse_exited"]
 [connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay" method="_on_ResumeButton_pressed"]
-[connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_exited"]
-[connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay" method="_on_OptionsButton_pressed"]
 [connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay/PausePopup/Buttons/MenuButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay/PausePopup/Buttons/MenuButton" method="mouse_exited"]
 [connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay" method="_on_MenuButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay" method="_on_OptionsButton_pressed"]
 [connection signal="timeout" from="HeadsUpDisplay/PausePopup/PausePopupBufferTimer" to="HeadsUpDisplay" method="_on_PausePopupBufferTimer_timeout"]
 [connection signal="timeout" from="HeadsUpDisplay/CountdownLabel/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]

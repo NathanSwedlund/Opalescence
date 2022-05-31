@@ -44,7 +44,6 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="LabelContainer" type="Node2D" parent="."]
-scale = Vector2( 1, 1 )
 
 [node name="Label" type="Label" parent="LabelContainer"]
 margin_left = 76.0
@@ -73,7 +72,6 @@ default_vol = 20.0
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 481.6, 270 )
-scale = Vector2( 1, 1 )
 emitting = false
 amount = 4000
 lifetime = 3.0

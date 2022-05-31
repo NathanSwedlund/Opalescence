@@ -428,7 +428,7 @@ process_material = SubResource( 1 )
 position = Vector2( 699, 399 )
 speed = 0.0
 shrink_scalar = 0.9
-gravity_radius = 200
+gravity_radius = 400
 respawn_position = Vector2( 700, 400 )
 is_active = false
 can_bomb = false
@@ -448,9 +448,9 @@ use_global_settings = false
 [node name="PointFactory" parent="." instance=ExtResource( 11 )]
 use_global_settings = false
 left_bound = 600
-right_bound = 900
+right_bound = 810
 up_bound = 300
-down_bound = 500
+down_bound = 490
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
