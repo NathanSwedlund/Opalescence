@@ -29,7 +29,12 @@ func _ready():
 		print(i * -shift_dist + first_panel_start_x)
 		
 	$Pages.get_child(0).find_node("Description").visible = true
+	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(0).modulate
+	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
 
+	get_parent().find_node("Particles2D").modulate = $Pages.get_child(0).modulate
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
@@ -78,6 +83,7 @@ func start_shifting():
 	print(selected)
 	$Pages.get_child(selected).scale /= selected_scale
 	$Pages.get_children()[selected].find_node("Description").visible = false
+	
 	selected += 1 if shift_right else -1
 
 	is_shifting = true
@@ -86,6 +92,11 @@ func start_shifting():
 
 func finish_shifting():
 	get_parent().find_node("Particles2D").modulate = $Pages.get_child(selected).modulate
+	get_parent().find_node("Particles2D").find_node("Light2D").color = $Pages.get_child(selected).modulate
+	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(selected).modulate
+	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
+	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
 	$Pages.get_children()[selected].find_node("Description").visible = true
 	$SelectSound.play()
 	position.x = shift_dist * selected			

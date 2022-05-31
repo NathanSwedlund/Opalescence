@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Resources/Textures/UI/MIssionFrame.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/UI/MIssionFrame2.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/UI/MissionPanel.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
@@ -36,31 +36,27 @@ __meta__ = {
 }
 
 [node name="Goal" type="Label" parent="."]
-margin_left = -101.0
-margin_top = -70.0
-margin_right = 74.0
-margin_bottom = -35.0
+margin_left = -98.0
+margin_top = -65.0
+margin_right = 77.0
+margin_bottom = -30.0
 custom_fonts/font = SubResource( 1 )
 text = "Goal: pts"
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Description" type="Label" parent="."]
-margin_left = 73.0
-margin_top = 229.0
-margin_right = 779.0
-margin_bottom = 264.0
+margin_left = 26.0
+margin_top = 225.0
+margin_right = 732.0
+margin_bottom = 260.0
 custom_fonts/font = SubResource( 1 )
 text = "Description"
+align = 1
+valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MIssionFrame" type="Sprite" parent="."]
-scale = Vector2( 12, 17 )
+scale = Vector2( 4, 5 )
 texture = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="."]

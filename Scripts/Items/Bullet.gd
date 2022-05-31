@@ -23,12 +23,10 @@ func _process(delta):
 			collision.collider.take_damage(base_damge*damage_mod)
 		if(collision.collider.is_in_group("Blockers")):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
-			
 		
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.rotation = $Sprite.rotation
-		print($Sprite.rotation)
 		explosion.modulate = modulate
 		
 		if(incendiary):
@@ -36,4 +34,3 @@ func _process(delta):
 			
 		get_parent().add_child(explosion)
 		queue_free()
-		

@@ -13,6 +13,7 @@ func _ready():
 	$InnerLight.color = get_parent().modulate
 
 func _process(delta):
+	rotate(rot_speed*delta)
 	var dist = global_position.distance_squared_to(player.global_position)
 	if(dist < player.gravity_radius*player.gravity_radius):
 		var position_diff = (player.global_position - global_position)

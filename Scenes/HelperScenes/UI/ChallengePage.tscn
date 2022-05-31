@@ -117,25 +117,29 @@ process_material = SubResource( 12 )
 scale = Vector2( 0.6, 0.6 )
 
 [node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 48.3333, 211.667 )
+visible = false
+position = Vector2( 90.6667, 209.722 )
 title = "Can Shoot"
 selected_is_harder = false
 setting_name = "can_shoot"
 
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 54.3333, 316.667 )
+visible = false
+position = Vector2( 96.6667, 314.722 )
 title = "Can Use Laser"
 selected_is_harder = false
 setting_name = "can_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
-position = Vector2( 54.3333, 433.667 )
+visible = false
+position = Vector2( 96.6667, 431.722 )
 title = "Can Use Bombs"
 selected_is_harder = false
 setting_name = "can_bomb"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
-position = Vector2( 52.3334, 553.667 )
+visible = false
+position = Vector2( 94.6668, 551.722 )
 title = "Player Speed Scale"
 max_val = 1.25
 min_val = 0.2
@@ -143,7 +147,8 @@ score_mult_per_step = 0.8
 setting_name = "player_speed_scale"
 
 [node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
-position = Vector2( 56.3335, 665.667 )
+visible = false
+position = Vector2( 98.6669, 663.722 )
 title = "Enemy Health Scale"
 max_val = 2.1
 min_val = 0.2
@@ -154,6 +159,7 @@ score_mult_per_step = 1.2
 setting_name = "enemy_health_scale"
 
 [node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 546.667, 206.667 )
 title = "Chaser Scale"
 max_val = 1.25
@@ -162,6 +168,7 @@ score_mult_per_step = 0.8
 setting_name = "chaser_gen_scale"
 
 [node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 550.667, 318.666 )
 title = "Shooter Missile Speed"
 min_val = 0.2
@@ -172,6 +179,7 @@ score_mult_per_step = 1.1
 setting_name = "shooter_missile_speed_scale"
 
 [node name="ChallengePanel11" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 551.667, 431.667 )
 title = "Light Fade Scale"
 max_val = 10.0
@@ -184,6 +192,7 @@ score_mult_per_step = 1.2
 setting_name = "light_fade_scale"
 
 [node name="ChallengePanel12" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 553.333, 546.667 )
 title = "Blocker Spawn Chance"
 max_val = 3.1
@@ -196,6 +205,18 @@ score_mult_per_step = 1.1
 setting_name = "blocker_spawn_scale"
 
 [node name="ChallengePanel13" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 556.667, 655 )
+title = "Starting Extra Lives"
+starting_val = 2.0
+max_val = 5.099
+min_val = -0.1
+step = 1.0
+score_mult_per_step = 0.5
+setting_name = "starting_health"
+
+[node name="ChallengePanel14" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
 position = Vector2( 556.667, 655 )
 title = "Starting Extra Lives"
 starting_val = 2.0

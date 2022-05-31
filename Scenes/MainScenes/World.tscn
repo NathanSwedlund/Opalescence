@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Textures/Entities/player3.png" type="Texture" id=6]
-[ext_resource path="res://Resources/Textures/UI/bombImage.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Textures/UI/bombImage-pixel.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=10]
@@ -235,7 +235,7 @@ powerup_probabilities = {
 "bombastic": 1.0,
 "bullet_time": 1.0,
 "gravity_well": 1.0,
-"incendiary": 11111.0,
+"incendiary": 1.0,
 "max_bomb": 1.0,
 "max_up": 0.0,
 "one_up": 1.0,
@@ -323,18 +323,18 @@ text = "x 3"
 position = Vector2( 1082, 650 )
 
 [node name="Bomb1" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 75.25, 24.65 )
-scale = Vector2( 0.131373, 0.121448 )
+position = Vector2( 75, 25 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="Bomb2" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
 position = Vector2( 113, 25 )
-scale = Vector2( 0.131373, 0.121448 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="Bomb3" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 149, 24 )
-scale = Vector2( 0.131373, 0.121448 )
+position = Vector2( 151, 25 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 7 )
 
 [node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
