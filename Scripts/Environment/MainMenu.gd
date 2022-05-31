@@ -111,6 +111,7 @@ func _on_BackButton_pressed():
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
+	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn" 
 	Settings.reset_settings()
 	Settings.world["mission_title"] = "standard"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")

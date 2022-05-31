@@ -15,7 +15,6 @@ func action_pressed(action):
 
 func _process(_delta):
 	if(is_active and get_child(selected_button).visible):
-		print(visible)
 		if(get_parent().is_class("Popup")):
 			if(get_parent().visible == false):
 				return 

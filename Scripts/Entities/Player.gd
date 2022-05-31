@@ -311,6 +311,7 @@ func die():
 	
 	is_charging_laser = false
 	can_shoot = false
+	can_shoot_laser = false
 	$LaserChargeTimer.stop()
 	$SoundFX/LaserChargeAudio.stop()
 	$LaserChargeEffect.emitting = false
@@ -336,6 +337,7 @@ func respawn():
 	visible = true
 	
 	can_shoot = Settings.player["can_shoot"]
+	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func game_over():
 	if(get_parent().game_is_over):
@@ -375,7 +377,8 @@ func _physics_process(delta):
 	if(Settings.world["has_time_goal"] and play_time >= Settings.world["time_goal"]):
 		play_time = Settings.world["time_goal"]
 		game_over()
-
+	if(!is_charging_laser and $SoundFX/LaserChargeAudio.playing):
+		$SoundFX/LaserChargeAudio.stop()
 	$OuterLight.scale.x = move_toward($OuterLight.scale.x, min_scale, delta* (1-shrink_scalar))
 	$OuterLight.scale.y = move_toward($OuterLight.scale.y, min_scale, delta* (1-shrink_scalar))
 
@@ -494,7 +497,7 @@ func get_powerup(_powerup, _color):
 		$PowerupTimers/OpalescenceColorShift.start()
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
 	if(_powerup == "OverSheild"):
-		$SheildSprite.visible = true
+		$SheildSpriprite.visible = true
 		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
 		var unmaker_particle_intensity = 2.0

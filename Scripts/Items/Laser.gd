@@ -41,13 +41,14 @@ func _process(_delta):
 
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
-			scale.y *= fade_in_speed * (1-fade_in_time_ratio) * _delta
+			scale.y += fade_in_speed * (1-fade_in_time_ratio) * _delta
 		else:
 			scale.y = max_fade_in_width
 	else:
 		if(scale.y > min_fade_out_width):
-			scale.y *= fade_out_speed * (1-fade_out_time_ratio) / _delta
-
+			scale.y -= fade_out_speed * (1-fade_out_time_ratio) * _delta
+		if(scale.y <= 0.0):
+			queue_free()
 	for i in get_overlapping_bodies():
 		if(i.is_in_group("Enemies")):
 			i.take_damage(damage * _delta)
