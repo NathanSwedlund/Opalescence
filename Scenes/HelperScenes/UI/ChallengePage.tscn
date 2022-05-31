@@ -115,16 +115,19 @@ scale = Vector2( 0.6, 0.6 )
 [node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
 position = Vector2( 48.3333, 211.667 )
 title = "Can Shoot"
+selected_is_harder = false
 setting_name = "can_shoot"
 
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
 position = Vector2( 54.3333, 316.667 )
 title = "Can Use Laser"
+selected_is_harder = false
 setting_name = "can_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
 position = Vector2( 54.3333, 433.667 )
 title = "Can Use Bombs"
+selected_is_harder = false
 setting_name = "can_bomb"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
@@ -140,6 +143,7 @@ position = Vector2( 56.3335, 665.667 )
 title = "Enemy Health Scale"
 max_val = 2.1
 min_val = 0.2
+min_is_harder = false
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
 score_mult_per_step = 1.2
@@ -157,6 +161,7 @@ setting_name = "chaser_gen_scale"
 position = Vector2( 550.667, 318.666 )
 title = "Shooter Missile Speed"
 min_val = 0.2
+min_is_harder = false
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
 score_mult_per_step = 1.1
@@ -167,6 +172,7 @@ position = Vector2( 551.667, 431.667 )
 title = "Light Fade Scale"
 max_val = 10.0
 min_val = 0.5
+min_is_harder = false
 min_color = Color( 0, 1, 0.976471, 1 )
 max_color = Color( 1, 0, 0, 1 )
 step = 0.5
@@ -178,6 +184,7 @@ position = Vector2( 553.333, 546.667 )
 title = "Blocker Spawn Chance"
 max_val = 3.1
 min_val = 0.5
+min_is_harder = false
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
 step = 0.2

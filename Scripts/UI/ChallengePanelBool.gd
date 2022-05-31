@@ -2,6 +2,7 @@ extends Node2D
 
 export var title = "Title"
 export var is_selected = false
+export var selected_is_harder = true
 var current_val
 
 export var score_mult_unselected = 1.0
@@ -25,8 +26,8 @@ func _process(delta):
 
 func update_selected(_selected):
 	is_selected = _selected
-	modulate = selected_color if is_selected else unselected_color
 	update_score_mult(is_selected)
+	update_color()
 	current_val = is_selected
 	$Button.text = "o" if is_selected else "-" 
 	
@@ -38,5 +39,8 @@ func update_score_mult(_selected):
 
 func _on_Button_pressed():
 	update_selected(!is_selected)
+	
+func update_color():
+	modulate = selected_color if is_selected else unselected_color
 
 	

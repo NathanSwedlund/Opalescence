@@ -10,6 +10,23 @@ func _ready():
 	var score = HighScore.get_score("challenge")
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score
+	for i in range($ChallengePanels.get_child_count()):
+		var c = $ChallengePanels.get_child(i)
+		if(c.get("min_is_harder") != null): # float selector
+			if(!c.min_is_harder):
+				c.max_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
+				c.min_color = Color.white
+			else:
+				c.min_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
+				c.max_color = Color.white
+		elif(c.get("selected_is_harder") != null):
+			if(!c.selected_is_harder):
+				c.unselected_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
+				c.selected_color = Color.white
+			else:
+				c.selected_color = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
+				c.unselected_color = Color.white
+		c.update_color()
 
 var selecting_ready_button = false
 
