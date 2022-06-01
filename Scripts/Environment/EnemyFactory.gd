@@ -28,6 +28,7 @@ export var default_enemy_probabilities = {
 
 var enemy_probabilities
 
+var _is_active
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
 export var bound_buffer = 50
@@ -52,7 +53,7 @@ func _ready():
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])
 		
 	randomize()
-
+	_is_active = is_active
 
 func pick_enemy():
 	# Between 0 and 1
@@ -75,7 +76,10 @@ func spawn_enemy():
 		spawn_chaser()
 
 func reset():
-	is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)
+	if(use_global_settings):
+		_is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)
+	else:
+		_is_active = is_active
 	_ready()
 
 func distance_to_closest_entity(point):
@@ -149,7 +153,7 @@ func kill_all():
 			c.die()
 
 func _on_Timer_timeout():
-	if(is_active):
+	if(_is_active):
 		spawn_enemy()
 
 	var time_until_next = rand_range(time_min, time_max) / enemy_spawn_time_speed

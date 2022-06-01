@@ -14,6 +14,7 @@ export var is_active = true
 
 
 var color_count
+var colors = []
 
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
@@ -26,8 +27,14 @@ func _ready():
 
 		time_min = Settings.get_setting_if_exists(Settings.factory, "point_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "point_time_max", time_max)
-
-	color_count = len(Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white]))
+	
+	colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
+	
+	var color_override = Settings.get_setting_if_exists(Settings.factory, "point_color_override", null)
+	if(color_override != null):
+		colors = color_override
+	
+	color_count = len(colors)
 	randomize()
 
 
@@ -38,7 +45,7 @@ func spawn_point():
 
 	point.position = Vector2(position_x, position_y)
 	point.player = player
-	var c = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])[randi()%color_count]
+	var c = colors[randi()%color_count]
 	point.modulate = c
 	$Points.add_child(point)
 

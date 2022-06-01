@@ -35,6 +35,7 @@ var factory_default = {
 	"point_is_active":true,
 	"point_time_min":0.1,
 	"point_time_max":0.8,
+	"point_color_override":null,
 
 	"enemy_is_active":true,
 	"enemy_time_min":1,

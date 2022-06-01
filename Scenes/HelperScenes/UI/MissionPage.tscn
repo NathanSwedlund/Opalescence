@@ -197,6 +197,7 @@ func select(p):
 			$Pages.get_child(i).modulate.a = 0.2
 		
 	position.x += shift_dist * selected
+	$Pages.get_child(selected).find_node(\"Description\").visible = true
 	
 	get_parent().find_node(\"MissionContainerFrame\").modulate = $Pages.get_child(p).modulate
 	get_parent().find_node(\"MissionContainerFrame\").modulate.r -= 0.1
@@ -420,7 +421,7 @@ player_settings = {
 
 [node name="MissionPanel8" parent="PageSelector/Pages" instance=ExtResource( 2 )]
 visible = false
-modulate = Color( 0.176471, 0.670588, 1, 1 )
+modulate = Color( 0.0509804, 0.447059, 0.709804, 1 )
 position = Vector2( 402.025, 269 )
 scale = Vector2( 0.832, 0.832 )
 description = "The long awaited sequel to Meteors is here! You still can't move, but this time you only shoot once pellet per burst. Luckily, that's all that it will take to kill a chaser this time. No bombs, no Laser. Just chasers, a lot of them."
@@ -445,7 +446,7 @@ factory_settings = {
 "enemy_shooter_prob": 0.0,
 "enemy_spawn_away_radius": 300,
 "enemy_time_max": 0.17,
-"enemy_time_min": 0,
+"enemy_time_min": 0.03,
 "point_colors": [ Color( 1, 0, 0, 1 ), Color( 1, 0.65, 0, 1 ), Color( 1, 1, 0, 1 ), Color( 0, 1, 0, 1 ), Color( 0, 0, 1, 1 ), Color( 0.68, 0.85, 0.9, 1 ), Color( 1, 0.75, 0.8, 1 ) ],
 "point_is_active": false,
 "point_time_max": 0.8,
@@ -471,7 +472,7 @@ enemy_settings = {
 "blocker_health": 150,
 "blocker_point_reward": 1250,
 "chaser_base_health": 10,
-"chaser_max_scale": 0.6,
+"chaser_max_scale": 0.8,
 "chaser_min_scale": 0.2,
 "chaser_point_reward": 400,
 "enemy_health_scale": 0.2,
@@ -515,7 +516,7 @@ scale = Vector2( 0.832, 0.832 )
 description = "Survive for two-hundred seconds against the small chasers"
 world_settings = {
 "down_bound": 590,
-"has_point_goal": true,
+"has_point_goal": false,
 "has_time_goal": true,
 "is_mission": true,
 "left_bound": 10,
@@ -606,7 +607,7 @@ world_settings = {
 "is_mission": true,
 "left_bound": 10,
 "mission_title": "DARKNESS",
-"point_goal": 55000.0,
+"point_goal": 90000.0,
 "points_scale": 1.0,
 "right_bound": 1014,
 "time_goal": 0.0,
@@ -621,7 +622,7 @@ factory_settings = {
 "enemy_spawn_away_radius": 200,
 "enemy_time_max": 4,
 "enemy_time_min": 3,
-"point_colors": [ Color( 0.298039, 0.298039, 0.298039, 1 ) ],
+"point_color_override": [ Color( 0.345098, 0.0666667, 0.0666667, 1 ), Color( 0.415686, 0.396078, 0.105882, 1 ), Color( 0.117647, 0.145098, 0.47451, 1 ), Color( 0.0901961, 0.372549, 0.133333, 1 ) ],
 "point_is_active": true,
 "point_time_max": 0.8,
 "point_time_min": 0.1,

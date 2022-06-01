@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Resources/Audio/FX/countdown.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=20]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=21]
+[ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=22]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.24999, 506 )
@@ -242,7 +243,7 @@ powerup_probabilities = {
 "one_up": 1.0,
 "opalescence": 1.0,
 "overshield": 1.0,
-"unmaker": 1111.0,
+"unmaker": 1.0,
 "vision": 1.0
 }
 use_global_settings = false
@@ -375,10 +376,10 @@ button_index = 0
 
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton"]
 visible = false
-position = Vector2( 384.583, 200 )
+position = Vector2( 413.667, 326.67 )
 scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 1.78
+texture = ExtResource( 22 )
+energy = 4.0
 
 [node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton"]
 visible = false
@@ -407,8 +408,8 @@ button_index = 1
 visible = false
 position = Vector2( 362.416, 313.337 )
 scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 1.78
+texture = ExtResource( 22 )
+energy = 4.0
 
 [node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton"]
 visible = false
@@ -452,6 +453,7 @@ lifetime = 1.5
 process_material = SubResource( 2 )
 
 [node name="PausePopup" type="Popup" parent="HeadsUpDisplay"]
+visible = true
 margin_left = -11.0
 margin_top = 106.0
 margin_right = 29.0
@@ -483,8 +485,8 @@ button_index = 0
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/ResumeButton"]
 position = Vector2( 375.749, 323 )
 scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 3.25
+texture = ExtResource( 22 )
+energy = 6.0
 
 [node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/ResumeButton"]
 position = Vector2( 891.166, 323 )
@@ -503,18 +505,17 @@ custom_fonts/font = ExtResource( 14 )
 text = "Menu"
 flat = true
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 button_index = 1
 
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/MenuButton"]
+visible = false
 position = Vector2( 375.749, 323 )
 scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 12 )
-energy = 3.25
+texture = ExtResource( 22 )
+energy = 6.0
 
 [node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/MenuButton"]
+visible = false
 position = Vector2( 891.166, 323 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false

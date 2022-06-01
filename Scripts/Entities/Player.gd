@@ -136,7 +136,11 @@ func _ready():
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
+var frame = 0
 func _process(delta):
+	frame = (frame + 1) % 60
+	if(frame == 0):
+		print(has_powerup, "\n", powerup_count(), "\n\n")
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -409,8 +413,8 @@ func _on_BulletCooldownTimer_timeout():
 	bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
-	print(bullets_to_shoot)
-	print("bullets_per_burst, ", bullets_per_burst, ", bullets_to_shoot, ", bullets_to_shoot)
+#	print(bullets_to_shoot)
+#	print("bullets_per_burst, ", bullets_per_burst, ", bullets_to_shoot, ", bullets_to_shoot)
 	bullets_to_shoot -= 1
 	if(bullets_to_shoot > 0):
 		spawn_bullet()
@@ -518,7 +522,7 @@ func get_powerup(_powerup, _color):
 		var unmaker_particle_intensity = 2.0
 		var unmaker_pitch_scale = 0.5
 		spawn_laser(unmaker_scale, $PowerupTimers/Unmaker.wait_time, unmaker_particle_intensity, unmaker_pitch_scale)
-#		$PowerupTimers/Unmaker.start()
+		$PowerupTimers/Unmaker.start()
 		start_powerup_timer($PowerupTimers/Unmaker.wait_time, _color, _powerup)
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
@@ -561,8 +565,6 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
-	print("$SoundFX/UnmakerAudio.stop()")
-	$SoundFX/UnmakerAudio.stop()
 	has_powerup["Unmaker"] = false
 
 func _on_Vision_timeout():

@@ -6,7 +6,7 @@
 [ext_resource path="res://Resources/Audio/Music/G-One.mp3" type="AudioStream" id=4]
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=5]
 [ext_resource path="res://Scenes/HelperScenes/UI/FloatSelector.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Resources/Textures/FX/playerLight.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HelperScenes/UI/BoolSelector.tscn" type="PackedScene" id=10]
@@ -117,7 +117,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/PlayButton"]
 visible = false
@@ -146,7 +146,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/OptionsButton"]
 visible = false
@@ -178,7 +178,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
 visible = false
@@ -211,7 +211,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/StandardButton"]
 visible = false
@@ -240,7 +240,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/MissionsButton"]
 visible = false
@@ -272,7 +272,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
 visible = false
@@ -304,7 +304,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
 visible = false
@@ -333,7 +333,7 @@ visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
 visible = false
@@ -416,7 +416,7 @@ visible = false
 position = Vector2( 1113.33, 306.666 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
-energy = 1.78
+energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
 visible = false
