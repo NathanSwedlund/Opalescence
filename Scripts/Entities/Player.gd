@@ -114,7 +114,7 @@ func _ready():
 		unmaker_scale = Settings.get_setting_if_exists(Settings.player, "unmaker_scale", unmaker_scale)
 		can_shoot = Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
 		default_bullets_per_burst = Settings.get_setting_if_exists(Settings.player, "default_bullets_per_burst", default_bullets_per_burst)
-		can_shoot_laser = Settings.get_settingf_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
+		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 
 

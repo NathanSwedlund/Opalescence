@@ -229,7 +229,7 @@ visible = false
 position = Vector2( 556.667, 655 )
 title = "Enemy Spawn Cooldown Mult"
 min_val = 0.2
-score_mult_per_step = 0.7
+score_mult_per_step = 0.85
 setting_name = "enemy_spawn_time_scale"
 
 [node name="ChallengePanel6" parent="ChallengePanels" instance=ExtResource( 7 )]
