@@ -307,7 +307,7 @@ default_vol = 10.0
 stream = ExtResource( 20 )
 script = ExtResource( 26 )
 
-[node name="OverSheildAudio" type="AudioStreamPlayer" parent="SoundFX"]
+[node name="OverShieldAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 14 )
 volume_db = 10.0
 script = ExtResource( 26 )
@@ -340,7 +340,7 @@ default_vol = 10.0
 stream = ExtResource( 21 )
 script = ExtResource( 26 )
 
-[node name="SheildSprite" type="Sprite" parent="."]
+[node name="ShieldSprite" type="Sprite" parent="."]
 visible = false
 self_modulate = Color( 1, 1, 1, 0.0235294 )
 position = Vector2( 0, -5 )

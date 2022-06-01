@@ -19,7 +19,7 @@ export var powerup_probabilities = {
 	"max_up":1.0/20.0,
 	"one_up":4.0/20.0,
 	"opalescence":0.5/20.0,
-	"oversheild":2.5/20.0,
+	"overshield":2.5/20.0,
 	"unmaker":1.0/20.0,
 	"vision":1.0/20.0
 }
@@ -35,7 +35,7 @@ export var key_to_name = {
 	"max_up":"MaxUp",
 	"one_up":"OneUp",
 	"opalescence":"Opalescence",
-	"oversheild":"OverShield",
+	"overshield":"OverShield",
 	"unmaker":"Unmaker",
 	"vision":"Vision"
 }
@@ -51,14 +51,14 @@ var powerup_scenes = {
 	"max_up":load("res://Scenes/HelperScenes/Powerups/MaxUp.tscn"),
 	"one_up":load("res://Scenes/HelperScenes/Powerups/OneUp.tscn"),
 	"opalescence":load("res://Scenes/HelperScenes/Powerups/Opalescence.tscn"),
-	"oversheild":load("res://Scenes/HelperScenes/Powerups/OverSheild.tscn"),
+	"overshield":load("res://Scenes/HelperScenes/Powerups/OverShield.tscn"),
 	"unmaker":load("res://Scenes/HelperScenes/Powerups/Unmaker.tscn"),
 	"vision":load("res://Scenes/HelperScenes/Powerups/Vision.tscn")
 }
 
 onready var player = get_parent().find_node("Player")
 export var use_global_settings = true
-var powerup_spawn_time_speed
+var powerup_spawn_time_speed = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,7 +82,7 @@ func _ready():
 		powerup_probabilities["max_up"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_max_up_prob", powerup_probabilities["max_up"])
 		powerup_probabilities["one_up"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_one_up_prob", powerup_probabilities["one_up"])
 		powerup_probabilities["opalescence"]  = Settings.get_setting_if_exists(Settings.factory, "powerup_opalescence_prob", powerup_probabilities["opalescence"])
-		powerup_probabilities["oversheild"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_oversheild_prob", powerup_probabilities["oversheild"])
+		powerup_probabilities["overshield"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_overshield_prob", powerup_probabilities["overshield"])
 		powerup_probabilities["unmaker"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_unmaker_prob", powerup_probabilities["unmaker"])
 		powerup_probabilities["vision"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_vision_prob", powerup_probabilities["vision"])
 

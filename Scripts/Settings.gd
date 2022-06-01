@@ -61,7 +61,7 @@ var factory_default = {
 	"powerup_max_up_prob":0.0,
 	"powerup_one_up_prob":0.5,
 	"powerup_opalescence_prob":0.2,
-	"powerup_oversheild_prob":1,
+	"powerup_overshield_prob":1,
 	"powerup_unmaker_prob":1,
 	"powerup_vision_prob":1,
 }
@@ -102,6 +102,7 @@ var player_default = {
 	"gravity_radius":100.0,
 	"gravity_pull_scale":1.0,
 	"default_bullets_burst_wait_time":0.1,
+	"default_bullets_cooldown_wait_time":0.3,
 	"is_active":true,
 	"can_bomb":true,
 	"starting_bombs":3,

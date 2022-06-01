@@ -41,9 +41,9 @@ func return_to_menu():
 	get_tree().change_scene(Global.return_scene)
 		
 
-func update_health(health_count, has_sheild):
+func update_health(health_count, has_shield):
 	$HealthDisplay/Label.text = "x "+str(health_count-1)
-	$HealthDisplay/Shield.visible = has_sheild
+	$HealthDisplay/Shield.visible = has_shield
 
 func update_bombs(bomb_count):
 	for c in $BombDisplay.get_children():

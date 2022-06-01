@@ -37,7 +37,7 @@ var gravity_well_pull_scale = 6.0
 var gravity_well_radius = 100000
 var barrage_burst_time = 0.04
 var unmaker_scale = 2.3
-var sheild:Node2D
+var shield:Node2D
 
 # locomotion variables
 var velocity = Vector2.ZERO
@@ -83,6 +83,7 @@ var is_shooting_indendiary = false
 export var use_global_settings = true
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 var opalescence_shift_speed = 0.5
+export var default_bullets_cooldown_wait_time = 0.3
 
 func _ready():
 	speed *= global_scale.x
@@ -115,8 +116,9 @@ func _ready():
 		can_shoot = Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
 		default_bullets_per_burst = Settings.get_setting_if_exists(Settings.player, "default_bullets_per_burst", default_bullets_per_burst)
 		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
+		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
-
+		
 
 	Global.player = self
 	for tp in transformative_powerups:
@@ -125,6 +127,8 @@ func _ready():
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
+	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
+	print($BulletCooldownTimer.wait_time)
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 	reset()
@@ -133,7 +137,6 @@ var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
 func _process(delta):
-	print(can_shoot_laser)
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -231,10 +234,14 @@ func shoot():
 	if(can_shoot == false):
 		return
 	bullets_to_shoot = bullets_per_burst
-	if(bullets_to_shoot > 0):
+	if(bullets_to_shoot > 1):
 		can_shoot = false
 		$BulletBurstTimer.start()
 		spawn_bullet()
+	elif(bullets_to_shoot == 1):
+		can_shoot = false
+		spawn_bullet()
+		$BulletCooldownTimer.start()
 
 func get_direction_to_shoot():
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
@@ -269,7 +276,7 @@ func damage():
 		get_parent().find_node("EnemyFactory").kill_all()
 		get_parent().find_node("PointFactory").kill_all()
 		get_parent().find_node("PowerupFactory").kill_all()
-		$SheildSprite.visible = false
+		$ShieldSprite.visible = false
 	else:
 		die()
 
@@ -504,7 +511,7 @@ func get_powerup(_powerup, _color):
 		$PowerupTimers/OpalescenceColorShift.start()
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
 	if(_powerup == "OverShield"):
-		$SheildSpriprite.visible = true
+		$ShieldSprite.visible = true
 		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
 		var unmaker_particle_intensity = 2.0
