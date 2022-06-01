@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/FX/LaserParticleEffect.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Textures/FX/Light.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Audio/FX/Unmaker.wav" type="AudioStream" id=6]
+[ext_resource path="res://Resources/Audio/FX/Unmaker2.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]

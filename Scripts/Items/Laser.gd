@@ -16,8 +16,15 @@ export var fade_in_speed = 2.0
 
 export var particle_intensity_scale = 1.0
 
+export var min_vol = -40
+export var laser_sound_fade_scale = 3
+var laser_vol
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	laser_vol = $LaserSound.volume_db
+	$LaserSound.volume_db = min_vol
+	
 	if(particle_intensity_scale != 1.0):
 		$LaserParticleEffect.lifetime *= particle_intensity_scale/1.5
 		$LaserParticleEffect.amount *= particle_intensity_scale*3
@@ -42,11 +49,13 @@ func _process(_delta):
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
 			scale.y += fade_in_speed * (1-fade_in_time_ratio) * _delta
+			$LaserSound.volume_db = move_toward($LaserSound.volume_db, laser_vol, fade_in_speed * (1-fade_in_time_ratio) * _delta * laser_sound_fade_scale)
 		else:
 			scale.y = max_fade_in_width
 	else:
 		if(scale.y > min_fade_out_width):
 			scale.y -= fade_out_speed * (1-fade_out_time_ratio) * _delta
+			$LaserSound.volume_db = move_toward($LaserSound.volume_db, min_vol, fade_out_speed * (1-fade_out_time_ratio) * _delta * laser_sound_fade_scale)
 		if(scale.y <= 0.0):
 			queue_free()
 	for i in get_overlapping_bodies():

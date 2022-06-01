@@ -58,7 +58,7 @@ var powerup_scenes = {
 
 onready var player = get_parent().find_node("Player")
 export var use_global_settings = true
-var powerup_spawn_time_speed = 1.0
+var powerup_spawn_time_speed = 1.0	
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

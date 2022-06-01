@@ -319,10 +319,10 @@ script = ExtResource( 26 )
 
 [node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 13 )
-volume_db = 10.0
+volume_db = -3.816
 pitch_scale = 0.7
 script = ExtResource( 26 )
-default_vol = 10.0
+default_vol = -80.0
 
 [node name="VisionAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 12 )
