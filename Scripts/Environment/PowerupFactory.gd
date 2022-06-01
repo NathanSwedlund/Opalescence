@@ -35,7 +35,7 @@ export var key_to_name = {
 	"max_up":"MaxUp",
 	"one_up":"OneUp",
 	"opalescence":"Opalescence",
-	"oversheild":"OverSheild",
+	"oversheild":"OverShield",
 	"unmaker":"Unmaker",
 	"vision":"Vision"
 }

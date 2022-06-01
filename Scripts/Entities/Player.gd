@@ -68,7 +68,7 @@ export var powerup_times = {
 	"Vision":15.0
 	}
 
-var transformative_powerups = ["Barrage", "Bombastic", "BulletTime", "GravityWell", "Incendiary", "Opalescence", "OverSheild", "Unmaker", "Vision"]
+var transformative_powerups = ["Barrage", "Bombastic", "BulletTime", "GravityWell", "Incendiary", "Opalescence", "OverShield", "Unmaker", "Vision"]
 var has_powerup = {}
 var powerup_point_value = 1000
 var bullet_time_time_scale = 0.2
@@ -147,7 +147,7 @@ func reset():
 	heads_up_display = get_parent().find_node("HeadsUpDisplay")
 	if(heads_up_display != null):
 		heads_up_display.update_bombs(current_bombs)
-		heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
 	respawn()
 
@@ -167,7 +167,7 @@ func spawn_get_point_label(points_num):
 	get_parent().add_child(gpl)
 
 func gain_point(_color):
-	if(powerup_count() == 0 or (has_powerup["OverSheild"] and powerup_count() == 1)):
+	if(powerup_count() == 0 or (has_powerup["OverShield"] and powerup_count() == 1)):
 		change_color(_color)
 
 	if(has_powerup["Vision"]):
@@ -260,9 +260,9 @@ func drop_bomb():
 func damage():
 	if(has_powerup["Opalescence"]):
 		get_parent().find_node("EnemyFactory").kill_all()
-	elif(has_powerup["OverSheild"]):
-		has_powerup["OverSheild"] = false
-		heads_up_display.update_health(current_health, has_powerup["OverSheild"])
+	elif(has_powerup["OverShield"]):
+		has_powerup["OverShield"] = false
+		heads_up_display.update_health(current_health, has_powerup["OverShield"])
 		get_parent().find_node("EnemyFactory").kill_all()
 		get_parent().find_node("PointFactory").kill_all()
 		get_parent().find_node("PowerupFactory").kill_all()
@@ -307,7 +307,7 @@ func die():
 		if(timer.is_timing == true):
 			timer.stop_timer()
 
-	heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+	heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 	
 	is_charging_laser = false
 	can_shoot = false
@@ -488,15 +488,15 @@ func get_powerup(_powerup, _color):
 		heads_up_display.update_bombs(current_bombs)
 	if(_powerup == "MaxUp"):
 		current_health = MAX_HEALTH
-		heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 	if(_powerup == "OneUp" and current_health < MAX_HEALTH):
 		current_health += 1
-		heads_up_display.update_health(current_health, 	has_powerup["OverSheild"])
+		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 	if(_powerup == "Opalescence"):
 		$PowerupTimers/Opalescence.start()
 		$PowerupTimers/OpalescenceColorShift.start()
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
-	if(_powerup == "OverSheild"):
+	if(_powerup == "OverShield"):
 		$SheildSpriprite.visible = true
 		heads_up_display.update_health(current_health, 	true)
 	if(_powerup == "Unmaker"):
