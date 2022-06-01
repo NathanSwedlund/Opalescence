@@ -106,7 +106,7 @@ func _on_ReadyButton_pressed():
 			for key in d.keys():
 				if(c.setting_name == key):
 					d[key] = c.current_val
-
+					
 	Settings.player["starting_health"] = $ChallengePanels/ChallengePanel13.current_val+1 # health + 1
 	Settings.world["points_scale"] = score_mult
 	Settings.world["mission_title"] = "challenge"

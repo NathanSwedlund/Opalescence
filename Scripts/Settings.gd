@@ -39,6 +39,7 @@ var factory_default = {
 	"enemy_is_active":true,
 	"enemy_time_min":1,
 	"enemy_time_max":2,
+	"enemy_spawn_time_speed":1.0,
 	"enemy_spawn_away_radius":200,
 	"enemy_blocker_prob":0.05,
 	"blocker_spawn_scale":1.0,
@@ -49,6 +50,7 @@ var factory_default = {
 	"powerup_is_active":true,
 	"powerup_time_min":10,
 	"powerup_time_max":20,
+	"powerup_spawn_time_speed":1.0,
 	"powerup_barrage_prob":1,
 	"powerup_bomb_up_prob":0,
 	"powerup_bombastic_prob":1,
@@ -92,6 +94,7 @@ var enemy = enemy_default.duplicate()
 var player_default = {
 	"speed":480.0,
 	"player_speed_scale":1.0,
+	"player_scale":1.0,
 	"starting_health":3,
 	"shrink_scalar":0.87,
 	"light_fade_scale":1.0,

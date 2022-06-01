@@ -17,6 +17,7 @@ export var chaser_max_scale = 1.0
 export var spawn_away_radius = 200
 
 export var use_global_settings = true
+var enemy_spawn_time_speed = 1.0
 
 export var default_enemy_probabilities = {
 	"chaser":  0.6,
@@ -43,12 +44,13 @@ func _ready():
 
 		time_min = Settings.get_setting_if_exists(Settings.factory, "enemy_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "enemy_time_max", time_max)
-
+		enemy_spawn_time_speed = Settings.get_setting_if_exists(Settings.factory, "enemy_spawn_time_speed", enemy_spawn_time_speed)
+		
 		enemy_probabilities["blocker"] = Settings.get_setting_if_exists(Settings.factory, "enemy_blocker_prob", enemy_probabilities["blocker"]) * Settings.get_setting_if_exists(Settings.factory, "blocker_spawn_scale", 1.0)
 		enemy_probabilities["chaser"]  = Settings.get_setting_if_exists(Settings.factory, "enemy_chaser_prob", enemy_probabilities["chaser"])
 		enemy_probabilities["comet"]   = Settings.get_setting_if_exists(Settings.factory, "enemy_comet_prob", enemy_probabilities["comet"])
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])
-
+		
 	randomize()
 
 
@@ -150,5 +152,5 @@ func _on_Timer_timeout():
 	if(is_active):
 		spawn_enemy()
 
-	var time_until_next = rand_range(time_min, time_max)
-	$Timer.wait_time = time_until_next
+	var time_until_next = rand_range(time_min, time_max) / enemy_spawn_time_speed
+	$Timer.wait_time = time_until_next 

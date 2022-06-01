@@ -30,9 +30,9 @@ const MAX_BOMBS = 3
 var current_health
 var current_bombs
 var bomb_scene = load("res://Scenes/HelperScenes/Powerups/Bomb.tscn")
-var bullets_to_shoot = default_bullets_per_burst
-export var bullets_per_burst = 3
-var default_bullets_per_burst = 3
+export var default_bullets_per_burst = 3
+var bullets_to_shoot
+var bullets_per_burst
 var gravity_well_pull_scale = 6.0
 var gravity_well_radius = 100000
 var barrage_burst_time = 0.04
@@ -114,7 +114,9 @@ func _ready():
 		unmaker_scale = Settings.get_setting_if_exists(Settings.player, "unmaker_scale", unmaker_scale)
 		can_shoot = Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
 		default_bullets_per_burst = Settings.get_setting_if_exists(Settings.player, "default_bullets_per_burst", default_bullets_per_burst)
-		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
+		can_shoot_laser = Settings.get_settingf_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
+		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
+
 
 	Global.player = self
 	for tp in transformative_powerups:
@@ -123,13 +125,15 @@ func _ready():
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
-	default_bullets_per_burst = bullets_per_burst
+	bullets_per_burst = default_bullets_per_burst
+	bullets_to_shoot = default_bullets_per_burst
 	reset()
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
 func _process(delta):
+	print(can_shoot_laser)
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -226,12 +230,11 @@ func get_input():
 func shoot():
 	if(can_shoot == false):
 		return
-
-	can_shoot = false
-
 	bullets_to_shoot = bullets_per_burst
-	$BulletBurstTimer.start()
-	spawn_bullet()
+	if(bullets_to_shoot > 0):
+		can_shoot = false
+		$BulletBurstTimer.start()
+		spawn_bullet()
 
 func get_direction_to_shoot():
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
@@ -395,10 +398,14 @@ func _input(event):
 
 func _on_BulletCooldownTimer_timeout():
 	can_shoot = Settings.player["can_shoot"]
+	bullets_per_burst = default_bullets_per_burst
+	bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
-	if(bullets_to_shoot >= 0):
-		bullets_to_shoot -= 1
+	print(bullets_to_shoot)
+	print("bullets_per_burst, ", bullets_per_burst, ", bullets_to_shoot, ", bullets_to_shoot)
+	bullets_to_shoot -= 1
+	if(bullets_to_shoot > 0):
 		spawn_bullet()
 		$BulletBurstTimer.start()
 	else:
@@ -421,7 +428,7 @@ func _on_LaserChargeTimer_timeout():
 	spawn_laser()
 
 func _on_LaserCooldownTimer_timeout():
-	can_shoot_laser = true
+	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func _on_RespawnTimer_timeout():
 	respawn()

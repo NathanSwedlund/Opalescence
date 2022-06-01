@@ -94,7 +94,6 @@ script = ExtResource( 3 )
 speed = 480.0
 shrink_scalar = 0.995
 min_scale = 0.3
-bullets_per_burst = 1
 powerup_times = {
 "Barrage": 5.0,
 "Bombastic": 3.0,
@@ -164,7 +163,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="BulletCooldownTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.3
 one_shot = true
 
 [node name="LaserCooldownTimer" type="Timer" parent="."]

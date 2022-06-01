@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -64,10 +64,6 @@ font_data = ExtResource( 2 )
 size = 25
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 20
-font_data = ExtResource( 2 )
-
 [sub_resource type="DynamicFont" id=8]
 size = 20
 font_data = ExtResource( 2 )
@@ -116,19 +112,12 @@ process_material = SubResource( 12 )
 [node name="ChallengePanels" type="Node2D" parent="."]
 scale = Vector2( 0.6, 0.6 )
 
-[node name="ChallengePanel" parent="ChallengePanels" instance=ExtResource( 7 )]
-visible = false
-position = Vector2( 90.6667, 209.722 )
-title = "Can Shoot"
-selected_is_harder = false
-setting_name = "can_shoot"
-
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 96.6667, 314.722 )
 title = "Can Use Laser"
 selected_is_harder = false
-setting_name = "can_laser"
+setting_name = "can_shoot_laser"
 
 [node name="ChallengePanel3" parent="ChallengePanels" instance=ExtResource( 7 )]
 visible = false
@@ -136,6 +125,17 @@ position = Vector2( 96.6667, 431.722 )
 title = "Can Use Bombs"
 selected_is_harder = false
 setting_name = "can_bomb"
+
+[node name="ChallengePanel8" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 94.6668, 551.722 )
+title = "Pellets Per Burst"
+starting_val = 3.0
+max_val = 5.1
+min_val = -0.1
+step = 1.0
+score_mult_per_step = 0.7
+setting_name = "default_bullets_per_burst"
 
 [node name="ChallengePanel4" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
@@ -146,37 +146,14 @@ min_val = 0.2
 score_mult_per_step = 0.8
 setting_name = "player_speed_scale"
 
-[node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
+[node name="ChallengePanel15" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
-position = Vector2( 98.6669, 663.722 )
-title = "Enemy Health Scale"
-max_val = 2.1
-min_val = 0.2
-min_is_harder = false
-min_color = Color( 0, 1, 1, 1 )
-max_color = Color( 1, 0, 0, 1 )
-score_mult_per_step = 1.2
-setting_name = "enemy_health_scale"
-
-[node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 546.667, 206.667 )
-title = "Chaser Scale"
-max_val = 1.25
-min_val = 0.2
-score_mult_per_step = 0.8
-setting_name = "chaser_gen_scale"
-
-[node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 550.667, 318.666 )
-title = "Shooter Missile Speed"
-min_val = 0.2
-min_is_harder = false
-min_color = Color( 0, 1, 1, 1 )
-max_color = Color( 1, 0, 0, 1 )
-score_mult_per_step = 1.1
-setting_name = "shooter_missile_speed_scale"
+position = Vector2( 94.6668, 551.722 )
+title = "Player Size Scale"
+max_val = 1.51
+min_val = 0.49
+score_mult_per_step = 0.7
+setting_name = "player_scale"
 
 [node name="ChallengePanel11" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
@@ -188,8 +165,51 @@ min_is_harder = false
 min_color = Color( 0, 1, 0.976471, 1 )
 max_color = Color( 1, 0, 0, 1 )
 step = 0.5
-score_mult_per_step = 1.2
+score_mult_per_step = 1.08
 setting_name = "light_fade_scale"
+
+[node name="ChallengePanel13" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 556.667, 655 )
+title = "Starting Extra Lives"
+starting_val = 2.0
+max_val = 5.099
+min_val = -0.1
+step = 1.0
+score_mult_per_step = 0.7
+setting_name = "starting_health"
+
+[node name="ChallengePanel9" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 546.667, 206.667 )
+title = "Chaser Scale"
+max_val = 1.25
+min_val = 0.2
+score_mult_per_step = 0.83
+setting_name = "chaser_gen_scale"
+
+[node name="ChallengePanel10" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 550.667, 318.666 )
+title = "Shooter Missile Speed"
+min_val = 0.2
+min_is_harder = false
+min_color = Color( 0, 1, 1, 1 )
+max_color = Color( 1, 0, 0, 1 )
+score_mult_per_step = 1.07
+setting_name = "shooter_missile_speed_scale"
+
+[node name="ChallengePanel5" parent="ChallengePanels" instance=ExtResource( 8 )]
+visible = false
+position = Vector2( 98.6669, 663.722 )
+title = "Enemy Health Scale"
+max_val = 2.1
+min_val = 0.2
+min_is_harder = false
+min_color = Color( 0, 1, 1, 1 )
+max_color = Color( 1, 0, 0, 1 )
+score_mult_per_step = 1.1
+setting_name = "enemy_health_scale"
 
 [node name="ChallengePanel12" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
@@ -201,30 +221,32 @@ min_is_harder = false
 min_color = Color( 0, 1, 1, 1 )
 max_color = Color( 1, 0, 0, 1 )
 step = 0.2
-score_mult_per_step = 1.1
+score_mult_per_step = 1.05
 setting_name = "blocker_spawn_scale"
-
-[node name="ChallengePanel13" parent="ChallengePanels" instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 556.667, 655 )
-title = "Starting Extra Lives"
-starting_val = 2.0
-max_val = 5.099
-min_val = -0.1
-step = 1.0
-score_mult_per_step = 0.5
-setting_name = "starting_health"
 
 [node name="ChallengePanel14" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 556.667, 655 )
-title = "Starting Extra Lives"
-starting_val = 2.0
-max_val = 5.099
-min_val = -0.1
-step = 1.0
-score_mult_per_step = 0.5
-setting_name = "starting_health"
+title = "Enemy Spawn Cooldown Mult"
+min_val = 0.2
+score_mult_per_step = 0.7
+setting_name = "enemy_spawn_time_scale"
+
+[node name="ChallengePanel6" parent="ChallengePanels" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 90.6667, 209.722 )
+title = "Points Spawn"
+selected_is_harder = false
+score_mult_unselected = 5.0
+setting_name = "point_is_active"
+
+[node name="ChallengePanel7" parent="ChallengePanels" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 90.6667, 209.722 )
+title = "Power-Ups Spawn"
+selected_is_harder = false
+score_mult_unselected = 2.0
+setting_name = "powerup_is_active"
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 500.048, 301.233 )
@@ -255,30 +277,21 @@ pitch_scale = 0.7
 script = ExtResource( 11 )
 
 [node name="Challenge" type="Label" parent="."]
-margin_left = 10.0
-margin_top = 4.0
-margin_right = 434.0
-margin_bottom = 73.0
+margin_left = 24.0
+margin_top = 29.1667
+margin_right = 448.0
+margin_bottom = 98.1667
 custom_fonts/font = SubResource( 6 )
 text = "Challenge"
 align = 1
 
 [node name="HighScore" type="Label" parent="."]
-margin_left = 447.0
-margin_top = 16.0
-margin_right = 764.0
-margin_bottom = 56.0
+margin_left = 544.0
+margin_top = 43.3333
+margin_right = 861.0
+margin_bottom = 83.3333
 custom_fonts/font = SubResource( 7 )
 text = "High Score: "
-align = 1
-
-[node name="ChallengeOptionsLabel" type="Label" parent="."]
-margin_left = 316.8
-margin_top = 75.0
-margin_right = 672.8
-margin_bottom = 115.0
-custom_fonts/font = SubResource( 10 )
-text = "Challenge Options"
 align = 1
 
 [node name="ScoreMult" type="Label" parent="."]
@@ -289,9 +302,6 @@ margin_bottom = 588.0
 custom_fonts/font = SubResource( 8 )
 text = "Score Multiplier: X"
 align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HealthImage" type="Sprite" parent="."]
 visible = false

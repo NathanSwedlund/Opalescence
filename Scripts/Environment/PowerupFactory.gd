@@ -58,6 +58,7 @@ var powerup_scenes = {
 
 onready var player = get_parent().find_node("Player")
 export var use_global_settings = true
+var powerup_spawn_time_speed
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -69,7 +70,8 @@ func _ready():
 
 		time_min = Settings.get_setting_if_exists(Settings.factory, "powerup_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "powerup_time_max", time_max)
-
+		powerup_spawn_time_speed = Settings.get_setting_if_exists(Settings.factory, "powerup_spawn_time_speed", powerup_spawn_time_speed)
+		
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
 		powerup_probabilities["bomb_up"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_bomb_up_prob", powerup_probabilities["bomb_up"])
 		powerup_probabilities["bombastic"]    = Settings.get_setting_if_exists(Settings.factory, "powerup_bombastic_prob", powerup_probabilities["bombastic"])
@@ -130,7 +132,7 @@ func spawn_powerup():
 
 
 func reset_spawn_timer():
-	$SpawnTimer.wait_time = rand_range(time_min, time_max)
+	$SpawnTimer.wait_time = rand_range(time_min, time_max) / powerup_spawn_time_speed
 	$SpawnTimer.start()
 
 func _on_SpawnTimer_timeout():
