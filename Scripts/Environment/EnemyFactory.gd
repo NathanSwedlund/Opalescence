@@ -1,5 +1,8 @@
 extends Node2D
 
+export var is_active = true
+export var use_global_settings = true
+
 var chaser_scene  = load("res://Scenes/HelperScenes/Enemies/Chaser.tscn")
 var shooter_scene = load("res://Scenes/HelperScenes/Enemies/Shooter.tscn")
 var blocker_scene = load("res://Scenes/HelperScenes/Enemies/Blocker.tscn")
@@ -11,12 +14,10 @@ export var up_bound = 0
 export var down_bound = 0
 export var time_min = 0.8
 export var time_max = 4.0
-export var is_active = true
 export var chaser_min_scale = 0.15
 export var chaser_max_scale = 1.0
 export var spawn_away_radius = 200
 
-export var use_global_settings = true
 var enemy_spawn_time_speed = 1.0
 
 export var default_enemy_probabilities = {
@@ -28,7 +29,6 @@ export var default_enemy_probabilities = {
 
 var enemy_probabilities
 
-var _is_active
 onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
 export var bound_buffer = 50
@@ -53,7 +53,6 @@ func _ready():
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])
 		
 	randomize()
-	_is_active = is_active
 
 func pick_enemy():
 	# Between 0 and 1
@@ -77,14 +76,12 @@ func spawn_enemy():
 
 func reset():
 	if(use_global_settings):
-		_is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)
-	else:
-		_is_active = is_active
+		is_active = Settings.get_setting_if_exists(Settings.factory, "enemy_is_active", is_active)
+
 	_ready()
 
 func distance_to_closest_entity(point):
 	var closest_dist = INF
-
 	if(point.distance_to(player.position) < closest_dist):
 		closest_dist = point.distance_to(player.position)
 
@@ -153,8 +150,10 @@ func kill_all():
 			c.die()
 
 func _on_Timer_timeout():
-	if(_is_active):
+	if(is_active):
 		spawn_enemy()
+	else:
+		print("enemy fact not active")
 
 	var time_until_next = rand_range(time_min, time_max) / enemy_spawn_time_speed
 	$Timer.wait_time = time_until_next 

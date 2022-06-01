@@ -1,5 +1,8 @@
 extends Node2D
 
+export var is_active = true
+export var use_global_settings = true
+
 export var left_bound = 0
 export var right_bound = 0
 export var up_bound = 0
@@ -7,7 +10,6 @@ export var down_bound = 0
 export var time_min = 20.0
 export var time_max = 60.0
 
-export var is_active = true
 export var powerup_probabilities = {
 	"barrage":1/20.0,
 	"bombastic":1.0/20.0,
@@ -57,7 +59,6 @@ var powerup_scenes = {
 }
 
 onready var player = get_parent().find_node("Player")
-export var use_global_settings = true
 var powerup_spawn_time_speed = 1.0	
 
 # Called when the node enters the scene tree for the first time.
@@ -99,7 +100,8 @@ func _ready():
 	reset_spawn_timer()
 
 func reset():
-	is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)
+	if(use_global_settings):
+		is_active = Settings.get_setting_if_exists(Settings.factory, "powerup_is_active", is_active)
 	reset_spawn_timer()
 	_ready()
 

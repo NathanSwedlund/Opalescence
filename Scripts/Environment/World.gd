@@ -25,8 +25,11 @@ func game_over():
 #	$HeadsUpDisplay/PointsLabel.visible = false
 	$HeadsUpDisplay/HealthDisplay.visible = false
 #	$HeadsUpDisplay/TimeLabel.visible = false
-	
+
+var active_states = [true, true, true]
 func _ready():
+	save_active_states()
+			
 	Settings.apply_sound_settings()
 	for s in songs_scenes:
 		songs.append(load(s))
@@ -35,6 +38,17 @@ func _ready():
 	$AudioStreamPlayer2D.stream = songs[current_song]
 	$AudioStreamPlayer2D.play()
 	start_new_game()
+	
+func save_active_states():
+	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
+	var global_active_states = [Settings.factory["point_is_active"], Settings.factory["enemy_is_active"], Settings.factory["powerup_is_active"]]
+	for i in range(len(factories)):
+		if(factories[i].use_global_settings):
+			active_states[i] = global_active_states[i]
+		else:
+			active_states[i] = factories[i].is_active
+	
+	print("active_states, ", active_states)
 
 func start_new_game():
 	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
@@ -55,6 +69,7 @@ func start_new_game():
 	$HeadsUpDisplay/HealthDisplay.visible = true
 	$HeadsUpDisplay/TimeLabel.visible = true
 	
+
 func stop_factories():
 	$PointFactory.is_active = false
 	$EnemyFactory.is_active = false
@@ -64,6 +79,10 @@ func start_factories():
 	$EnemyFactory.reset()
 	$PointFactory.reset()
 	$PowerupFactory.reset()
+	
+	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
+	for i in range(len(factories)):
+		factories[i].is_active = active_states[i] 
 	
 func reset():
 	start_new_game()

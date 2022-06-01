@@ -19,7 +19,6 @@ export var is_active = true
 
 var play_time = 0
 var points = 0
-const MAX_HEALTH = 3
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
 
 var mouse_direction_from_player = Vector2.ZERO
@@ -128,7 +127,6 @@ func _ready():
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
-	print($BulletCooldownTimer.wait_time)
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 	reset()
@@ -136,11 +134,7 @@ func _ready():
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
-var frame = 0
 func _process(delta):
-	frame = (frame + 1) % 60
-	if(frame == 0):
-		print(has_powerup, "\n", powerup_count(), "\n\n")
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -401,6 +395,10 @@ func _physics_process(delta):
 
 	get_input()
 	var _collision = move_and_collide(velocity*delta)
+	if(_collision != null):
+		if(_collision.collider.is_in_group("Enemies")):
+			print("DIE, DIE, DIE")
+			damage()
 
 func _input(event):
 	# Mouse in viewport coordinates.
@@ -483,9 +481,12 @@ func get_powerup(_powerup, _color):
 		current_bombs = MAX_BOMBS
 		heads_up_display.update_bombs(current_bombs)
 		inf_bombs = true
-	if(_powerup == "BombUp" and current_bombs < MAX_BOMBS):
-		current_bombs += 1
-		heads_up_display.update_bombs(current_bombs)
+		
+	# Not currently a valid powerup
+#	if(_powerup == "BombUp" and current_bombs < MAX_BOMBS):
+#		current_bombs += 1
+#		heads_up_display.update_bombs(current_bombs)
+
 	if(_powerup == "BulletTime"):
 		$PowerupTimers/BulletTime.start()
 		start_powerup_timer($PowerupTimers/BulletTime.wait_time, _color, _powerup)
@@ -505,12 +506,15 @@ func get_powerup(_powerup, _color):
 		current_bombs = MAX_BOMBS
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
-	if(_powerup == "MaxUp"):
-		current_health = MAX_HEALTH
-		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-	if(_powerup == "OneUp" and current_health < MAX_HEALTH):
+		
+	# Not currently a valid powerup
+#	if(_powerup == "MaxUp"):
+#		current_health = MAX_HEALTH
+#		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
+	
+	if(_powerup == "OneUp"):
 		current_health += 1
-		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
+		heads_up_display.update_health(current_health, has_powerup["OverShield"])
 	if(_powerup == "Opalescence"):
 		$PowerupTimers/Opalescence.start()
 		$PowerupTimers/OpalescenceColorShift.start()
@@ -529,7 +533,7 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Vision.wait_time, _color, _powerup)
 		if(has_powerup["Vision"] == false):
 			$OuterLight.scale *= vision_light_scale
-
+		
 	if(_powerup in transformative_powerups):
 		has_powerup[_powerup] = true
 

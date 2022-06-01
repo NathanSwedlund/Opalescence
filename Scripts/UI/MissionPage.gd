@@ -27,7 +27,9 @@ func _ready():
 	
 	if(ui_name in Global.ui_states.keys()):
 		var state =  Global.ui_states[ui_name]
-		select(ui_name)
+		for i in $Pages.get_children():
+			i.visible = true
+		select(state)
 	else:
 		select(current_panel)
 
@@ -35,6 +37,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
+		Global.ui_states[ui_name] = selected
 		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 		
 	get_parent().find_node("Particles2D").visible = !is_shifting
@@ -108,6 +111,10 @@ func finish_shifting():
 
 var current_panel = 0
 func _on_PanelAppearTimer_timeout():
+	if(ui_name in Global.ui_states.keys()):
+		$PanelAppearTimer.stop()
+		return
+		
 	if(current_panel == $Pages.get_child_count()):
 		$PanelAppearTimer.stop()
 		return
@@ -137,8 +144,9 @@ func _on_LastPanelButton_pressed():
 		start_shifting()
 		
 func select(p):
+	$Pages.get_child(selected).scale /= selected_scale
 	selected = p
-	print("PPPPPP", p)
+	$Pages.get_child(selected).scale *= selected_scale
 	for i in range(panel_num):
 		$Pages.get_child(i).find_node("Description").visible = false
 		$Pages.get_child(i).position.x = i * -shift_dist + first_panel_start_x
@@ -147,8 +155,8 @@ func select(p):
 		if(i != selected):
 			$Pages.get_child(i).modulate.a = 0.2
 		
+	position.x += shift_dist * selected
 	$Pages.get_child(selected).find_node("Description").visible = true
-	$Pages.position.x += shift_dist * selected
 	
 	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(p).modulate
 	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1

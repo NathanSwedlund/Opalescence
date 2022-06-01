@@ -2,6 +2,7 @@ extends Node2D
 
 var point_scene = load("res://Scenes/HelperScenes/Point.tscn")
 
+export var is_active = true
 export var use_global_settings = true
 
 export var left_bound = 0
@@ -10,7 +11,6 @@ export var up_bound = 0
 export var down_bound = 0
 export var time_min = 0.8
 export var time_max = 4.0
-export var is_active = true
 
 
 var color_count
@@ -50,7 +50,8 @@ func spawn_point():
 	$Points.add_child(point)
 
 func reset():
-	is_active = Settings.get_setting_if_exists(Settings.factory, "point_is_active", is_active)
+	if(use_global_settings):
+		is_active = Settings.get_setting_if_exists(Settings.factory, "point_is_active", is_active)
 	_ready()
 
 func kill_all():
