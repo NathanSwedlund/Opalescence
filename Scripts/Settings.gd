@@ -88,7 +88,7 @@ var enemy_default = {
 
 	"blocker_gen_scale":1.0,
 	"blocker_point_reward":1250,
-	"blocker_health":100,
+	"blocker_health":70,
 }
 var enemy = enemy_default.duplicate()
 

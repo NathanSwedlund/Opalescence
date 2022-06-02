@@ -475,35 +475,6 @@ factory_settings = {
 "powerup_vision_prob": 1
 }
 
-[node name="MissionPanel5" parent="PageSelector/Pages" instance=ExtResource( 2 )]
-visible = false
-modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
-position = Vector2( 1161, 271 )
-scale = Vector2( 0.832, 0.832 )
-description = "Press E or R-bumper to drop a bomb. You only have three, so use them wisely. Also, you can't shoot pellets or lasers for this one. Good Luck!"
-player_settings = {
-"barrage_burst_time": 0.04,
-"bullet_time_time_scale": 0.2,
-"can_bomb": true,
-"can_shoot": true,
-"can_shoot_laser": true,
-"default_bullets_burst_wait_time": 0.1,
-"default_bullets_per_burst": 6,
-"gravity_pull_scale": 1.0,
-"gravity_radius": 100.0,
-"gravity_well_pull_scale": 6.0,
-"gravity_well_radius": 100000,
-"is_active": true,
-"min_scale": 0.5,
-"powerup_point_value": 1000,
-"shrink_scalar": 0.9,
-"speed": 480.0,
-"starting_bombs": 3,
-"starting_health": 1,
-"unmaker_scale": 2.3,
-"vision_light_scale": 3
-}
-
 [node name="MissionPanel6" parent="PageSelector/Pages" instance=ExtResource( 2 )]
 visible = false
 modulate = Color( 0.968627, 0, 1, 1 )
@@ -638,6 +609,48 @@ player_settings = {
 "speed": 480.0,
 "starting_bombs": 3,
 "starting_health": 3,
+"unmaker_scale": 2.3,
+"vision_light_scale": 3
+}
+
+[node name="MissionPanel5" parent="PageSelector/Pages" instance=ExtResource( 2 )]
+visible = false
+modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
+position = Vector2( 1161, 271 )
+scale = Vector2( 0.832, 0.832 )
+description = "Survive for thirty minutes without life-extending Power-Ups (overshield, one-up). Get as many points as possible. "
+world_settings = {
+"down_bound": 590,
+"has_point_goal": false,
+"has_time_goal": true,
+"is_mission": true,
+"left_bound": 10,
+"mission_title": "30 Minutes",
+"point_goal": 0.0,
+"points_scale": 1.0,
+"right_bound": 1014,
+"time_goal": 1800.0,
+"up_bound": 10
+}
+player_settings = {
+"barrage_burst_time": 0.04,
+"bullet_time_time_scale": 0.2,
+"can_bomb": true,
+"can_shoot": true,
+"can_shoot_laser": true,
+"default_bullets_burst_wait_time": 0.1,
+"default_bullets_per_burst": 6,
+"gravity_pull_scale": 1.0,
+"gravity_radius": 100.0,
+"gravity_well_pull_scale": 6.0,
+"gravity_well_radius": 100000,
+"is_active": true,
+"min_scale": 0.5,
+"powerup_point_value": 1000,
+"shrink_scalar": 0.9,
+"speed": 480.0,
+"starting_bombs": 3,
+"starting_health": 1,
 "unmaker_scale": 2.3,
 "vision_light_scale": 3
 }

@@ -45,10 +45,10 @@ text = "Goal: pts"
 autowrap = true
 
 [node name="Description" type="Label" parent="."]
-margin_left = 3.0
-margin_top = 180.0
-margin_right = 709.0
-margin_bottom = 215.0
+margin_left = -11.0
+margin_top = 146.0
+margin_right = 695.0
+margin_bottom = 181.0
 custom_fonts/font = SubResource( 1 )
 text = "Description"
 align = 1

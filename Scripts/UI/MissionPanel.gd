@@ -58,13 +58,13 @@ export var enemy_settings =  {
 
 	"shooter_shoot_freq_range": [1.0, 2.0],
 	"shooter_point_reward":600,
-	"shooter_health":15,
+	"shooter_health":30,
 	"shooter_missile_speed":400,
 	"shooter_missile_health":1,
 	"shooter_missile_damage":5,
 
 	"blocker_point_reward":1250,
-	"blocker_health":150,
+	"blocker_health":70,
 }
 
 export var player_settings = {
