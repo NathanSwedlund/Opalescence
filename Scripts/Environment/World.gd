@@ -39,6 +39,7 @@ func _ready():
 	$AudioStreamPlayer2D.play()
 	start_new_game()
 	
+	
 func save_active_states():
 	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
 	var global_active_states = [Settings.factory["point_is_active"], Settings.factory["enemy_is_active"], Settings.factory["powerup_is_active"]]
@@ -80,9 +81,13 @@ func start_factories():
 	$PointFactory.reset()
 	$PowerupFactory.reset()
 	
+	
 	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
 	for i in range(len(factories)):
-		factories[i].is_active = active_states[i] 
+		factories[i].is_active = active_states[i]
+	print("2. active_states, ", active_states)
+	for i in range(len(factories)):
+		print("3. ", factories[i].is_active)
 	
 func reset():
 	start_new_game()

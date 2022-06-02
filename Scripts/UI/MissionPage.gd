@@ -105,6 +105,7 @@ func finish_shifting():
 	get_parent().find_node("MissionContainerFrame").modulate.a = 1.0
 	$Pages.get_children()[selected].find_node("Description").visible = true
 	$Pages.get_children()[selected].modulate.a = 1.0
+	get_parent().find_node("Label").modulate = $Pages.get_child(selected).modulate
 	$SelectSound.play()
 	position.x = shift_dist * selected			
 	is_shifting = false
@@ -163,3 +164,4 @@ func select(p):
 	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
 	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
 	get_parent().find_node("Particles2D").modulate = $Pages.get_child(p).modulate
+	get_parent().find_node("Label").modulate = $Pages.get_child(p).modulate

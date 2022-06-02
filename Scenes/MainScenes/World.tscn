@@ -230,16 +230,16 @@ down_bound = 550
 time_min = 0.0
 time_max = 4.0
 powerup_probabilities = {
-"barrage": 1.0,
+"barrage": 1111.0,
 "bomb_up": 0.0,
 "bombastic": 1.0,
-"bullet_time": 1.0,
+"bullet_time": 1111.0,
 "gravity_well": 1.0,
 "incendiary": 1.0,
 "max_bomb": 1.0,
 "max_up": 0.0,
 "one_up": 1.0,
-"opalescence": 111111.0,
+"opalescence": 1.0,
 "overshield": 1.0,
 "unmaker": 1.0,
 "vision": 1.0

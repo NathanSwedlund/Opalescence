@@ -71,6 +71,7 @@ var transformative_powerups = ["Barrage", "Bombastic", "BulletTime", "GravityWel
 var has_powerup = {}
 var powerup_point_value = 1000
 var bullet_time_time_scale = 0.2
+var bullet_time_player_speed_mult = 2.0
 var vision_light_scale = 3.0
 
 # Secondary fire variables
@@ -200,6 +201,7 @@ func change_color(new_color):
 
 func get_input():
 	velocity = Vector2.ZERO
+
 	if(Input.is_action_pressed("ui_left")):
 		velocity += directions["LEFT"]*speed*Input.get_action_strength("ui_left")
 	if(Input.is_action_pressed("ui_right")):
@@ -208,6 +210,10 @@ func get_input():
 		velocity += directions["UP"]*speed*Input.get_action_strength("ui_up")
 	if(Input.is_action_pressed("ui_down")):
 		velocity += directions["DOWN"]*speed*Input.get_action_strength("ui_down")
+	
+	if(has_powerup["BulletTime"]):
+		velocity *= bullet_time_player_speed_mult
+	
 	if(Input.is_action_just_pressed("ui_e") and can_bomb ):
 		if(current_bombs >= 1):
 			if(inf_bombs == false):
@@ -231,7 +237,10 @@ func get_input():
 func shoot():
 	if(can_shoot == false):
 		return
-	bullets_to_shoot = bullets_per_burst
+	
+	if(has_powerup["Barrage"] == false):
+		bullets_to_shoot = bullets_per_burst
+		
 	if(bullets_to_shoot > 1):
 		can_shoot = false
 		$BulletBurstTimer.start()
@@ -334,12 +343,9 @@ func respawn():
 	_on_Unmaker_timeout()
 	_on_Vision_timeout()
 
-	if(get_parent().find_node("EnemyFactory") != null):
-		get_parent().find_node("EnemyFactory").reset()
-	if(get_parent().find_node("PointFactory") != null):
-		get_parent().find_node("PointFactory").reset()
-	if(get_parent().find_node("PowerupFactory") != null):
-		get_parent().find_node("PowerupFactory").reset()
+	if(get_parent().has_method("start_factories")):
+		get_parent().start_factories()
+		
 	change_color(Color.white)
 	position = respawn_position
 	visible = true
@@ -407,7 +413,7 @@ func _input(event):
 
 func _on_BulletCooldownTimer_timeout():
 	can_shoot = Settings.player["can_shoot"]
-	bullets_per_burst = default_bullets_per_burst
+#	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
@@ -474,6 +480,7 @@ func get_powerup(_powerup, _color):
 		$PowerupTimers/Barrage.start()
 		start_powerup_timer($PowerupTimers/Barrage.wait_time, _color, _powerup)
 		bullets_per_burst = 10000 # very big number will be cut off by _on_Barrage_timeout()
+		bullets_to_shoot = 10000
 		shoot()
 	if(_powerup == "Bombastic"):
 		$PowerupTimers/Bombastic.start()

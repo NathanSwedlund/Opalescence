@@ -616,7 +616,7 @@ autoplay = true
 script = ExtResource( 9 )
 is_music = true
 
-[node name="OpalescenceLabel" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 margin_left = 1.0
 margin_top = 29.0
 margin_right = 1015.0
