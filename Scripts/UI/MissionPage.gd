@@ -165,3 +165,4 @@ func select(p):
 	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
 	get_parent().find_node("Particles2D").modulate = $Pages.get_child(p).modulate
 	get_parent().find_node("Label").modulate = $Pages.get_child(p).modulate
+

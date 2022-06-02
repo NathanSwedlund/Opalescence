@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -44,6 +44,10 @@ font_data = ExtResource( 9 )
 size = 80
 outline_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
 font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=30]
 
 [sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 2
@@ -362,12 +366,11 @@ margin_top = 1453.33
 margin_right = 2472.0
 margin_bottom = 1999.33
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Restart"
 flat = true
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 button_index = 0
 
 [node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton"]
@@ -390,6 +393,8 @@ margin_top = 2720.0
 margin_right = 1569.0
 margin_bottom = 3266.0
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Menu"
 flat = true
 script = ExtResource( 11 )
@@ -418,6 +423,8 @@ margin_top = 2087.0
 margin_right = 1569.0
 margin_bottom = 2633.0
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Shop"
 flat = true
 script = ExtResource( 11 )
@@ -467,6 +474,8 @@ margin_top = 1453.0
 margin_right = 2171.0
 margin_bottom = 1999.0
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Resume"
 flat = true
 script = ExtResource( 11 )
@@ -492,6 +501,8 @@ margin_top = 2720.0
 margin_right = 1569.0
 margin_bottom = 3266.0
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Menu"
 flat = true
 script = ExtResource( 11 )
@@ -520,6 +531,8 @@ margin_top = 2087.0
 margin_right = 2472.0
 margin_bottom = 2633.0
 custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
 text = "Options"
 flat = true
 script = ExtResource( 11 )

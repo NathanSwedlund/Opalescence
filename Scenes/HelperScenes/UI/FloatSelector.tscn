@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -10,6 +10,10 @@
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
@@ -31,6 +35,8 @@ texture = ExtResource( 5 )
 margin_left = 228.8
 margin_top = 30.0
 custom_fonts/font = SubResource( 1 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
 text = ">"
 flat = true
 
@@ -38,6 +44,8 @@ flat = true
 margin_left = 10.8
 margin_top = 30.0
 custom_fonts/font = SubResource( 1 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
 text = "<"
 flat = true
 
