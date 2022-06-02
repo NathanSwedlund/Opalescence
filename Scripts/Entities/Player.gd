@@ -118,7 +118,7 @@ func _ready():
 		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
-		
+
 
 	Global.player = self
 	for tp in transformative_powerups:
@@ -210,10 +210,10 @@ func get_input():
 		velocity += directions["UP"]*speed*Input.get_action_strength("ui_up")
 	if(Input.is_action_pressed("ui_down")):
 		velocity += directions["DOWN"]*speed*Input.get_action_strength("ui_down")
-	
+
 	if(has_powerup["BulletTime"]):
 		velocity *= bullet_time_player_speed_mult
-	
+
 	if(Input.is_action_just_pressed("ui_e") and can_bomb ):
 		if(current_bombs >= 1):
 			if(inf_bombs == false):
@@ -237,10 +237,10 @@ func get_input():
 func shoot():
 	if(can_shoot == false):
 		return
-	
+
 	if(has_powerup["Barrage"] == false):
 		bullets_to_shoot = bullets_per_burst
-		
+
 	if(bullets_to_shoot > 1):
 		can_shoot = false
 		$BulletBurstTimer.start()
@@ -325,7 +325,7 @@ func die():
 			timer.stop_timer()
 
 	heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-	
+
 	is_charging_laser = false
 	can_shoot = false
 	can_shoot_laser = false
@@ -345,11 +345,11 @@ func respawn():
 
 	if(get_parent().has_method("start_factories")):
 		get_parent().start_factories()
-		
+
 	change_color(Color.white)
 	position = respawn_position
 	visible = true
-	
+
 	can_shoot = Settings.player["can_shoot"]
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 
@@ -403,7 +403,6 @@ func _physics_process(delta):
 	var _collision = move_and_collide(velocity*delta)
 	if(_collision != null):
 		if(_collision.collider.is_in_group("Enemies")):
-			print("DIE, DIE, DIE")
 			damage()
 
 func _input(event):
@@ -417,8 +416,6 @@ func _on_BulletCooldownTimer_timeout():
 	bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
-#	print(bullets_to_shoot)
-#	print("bullets_per_burst, ", bullets_per_burst, ", bullets_to_shoot, ", bullets_to_shoot)
 	bullets_to_shoot -= 1
 	if(bullets_to_shoot > 0):
 		spawn_bullet()
@@ -488,7 +485,7 @@ func get_powerup(_powerup, _color):
 		current_bombs = MAX_BOMBS
 		heads_up_display.update_bombs(current_bombs)
 		inf_bombs = true
-		
+
 	# Not currently a valid powerup
 #	if(_powerup == "BombUp" and current_bombs < MAX_BOMBS):
 #		current_bombs += 1
@@ -513,12 +510,12 @@ func get_powerup(_powerup, _color):
 		current_bombs = MAX_BOMBS
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
-		
+
 	# Not currently a valid powerup
 #	if(_powerup == "MaxUp"):
 #		current_health = MAX_HEALTH
 #		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-	
+
 	if(_powerup == "OneUp"):
 		current_health += 1
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
@@ -540,7 +537,7 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Vision.wait_time, _color, _powerup)
 		if(has_powerup["Vision"] == false):
 			$OuterLight.scale *= vision_light_scale
-		
+
 	if(_powerup in transformative_powerups):
 		has_powerup[_powerup] = true
 

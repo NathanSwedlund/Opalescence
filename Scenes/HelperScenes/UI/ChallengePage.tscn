@@ -214,7 +214,7 @@ setting_name = "enemy_health_scale"
 [node name="ChallengePanel12" parent="ChallengePanels" instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 553.333, 546.667 )
-title = "Blocker Spawn Chance"
+title = "Eater Spawn Chance"
 max_val = 3.1
 min_val = 0.5
 min_is_harder = false

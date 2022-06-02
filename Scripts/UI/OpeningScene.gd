@@ -16,14 +16,14 @@ func _ready():
 	for i in range($FadeInLabels.get_child_count()):
 		$FadeInLabels.get_child(i).modulate = Settings.saved_settings["colors"][i%len(Settings.saved_settings["colors"])]
 		$FadeInLabels.get_child(i).modulate.a = 0.0
-		
+
 	if(Settings.saved_settings["show_intro"] == false):
 		$LabelContainer.visible = false
 		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
-	
+
 	move_speed = ($LabelContainer.position.y - destination_position.y)/$WaitTimer.wait_time
 	scale_speed = ($LabelContainer.scale.y - destination_scale.y)/$WaitTimer.wait_time
-	
+
 	OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
 
 var first_char_timer_pass = true
@@ -41,10 +41,9 @@ func _on_CharTimer_timeout():
 		$CharTimer.stop()
 		$WaitTimer.start()
 		return
-		
+
 	$FadeInLabels.get_child(current_char_index).fade_in()
 	$CharAppears.play()
-	print("CHAR")
 	$CharAppears.pitch_scale += pitch_change_per_char
 	current_char_index += 1
 

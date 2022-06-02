@@ -46,12 +46,12 @@ func _ready():
 		time_min = Settings.get_setting_if_exists(Settings.factory, "enemy_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "enemy_time_max", time_max)
 		enemy_spawn_time_speed = Settings.get_setting_if_exists(Settings.factory, "enemy_spawn_time_speed", enemy_spawn_time_speed)
-		
+
 		enemy_probabilities["blocker"] = Settings.get_setting_if_exists(Settings.factory, "enemy_blocker_prob", enemy_probabilities["blocker"]) * Settings.get_setting_if_exists(Settings.factory, "blocker_spawn_scale", 1.0)
 		enemy_probabilities["chaser"]  = Settings.get_setting_if_exists(Settings.factory, "enemy_chaser_prob", enemy_probabilities["chaser"])
 		enemy_probabilities["comet"]   = Settings.get_setting_if_exists(Settings.factory, "enemy_comet_prob", enemy_probabilities["comet"])
 		enemy_probabilities["shooter"] = Settings.get_setting_if_exists(Settings.factory, "enemy_shooter_prob", enemy_probabilities["shooter"])
-		
+
 	randomize()
 
 func pick_enemy():
@@ -152,8 +152,6 @@ func kill_all():
 func _on_Timer_timeout():
 	if(is_active):
 		spawn_enemy()
-	else:
-		print("enemy fact not active")
 
 	var time_until_next = rand_range(time_min, time_max) / enemy_spawn_time_speed
-	$Timer.wait_time = time_until_next 
+	$Timer.wait_time = time_until_next
