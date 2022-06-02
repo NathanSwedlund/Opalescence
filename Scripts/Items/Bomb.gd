@@ -7,6 +7,7 @@ export var rot_speed = 20
 export var scale_speed = Vector2(6, 6)
 export var scale_max = 1.5
 export var scale_min = 0.75
+export var explosion_scale = 1.5
 var growing = true
 var exploding = false
 var damage = 40
@@ -47,8 +48,8 @@ func explode():
 	$AudioStreamPlayer.play()
 	$ExplosionTimer.start()
 	$OuterLight.scale *= 12
-	$InnerLight.energy *= 1.7
-	$InnerLight.scale *= 5
+	$InnerLight.energy *= 1.9
+	$InnerLight.scale *= 9
 	$InnerLight.energy *= 1.4
 	$Sprite.visible = false
 

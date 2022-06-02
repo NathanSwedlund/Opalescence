@@ -65,6 +65,14 @@ func change_color(new_color):
 	for c in get_children():
 		if(c.get("modulate") != null):
 			c.modulate = new_color
+			
+	$GameOverPopup/Buttons/MenuButton/Light2D.color = new_color
+	$GameOverPopup/Buttons/ShopButton/Light2D.color = new_color
+	$GameOverPopup/Buttons/RestartButton/Light2D.color = new_color
+	$PausePopup/Buttons/MenuButton/Light2D.color = new_color
+	$PausePopup/Buttons/ResumeButton/Light2D.color = new_color
+	$PausePopup/Buttons/OptionsButton/Light2D.color = new_color
+	
 
 func reset():
 	$GameOverPopup/Buttons.is_active = false

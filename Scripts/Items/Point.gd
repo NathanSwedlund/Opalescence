@@ -8,11 +8,15 @@ var decay_stage = 0
 # Will be set by pointFactory
 var player:Node2D
 
+var distance_near_enemies_to_erase_at_spawn = 1000
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Points")
 	$OuterLight.color = modulate
 	$InnerLight.color = modulate
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if(position.distance_squared_to(enemy.position) < distance_near_enemies_to_erase_at_spawn):
+			queue_free()
 
 func _process(delta):
 	var dist = position.distance_squared_to(player.position)

@@ -167,7 +167,7 @@ func reset_settings():
 
 #func _process(delta):
 
-var min_vol = -20
+var min_vol = -30
 var max_vol = 10
 func apply_sound_settings():
 	for c in get_tree().get_nodes_in_group("Music"):
