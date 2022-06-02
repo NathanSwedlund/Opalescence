@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Textures/Entities/player3.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Textures/Entities/player3-2.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Textures/UI/bombImage-pixel.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
@@ -307,7 +307,6 @@ texture = ExtResource( 10 )
 material = SubResource( 27 )
 position = Vector2( -76, 16 )
 rotation = 4.71239
-scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="HeadsUpDisplay/HealthDisplay"]
