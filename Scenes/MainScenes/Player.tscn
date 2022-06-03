@@ -135,7 +135,8 @@ shadow_enabled = true
 
 [node name="MidLight" type="Light2D" parent="OuterLight"]
 texture = ExtResource( 4 )
-energy = 3.0
+texture_scale = 0.5
+energy = 2.4
 shadow_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

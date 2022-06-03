@@ -121,6 +121,7 @@ func change_color(color):
 	$Pages.get_children()[selected].find_node("Description").visible = true
 	$Pages.get_children()[selected].modulate.a = 1.0
 	get_parent().find_node("Label").modulate = color
+	get_parent().find_node("Label").modulate.a = 1.0
 	
 	
 func finish_shifting():
