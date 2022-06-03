@@ -303,6 +303,7 @@ func die():
 	explosion.scale *= 2.6
 	get_parent().add_child(explosion)
 
+	$BulletBurstTimer.stop()
 
 	visible = false
 	get_parent().find_node("EnemyFactory").kill_all()
@@ -364,6 +365,8 @@ func game_over():
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
 
+	$BulletBurstTimer.stop() 
+	
 	var is_mission = Settings.world["is_mission"]
 	var mission_complete = false
 	var score_title = Settings.world["mission_title"]
@@ -412,7 +415,6 @@ func _input(event):
 
 func _on_BulletCooldownTimer_timeout():
 	can_shoot = Settings.player["can_shoot"]
-#	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
