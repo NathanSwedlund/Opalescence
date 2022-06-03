@@ -57,6 +57,7 @@ text = "X 1.0
 valign = 1
 
 [node name="Light2D" type="Light2D" parent="."]
+visible = false
 position = Vector2( 160, 81 )
 scale = Vector2( 0.359375, 0.0917969 )
 texture = ExtResource( 4 )

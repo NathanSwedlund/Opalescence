@@ -12,7 +12,7 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=10]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=12]
-[ext_resource path="res://Resources/Textures/Entities/Enemies/chaser.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Textures/UI/ChallengePanelContainer.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFont" id=9]
 size = 30
@@ -73,7 +73,7 @@ scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 4 )
 col_sep = 500
 row_sep = 120
-starting_panel_loc = Vector2( 70, 220 )
+starting_panel_loc = Vector2( 130, 220 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
@@ -323,27 +323,9 @@ script = ExtResource( 11 )
 wait_time = 0.05
 autostart = true
 
-[node name="Chaser" type="Sprite" parent="."]
-position = Vector2( 511.6, 115 )
-scale = Vector2( 12.089, 0.12 )
-texture = ExtResource( 13 )
-
-[node name="Chaser2" type="Sprite" parent="."]
-position = Vector2( 511.6, 500 )
-rotation = 3.14159
-scale = Vector2( 12.089, 0.12 )
-texture = ExtResource( 13 )
-
-[node name="Chaser3" type="Sprite" parent="."]
-position = Vector2( 1005.46, 306.673 )
-rotation = 1.5708
-scale = Vector2( 4.55526, 0.12 )
-texture = ExtResource( 13 )
-
-[node name="Chaser4" type="Sprite" parent="."]
-position = Vector2( 18.9902, 305.874 )
-rotation = -1.5708
-scale = Vector2( 4.55526, 0.12 )
+[node name="ChallengePanelContainer" type="Sprite" parent="."]
+position = Vector2( 512.4, 307.917 )
+scale = Vector2( 5.116, 2.79444 )
 texture = ExtResource( 13 )
 
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]
