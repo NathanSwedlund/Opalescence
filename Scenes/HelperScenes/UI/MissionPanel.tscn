@@ -56,7 +56,8 @@ valign = 1
 autowrap = true
 
 [node name="MissionFrame" type="Sprite" parent="."]
-scale = Vector2( 4, 5 )
+position = Vector2( 0, -20 )
+scale = Vector2( 5.05, 5.194 )
 texture = ExtResource( 2 )
 
 [node name="Button" type="Button" parent="."]

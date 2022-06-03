@@ -9,7 +9,7 @@
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=9]
-[ext_resource path="res://Resources/Textures/UI/MissionContainerFrame.png" type="Texture" id=10]
+[ext_resource path="res://Resources/Textures/UI/MissionContainerFrame2.png" type="Texture" id=10]
 
 [sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0, 0.486842 )
@@ -43,7 +43,7 @@ size = 45
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=7]
-size = 20
+size = 30
 font_data = ExtResource( 7 )
 
 [sub_resource type="StyleBoxEmpty" id=8]
@@ -84,7 +84,6 @@ scene_page_selector_is_in = "res://Scenes/HelperScenes/UI/MissionPage.tscn"
 ui_name = "MissionPage"
 
 [node name="Pages" type="Node2D" parent="PageSelector"]
-position = Vector2( -3.2, 17.5 )
 
 [node name="MissionPanel" parent="PageSelector/Pages" instance=ExtResource( 2 )]
 visible = false
@@ -260,7 +259,7 @@ player_settings = {
 visible = false
 modulate = Color( 0.176471, 0.670588, 1, 1 )
 position = Vector2( 402.025, 269 )
-scale = Vector2( 0.832, 0.832 )
+scale = Vector2( 0.84, 0.84 )
 description = "You can't move! Keep the chasers from touching you. Once you start shooting you won't stop. No bombs, no lasers"
 world_settings = {
 "down_bound": 590,
@@ -347,7 +346,7 @@ player_settings = {
 visible = false
 modulate = Color( 0.0509804, 0.447059, 0.709804, 1 )
 position = Vector2( 402.025, 269 )
-scale = Vector2( 0.832, 0.832 )
+scale = Vector2( 0.84, 0.84 )
 description = "The long awaited sequel to Meteors is here! You still can't move, but this time you only shoot once pellet per burst. Luckily, that's all that it will take to kill a chaser this time. No bombs, no Laser. Just chasers, a lot of them."
 world_settings = {
 "down_bound": 590,
@@ -436,7 +435,7 @@ player_settings = {
 visible = false
 modulate = Color( 0.0666667, 0.192157, 1, 1 )
 position = Vector2( 662.025, 269 )
-scale = Vector2( 0.832, 0.832 )
+scale = Vector2( 0.84, 0.84 )
 description = "Survive for two-hundred seconds against the small chasers"
 world_settings = {
 "down_bound": 590,
@@ -521,8 +520,8 @@ player_settings = {
 [node name="MissionPanel6" parent="PageSelector/Pages" instance=ExtResource( 2 )]
 visible = false
 modulate = Color( 0.968627, 0, 1, 1 )
-position = Vector2( 1396, 270 )
-scale = Vector2( 0.832, 0.832 )
+position = Vector2( 1396, 269 )
+scale = Vector2( 0.84, 0.84 )
 description = "Survive against the onslaught of the tiny Chasers for 3 minutes. You have seven lives, but don't let that fool you into thinking this will be easy. No powerups allowed"
 world_settings = {
 "down_bound": 590,
@@ -607,7 +606,7 @@ player_settings = {
 visible = false
 modulate = Color( 0.133333, 0, 0.501961, 1 )
 position = Vector2( 911, 269 )
-scale = Vector2( 0.832, 0.832 )
+scale = Vector2( 0.84, 0.84 )
 description = "All points make you much darker"
 world_settings = {
 "down_bound": 590,
@@ -656,8 +655,8 @@ factory_settings = {
 [node name="MissionPanel5" parent="PageSelector/Pages" instance=ExtResource( 2 )]
 visible = false
 modulate = Color( 0.619608, 0.105882, 0.905882, 1 )
-position = Vector2( 1161, 271 )
-scale = Vector2( 0.832, 0.832 )
+position = Vector2( 1161, 269 )
+scale = Vector2( 0.84, 0.84 )
 description = "Survive for thirty minutes without life-extending Power-Ups (overshield, one-up). Get as many points as possible. "
 world_settings = {
 "down_bound": 590,
@@ -679,7 +678,7 @@ player_settings = {
 "can_shoot": true,
 "can_shoot_laser": true,
 "default_bullets_burst_wait_time": 0.1,
-"default_bullets_per_burst": 6,
+"default_bullets_per_burst": 3,
 "gravity_pull_scale": 1.0,
 "gravity_radius": 100.0,
 "gravity_well_pull_scale": 6.0,
@@ -708,8 +707,8 @@ wait_time = 0.08
 autostart = true
 
 [node name="MissionContainerFrame" type="Sprite" parent="."]
-position = Vector2( 513.2, 340 )
-scale = Vector2( 5.276, 5.4 )
+position = Vector2( 513, 340 )
+scale = Vector2( 5.25, 5.4 )
 texture = ExtResource( 10 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
@@ -728,10 +727,10 @@ text = "MISSION SELECT"
 align = 1
 
 [node name="NextPanelButton" type="Button" parent="."]
-margin_left = 249.6
-margin_top = 245.0
-margin_right = 281.6
-margin_bottom = 271.0
+margin_left = 237.6
+margin_top = 230.0
+margin_right = 280.6
+margin_bottom = 266.0
 custom_fonts/font = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/focus = SubResource( 9 )
@@ -751,10 +750,10 @@ shortcut_in_tooltip = false
 flat = true
 
 [node name="LastPanelButton" type="Button" parent="."]
-margin_left = 12.0
-margin_top = 245.0
-margin_right = 24.0
-margin_bottom = 271.0
+margin_left = 14.4
+margin_top = 230.0
+margin_right = 57.4
+margin_bottom = 266.833
 custom_fonts/font = SubResource( 7 )
 custom_styles/pressed = SubResource( 10 )
 custom_styles/focus = SubResource( 11 )

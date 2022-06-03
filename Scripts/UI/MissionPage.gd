@@ -15,6 +15,7 @@ var panel_num = 0
 
 export var scene_page_selector_is_in = ""
 export var ui_name = ""
+export var ui_modulate_saturation_mod = -0.15
 
 func about_to_change_scenes():
 	Global.ui_states[ui_name] = current_panel
@@ -65,7 +66,6 @@ func _process(delta):
 
 func load_scene_from_panel():
 	Global.ui_states[ui_name] = selected
-	print(Global.ui_states)
 	
 	Global.return_scene = scene_page_selector_is_in
 	Settings.world = $Pages.get_child(selected).world_settings.duplicate()
@@ -84,7 +84,9 @@ func load_scene_from_panel():
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func start_shifting():
-	print(selected)
+	for i in range(panel_num):
+		print($Pages.get_child(i).scale)
+		
 	$Pages.get_child(selected).scale /= selected_scale
 	$Pages.get_children()[selected].find_node("Description").visible = false
 	$Pages.get_children()[selected].modulate.a = 0.2
@@ -93,21 +95,38 @@ func start_shifting():
 
 	is_shifting = true
 	$Pages.get_child(selected).scale *= selected_scale
-	print(selected)
 
-func finish_shifting():
-	get_parent().find_node("Particles2D").modulate = $Pages.get_child(selected).modulate
-	get_parent().find_node("Particles2D").find_node("Light2D").color = $Pages.get_child(selected).modulate
-	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(selected).modulate
-	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
+func change_color(color):
+	get_parent().find_node("Particles2D").modulate = color
+	get_parent().find_node("Particles2D").find_node("Light2D").color = color
+	
+	get_parent().find_node("MissionContainerFrame").modulate = color
+	get_parent().find_node("MissionContainerFrame").modulate.r += ui_modulate_saturation_mod
+	get_parent().find_node("MissionContainerFrame").modulate.g += ui_modulate_saturation_mod
+	get_parent().find_node("MissionContainerFrame").modulate.b += ui_modulate_saturation_mod
 	get_parent().find_node("MissionContainerFrame").modulate.a = 1.0
+	
+	get_parent().find_node("NextPanelButton").modulate = color
+	get_parent().find_node("NextPanelButton").modulate.r += ui_modulate_saturation_mod * -3
+	get_parent().find_node("NextPanelButton").modulate.g += ui_modulate_saturation_mod * -3
+	get_parent().find_node("NextPanelButton").modulate.b += ui_modulate_saturation_mod * -3
+	get_parent().find_node("NextPanelButton").modulate.a = 1.0
+	
+	get_parent().find_node("LastPanelButton").modulate = color
+	get_parent().find_node("LastPanelButton").modulate.r += ui_modulate_saturation_mod * -3
+	get_parent().find_node("LastPanelButton").modulate.g += ui_modulate_saturation_mod * -3
+	get_parent().find_node("LastPanelButton").modulate.b += ui_modulate_saturation_mod * -3
+	get_parent().find_node("LastPanelButton").modulate.a = 1.0
+	
 	$Pages.get_children()[selected].find_node("Description").visible = true
 	$Pages.get_children()[selected].modulate.a = 1.0
-	get_parent().find_node("Label").modulate = $Pages.get_child(selected).modulate
+	get_parent().find_node("Label").modulate = color
+	
+	
+func finish_shifting():
+	change_color($Pages.get_child(selected).modulate)
 	$SelectSound.play()
-	position.x = shift_dist * selected			
+	position.x = shift_dist * selected
 	is_shifting = false
 
 var current_panel = 0
@@ -157,12 +176,5 @@ func select(p):
 			$Pages.get_child(i).modulate.a = 0.2
 		
 	position.x += shift_dist * selected
-	$Pages.get_child(selected).find_node("Description").visible = true
-	
-	get_parent().find_node("MissionContainerFrame").modulate = $Pages.get_child(p).modulate
-	get_parent().find_node("MissionContainerFrame").modulate.r -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.g -= 0.1
-	get_parent().find_node("MissionContainerFrame").modulate.b -= 0.1
-	get_parent().find_node("Particles2D").modulate = $Pages.get_child(p).modulate
-	get_parent().find_node("Label").modulate = $Pages.get_child(p).modulate
+	change_color($Pages.get_child(selected).modulate)
 
