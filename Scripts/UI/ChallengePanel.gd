@@ -59,3 +59,8 @@ func update_score_mult(_mult):
 func update_color():
 	var ratio = (current_val-min_val)/(max_val-min_val)	
 	modulate = Color(move_toward(min_color.r, max_color.r, ratio), move_toward(min_color.g, max_color.g, ratio), move_toward(min_color.b, max_color.b, ratio))
+
+
+func _on_Title_mouse_entered():
+	print('iergpwergher')
+	get_parent().get_parent().change_panel(get_position_in_parent())

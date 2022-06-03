@@ -104,16 +104,16 @@ button_count = 3
 is_active = true
 
 [node name="PlayButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-visible = false
-margin_left = 313.333
+margin_left = -843.0
 margin_top = 1600.0
-margin_right = 1529.33
+margin_right = 1529.0
 margin_bottom = 2146.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Play"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 0
 button_shift_index = 0
@@ -135,8 +135,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="OptionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-visible = false
-margin_left = 300.0
+margin_left = -843.0
 margin_top = 2113.33
 margin_right = 2419.0
 margin_bottom = 2659.33
@@ -145,6 +144,7 @@ custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Options"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 1
 button_shift_index = 1
@@ -166,8 +166,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-visible = false
-margin_left = 333.333
+margin_left = -843.0
 margin_top = 3246.67
 margin_right = 1549.33
 margin_bottom = 3792.67
@@ -176,10 +175,8 @@ custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Quit"
 flat = true
+align = 2
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 button_index = 2
 button_shift_index = 4
 
@@ -205,29 +202,30 @@ button_count = 5
 
 [node name="StandardButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 326.667
+margin_left = -2559.0
 margin_top = 1060.0
-margin_right = 2746.67
+margin_right = 2727.0
 margin_bottom = 1606.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Standard"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 0
 button_shift_index = 0
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/StandardButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2685.2, 355.417 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/StandardButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3725.67, 320 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -236,29 +234,30 @@ process_material = SubResource( 1 )
 
 [node name="MissionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 353.333
-margin_top = 1613.33
-margin_right = 2773.33
-margin_bottom = 2159.33
+margin_left = -2559.0
+margin_top = 1613.0
+margin_right = 2727.0
+margin_bottom = 2159.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Missions"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 1
 button_shift_index = 1
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/MissionsButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2572.33, 307 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/MissionsButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3745.67, 313.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -267,15 +266,16 @@ process_material = SubResource( 1 )
 
 [node name="ChallengeButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 320.0
-margin_top = 2133.33
-margin_right = 3041.0
-margin_bottom = 2679.33
+margin_left = -2559.0
+margin_top = 2133.0
+margin_right = 3027.0
+margin_bottom = 2679.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Challenge"
 flat = true
+align = 2
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -285,14 +285,14 @@ button_shift_index = 2
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2579, 347 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3759, 353.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -301,15 +301,16 @@ process_material = SubResource( 1 )
 
 [node name="TutorialsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 353.0
+margin_left = -2559.0
 margin_top = 2707.0
-margin_right = 1569.0
+margin_right = 3027.0
 margin_bottom = 3253.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Tutorials"
 flat = true
+align = 2
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -319,14 +320,14 @@ button_shift_index = 3
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2678.53, 341.75 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3759, 353.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -335,29 +336,30 @@ process_material = SubResource( 1 )
 
 [node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 333.333
-margin_top = 3246.67
-margin_right = 1549.33
-margin_bottom = 3792.67
+margin_left = -2559.0
+margin_top = 3247.0
+margin_right = 1560.0
+margin_bottom = 3793.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Back"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 4
 button_shift_index = 4
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2678.53, 341.75 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3759, 353.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -429,7 +431,6 @@ custom_styles/focus = SubResource( 6 )
 text = "Back"
 flat = true
 script = ExtResource( 8 )
-left_margin_on_hover = 7000
 button_index = 6
 button_shift_index = 5
 

@@ -44,9 +44,11 @@ func update_score_mult(_selected):
 	$ScoreMult.text = "X " + str(Global.round_float(score_mult, 2))
 
 func _on_Button_pressed():
+	$ChangeAudio.play()
 	update_selected(!is_selected)
 	
 func update_color():
 	modulate = selected_color if is_selected else unselected_color
 
-	
+func _on_Title_mouse_entered():
+	get_parent().get_parent().change_panel(get_position_in_parent())

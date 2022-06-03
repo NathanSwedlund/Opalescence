@@ -93,6 +93,15 @@ func deselect_panel(panel_num):
 	$ChallengePanels.get_child(current_panel_selected).scale /= panel_selection_scale
 	$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = false
 
+func change_panel(panel_num):
+	if(panel_num == current_panel_selected):
+		return
+	
+	$SelectAudio.play()
+	deselect_panel(current_panel_selected)
+	current_panel_selected = panel_num
+	select_panel(current_panel_selected)
+
 func update_global_score_mult():
 	score_mult = 1.0
 	for c in $ChallengePanels.get_children():
