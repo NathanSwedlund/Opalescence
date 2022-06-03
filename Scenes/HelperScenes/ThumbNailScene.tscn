@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=3]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 80
+font_data = ExtResource( 1 )
+
+[node name="ThumbNailScene" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
+position = Vector2( -481, -144 )
+scale = Vector2( 100, 100 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="PointFactory" parent="." instance=ExtResource( 4 )]
+time_min = 0.1
+time_max = 0.1
+
+[node name="VersionLabel" type="Label" parent="."]
+margin_left = 8.0
+margin_top = 304.0
+margin_right = 1278.0
+margin_bottom = 344.0
+custom_fonts/font = SubResource( 3 )
+text = "alpha 1.0"
+align = 1
+valign = 1
+
+[node name="OpalescenceLabel" type="Label" parent="."]
+margin_left = 2.0
+margin_top = 202.0
+margin_right = 1279.0
+margin_bottom = 302.0
+custom_fonts/font = SubResource( 2 )
+text = "OPALESCENCE"
+align = 1
+valign = 1
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 615, 416 )
+scale = Vector2( 1, 1 )
+shrink_scalar = 1.0
+gravity_radius = 0
+powerup_times = {
+"Barrage": 5.0,
+"Bombastic": 3.0,
+"BulletTime": 1.0,
+"GravityWell": 10.0,
+"Incendiary": 5.0,
+"Opalescence": 10.0,
+"OpalescenceColorShift": 0.05,
+"Unmaker": 10.0,
+"Vision": 15.0
+}
+use_global_settings = false
+can_change_color = false

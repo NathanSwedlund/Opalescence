@@ -191,7 +191,11 @@ func gain_point(_color):
 	explosion.emitting = true
 	get_parent().add_child(explosion)
 
+export var can_change_color = true
 func change_color(new_color):
+	if(!can_change_color):
+		return
+		
 	modulate = new_color
 	$OuterLight.color = new_color
 	$InnerLight.color = new_color
