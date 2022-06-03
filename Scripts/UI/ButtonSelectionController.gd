@@ -27,7 +27,8 @@ func _process(_delta):
 		elif(action_pressed("ui_accept")):
 			get_child(selected_button).emit_signal("pressed")
 			
-		if(selected_button != last_selected):
+		if(selected_button != last_selected): # For mouse button selection. is handled by the individual buttons 
 			get_child(last_selected).deselect()
+			get_parent().get_parent().find_node("ButtonSelectAudio").play()
 			last_selected = selected_button
 			get_child(selected_button).select()
