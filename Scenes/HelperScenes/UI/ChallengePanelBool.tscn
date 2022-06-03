@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Textures/UI/SelectionFrame.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,10 @@
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="DynamicFont" id=2]
 size = 20
@@ -31,6 +35,8 @@ margin_top = 20.0
 margin_right = 300.0
 margin_bottom = 93.0
 custom_fonts/font = SubResource( 1 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
 text = "o"
 flat = true
 

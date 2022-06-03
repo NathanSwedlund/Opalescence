@@ -115,7 +115,7 @@ texture = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.419608 )
-scale = Vector2( 5, 5 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 
 [node name="InnerLight" type="Light2D" parent="."]
