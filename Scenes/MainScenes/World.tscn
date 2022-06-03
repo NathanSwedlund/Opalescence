@@ -11,7 +11,7 @@
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=11]
-[ext_resource path="res://Resources/Audio/Music/OPALESCENCE.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scenes/HelperScenes/MusicShuffler.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/HelperScenes/PixelDynamicFont.tres" type="DynamicFont" id=14]
 [ext_resource path="res://Scenes/HelperScenes/UI/Circle_progress_bar.gdshader" type="Shader" id=15]
 [ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=16]
@@ -264,12 +264,6 @@ powerup_times = {
 "Vision": 15.0
 }
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
-script = ExtResource( 20 )
-is_music = true
-
 [node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
 pause_mode = 2
 script = ExtResource( 8 )
@@ -341,7 +335,6 @@ scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 7 )
 
 [node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
-visible = true
 margin_left = -11.0
 margin_top = 108.0
 margin_right = 29.0
@@ -699,7 +692,11 @@ stream = ExtResource( 21 )
 pitch_scale = 0.7
 script = ExtResource( 20 )
 
-[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+[node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
+autoplay = true
+song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3" ]
+
 [connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]
 [connection signal="popup_hide" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="deactivate"]
 [connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" method="mouse_entered"]

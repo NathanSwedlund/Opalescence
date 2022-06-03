@@ -19,6 +19,8 @@ func _ready():
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
 	reset()
+	$MusicShuffler.volume_db = current_music_db
+	$MusicShuffler.play()
 	
 func reset():
 	if(is_fading_in):
@@ -44,8 +46,7 @@ func reset():
 		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
 		
-		$AudioStreamPlayer.volume_db = -80
-		$AudioStreamPlayer.play()
+		$MusicShuffler.volume_db = -80
 		
 func _on_ChallengeButton_pressed():
 	Settings.current_main_menu_button_selection = current_button_selection
@@ -56,7 +57,7 @@ func _process(_delta):
 	if(target_music_db != current_music_db):
 		target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol	
 		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
-		$AudioStreamPlayer.volume_db = current_music_db
+		$MusicShuffler.volume_db = current_music_db
 		
 	if(is_fading_in):
 		$Player.scale.y = move_toward($Player.scale.y, target_player_scale.y, fade_speed*_delta)
@@ -193,3 +194,4 @@ func _on_ShowIntroOption_pressed(is_selected):
 
 func _on_ShowWarningOption_pressed(is_selected):
 	Settings.saved_settings["show_epilepsy_warning"] = is_selected
+

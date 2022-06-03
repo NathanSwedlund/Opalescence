@@ -12,11 +12,11 @@ func _ready():
 func _process(delta):
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
-		var current_scale = get_parent().find_node("AudioStreamPlayer2D").pitch_scale
-		get_parent().find_node("AudioStreamPlayer2D").pitch_scale = move_toward(current_scale, target, delta)
+		var current_scale = get_parent().find_node("MusicShuffler").pitch_scale
+		get_parent().find_node("MusicShuffler").pitch_scale = move_toward(current_scale, target, delta)
 		if(pause_audio_pitch_scale == current_scale):
 			is_pitching_music = false
-
+	
 	if(game_is_over == false and Input.is_action_just_pressed("ui_cancel")):
 		if(get_tree().paused):
 			unpause()

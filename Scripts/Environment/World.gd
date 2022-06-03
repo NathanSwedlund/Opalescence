@@ -3,9 +3,6 @@ extends Node2D
 export var point_multiplier = 1.0
 export var game_is_over = false
 
-var songs_scenes = ["res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3"]
-var songs = []
-var current_song = 0
 
 # Countdown variables
 var countdown_fade_speed = 1
@@ -31,12 +28,8 @@ func _ready():
 	save_active_states()
 			
 	Settings.apply_sound_settings()
-	for s in songs_scenes:
-		songs.append(load(s))
-		
-	current_song = randi()%len(songs_scenes)
-	$AudioStreamPlayer2D.stream = songs[current_song]
-	$AudioStreamPlayer2D.play()
+	
+
 	start_new_game()
 	
 	
@@ -91,15 +84,6 @@ func start_factories():
 	
 func reset():
 	start_new_game()
-
-func _on_AudioStreamPlayer2D_finished():
-	var new_song = randi()%len(songs_scenes)
-	while(current_song == new_song):
-		new_song = randi()%len(songs_scenes)
-	
-	current_song = new_song
-	$AudioStreamPlayer2D.stream = songs[current_song]
-	$AudioStreamPlayer2D.play()
 
 func _process(delta):
 	if(countdown_is_over == false):
