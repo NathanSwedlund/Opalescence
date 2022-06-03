@@ -469,7 +469,6 @@ powerup_times = {
 "Vision": 15.0
 }
 use_global_settings = false
-can_change_color = false
 
 [node name="PointFactory" parent="." instance=ExtResource( 11 )]
 use_global_settings = false

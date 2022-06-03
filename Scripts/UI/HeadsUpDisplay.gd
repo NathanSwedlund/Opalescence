@@ -34,7 +34,7 @@ func pause():
 	is_pitching_music = true
 	can_unpause = false
 	$PausePopup/PausePopupBufferTimer.start()
-#	$PausePopup.show()
+	$PausePopup.show()
 	get_tree().paused = true
 
 func return_to_menu():
