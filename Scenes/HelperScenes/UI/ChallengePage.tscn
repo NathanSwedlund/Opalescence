@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Resources/Audio/Music/ChoicesAreToBeMade.wav" type="AudioStream" id=1]
+[ext_resource path="res://Resources/Audio/Music/ChallengePage2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/UI/ChallengePage.gd" type="Script" id=4]
