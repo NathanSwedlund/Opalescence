@@ -469,6 +469,7 @@ powerup_times = {
 "Vision": 15.0
 }
 use_global_settings = false
+can_change_color = false
 
 [node name="PointFactory" parent="." instance=ExtResource( 11 )]
 use_global_settings = false
@@ -495,7 +496,7 @@ margin_top = 142.5
 margin_right = 654.4
 margin_bottom = 166.5
 custom_fonts/font = SubResource( 4 )
-text = "alpha 1.0"
+text = "alpha 1.1"
 
 [node name="LabelContainer" type="Node2D" parent="."]
 position = Vector2( 0, -80 )
