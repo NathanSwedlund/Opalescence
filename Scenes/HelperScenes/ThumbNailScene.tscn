@@ -32,7 +32,7 @@ margin_top = 304.0
 margin_right = 1278.0
 margin_bottom = 344.0
 custom_fonts/font = SubResource( 3 )
-text = "alpha 1.1"
+text = "alpha 1.2"
 align = 1
 valign = 1
 

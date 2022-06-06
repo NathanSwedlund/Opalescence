@@ -39,6 +39,7 @@ text = "Title
 margin_top = 20.0
 margin_right = 299.0
 margin_bottom = 94.0
+focus_mode = 0
 custom_fonts/font = SubResource( 1 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )

@@ -26,21 +26,18 @@ func _ready():
 	update_current_val(starting_val)
 
 func _on_DecreaseButton_pressed():
+	get_parent().select(button_index)
 	if(min_val < _value - step):
 		$ChangeAudio.play()
 		update_current_val(_value - step)
 	emit_signal("pressed", _value)
-	
-	if(!is_ui_selected):
-		get_parent().selected_button = button_index
 
 func _on_IncreaseButton_pressed():
+	get_parent().select(button_index)
 	if(max_val >= _value + step):
 		$ChangeAudio.play()
 		update_current_val(_value + step)
 	emit_signal("pressed", _value)
-	
-
 
 func update_current_val(val):
 	_value = val
@@ -56,9 +53,6 @@ func deselect():
 	scale /= selected_scale
 	$Light2D.visible = false
 	is_ui_selected = false
-	
-
 
 func _on_Title_mouse_entered():
-	if(!is_ui_selected):
-		get_parent().selected_button = button_index
+	get_parent().select(button_index)

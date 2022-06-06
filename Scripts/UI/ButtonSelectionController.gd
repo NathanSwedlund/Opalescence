@@ -1,7 +1,6 @@
 extends Node2D
 
 var selected_button = 0
-var last_selected = 0
 export var button_count = 4
 export var is_active = false
 
@@ -19,20 +18,21 @@ func _process(_delta):
 			if(get_parent().visible == false):
 				return 
 		if(action_pressed("ui_down") or (action_pressed("ui_focus_next") and ! action_pressed("ui_focus_prev")) ):
-			selected_button = (selected_button + 1) % button_count
-			get_parent().get_parent().find_node("ButtonSelectAudio").play()
+			select((selected_button + 1) % button_count)
 		elif(action_pressed("ui_up") or action_pressed("ui_focus_prev")):
-			selected_button = (selected_button + button_count-1) % button_count
-			get_parent().get_parent().find_node("ButtonSelectAudio").play()
-		elif(action_pressed("ui_accept")):
+			select((selected_button + button_count-1) % button_count)
+		elif(Input.is_action_just_pressed("ui_accept")):
 			if(get_child(selected_button).is_selected):
 				get_child(selected_button).emit_signal("pressed")
-			
-		if(selected_button != last_selected): # For mouse button selection. is handled by the individual buttons 
-			get_child(last_selected).deselect()
-			get_parent().get_parent().find_node("ButtonSelectAudio").play()
-			last_selected = selected_button
-			get_child(selected_button).select()
 	
-
+func select(button_index):
+	if(button_index == selected_button):
+		return
+		
+	get_child(selected_button).deselect()
+	get_parent().get_parent().find_node("ButtonSelectAudio").play()
+	get_parent().get_parent().find_node("ButtonSelectAudio").play()
+	selected_button = button_index
+	get_child(selected_button).select()
+	
 	

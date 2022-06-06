@@ -18,8 +18,9 @@ func _ready():
 func _process(delta):
 	if(is_ui_selected and visible):
 		if(Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_accept")):
+			get_parent().select(button_index)
 			update_selected(!is_selected)
-			get_parent().selected_button = button_index
+			
 
 func update_selected(_selected, emit_pressed=true, play_audio=true):
 	is_selected = _selected
@@ -32,9 +33,8 @@ func update_selected(_selected, emit_pressed=true, play_audio=true):
 		$ChangeAudio.play()
 
 func _on_Button_pressed():
+	get_parent().select(button_index)
 	update_selected(!is_selected)
-	if(!is_ui_selected):
-		get_parent().selected_button = button_index
 	
 func select():
 	scale *= selected_scale
@@ -46,5 +46,4 @@ func deselect():
 
 
 func _on_Title_mouse_entered():
-	if(!is_ui_selected):
-		get_parent().selected_button = button_index
+	get_parent().select(button_index)

@@ -263,5 +263,7 @@ func _on_ExtraHardButton_pressed():
 	load_standard(standard_diff_settings["ExtraHard"])
 	
 func load_standard(settings):
+	Settings.current_main_menu_button_selection = 3
 	Settings.change_settings(settings)
+	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
