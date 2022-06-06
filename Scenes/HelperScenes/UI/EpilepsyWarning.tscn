@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/UI/EpilepsyWarning.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI/FadeInLabel.gd" type="Script" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 43
@@ -21,15 +22,18 @@ texture = ExtResource( 2 )
 centered = false
 
 [node name="Label" type="Label" parent="."]
-margin_left = 140.0
-margin_top = 113.0
-margin_right = 1163.0
-margin_bottom = 560.0
+margin_left = 141.0
+margin_top = 114.0
+margin_right = 1164.0
+margin_bottom = 561.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "WARNING: This game may potentially trigger 
 seizures for people with photosensitive epilepsy.Player discretion is advised"
 autowrap = true
+script = ExtResource( 4 )
+fade_speed = 0.3
+automatically_fade_in = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
