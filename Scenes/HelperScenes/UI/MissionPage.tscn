@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/HelperScenes/UI/MissionPanel.tscn" type="PackedScene" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Element_appears.wav" type="AudioStream" id=8]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=9]
 [ext_resource path="res://Resources/Textures/UI/MissionContainerFrame2.png" type="Texture" id=10]
-[ext_resource path="res://Scripts/UI/MissionPanel.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=13]
 [ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=14]
@@ -46,15 +45,21 @@ color_ramp = SubResource( 5 )
 size = 45
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=19]
 size = 30
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxEmpty" id=8]
+[sub_resource type="StyleBoxEmpty" id=20]
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=21]
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="Curve" id=22]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.193182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=18]
+curve = SubResource( 22 )
+
+[sub_resource type="ParticlesMaterial" id=23]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 25.021, 1 )
 flag_disable_z = true
@@ -63,10 +68,11 @@ spread = 138.1
 gravity = Vector3( -1500, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
-scale = 3.0
+scale = 10.0
 scale_random = 1.0
+scale_curve = SubResource( 18 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=24]
 size = 30
 font_data = ExtResource( 7 )
 
@@ -347,7 +353,6 @@ visible = false
 modulate = Color( 0.117647, 0.419608, 0.619608, 1 )
 position = Vector2( 402.025, 269 )
 scale = Vector2( 0.84, 0.84 )
-script = ExtResource( 11 )
 title = "Meteors"
 description = "The long awaited sequel to Meteors is here! You still can't move, but this time you only shoot once pellet per burst. Luckily, that's all that it will take to kill a chaser this time. No bombs, no Laser. Just chasers, a lot of them"
 settings = {
@@ -764,7 +769,6 @@ align = 1
 
 [node name="Buttons" type="Node2D" parent="."]
 position = Vector2( -3.2, -1.66667 )
-scale = Vector2( 1, 1 )
 
 [node name="ButtonSelectionController" type="Node2D" parent="Buttons"]
 position = Vector2( 0, 1.19209e-07 )
@@ -777,9 +781,9 @@ margin_left = 695.2
 margin_top = 445.0
 margin_right = 956.0
 margin_bottom = 481.0
-custom_fonts/font = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
+custom_fonts/font = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 21 )
 text = "Ready"
 flat = true
 align = 2
@@ -790,28 +794,27 @@ button_shift_index = 0
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
 visible = false
-position = Vector2( 2685.2, 355.417 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 192, 24.167 )
+scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 14 )
-energy = 3.0
+energy = 2.0
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
 visible = false
-position = Vector2( 3725.67, 320 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
+position = Vector2( 158.4, 21.6666 )
+scale = Vector2( 0.8, 0.2 )
 amount = 20
-lifetime = 1.5
-process_material = SubResource( 10 )
+lifetime = 0.5
+process_material = SubResource( 23 )
 
 [node name="BackButton" type="Button" parent="Buttons/ButtonSelectionController"]
 margin_left = 676.8
 margin_top = 526.667
 margin_right = 928.8
 margin_bottom = 562.667
-custom_fonts/font = SubResource( 11 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
+custom_fonts/font = SubResource( 24 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/focus = SubResource( 21 )
 text = "Back"
 flat = true
 align = 2
@@ -822,19 +825,18 @@ button_shift_index = 1
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/BackButton"]
 visible = false
-position = Vector2( 2572.33, 307 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 184, 19.9995 )
+scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 14 )
-energy = 3.0
+energy = 2.0
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/BackButton"]
 visible = false
-position = Vector2( 3745.67, 313.667 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
+position = Vector2( 179.2, 22.4998 )
+scale = Vector2( 0.8, 0.2 )
 amount = 20
-lifetime = 1.5
-process_material = SubResource( 10 )
+lifetime = 0.5
+process_material = SubResource( 23 )
 
 [node name="NextPanelButton" type="Button" parent="Buttons"]
 margin_left = 240.8

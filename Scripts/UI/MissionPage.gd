@@ -109,16 +109,10 @@ func change_color(color):
 	
 	var ready_button = get_parent().find_node("Buttons").find_node("ButtonSelectionController").find_node("ReadyButton")
 	ready_button.modulate = color
-	ready_button.modulate.r += ui_modulate_saturation_mod * -3
-	ready_button.modulate.g += ui_modulate_saturation_mod * -3
-	ready_button.modulate.b += ui_modulate_saturation_mod * -3
 	ready_button.modulate.a = 1.0
 	
 	var back_button = get_parent().find_node("Buttons").find_node("ButtonSelectionController").find_node("BackButton")
 	back_button.modulate = color
-	back_button.modulate.r += ui_modulate_saturation_mod * -3
-	back_button.modulate.g += ui_modulate_saturation_mod * -3
-	back_button.modulate.b += ui_modulate_saturation_mod * -3
 	back_button.modulate.a = 1.0
 	
 	$Pages.get_children()[selected].find_node("Description").visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=2]
@@ -48,7 +48,13 @@ font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="ParticlesMaterial" id=15]
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.193182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=20]
+curve = SubResource( 17 )
+
+[sub_resource type="ParticlesMaterial" id=19]
 emission_shape = 2
 emission_box_extents = Vector3( 100, 25.021, 1 )
 flag_disable_z = true
@@ -57,8 +63,9 @@ spread = 138.1
 gravity = Vector3( -1500, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
-scale = 3.0
+scale = 10.0
 scale_random = 1.0
+scale_curve = SubResource( 20 )
 
 [sub_resource type="DynamicFont" id=16]
 size = 30
@@ -136,19 +143,18 @@ button_shift_index = 0
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
 visible = false
-position = Vector2( 2685.2, 355.417 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 192, 24.167 )
+scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 4 )
-energy = 3.0
+energy = 2.0
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
 visible = false
-position = Vector2( 3725.67, 320 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
+position = Vector2( 158.4, 21.6666 )
+scale = Vector2( 0.8, 0.2 )
 amount = 20
-lifetime = 1.5
-process_material = SubResource( 15 )
+lifetime = 0.5
+process_material = SubResource( 19 )
 
 [node name="BackButton" type="Button" parent="Buttons/ButtonSelectionController"]
 margin_left = 676.8
@@ -168,19 +174,18 @@ button_shift_index = 1
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/BackButton"]
 visible = false
-position = Vector2( 2572.33, 307 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 184, 19.9995 )
+scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 4 )
-energy = 3.0
+energy = 2.0
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/BackButton"]
 visible = false
-position = Vector2( 3745.67, 313.667 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
+position = Vector2( 179.2, 22.4998 )
+scale = Vector2( 0.8, 0.2 )
 amount = 20
-lifetime = 1.5
-process_material = SubResource( 15 )
+lifetime = 0.5
+process_material = SubResource( 19 )
 
 [node name="NextPanelButton" type="Button" parent="Buttons"]
 margin_left = 240.8
