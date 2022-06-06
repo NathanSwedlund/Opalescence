@@ -226,7 +226,6 @@ default_enemy_probabilities = {
 }
 
 [node name="PowerupFactory" parent="." instance=ExtResource( 4 )]
-use_global_settings = false
 left_bound = 50
 right_bound = 964
 up_bound = 50

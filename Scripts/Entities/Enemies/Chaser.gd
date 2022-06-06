@@ -34,8 +34,12 @@ func _process(delta):
 				player.damage()
 				die()
 			elif(collision.collider.is_in_group("Enemies")):
-				collision.collider.take_damage(10)
-				die()
+				if(collision.collider.is_in_group("Chasers")):
+					collision.collider.die()
+					die()
+				else:
+					collision.collider.take_damage(10)
+					die()
 			elif(collision.collider.is_in_group("Points")):
 				collision.collider.queue_free()
 #			if(collision.collider.is_in_group("Explosion") )

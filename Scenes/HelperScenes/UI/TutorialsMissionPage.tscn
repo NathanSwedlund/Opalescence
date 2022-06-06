@@ -306,7 +306,7 @@ modulate = Color( 0.0901961, 0.168627, 1, 1 )
 position = Vector2( 142, 269 )
 scale = Vector2( 0.84, 0.84 )
 title = "Avoid the Chasers"
-description = "Avoid the Chasers (the black triangles). If you make two Chasers collide, they may destroy each other. When destroyed, they will reward points. If they reach you, you will explode, lose a life, and lose 1000 points. Reach the point goal to win."
+description = "Avoid the Chasers (the black triangles). If you make two Chasers collide, they will destroy each other. When destroyed, they will reward points. If they reach you, you will explode, lose a life, and lose 1000 points. Reach the point goal to win."
 settings = {
 "barrage_burst_time": null,
 "blocker_health": null,
