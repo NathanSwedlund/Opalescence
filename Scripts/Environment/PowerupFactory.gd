@@ -18,7 +18,6 @@ export var powerup_probabilities = {
 	"gravity_well":1.0/20.0,
 	"incendiary":1.0/20.0,
 	"max_bomb":1.0/20.0,
-	"max_up":1.0/20.0,
 	"one_up":4.0/20.0,
 	"opalescence":0.5/20.0,
 	"overshield":2.5/20.0,
@@ -34,7 +33,6 @@ export var key_to_name = {
 	"gravity_well":"GravityWell",
 	"incendiary":"Incendiary",
 	"max_bomb":"MaxBomb",
-	"max_up":"MaxUp",
 	"one_up":"OneUp",
 	"opalescence":"Opalescence",
 	"overshield":"OverShield",
@@ -50,7 +48,6 @@ var powerup_scenes = {
 	"gravity_well":load("res://Scenes/HelperScenes/Powerups/GravityWell.tscn"),
 	"incendiary":load("res://Scenes/HelperScenes/Powerups/Incendiary.tscn"),
 	"max_bomb":load("res://Scenes/HelperScenes/Powerups/MaxBomb.tscn"),
-	"max_up":load("res://Scenes/HelperScenes/Powerups/MaxUp.tscn"),
 	"one_up":load("res://Scenes/HelperScenes/Powerups/OneUp.tscn"),
 	"opalescence":load("res://Scenes/HelperScenes/Powerups/Opalescence.tscn"),
 	"overshield":load("res://Scenes/HelperScenes/Powerups/OverShield.tscn"),
@@ -80,7 +77,6 @@ func _ready():
 		powerup_probabilities["gravity_well"] = Settings.get_setting_if_exists(Settings.factory, "powerup_gravity_well_prob", powerup_probabilities["gravity_well"])
 		powerup_probabilities["incendiary"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_incendiary_prob", powerup_probabilities["incendiary"])
 		powerup_probabilities["max_bomb"]     = Settings.get_setting_if_exists(Settings.factory, "powerup_max_bomb_prob", powerup_probabilities["max_bomb"])
-		powerup_probabilities["max_up"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_max_up_prob", powerup_probabilities["max_up"])
 		powerup_probabilities["one_up"]       = Settings.get_setting_if_exists(Settings.factory, "powerup_one_up_prob", powerup_probabilities["one_up"])
 		powerup_probabilities["opalescence"]  = Settings.get_setting_if_exists(Settings.factory, "powerup_opalescence_prob", powerup_probabilities["opalescence"])
 		powerup_probabilities["overshield"]   = Settings.get_setting_if_exists(Settings.factory, "powerup_overshield_prob", powerup_probabilities["overshield"])
