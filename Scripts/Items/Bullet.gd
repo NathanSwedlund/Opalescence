@@ -19,9 +19,10 @@ func _ready():
 func _process(delta):
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
-		if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blockers") == false):
-			collision.collider.take_damage(base_damge*damage_mod)
-		if(collision.collider.is_in_group("Blockers")):
+		if(collision.collider.is_in_group("Enemies")):
+			if( collision.collider.is_in_group("Blockers") == false or incendiary):
+				collision.collider.take_damage(base_damge*damage_mod)
+		if(collision.collider.is_in_group("Blockers") and !incendiary):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
 		
 		var explosion = small_bullet_explosion_scene.instance()
