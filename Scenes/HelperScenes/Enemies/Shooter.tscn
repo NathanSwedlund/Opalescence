@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Resources/Textures/Entities/Enemies/shooter.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/Shooter.gd" type="Script" id=2]
 [ext_resource path="res://Resources/Audio/FX/EnemyDamage.wav" type="AudioStream" id=3]
 [ext_resource path="res://Resources/Audio/FX/Old/Shootsound.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=5]
+
+[sub_resource type="CanvasItemMaterial" id=3]
+light_mode = 1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.9307, 27.5772 )
@@ -13,11 +16,13 @@ extents = Vector2( 27.9307, 27.5772 )
 polygon = PoolVector2Array( 43, 0, 2, -42, -40, 0, 2, 40 )
 
 [node name="Shooter" type="KinematicBody2D"]
+modulate = Color( 0, 0, 0, 1 )
 collision_layer = 32
 collision_mask = 89
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 3 )
 position = Vector2( -2.14577e-06, -0.500006 )
 texture = ExtResource( 1 )
 

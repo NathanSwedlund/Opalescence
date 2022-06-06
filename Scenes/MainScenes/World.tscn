@@ -219,10 +219,10 @@ down_bound = 550
 time_min = 5.0
 time_max = 10.0
 default_enemy_probabilities = {
-"blocker": 0.0,
+"blocker": 1.0,
 "chaser": 0.0,
 "comet": 0.0,
-"shooter": 1.0
+"shooter": 0.0
 }
 
 [node name="PowerupFactory" parent="." instance=ExtResource( 4 )]
