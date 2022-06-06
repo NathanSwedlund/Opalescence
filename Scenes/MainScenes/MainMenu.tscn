@@ -555,10 +555,10 @@ process_material = SubResource( 1 )
 
 [node name="HardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = 2966.67
-margin_top = 1086.67
-margin_right = 5359.0
-margin_bottom = 1632.67
+margin_left = -900.0
+margin_top = 2653.33
+margin_right = 1492.33
+margin_bottom = 3199.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -587,10 +587,10 @@ process_material = SubResource( 1 )
 
 [node name="ExtraHardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = 4140.0
-margin_top = 1500.0
-margin_right = 7160.0
-margin_bottom = 2046.0
+margin_left = 286.666
+margin_top = 3120.0
+margin_right = 3306.67
+margin_bottom = 3666.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -619,9 +619,9 @@ process_material = SubResource( 1 )
 
 [node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -2620.0
+margin_left = 4086.67
 margin_top = 3326.67
-margin_right = 1499.0
+margin_right = 8205.67
 margin_bottom = 3872.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
