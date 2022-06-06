@@ -74,21 +74,21 @@ var enemy_default = {
 	"chaser_gen_scale":1.0,
 	"chaser_min_scale":0.15,
 	"chaser_max_scale":1.0,
-	"chaser_base_health":20,
+	"chaser_base_health":13,
 	"chaser_point_reward":400,
 
 	"shooter_gen_scale":1.0,
 	"shooter_shoot_freq_range": [1.0, 2.0],
 	"shooter_point_reward":600,
-	"shooter_health":30,
+	"shooter_health":20,
 	"shooter_missile_speed":400,
 	"shooter_missile_speed_scale":1.0,
 	"shooter_missile_health":1,
 	"shooter_missile_damage":5,
 
 	"blocker_gen_scale":1.0,
-	"blocker_point_reward":1250,
-	"blocker_health":70,
+	"blocker_point_reward":2250,
+	"blocker_health":50,
 }
 var enemy = enemy_default.duplicate()
 
