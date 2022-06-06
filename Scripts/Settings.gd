@@ -72,7 +72,7 @@ var enemy_default = {
 	"enemy_health_scale":1.0,
 
 	"chaser_gen_scale":1.0,
-	"chaser_min_scale":0.15,
+	"chaser_min_scale":0.25,
 	"chaser_max_scale":1.0,
 	"chaser_base_health":13,
 	"chaser_point_reward":400,
@@ -97,7 +97,7 @@ var player_default = {
 	"player_speed_scale":1.0,
 	"player_scale":1.0,
 	"starting_health":3,
-	"shrink_scalar":0.87,
+	"shrink_scalar":0.90,
 	"light_fade_scale":1.0,
 	"min_scale":0.5,
 	"gravity_radius":100.0,

@@ -66,20 +66,16 @@ func _process(delta):
 
 func load_scene_from_panel():
 	Global.ui_states[ui_name] = selected
-	
 	Global.return_scene = scene_page_selector_is_in
-	Settings.world = $Pages.get_child(selected).world_settings.duplicate()
-	Settings.player = $Pages.get_child(selected).player_settings.duplicate()
-	Settings.enemy = $Pages.get_child(selected).enemy_settings.duplicate()
-	Settings.factory = $Pages.get_child(selected).factory_settings.duplicate()
 	
 	# Adding any setting to the world settings if they werent included in the mission panel
 	var dicts = [Settings.world, Settings.player, Settings.enemy, Settings.factory]
-	var defaults = [Settings.world_default, Settings.player_default, Settings.enemy_default, Settings.factory_default]
-	for i in range(len(dicts)):
-		for key in defaults[i].keys():
-			if( (key in dicts[i]) == false ):
-				dicts[i][key] = defaults[i][key]
+	var c = $Pages.get_child(selected)
+	
+	for key in c.settings.keys():
+		for i in range(len(dicts)):
+			if(c.settings[key] != null and key in dicts[i]):
+				dicts[i][key] = c.settings[key]
 	
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
