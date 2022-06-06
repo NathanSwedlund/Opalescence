@@ -1,8 +1,14 @@
 extends Node2D
 
-var current_panel_selected = 0
+var selected = 0
 var panel_selection_scale = 1.1
 var score_mult = 1.0
+
+var buttons
+var panels
+var panel_num
+var button_num
+var ui_num
 
 export var col_sep = 400
 export var row_sep = 100
@@ -12,11 +18,18 @@ export var ui_name = "ChallengePage"
 # Called when the node enters the scene tree for the first time.
 var more_pale_mod = 0.7
 func _ready():
+	buttons = [$BackButton, $ReadyButton]
+	panels = $ChallengePanels.get_children()
+	
+	panel_num = len(panels)
+	button_num = len(buttons)
+	ui_num = panel_num + button_num
+	
 	Settings.apply_sound_settings()
 	var score = HighScore.get_score("challenge")
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score
-	select_panel(current_panel_selected)
+	select_ui_element(selected)
 	for i in range($ChallengePanels.get_child_count()):
 		var c = $ChallengePanels.get_child(i)
 		# setting position
@@ -49,58 +62,53 @@ func _ready():
 var selecting_ready_button = false
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_cancel")):
-		save_challenge_panel_state()
-		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
+		back_to_main_menu()
 	if(Input.is_action_just_pressed("ui_down")):
-		select_next(true)
+		select_next_ui_element()
 	if(Input.is_action_just_pressed("ui_up")):
-		select_next(false)
-	if(Input.is_action_just_pressed("controller_start") or (Input.is_action_just_pressed("ui_accept") and selecting_ready_button)):
-		_on_ReadyButton_pressed()
+		select_last_ui_element()
+	if(Input.is_action_just_pressed("ui_accept") and selected >= panel_num):
+		buttons[selected-panel_num].emit_signal("pressed")
 
-func select_next(going_up=true):
-	var change_num = 1 if going_up else -1
-	$SelectAudio.play()
+func select_next_ui_element():
+	select_ui_element( (selected+1) % ui_num )
 	
-	if( (!going_up and current_panel_selected == 0) or (going_up and current_panel_selected==$ChallengePanels.get_child_count()-1)):
-		if(!selecting_ready_button):
-			deselect_panel(current_panel_selected)
-			selecting_ready_button = true
-			$ReadyButton.select()
-		else:
-			current_panel_selected = (current_panel_selected + change_num + $ChallengePanels.get_child_count()) % $ChallengePanels.get_child_count()
-			select_panel(current_panel_selected)
-			selecting_ready_button = false
-			$ReadyButton.deselect()
+func select_last_ui_element():
+	select_ui_element( (selected+ui_num-1) % ui_num )
+	
+func select_ui_element(ui_element_num):
+	$SelectAudio.play()
+	if(selected < len(panels)):
+		deselect_panel(selected)
 	else:
-		if(selecting_ready_button):
-			selecting_ready_button = false
-			$ReadyButton.deselect()
-			select_panel(current_panel_selected)
-		else:
-			deselect_panel(current_panel_selected)
-			current_panel_selected = (current_panel_selected + change_num + $ChallengePanels.get_child_count()) % $ChallengePanels.get_child_count()
-			select_panel(current_panel_selected)
-			selecting_ready_button = false
+		buttons[selected-len(panels)].deselect()
+	
+	selected = ui_element_num
+	
+	if(selected < len(panels)):
+		select_panel(selected)
+	else:
+		buttons[selected-len(panels)].select()
+	
 		
 func select_panel(panel_num):
-	$ChallengePanels.get_child(current_panel_selected).is_ui_selected = true
-	$ChallengePanels.get_child(current_panel_selected).scale *= panel_selection_scale
-	$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = true
+	$ChallengePanels.get_child(selected).is_ui_selected = true
+	$ChallengePanels.get_child(selected).scale *= panel_selection_scale
+	$ChallengePanels.get_child(selected).find_node("Light2D").visible = true
 
 func deselect_panel(panel_num):
-	$ChallengePanels.get_child(current_panel_selected).is_ui_selected = false
-	$ChallengePanels.get_child(current_panel_selected).scale /= panel_selection_scale
-	$ChallengePanels.get_child(current_panel_selected).find_node("Light2D").visible = false
+	$ChallengePanels.get_child(selected).is_ui_selected = false
+	$ChallengePanels.get_child(selected).scale /= panel_selection_scale
+	$ChallengePanels.get_child(selected).find_node("Light2D").visible = false
 
 func change_panel(panel_num):
-	if(panel_num == current_panel_selected):
+	if(panel_num == selected):
 		return
 	
 	$SelectAudio.play()
-	deselect_panel(current_panel_selected)
-	current_panel_selected = panel_num
-	select_panel(current_panel_selected)
+	deselect_panel(selected)
+	selected = panel_num
+	select_panel(selected)
 
 func update_global_score_mult():
 	score_mult = 1.0
@@ -123,14 +131,14 @@ func _on_ReadyButton_pressed():
 	Global.return_scene = "res://Scenes/HelperScenes/UI/ChallengePage.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
-var current_panel = 0
+var current_appear_panel = 0
 func _on_PanelAppearTimer_timeout():
-	if(current_panel == $ChallengePanels.get_child_count()):
+	if(current_appear_panel == $ChallengePanels.get_child_count()):
 		$PanelAppearTimer.stop()
 		return
-	$ChallengePanels.get_child(current_panel).visible = true
+	$ChallengePanels.get_child(current_appear_panel).visible = true
 	$PanelAppearAudio.play()
-	current_panel += 1
+	current_appear_panel += 1
 	
 func save_challenge_panel_state():
 	Global.ui_states[ui_name] = []
@@ -140,3 +148,10 @@ func save_challenge_panel_state():
 func load_challenge_panel_state():
 	for i in range($ChallengePanels.get_child_count()):
 		$ChallengePanels.get_child(i).update_current_val(Global.ui_states[ui_name][i])
+
+func back_to_main_menu():
+	save_challenge_panel_state()
+	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
+
+func _on_BackButton_pressed():
+	back_to_main_menu()
