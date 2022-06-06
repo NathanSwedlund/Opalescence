@@ -118,8 +118,9 @@ func _ready():
 		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
-
-
+		default_light_size *= Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
+		$OuterLight.scale = default_light_size
+		
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
@@ -375,7 +376,7 @@ func game_over():
 	var mission_complete = false
 	var score_title = Settings.world["mission_title"]
 
-	if(score_title == "challenge" or score_title == "standard"):
+	if(!is_mission):
 		HighScore.record_score(points, score_title)
 	else:
 		if(Settings.world["has_point_goal"] and Settings.world["point_goal"] <= points):

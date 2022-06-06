@@ -41,7 +41,7 @@ func reset():
 		$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
 		$MenuCanvas/ButtonSelectionController3/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
 		$MenuCanvas/ButtonSelectionController3/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
-		button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3]
+		button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3, $MenuCanvas/ButtonSelectionController4,]
 		shift_button_selection(Settings.current_main_menu_button_selection, false)
 		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
@@ -76,9 +76,9 @@ func _process(_delta):
 		if($Player.modulate != last_color):
 			last_color = $Player.modulate
 			$LabelContainer/OpalescenceLabel.modulate = last_color
-			$MenuCanvas/ButtonSelectionController1.modulate = last_color
-			$MenuCanvas/ButtonSelectionController2.modulate = last_color
-			$MenuCanvas/ButtonSelectionController3.modulate = last_color
+			for button_selection in button_selections:
+				button_selection.modulate = last_color
+
 			$VersionLabel.modulate = last_color
 			for c in $MenuCanvas/ButtonSelectionController1.get_children():
 				c.get_node("Light2D").color = last_color
@@ -112,10 +112,7 @@ func _on_BackButton_pressed():
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
-	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn" 
-	Settings.reset_settings()
-	Settings.world["mission_title"] = "standard"
-	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
+	shift_button_selection(3)
 
 var play_shift_audio = true
 func shift_button_selection(button_selection_num, _play_shift_audio=true):
@@ -195,3 +192,73 @@ func _on_ShowIntroOption_pressed(is_selected):
 func _on_ShowWarningOption_pressed(is_selected):
 	Settings.saved_settings["show_epilepsy_warning"] = is_selected
 
+export var standard_diff_settings = {
+	"ExtraEasy":{
+		"is_mission":false,
+		"mission_title":"ExtraEasyStandard",
+		"points_scale":0.5,
+		"starting_health":5,
+		"enemy_health_scale":1.0,
+		"enemy_time_max":4.0,
+		"enemy_time_min":2.0,
+		"light_scale":5,
+	},
+	"Easy":{
+		"is_mission":false,
+		"mission_title":"EasyStandard",
+		"points_scale":1.0,
+		"starting_health":4,
+		"enemy_health_scale":0.8,
+		"enemy_time_max":4.0,
+		"enemy_time_min":2.0,
+		"light_scale":1.4,
+	},
+	"Medium":{
+		"is_mission":false,
+		"mission_title":"MediumStandard",
+		"points_scale":1.5,
+		"starting_health":3,
+		"enemy_health_scale":1.0,
+		"enemy_time_max":1.5,
+		"enemy_time_min":2.5,
+		"light_scale":1.2,
+	},
+	"Hard":{
+		"is_mission":false,
+		"mission_title":"HardStandard",
+		"points_scale":2.0,
+		"starting_health":3,
+		"enemy_health_scale":1.8,
+		"enemy_time_max":2.0,
+		"enemy_time_min":1.0,
+		"light_scale":1.0,
+	},
+	"ExtraHard":{
+		"is_mission":false,
+		"mission_title":"ExtraHardStandard",
+		"points_scale":3.0,
+		"starting_health":2,
+		"enemy_health_scale":2.2,
+		"enemy_time_max":1.5,
+		"enemy_time_min":1.0,
+		"light_scale":1.0,
+	},
+}
+func _on_ExtraEasyButton_pressed():
+	load_standard(standard_diff_settings["ExtraEasy"])
+	
+func _on_EasyButton2_pressed():
+	load_standard(standard_diff_settings["Easy"])
+
+func _on_MediumButton_pressed():
+	load_standard(standard_diff_settings["Medium"])
+
+func _on_HardButton_pressed():
+	load_standard(standard_diff_settings["Hard"])
+
+func _on_ExtraHardButton_pressed():
+	load_standard(standard_diff_settings["ExtraHard"])
+	
+func load_standard(settings):
+	Settings.change_settings(settings)
+	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")

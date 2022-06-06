@@ -30,6 +30,7 @@ func _ready():
 	score = Global.point_num_to_string(Global.round_float(score, 2), ["b", "m"])
 	$HighScore.text = "High Score: " + score
 	select_ui_element(selected)
+	
 	for i in range($ChallengePanels.get_child_count()):
 		var c = $ChallengePanels.get_child(i)
 		# setting position

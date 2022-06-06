@@ -5,7 +5,7 @@
 [ext_resource path="res://Scripts/UI/MissionPanel.gd" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-size = 15
+size = 13
 font_data = ExtResource( 1 )
 
 [node name="MissionPanel" type="Node2D"]

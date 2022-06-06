@@ -65,13 +65,7 @@ func load_scene_from_panel():
 	Global.return_scene = scene_page_selector_is_in
 	
 	# Adding any setting to the world settings if they werent included in the mission panel
-	var dicts = [Settings.world, Settings.player, Settings.enemy, Settings.factory]
-	var c = $Pages.get_child(selected)
-	
-	for key in c.settings.keys():
-		for i in range(len(dicts)):
-			if(c.settings[key] != null and key in dicts[i]):
-				dicts[i][key] = c.settings[key]
+	Settings.change_settings($Pages.get_child(selected).settings)
 	
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 

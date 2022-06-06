@@ -149,6 +149,7 @@ scale = Vector2( 0.6, 0.6 )
 [node name="ChallengePanel2" parent="ChallengePanels" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 96.6667, 314.722 )
+scale = Vector2( 1.1, 1.1 )
 title = "Can Use Laser"
 selected_is_harder = false
 setting_name = "can_shoot_laser"

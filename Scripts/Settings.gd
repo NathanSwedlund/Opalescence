@@ -99,6 +99,7 @@ var player_default = {
 	"starting_health":3,
 	"shrink_scalar":0.90,
 	"light_fade_scale":1.0,
+	"light_scale":1.0,
 	"min_scale":0.5,
 	"gravity_radius":100.0,
 	"gravity_pull_scale":1.0,
@@ -180,3 +181,10 @@ func apply_sound_settings():
 			c.volume_db = -80
 		else:
 			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol + c.default_vol
+
+func change_settings(new_settings):
+	var setting_dicts = [world, player, enemy, factory]
+	for key in new_settings:
+		for i in range(len(setting_dicts)):
+			if(new_settings[key] != null and key in setting_dicts[i]):
+				setting_dicts[i][key] = new_settings[key]

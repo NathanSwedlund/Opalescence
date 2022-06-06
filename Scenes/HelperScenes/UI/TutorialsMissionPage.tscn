@@ -111,7 +111,6 @@ texture = ExtResource( 10 )
 
 [node name="Buttons" type="Node2D" parent="."]
 position = Vector2( -3.2, -1.66667 )
-scale = Vector2( 1, 1 )
 
 [node name="ButtonSelectionController" type="Node2D" parent="Buttons"]
 position = Vector2( 0, 1.19209e-07 )
@@ -611,7 +610,7 @@ modulate = Color( 0.890196, 0.478431, 0, 1 )
 position = Vector2( 142, 269 )
 scale = Vector2( 0.84, 0.84 )
 title = "Power-Ups"
-description = "Kill the enemies using Power-Ups! They are the glowing spinning capsules. Collect them to gain a different abilities or powers. They will appear more commonly here than usual. Have fun!"
+description = "Kill the enemies using Power-Ups! They are the glowing spinning capsules. Collect them to gain different abilities or powers. In this tutorial, they will appear more commonly than usual. Have fun!"
 settings = {
 "barrage_burst_time": null,
 "blocker_health": null,
