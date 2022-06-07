@@ -75,11 +75,11 @@ var enemy_default = {
 	"chaser_min_scale":0.25,
 	"chaser_max_scale":1.0,
 	"chaser_base_health":13,
-	"chaser_point_reward":400,
+	"chaser_point_reward":800,
 
 	"shooter_gen_scale":1.0,
 	"shooter_shoot_freq_range": [1.0, 2.0],
-	"shooter_point_reward":600,
+	"shooter_point_reward":1500,
 	"shooter_health":20,
 	"shooter_missile_speed":400,
 	"shooter_missile_speed_scale":1.0,
@@ -87,7 +87,7 @@ var enemy_default = {
 	"shooter_missile_damage":5,
 
 	"blocker_gen_scale":1.0,
-	"blocker_point_reward":2250,
+	"blocker_point_reward":4000,
 	"blocker_health":50,
 }
 var enemy = enemy_default.duplicate()
@@ -138,8 +138,11 @@ var shop_default = {
 	"light_scale":1.0,
 	"bullet_damage_scale":1.0,
 	"laser_damage_scale":1.0,
-	"gravity_radius_scale":1.0,
+	"gravity_radius_scale":1000.0,
+	"bullet_burst_speed_scale":1.0,
+	"powerup_time_scale":0.5,
 }
+
 var shop = shop_default.duplicate()
 var shop_settings_path = "user://shop.dat"
 var saved_settings_path = "user://settings.dat"

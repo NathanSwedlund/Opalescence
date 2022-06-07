@@ -20,8 +20,13 @@ export var min_vol = -40
 export var laser_sound_fade_scale = 3
 var laser_vol
 
+var frames_per_damage = 7
+var current_frame = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	damage *= Settings.shop["laser_damage_scale"]
+
 	laser_vol = $LaserSound.volume_db
 	$LaserSound.volume_db = min_vol
 	
@@ -45,7 +50,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	rotation = Vector2.ZERO.angle_to_point(get_parent().get_direction_to_shoot())
-
+	
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
 			scale.y += fade_in_speed * (1-fade_in_time_ratio) * _delta
@@ -58,9 +63,12 @@ func _process(_delta):
 			$LaserSound.volume_db = move_toward($LaserSound.volume_db, min_vol, fade_out_speed * (1-fade_out_time_ratio) * _delta * laser_sound_fade_scale)
 		if(scale.y <= 0.0):
 			queue_free()
-	for i in get_overlapping_bodies():
-		if(i.is_in_group("Enemies")):
-			i.take_damage(damage * _delta)
+	
+	current_frame = (current_frame + 1) % frames_per_damage
+	if(current_frame == 0):
+		for i in get_overlapping_bodies():
+			if(i.is_in_group("Enemies")):
+				i.take_damage(damage * _delta * frames_per_damage)
 
 func _on_FadeInTimer_timeout():
 	$NotFadingTimer.start()

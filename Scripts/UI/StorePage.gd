@@ -14,11 +14,11 @@ export var panel_sep_dist = 230
 export var starting_panel_loc = Vector2.ZERO
 
 var is_shifting = false
-export var shift_speed = 10.0
+export var shift_speed = 1800.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	buttons = [$UI/BackButton]
+	buttons = [$UI/AddPointButton, $UI/ResetButton, $UI/BackButton]
 	button_num = len(buttons)
 	
 	panels = $UI/Panels.get_children()
@@ -37,9 +37,8 @@ func _ready():
 	update_color()
 
 func _process(delta):
-	print(selected)
 	if(is_shifting):
-		$UI/Panels.position.y = move_toward($UI/Panels.position.y, panel_sep_dist*selected * -1, shift_speed)
+		$UI/Panels.position.y = move_toward($UI/Panels.position.y, panel_sep_dist*selected * -1, shift_speed*delta)
 		if($UI/Panels.position.y == panel_sep_dist*selected * -1):
 			is_shifting = false
 			panels[selected].select()
@@ -53,9 +52,9 @@ func _process(delta):
 		if(Input.is_action_just_pressed("ui_cancel")):
 			back_to_main_menu()
 		if(Input.is_action_just_pressed("ui_accept")):
-			if(selected < panel_num):
+			if(selected < panel_num): # Shop Panel
 				ui_elements[selected].try_buy()
-			else: # button
+			else: # Button
 				ui_elements[selected].emit_signal("pressed")
 
 func update_color():
@@ -73,7 +72,6 @@ func select_next():
 func select_last():
 	select( (selected - 1 + ui_element_num) % ui_element_num )
 	
-
 func select(num):
 	if(num == selected):
 		return 
@@ -89,9 +87,8 @@ func select(num):
 		$SelectAudio.play()
 		ui_elements[selected].select()
 		
-	
 func update_point_label():
-	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["m", "b"]))
+	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 
 func _on_BackButton_pressed():
 	back_to_main_menu()
@@ -100,9 +97,20 @@ func back_to_main_menu():
 	Settings.save()
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
-
 func _on_LastPanelButton_pressed():
-	select_last()
+	if(!is_shifting):
+		select_last()
 
 func _on_NextPanelButton_pressed():
-	select_next()
+	if(!is_shifting):
+		select_next()
+
+func _on_AddPointButton_pressed():
+	Settings.shop["points"] += 1000000000
+	update_point_label()
+
+func _on_ResetButton_pressed():
+	for p in panels:
+		p.current_val = p.default_val
+		p.update_labels()
+		Settings.shop = Settings.shop_default.duplicate()

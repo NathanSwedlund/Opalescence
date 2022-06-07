@@ -42,7 +42,7 @@ func save_active_states():
 		else:
 			active_states[i] = factories[i].is_active
 	
-	print("active_states, ", active_states)
+#	print("active_states, ", active_states)
 
 func start_new_game():
 	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
@@ -78,9 +78,9 @@ func start_factories():
 	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
 	for i in range(len(factories)):
 		factories[i].is_active = active_states[i]
-	print("2. active_states, ", active_states)
-	for i in range(len(factories)):
-		print("3. ", factories[i].is_active)
+#	print("2. active_states, ", active_states)
+#	for i in range(len(factories)):
+#		print("3. ", factories[i].is_active)
 	
 func reset():
 	start_new_game()

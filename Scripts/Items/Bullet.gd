@@ -3,12 +3,14 @@ extends KinematicBody2D
 var direction = Vector2.ZERO
 export var speed = 700
 
-var base_damge = 2
-var damage_mod = 1
+var base_damge = 2.0
+var damage_mod = 1.0
 var incendiary = false
 
 var small_bullet_explosion_scene
 func _ready():
+	base_damge *= Settings.shop["bullet_damage_scale"]
+
 	if(incendiary):
 		speed *= 2.2
 		damage_mod = 3

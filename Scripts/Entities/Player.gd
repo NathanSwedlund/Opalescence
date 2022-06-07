@@ -121,13 +121,32 @@ func _ready():
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size *= Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
 		$OuterLight.scale = default_light_size
+
+	for pt in powerup_times:
+		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
+
+		
+	if(use_global_settings and Settings.world["is_mission"] == false):
+		print(Settings.shop)
+		if(Settings.shop["default_bullets_per_burst_mod"]):
+			default_bullets_per_burst += Settings.shop["default_bullets_per_burst_mod"]
+		if(Settings.shop["starting_health_mod"]):
+			starting_health += Settings.shop["starting_health_mod"]
+		if(Settings.shop["light_scale"]):
+			default_light_size *= Settings.shop["light_scale"]
+		if(Settings.shop["bullet_burst_speed_scale"]):
+			default_bullets_burst_wait_time /= Settings.shop["bullet_burst_speed_scale"]
+		if(Settings.shop["powerup_time_scale"]):
+			for t in $PowerupTimers.get_children():
+				print(t.name, t.wait_time)
+				print(Settings.shop["powerup_time_scale"])
+				t.wait_time *= Settings.shop["powerup_time_scale"]
+				print(t.name, t.wait_time)
+		
 		
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
-
-	for pt in powerup_times:
-		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	bullets_per_burst = default_bullets_per_burst
@@ -175,6 +194,8 @@ func spawn_get_point_label(points_num):
 	gpl.position = position
 	get_parent().add_child(gpl)
 
+var points_per_points_collected = 400
+
 func gain_point(_color):
 	if(powerup_count() == 0 or (has_powerup["OverShield"] and powerup_count() == 1)):
 		change_color(_color)
@@ -184,8 +205,8 @@ func gain_point(_color):
 	else:
 		$OuterLight.scale = default_light_size
 
-	add_points(200)
-	spawn_get_point_label(200)
+	add_points(points_per_points_collected)
+	spawn_get_point_label(points_per_points_collected)
 
 	var explosion = point_explosion.instance()
 	explosion.modulate = modulate
@@ -242,6 +263,7 @@ func get_input():
 		$LaserChargeEffect.emitting = is_charging_laser
 
 func shoot():
+	print($BulletBurstTimer.wait_time)
 	if(can_shoot == false):
 		return
 
@@ -278,6 +300,7 @@ func drop_bomb():
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
 	bomb.position = position
+	bomb.scale *= Settings.shop["bomb_scale"]
 	$SoundFX/DropBombAudio.play()
 	get_parent().add_child(bomb)
 

@@ -16,6 +16,9 @@ var damage = 40
 func _ready():
 	pass # Replace with function body.
 
+var frames_per_update = 7
+var current_frame = 0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(exploding == false):
@@ -35,9 +38,11 @@ func _process(delta):
 			if(collision.collider.is_in_group("Enemies")):
 				explode()
 	else:
-		for i in get_parent().find_node("Area2D").get_overlapping_bodies():
-			if(i.is_in_group("Enemies")):
-				i.take_damage(damage * delta)
+		current_frame = (current_frame + 1) % frames_per_update
+		if(current_frame == 0):
+			for i in get_parent().find_node("Area2D").get_overlapping_bodies():
+				if(i.is_in_group("Enemies")):
+					i.take_damage(damage * delta * frames_per_update)
 
 func explode():
 	if(exploding):

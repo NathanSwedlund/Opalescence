@@ -15,7 +15,7 @@ export var fade_speed = 1
 export var music_fade_speed = 8
 
 func _ready():
-	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["m", "b"]))
+	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 	
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
@@ -208,54 +208,54 @@ export var standard_diff_settings = {
 	"ExtraEasy":{
 		"is_mission":false,
 		"mission_title":"ExtraEasyStandard",
-		"points_scale":0.5,
+		"points_scale":0.25,
 		"starting_health":5,
 		"enemy_health_scale":1.0,
 		"enemy_time_max":4.0,
 		"enemy_time_min":2.0,
-		"light_scale":5,
+		"light_scale":3,
 	},
 	"Easy":{
 		"is_mission":false,
 		"mission_title":"EasyStandard",
-		"points_scale":1.0,
+		"points_scale":0.5,
 		"starting_health":4,
 		"enemy_health_scale":0.8,
 		"enemy_time_max":4.0,
 		"enemy_time_min":2.0,
-		"light_scale":1.7,
+		"light_scale":1.5,
 	},
 	"Medium":{
 		"is_mission":false,
 		"mission_title":"MediumStandard",
-		"points_scale":1.5,
-		"starting_health":3,
+		"points_scale":0.75,
+		"starting_health":4,
 		"enemy_health_scale":1.0,
 		"enemy_time_max":1.5,
 		"enemy_time_min":2.5,
-		"light_scale":1.5,
+		"light_scale":1.3,
 	},
 	"Hard":{
 		"is_mission":false,
 		"mission_title":"HardStandard",
-		"points_scale":2.0,
+		"points_scale":1.0,
 		"starting_health":3,
-		"enemy_health_scale":2.0,
+		"enemy_health_scale":1.8,
 		"enemy_time_max":2.0,
 		"enemy_time_min":1.0,
-		"light_scale":0.8,
+		"light_scale":1,
 		"chaser_min_scale":0.15,
 	},
 	"ExtraHard":{
 		"is_mission":false,
 		"mission_title":"ExtraHardStandard",
-		"points_scale":3.0,
+		"points_scale":2.0,
 		"starting_health":2,
-		"enemy_health_scale":2.2,
-		"enemy_time_max":1.0,
-		"enemy_time_min":0.7,
-		"light_scale":0.6,
-		"shrink_scale":0.87,
+		"enemy_health_scale":2.5,
+		"enemy_time_max":0.9,
+		"enemy_time_min":0.4,
+		"light_scale":0.4,
+		"shrink_scale":0.70,
 		"chaser_min_scale":0.15,
 	},
 }
