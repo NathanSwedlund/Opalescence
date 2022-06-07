@@ -2,6 +2,7 @@ extends Node
 
 var player = null
 var target_frame_rate = 60.0
+var points_this_round = 0
 
 var main_menu_has_faded = false
 var return_scene = "res://Scenes/MainScenes/MainMenu.tscn"

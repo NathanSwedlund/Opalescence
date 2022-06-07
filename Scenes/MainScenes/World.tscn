@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -155,6 +155,10 @@ shader_param/bg = SubResource( 4 )
 
 [sub_resource type="DynamicFont" id=25]
 size = 200
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 50
 font_data = ExtResource( 9 )
 
 [node name="World" type="Node2D"]
@@ -691,6 +695,51 @@ stream = ExtResource( 21 )
 pitch_scale = 0.7
 script = ExtResource( 20 )
 
+[node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="HeadsUpDisplay/PointAddPopup"]
+modulate = Color( 0, 0, 0, 0.819608 )
+position = Vector2( -4, -75 )
+scale = Vector2( 10.0938, 6.4375 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="TotalPointsLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
+margin_left = 103.0
+margin_top = 367.0
+margin_right = 803.0
+margin_bottom = 417.0
+custom_fonts/font = SubResource( 31 )
+text = "Total Points: "
+
+[node name="Node2D" type="Node2D" parent="HeadsUpDisplay/PointAddPopup"]
+rotation = 1.5708
+
+[node name="Arrow Label" type="Label" parent="HeadsUpDisplay/PointAddPopup/Node2D"]
+margin_left = 234.0
+margin_top = -352.0
+margin_right = 348.0
+margin_bottom = -302.0
+custom_fonts/font = SubResource( 31 )
+text = "->"
+
+[node name="PointsLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
+margin_left = 115.0
+margin_top = 146.0
+margin_right = 470.0
+margin_bottom = 196.0
+custom_fonts/font = SubResource( 31 )
+text = "Points:"
+
+[node name="RackingTimer" type="Timer" parent="HeadsUpDisplay/PointAddPopup"]
+wait_time = 0.1
+
+[node name="WaitTimer" type="Timer" parent="HeadsUpDisplay/PointAddPopup"]
+wait_time = 0.7
+one_shot = true
+
 [node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 autoplay = true
@@ -719,3 +768,5 @@ song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/
 [connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay" method="_on_OptionsButton_pressed"]
 [connection signal="timeout" from="HeadsUpDisplay/PausePopup/PausePopupBufferTimer" to="HeadsUpDisplay" method="_on_PausePopupBufferTimer_timeout"]
 [connection signal="timeout" from="HeadsUpDisplay/CountdownLabel/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/RackingTimer" to="HeadsUpDisplay" method="_on_RackingTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/WaitTimer" to="HeadsUpDisplay" method="_on_WaitTimer_timeout"]
