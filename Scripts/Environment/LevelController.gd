@@ -9,6 +9,11 @@ var currrent_level = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(Settings.world["is_mission"]):
+		return
+		$LevelLabel.visible = false
+	
+	$LevelLabel.fade_out()
 	$CountdownTimer.wait_time = level_time
 	$CountdownTimer.start()
 

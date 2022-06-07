@@ -752,6 +752,7 @@ song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/
 
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
+level_time = 4
 level_settings_scales = [ {
 "points_scale": 1.5
 }, {
