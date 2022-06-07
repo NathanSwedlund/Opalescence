@@ -389,6 +389,7 @@ func game_over():
 		Settings.shop["points"] += int(points/Settings.world["points_scale"])
 	else:
 		Settings.shop["points"] += points
+		
 	Settings.save()
 
 	
