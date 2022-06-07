@@ -10,12 +10,14 @@ var point_to_cover = null
 var looking_for_point = true
 
 onready var base_color = modulate
-
+var base_health
 func _ready():
 	scale *= Settings.get_setting_if_exists(Settings.enemy, "blocker_gen_scale", 1.0)
 	speed *= global_scale.x
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "blocker_point_reward", point_reward)
 	health = Settings.get_setting_if_exists(Settings.enemy, "blocker_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
+	base_health = health
+	
 	add_to_group("Enemies")
 	add_to_group("Blockers")
 
@@ -48,7 +50,6 @@ func _on_PointCheckTimer_timeout():
 
 		var closest_dist = INF
 		var closest_point = null
-
 		for i in get_tree().get_nodes_in_group("Points"):
 			var dist_to_i = position.distance_squared_to(i.position)
 			if(dist_to_i < closest_dist):
@@ -66,9 +67,13 @@ func take_damage(damage, play_sound=true):
 	if(play_sound):
 		$DamageAudio.play()
 
-	modulate = Color.white
 	$DamageTimer.start()
 	health -= damage
+	var ratio = (base_health-health)/base_health
+	modulate.r = ratio
+	modulate.g = ratio
+	modulate.b = ratio
+	
 	if(health <= 0):
 		die()
 

@@ -48,10 +48,15 @@ func _process(delta):
 				#collision.collider.queue_free() # delete the point if it runs into it
 
 func take_damage(damage):	
-	$DamageAudio.play()
-	modulate = Color.white
-	$DamageTimer.start()
 	health -= damage
+	$DamageAudio.play()
+
+	$DamageTimer.start()
+	var ratio = (base_health-health)/base_health
+	modulate.r = ratio
+	modulate.g = ratio
+	modulate.b = ratio
+	
 	if(health <= 0):
 		die()
 	

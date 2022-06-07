@@ -6,6 +6,7 @@ var missile_scene = load("res://Scenes/HelperScenes/Enemies/Missile.tscn")
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 var player:Node2D
 export var health = 10
+var base_health
 onready var base_color = modulate
 var point_reward = 550
 var dist_ahead_to_spawn_missile = 70
@@ -16,7 +17,7 @@ func _ready():
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "shooter_point_reward", point_reward)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	shoot_freq_range = Settings.get_setting_if_exists(Settings.enemy, "shooter_shoot_freq_range", shoot_freq_range)
-	
+	base_health = health
 	
 	add_to_group("Enemies")
 	add_to_group("Shooters")
@@ -47,9 +48,14 @@ func shoot():
 
 func take_damage(damage):
 	$DamageAudio.play()
-	modulate = Color.white
 	$DamageTimer.start()
 	health -= damage
+	
+	var ratio = (base_health-health)/base_health
+	modulate.r = ratio
+	modulate.g = ratio
+	modulate.b = ratio
+	
 	if(health <= 0):
 		die()
 

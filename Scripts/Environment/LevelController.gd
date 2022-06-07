@@ -3,7 +3,7 @@ extends Node2D
 export var level_time_lengths = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
 
 export var level_settings_scales = [
-	{
+	{	
 		"points_scale":1.2,
 		"enemy_time_min":0.9,
 		"enemy_time_max":0.9,
