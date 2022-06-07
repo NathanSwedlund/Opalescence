@@ -44,9 +44,10 @@ fade_out_speed = 400.0
 fade_in_speed = 300.0
 
 [node name="Background" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.313726 )
 position = Vector2( 554.453, -6.56668 )
-scale = Vector2( 20.1778, 0.604167 )
+scale = Vector2( 28.05, 6.42 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
