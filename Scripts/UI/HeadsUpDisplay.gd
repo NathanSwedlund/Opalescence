@@ -154,8 +154,13 @@ func _on_WaitTimer_timeout():
 			return_to_menu()
 		else:
 			get_parent().find_node("MusicShuffler").volume_db += point_add_music_mod
+			
+			if(Settings.world["mission_title"] != "challenge"):
+				$ButtonSelectAudio.pitch_scale /= Settings.world["points_scale"]/2
 			$PointAddPopup.hide()
 			$GameOverPopup.show()
 		
 	else:
+		if(Settings.world["mission_title"] != "challenge"):
+			$ButtonSelectAudio.pitch_scale *= Settings.world["points_scale"]/2
 		$PointAddPopup/RackingTimer.start()

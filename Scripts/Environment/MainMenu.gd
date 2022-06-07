@@ -264,18 +264,23 @@ export var standard_diff_settings = {
 	},
 }
 func _on_ExtraEasyButton_pressed():
+	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
 	
 func _on_EasyButton2_pressed():
+	Settings.reset_settings()
 	load_standard(standard_diff_settings["Easy"])
 
 func _on_MediumButton_pressed():
+	Settings.reset_settings()
 	load_standard(standard_diff_settings["Medium"])
 
 func _on_HardButton_pressed():
+	Settings.reset_settings()
 	load_standard(standard_diff_settings["Hard"])
 
 func _on_ExtraHardButton_pressed():
+	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
 	
 func load_standard(settings):
