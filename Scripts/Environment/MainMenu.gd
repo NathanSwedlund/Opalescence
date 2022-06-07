@@ -20,6 +20,10 @@ func _ready():
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
+	
+	if(Settings.saved_settings["music_volume"] == 0):
+		$MusicShuffler.stop()
+		
 	reset()
 	$MusicShuffler.volume_db = current_music_db
 	$MusicShuffler.play()
