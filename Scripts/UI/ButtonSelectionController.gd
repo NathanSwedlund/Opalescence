@@ -22,7 +22,7 @@ func _process(_delta):
 		elif(action_pressed("ui_up") or action_pressed("ui_focus_prev")):
 			select((selected_button + button_count-1) % button_count)
 		elif(Input.is_action_just_pressed("ui_accept")):
-			if(get_child(selected_button).is_selected):
+			if(get_child(selected_button).get("is_selected") != null):
 				get_child(selected_button).emit_signal("pressed")
 	
 func select(button_index):

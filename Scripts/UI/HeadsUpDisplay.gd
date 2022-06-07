@@ -40,7 +40,6 @@ func pause():
 func return_to_menu():
 	get_tree().paused = false	
 	get_tree().change_scene(Global.return_scene)
-		
 
 func update_health(health_count, has_shield):
 	$HealthDisplay/Label.text = "x "+str(health_count-1)
@@ -81,6 +80,7 @@ func reset():
 
 func _on_RestartButton_pressed():
 	done_racking_points = false
+	Global.points_this_round = 0
 	return_to_menu_after_done_racking = false
 	game_is_over = false
 	get_parent().start_new_game()
@@ -89,10 +89,11 @@ var return_to_menu_after_done_racking = false
 var done_racking_points = false
 func _on_MenuButton_pressed():
 	return_to_menu_after_done_racking = true
-	if(done_racking_points):
+	if(done_racking_points or Global.points_this_round == 0):
 		return_to_menu()
-	$PausePopup.hide()
-	point_add_popup_event()
+	else:
+		$PausePopup.hide()
+		point_add_popup_event()
 
 var points_this_round
 var point_num1
@@ -145,11 +146,7 @@ func _on_PausePopupBufferTimer_timeout():
 	can_unpause = true
 
 func _on_WaitTimer_timeout():
-	if(points_this_round == 0 and not done_racking_points):
-		$PointAddPopup/WaitTimer.start()
-		done_racking_points = true
-		return
-	if(done_racking_points):
+	if(done_racking_points or points_this_round == 0):
 		if(return_to_menu_after_done_racking):
 			return_to_menu()
 		else:

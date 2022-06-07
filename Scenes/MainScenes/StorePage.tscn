@@ -120,14 +120,14 @@ val_step = 0.25
 max_val = 2.05
 
 [node name="Background3" type="Sprite" parent="UI"]
-modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.333333 )
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
 position = Vector2( -769, 25 )
 scale = Vector2( 15.0937, 3.34375 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="Background2" type="Sprite" parent="UI"]
-modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.333333 )
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
 position = Vector2( -761, -589 )
 scale = Vector2( 15.0937, 3.34375 )
 texture = ExtResource( 1 )

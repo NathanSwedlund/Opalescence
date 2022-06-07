@@ -87,6 +87,7 @@ var opalescence_shift_speed = 0.5
 export var default_bullets_cooldown_wait_time = 0.3
 
 func _ready():
+	Global.points_this_round = 0
 	speed *= global_scale.x
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")

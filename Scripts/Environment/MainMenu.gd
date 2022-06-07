@@ -213,7 +213,7 @@ export var standard_diff_settings = {
 		"enemy_health_scale":1.0,
 		"enemy_time_max":4.0,
 		"enemy_time_min":2.0,
-		"light_scale":3,
+		"light_scale":2,
 	},
 	"Easy":{
 		"is_mission":false,
@@ -263,6 +263,7 @@ export var standard_diff_settings = {
 		"shooter_missile_speed_scale":1.5,
 	},
 }
+
 func _on_ExtraEasyButton_pressed():
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])

@@ -24,12 +24,11 @@ func game_over():
 #	$HeadsUpDisplay/TimeLabel.visible = false
 
 var active_states = [true, true, true]
+var initial_settings
 func _ready():
+	initial_settings = [Settings.world.duplicate(), Settings.factory.duplicate(), Settings.enemy.duplicate(), Settings.player.duplicate()]
 	save_active_states()
-			
 	Settings.apply_sound_settings()
-	
-
 	start_new_game()
 	
 	
@@ -45,6 +44,12 @@ func save_active_states():
 #	print("active_states, ", active_states)
 
 func start_new_game():
+	Settings.world   = initial_settings[0].duplicate()
+	Settings.factory = initial_settings[1].duplicate()
+	Settings.enemy   = initial_settings[2].duplicate()
+	Settings.player  = initial_settings[3].duplicate()
+	$LevelController._ready()
+	
 	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
 	$HeadsUpDisplay/CountdownLabel/CountdownAudio.pitch_scale = 1.0
 	countdown_current_value = countdown_amount
@@ -54,6 +59,7 @@ func start_new_game():
 	$HeadsUpDisplay/CountdownLabel/CountdownTimer.start()
 	
 	game_is_over = false
+	$Player.reset_settings()
 	$Player.reset()
 	$Player.is_active = true
 	stop_factories()
@@ -75,9 +81,9 @@ func start_factories():
 	$PowerupFactory.reset()
 	
 	
-	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
-	for i in range(len(factories)):
-		factories[i].is_active = active_states[i]
+#	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
+#	for i in range(len(factories)):
+#		factories[i].is_active = active_states[i]
 #	print("2. active_states, ", active_states)
 #	for i in range(len(factories)):
 #		print("3. ", factories[i].is_active)

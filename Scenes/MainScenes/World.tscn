@@ -173,7 +173,7 @@ script = ExtResource( 17 )
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 position = Vector2( -181, -122 )
-scale = Vector2( 10.0938, 6.4375 )
+scale = Vector2( 10.3203, 6.57813 )
 texture = ExtResource( 5 )
 centered = false
 
@@ -746,23 +746,8 @@ wait_time = 0.7
 one_shot = true
 
 [node name="LevelController" type="Node2D" parent="."]
-scale = Vector2( 1, 1 )
 script = ExtResource( 23 )
-level_time = 4
-level_settings_scales = [ {
-"points_scale": 1.5
-}, {
-"points_scale": 1.5
-}, {
-"points_scale": 1.5
-} ]
-level_settings_setters = [ {
-"player_speed_scale": 2.0,
-"point_is_active": false
-}, {
-}, {
-} ]
-level_count = 3
+level_count = 9
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 
