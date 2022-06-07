@@ -42,12 +42,15 @@ func increase_level():
 				dict[key] = level_settings_setters[currrent_level-1][key]
 	
 	Global.player.reset_settings()
-				
+	get_parent().find_node("PointFactory").reset()
+	get_parent().find_node("EnemyFactory").reset()
+	get_parent().find_node("PowerupFactory").reset()
+	
 	print("Now at Level ", str(currrent_level))
-	print(Settings.player)
+#	print(Settings.player)
 #	print(Settings.world)
 #	print(Settings.enemy)
-#	print(Settings.factory)
+	print(Settings.factory)
 	print("\n\n")
 
 func _on_CountdownTimer_timeout():

@@ -52,6 +52,7 @@ func spawn_point():
 func reset():
 	if(use_global_settings):
 		is_active = Settings.get_setting_if_exists(Settings.factory, "point_is_active", is_active)
+
 	_ready()
 
 func kill_all():
@@ -59,6 +60,7 @@ func kill_all():
 		c.queue_free()
 
 func _on_Timer_timeout():
+	print("point factory: is_active, ", is_active)
 	if(is_active):
 		spawn_point()
 

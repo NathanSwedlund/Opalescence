@@ -78,9 +78,9 @@ func start_factories():
 	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
 	for i in range(len(factories)):
 		factories[i].is_active = active_states[i]
-	print("2. active_states, ", active_states)
-	for i in range(len(factories)):
-		print("3. ", factories[i].is_active)
+#	print("2. active_states, ", active_states)
+#	for i in range(len(factories)):
+#		print("3. ", factories[i].is_active)
 	
 func reset():
 	start_new_game()

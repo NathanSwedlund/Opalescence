@@ -745,12 +745,8 @@ wait_time = 0.1
 wait_time = 0.7
 one_shot = true
 
-[node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
-pause_mode = 2
-autoplay = true
-song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3" ]
-
 [node name="LevelController" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
 script = ExtResource( 23 )
 level_time = 4
 level_settings_scales = [ {
@@ -761,7 +757,8 @@ level_settings_scales = [ {
 "points_scale": 1.5
 } ]
 level_settings_setters = [ {
-"player_speed_scale": 2.0
+"player_speed_scale": 2.0,
+"point_is_active": false
 }, {
 }, {
 } ]
@@ -778,6 +775,11 @@ margin_bottom = 480.833
 text = "Level 0"
 fade_speed = 0.5
 automatically_fade_out = true
+
+[node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
+autoplay = true
+song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3" ]
 
 [connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]
 [connection signal="popup_hide" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="deactivate"]
