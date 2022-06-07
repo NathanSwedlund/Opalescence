@@ -1,6 +1,6 @@
 extends Node2D
 
-export var level_time_lengths = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+export var level_time_lengths = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
 
 export var level_settings_scales = [
 	{
