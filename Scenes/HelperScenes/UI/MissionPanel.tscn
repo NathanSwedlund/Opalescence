@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Resources/Textures/UI/MIssionFrame2.png" type="Texture" id=2]
@@ -7,6 +7,10 @@
 [sub_resource type="DynamicFont" id=1]
 size = 13
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
 
 [node name="MissionPanel" type="Node2D"]
 script = ExtResource( 3 )
@@ -65,6 +69,9 @@ margin_left = -123.0
 margin_top = -174.0
 margin_right = 124.0
 margin_bottom = 172.0
+focus_mode = 0
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 3 )
 flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

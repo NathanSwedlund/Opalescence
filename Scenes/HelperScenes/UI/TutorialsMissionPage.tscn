@@ -116,112 +116,6 @@ position = Vector2( 513, 340 )
 scale = Vector2( 5.25, 5.4 )
 texture = ExtResource( 10 )
 
-[node name="Buttons" type="Node2D" parent="."]
-position = Vector2( -3.2, -1.66667 )
-
-[node name="ButtonSelectionController" type="Node2D" parent="Buttons"]
-position = Vector2( 0, 1.19209e-07 )
-script = ExtResource( 11 )
-button_count = 2
-is_active = true
-
-[node name="ReadyButton" type="Button" parent="Buttons/ButtonSelectionController"]
-margin_left = 695.2
-margin_top = 445.0
-margin_right = 956.0
-margin_bottom = 481.0
-custom_fonts/font = SubResource( 12 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 14 )
-text = "Ready"
-flat = true
-align = 2
-script = ExtResource( 12 )
-right_margin_mod_on_hover = -20
-button_index = 0
-button_shift_index = 0
-
-[node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
-visible = false
-position = Vector2( 192, 24.167 )
-scale = Vector2( 0.6, 0.1 )
-texture = ExtResource( 4 )
-energy = 2.0
-
-[node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
-visible = false
-position = Vector2( 158.4, 21.6666 )
-scale = Vector2( 0.8, 0.2 )
-amount = 20
-lifetime = 0.5
-process_material = SubResource( 19 )
-
-[node name="BackButton" type="Button" parent="Buttons/ButtonSelectionController"]
-margin_left = 676.8
-margin_top = 526.667
-margin_right = 928.8
-margin_bottom = 562.667
-custom_fonts/font = SubResource( 16 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/focus = SubResource( 14 )
-text = "Back"
-flat = true
-align = 2
-script = ExtResource( 12 )
-right_margin_mod_on_hover = -20
-button_index = 1
-button_shift_index = 1
-
-[node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/BackButton"]
-visible = false
-position = Vector2( 184, 19.9995 )
-scale = Vector2( 0.6, 0.1 )
-texture = ExtResource( 4 )
-energy = 2.0
-
-[node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/BackButton"]
-visible = false
-position = Vector2( 179.2, 22.4998 )
-scale = Vector2( 0.8, 0.2 )
-amount = 20
-lifetime = 0.5
-process_material = SubResource( 19 )
-
-[node name="NextPanelButton" type="Button" parent="Buttons"]
-margin_left = 240.8
-margin_top = 231.667
-margin_right = 283.8
-margin_bottom = 267.667
-custom_fonts/font = SubResource( 7 )
-custom_styles/pressed = SubResource( 8 )
-custom_styles/focus = SubResource( 9 )
-shortcut_in_tooltip = false
-text = ">"
-flat = true
-
-[node name="NextPanelButton2" type="Button" parent="Buttons"]
-margin_left = 289.2
-margin_top = 109.667
-margin_right = 1037.2
-margin_bottom = 407.667
-custom_fonts/font = SubResource( 7 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-shortcut_in_tooltip = false
-flat = true
-
-[node name="LastPanelButton" type="Button" parent="Buttons"]
-margin_left = 13.6
-margin_top = 231.667
-margin_right = 56.6
-margin_bottom = 267.667
-custom_fonts/font = SubResource( 7 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-shortcut_in_tooltip = false
-text = "<"
-flat = true
-
 [node name="PageSelector" type="Node2D" parent="."]
 script = ExtResource( 3 )
 scene_page_selector_is_in = "res://Scenes/HelperScenes/UI/TutorialsMissionPage.tscn"
@@ -773,6 +667,113 @@ script = ExtResource( 9 )
 wait_time = 0.08
 autostart = true
 
+[node name="Buttons" type="Node2D" parent="."]
+position = Vector2( -3.2, -1.66667 )
+scale = Vector2( 1, 1 )
+
+[node name="ButtonSelectionController" type="Node2D" parent="Buttons"]
+position = Vector2( 0, 1.19209e-07 )
+script = ExtResource( 11 )
+button_count = 2
+is_active = true
+
+[node name="ReadyButton" type="Button" parent="Buttons/ButtonSelectionController"]
+margin_left = 695.2
+margin_top = 445.0
+margin_right = 956.0
+margin_bottom = 481.0
+custom_fonts/font = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+text = "Ready"
+flat = true
+align = 2
+script = ExtResource( 12 )
+right_margin_mod_on_hover = -20
+button_index = 0
+button_shift_index = 0
+
+[node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
+visible = false
+position = Vector2( 192, 24.167 )
+scale = Vector2( 0.6, 0.1 )
+texture = ExtResource( 4 )
+energy = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
+visible = false
+position = Vector2( 158.4, 21.6666 )
+scale = Vector2( 0.8, 0.2 )
+amount = 20
+lifetime = 0.5
+process_material = SubResource( 19 )
+
+[node name="BackButton" type="Button" parent="Buttons/ButtonSelectionController"]
+margin_left = 676.8
+margin_top = 526.667
+margin_right = 928.8
+margin_bottom = 562.667
+custom_fonts/font = SubResource( 16 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/focus = SubResource( 14 )
+text = "Back"
+flat = true
+align = 2
+script = ExtResource( 12 )
+right_margin_mod_on_hover = -20
+button_index = 1
+button_shift_index = 1
+
+[node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/BackButton"]
+visible = false
+position = Vector2( 184, 19.9995 )
+scale = Vector2( 0.6, 0.1 )
+texture = ExtResource( 4 )
+energy = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/BackButton"]
+visible = false
+position = Vector2( 179.2, 22.4998 )
+scale = Vector2( 0.8, 0.2 )
+amount = 20
+lifetime = 0.5
+process_material = SubResource( 19 )
+
+[node name="NextPanelButton" type="Button" parent="Buttons"]
+margin_left = 240.8
+margin_top = 231.667
+margin_right = 283.8
+margin_bottom = 267.667
+custom_fonts/font = SubResource( 7 )
+custom_styles/pressed = SubResource( 8 )
+custom_styles/focus = SubResource( 9 )
+shortcut_in_tooltip = false
+text = ">"
+flat = true
+
+[node name="NextPanelButton2" type="Button" parent="Buttons"]
+margin_left = 289.2
+margin_top = 109.667
+margin_right = 1037.2
+margin_bottom = 407.667
+custom_fonts/font = SubResource( 7 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+shortcut_in_tooltip = false
+flat = true
+
+[node name="LastPanelButton" type="Button" parent="Buttons"]
+margin_left = 13.6
+margin_top = 231.667
+margin_right = 56.6
+margin_bottom = 267.667
+custom_fonts/font = SubResource( 7 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+shortcut_in_tooltip = false
+text = "<"
+flat = true
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 autoplay = true
@@ -793,6 +794,7 @@ custom_fonts/font = SubResource( 6 )
 text = "TUTORIAL SELECT"
 align = 1
 
+[connection signal="timeout" from="PageSelector/PanelAppearTimer" to="PageSelector" method="_on_PanelAppearTimer_timeout"]
 [connection signal="mouse_entered" from="Buttons/ButtonSelectionController/ReadyButton" to="Buttons/ButtonSelectionController/ReadyButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/ButtonSelectionController/ReadyButton" to="Buttons/ButtonSelectionController/ReadyButton" method="mouse_exited"]
 [connection signal="pressed" from="Buttons/ButtonSelectionController/ReadyButton" to="PageSelector" method="_on_ReadyButton_pressed"]
@@ -802,4 +804,3 @@ align = 1
 [connection signal="pressed" from="Buttons/NextPanelButton" to="PageSelector" method="_on_NextPanelButton_pressed"]
 [connection signal="pressed" from="Buttons/NextPanelButton2" to="PageSelector" method="_on_NextPanelButton_pressed"]
 [connection signal="pressed" from="Buttons/LastPanelButton" to="PageSelector" method="_on_LastPanelButton_pressed"]
-[connection signal="timeout" from="PageSelector/PanelAppearTimer" to="PageSelector" method="_on_PanelAppearTimer_timeout"]

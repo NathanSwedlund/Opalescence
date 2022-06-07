@@ -885,3 +885,6 @@ script = ExtResource( 9 )
 [connection signal="mouse_entered" from="Buttons/ButtonSelectionController/BackButton" to="Buttons/ButtonSelectionController/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/ButtonSelectionController/BackButton" to="Buttons/ButtonSelectionController/BackButton" method="mouse_exited"]
 [connection signal="pressed" from="Buttons/ButtonSelectionController/BackButton" to="PageSelector" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Buttons/NextPanelButton" to="PageSelector" method="_on_NextPanelButton_pressed"]
+[connection signal="pressed" from="Buttons/NextPanelButton2" to="PageSelector" method="_on_NextPanelButton_pressed"]
+[connection signal="pressed" from="Buttons/LastPanelButton" to="PageSelector" method="_on_LastPanelButton_pressed"]
