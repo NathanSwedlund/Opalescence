@@ -760,6 +760,11 @@ level_settings_scales = [ {
 }, {
 "points_scale": 1.5
 } ]
+level_settings_setters = [ {
+"player_speed_scale": 2.0
+}, {
+}, {
+} ]
 level_count = 3
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]

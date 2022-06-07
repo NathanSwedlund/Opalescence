@@ -91,8 +91,19 @@ func _ready():
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")
 
+	reset_settings()
 	Settings.apply_sound_settings()
+		
+	Global.player = self
+	for tp in transformative_powerups:
+		has_powerup[tp] = false
 
+	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
+	bullets_per_burst = default_bullets_per_burst
+	bullets_to_shoot = default_bullets_per_burst
+	reset()
+
+func reset_settings():
 	if(use_global_settings):
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
@@ -138,16 +149,6 @@ func _ready():
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
-		
-		
-	Global.player = self
-	for tp in transformative_powerups:
-		has_powerup[tp] = false
-
-	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
-	bullets_per_burst = default_bullets_per_burst
-	bullets_to_shoot = default_bullets_per_burst
-	reset()
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
@@ -180,7 +181,7 @@ func add_points(points_num):
 		if(heads_up_display != null):
 			heads_up_display.update_points(points)
 	
-		Global.points_this_round = points
+		Global.points_this_round = int(points)
 		if(Settings.world["mission_title"] == "challenge"):
 			Global.points_this_round = int(points/Settings.world["points_scale"])
 

@@ -36,12 +36,18 @@ func increase_level():
 		for key in level_settings_mods[currrent_level-1].keys():
 			if(dict.has(key)):
 				dict[key] += level_settings_mods[currrent_level-1][key]
+		
+		for key in level_settings_setters[currrent_level-1].keys():
+			if(dict.has(key)):
+				dict[key] = level_settings_setters[currrent_level-1][key]
+	
+	Global.player.reset_settings()
 				
 	print("Now at Level ", str(currrent_level))
 	print(Settings.player)
-	print(Settings.world)
-	print(Settings.enemy)
-	print(Settings.factory)
+#	print(Settings.world)
+#	print(Settings.enemy)
+#	print(Settings.factory)
 	print("\n\n")
 
 func _on_CountdownTimer_timeout():
