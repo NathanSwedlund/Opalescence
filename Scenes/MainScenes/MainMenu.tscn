@@ -486,14 +486,14 @@ button_count = 6
 
 [node name="ExtraEasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = 300.0
-margin_top = 1053.33
-margin_right = 3319.0
-margin_bottom = 1599.33
+margin_left = -20.0
+margin_top = 1060.0
+margin_right = 2999.0
+margin_bottom = 1606.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
-text = "Extra Easy"
+text = "Very Easy"
 flat = true
 align = 2
 script = ExtResource( 8 )
@@ -518,10 +518,10 @@ process_material = SubResource( 1 )
 
 [node name="EasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -853.333
-margin_top = 1606.67
-margin_right = 1518.67
-margin_bottom = 2152.67
+margin_left = -880.0
+margin_top = 1613.33
+margin_right = 1492.0
+margin_bottom = 2159.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -557,7 +557,7 @@ margin_bottom = 2719.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
-text = "Medium"
+text = "Normal"
 flat = true
 align = 2
 script = ExtResource( 8 )
@@ -614,14 +614,14 @@ process_material = SubResource( 1 )
 
 [node name="ExtraHardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = 286.666
-margin_top = 3120.0
-margin_right = 3306.67
-margin_bottom = 3666.0
+margin_left = -6.66663
+margin_top = 3106.67
+margin_right = 3013.34
+margin_bottom = 3652.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
-text = "Extra Hard"
+text = "Very Hard"
 flat = true
 align = 2
 script = ExtResource( 8 )
@@ -723,7 +723,7 @@ margin_top = 142.5
 margin_right = 654.4
 margin_bottom = 166.5
 custom_fonts/font = SubResource( 4 )
-text = "alpha 1.2"
+text = "alpha 1.4"
 
 [node name="PointsLabel" type="Label" parent="."]
 margin_left = 708.8
