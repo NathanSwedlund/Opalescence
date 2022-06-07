@@ -8,6 +8,9 @@ var amount_moved = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(Global.player.can_collect_points == false):
+		queue_free()
+		
 	points_num *=  Settings.world["points_scale"]
 	$Label.modulate = color
 	$Label.text = Global.point_num_to_string(points_num, ["b", "m", "k"]) #+ "pts"

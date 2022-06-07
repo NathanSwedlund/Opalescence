@@ -81,6 +81,7 @@ var can_shoot_laser = true
 var is_shooting_indendiary = false
 
 export var use_global_settings = true
+export var can_collect_points = true
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 var opalescence_shift_speed = 0.5
 export var default_bullets_cooldown_wait_time = 0.3
@@ -159,12 +160,13 @@ func reset():
 	respawn()
 
 func add_points(points_num):
-	points += points_num * Settings.world["points_scale"]
-	if(heads_up_display != null):
-		heads_up_display.update_points(points)
+	if(can_collect_points):
+		points += points_num * Settings.world["points_scale"]
+		if(heads_up_display != null):
+			heads_up_display.update_points(points)
 
-	if(Settings.world["has_point_goal"] and points >= Settings.world["point_goal"]):
-		game_over()
+		if(Settings.world["has_point_goal"] and points >= Settings.world["point_goal"]):
+			game_over()
 
 func spawn_get_point_label(points_num):
 	var gpl = point_get_label_scene.instance()
@@ -360,6 +362,13 @@ func respawn():
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func game_over():
+	if(Settings.world["mission_title"] == "challenge"):
+		Settings.shop["points"] += int(points/Settings.world["points_scale"])
+	else:
+		Settings.shop["points"] += points
+	Settings.save()
+
+	
 	if(get_parent().game_is_over):
 		return
 

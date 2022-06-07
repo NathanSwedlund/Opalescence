@@ -15,6 +15,8 @@ export var fade_speed = 1
 export var music_fade_speed = 8
 
 func _ready():
+	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["m", "b"]))
+	
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
@@ -32,6 +34,7 @@ func reset():
 		$Player.modulate.a = 0.0
 		$VersionLabel.modulate.a = 0.0
 		$Player.scale = Vector2.ZERO
+		$PointsLabel.modulate.a = 0.0
 		
 	else:
 		$PointFactory.is_active = true
@@ -64,6 +67,7 @@ func _process(_delta):
 		$Player.scale.x = move_toward($Player.scale.x, target_player_scale.x, fade_speed*_delta)
 		$Player.modulate.a = move_toward($Player.modulate.a, 1.0, fade_speed*_delta)
 		$VersionLabel.modulate.a = move_toward($VersionLabel.modulate.a, 1.0, fade_speed*_delta)
+		$PointsLabel.modulate.a =  move_toward($PointsLabel.modulate.a, 1.0, fade_speed*_delta)
 		for c in $MenuCanvas.get_children():
 			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
 			
@@ -74,20 +78,23 @@ func _process(_delta):
 			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
-			last_color = $Player.modulate
-			$LabelContainer/OpalescenceLabel.modulate = last_color
+			var new_color = $Player.modulate
+			$LabelContainer/OpalescenceLabel.modulate = new_color
 			for button_selection in button_selections:
-				button_selection.modulate = last_color
+				button_selection.modulate = new_color
 
-			$VersionLabel.modulate = last_color
+			$VersionLabel.modulate = new_color
+			$PointsLabel.modulate = new_color
 			for c in $MenuCanvas/ButtonSelectionController1.get_children():
-				c.get_node("Light2D").color = last_color
+				c.get_node("Light2D").color = new_color
 			for c in $MenuCanvas/ButtonSelectionController2.get_children():
-				c.get_node("Light2D").color = last_color
+				c.get_node("Light2D").color = new_color
+			
+			last_color = new_color
 
 		if(Input.is_action_just_pressed("ui_cancel")):
 			if(current_button_selection == 2):
-				Settings.save_settings()
+				Settings.save()
 			if(current_button_selection != 0):
 				shift_button_selection(0)
 
@@ -158,11 +165,16 @@ func _on_ButtonShiftTimer_timeout():
 		$ButtonShiftTimer.stop()
 		play_shift_audio = true
 
+func _on_StorePage_pressed():
+	Settings.current_main_menu_button_selection = 0
+	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
+	get_tree().change_scene("res://Scenes/MainScenes/StorePage.tscn")
+
 func _on_OptionsButton_pressed():
 	shift_button_selection(2)
 
 func _on_OptionBackButton_pressed():
-	Settings.save_settings()
+	Settings.save()
 	shift_button_selection(0)
 
 func _on_MusicVolumeOption_pressed(_value):
@@ -267,3 +279,4 @@ func load_standard(settings):
 	Settings.change_settings(settings)
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
+
