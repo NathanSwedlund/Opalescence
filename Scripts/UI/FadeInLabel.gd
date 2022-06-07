@@ -11,7 +11,7 @@ func _ready():
 	modulate.a = 0.0
 	if(automatically_fade_in):
 		fade_in()
-	if(automatically_fade_out):
+	elif(automatically_fade_out):
 		fade_out()
 
 func _process(delta):

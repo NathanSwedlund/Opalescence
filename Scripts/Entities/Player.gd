@@ -127,7 +127,6 @@ func _ready():
 
 		
 	if(use_global_settings and Settings.world["is_mission"] == false):
-		print(Settings.shop)
 		if(Settings.shop["default_bullets_per_burst_mod"]):
 			default_bullets_per_burst += Settings.shop["default_bullets_per_burst_mod"]
 		if(Settings.shop["starting_health_mod"]):
@@ -138,10 +137,7 @@ func _ready():
 			default_bullets_burst_wait_time /= Settings.shop["bullet_burst_speed_scale"]
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
-				print(t.name, t.wait_time)
-				print(Settings.shop["powerup_time_scale"])
 				t.wait_time *= Settings.shop["powerup_time_scale"]
-				print(t.name, t.wait_time)
 		
 		
 	Global.player = self
@@ -185,7 +181,6 @@ func add_points(points_num):
 			heads_up_display.update_points(points)
 	
 		Global.points_this_round = points
-		print("Global.points_this_round, ", Global.points_this_round)
 		if(Settings.world["mission_title"] == "challenge"):
 			Global.points_this_round = int(points/Settings.world["points_scale"])
 
@@ -270,7 +265,6 @@ func get_input():
 		$LaserChargeEffect.emitting = is_charging_laser
 
 func shoot():
-	print($BulletBurstTimer.wait_time)
 	if(can_shoot == false):
 		return
 
