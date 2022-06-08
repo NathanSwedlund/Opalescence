@@ -18,7 +18,7 @@ export var shift_speed = 1800.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	buttons = [$UI/BackButton, $UI/ResetButton, $UI/AddTokensButton]
+	buttons = [$UI/BackButton]#, $UI/ResetButton, $UI/AddTokensButton]
 	button_num = len(buttons)
 	
 	panels = $UI/Panels.get_children()

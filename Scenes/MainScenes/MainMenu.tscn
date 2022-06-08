@@ -36,7 +36,7 @@ scale = 3.0
 scale_random = 1.0
 
 [sub_resource type="DynamicFont" id=8]
-size = 200
+size = 300
 font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -142,11 +142,43 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 
+[node name="CustomizeButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+margin_left = -286.667
+margin_top = 2080.0
+margin_right = 2434.33
+margin_bottom = 2513.0
+custom_fonts/font = SubResource( 8 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Loadout"
+flat = true
+align = 2
+script = ExtResource( 8 )
+right_margin_mod_on_hover = 100
+button_index = 1
+button_shift_index = 1
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
+visible = false
+position = Vector2( 1265.87, 262.417 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 3.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
+visible = false
+position = Vector2( 2306.34, 227 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+
 [node name="StorePage" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-margin_left = -1433.33
-margin_top = 2066.67
-margin_right = 1828.67
-margin_bottom = 2612.67
+margin_left = -1426.67
+margin_top = 2826.67
+margin_right = 1835.33
+margin_bottom = 3372.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -154,8 +186,8 @@ text = "Store"
 flat = true
 align = 2
 script = ExtResource( 8 )
-button_index = 1
-button_shift_index = 1
+button_index = 2
+button_shift_index = 2
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/StorePage"]
 visible = false
@@ -174,10 +206,10 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="OptionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-margin_left = -846.667
-margin_top = 2513.33
-margin_right = 2415.33
-margin_bottom = 3059.33
+margin_left = -840.003
+margin_top = 3273.33
+margin_right = 2421.99
+margin_bottom = 3819.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -185,8 +217,8 @@ text = "Options"
 flat = true
 align = 2
 script = ExtResource( 8 )
-button_index = 2
-button_shift_index = 2
+button_index = 3
+button_shift_index = 3
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/OptionsButton"]
 visible = false
@@ -204,43 +236,11 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 
-[node name="CustomizeButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-margin_left = 3973.33
-margin_top = 2533.33
-margin_right = 6694.33
-margin_bottom = 2966.33
-custom_fonts/font = SubResource( 8 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-text = "Customize"
-flat = true
-align = 2
-script = ExtResource( 8 )
-right_margin_mod_on_hover = 100
-button_index = 3
-button_shift_index = 3
-
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
-visible = false
-position = Vector2( 1265.87, 262.417 )
-scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 7 )
-energy = 3.0
-
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
-visible = false
-position = Vector2( 2306.34, 227 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
-amount = 20
-lifetime = 1.5
-process_material = SubResource( 1 )
-
 [node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-margin_left = -843.0
-margin_top = 3246.67
-margin_right = 1549.33
-margin_bottom = 3792.67
+margin_left = 5960.0
+margin_top = 3413.33
+margin_right = 8352.33
+margin_bottom = 3959.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -248,19 +248,18 @@ text = "Quit"
 flat = true
 align = 2
 script = ExtResource( 8 )
+right_margin_mod_on_hover = -150
 button_index = 4
-button_shift_index = 5
+button_shift_index = 4
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
-visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 2132.87, 335.416 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
-visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 2648.28, 335.416 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -830,15 +829,15 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="." method="_on_CustomizeButton_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/StorePage" to="MenuCanvas/ButtonSelectionController1/StorePage" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/StorePage" to="MenuCanvas/ButtonSelectionController1/StorePage" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/StorePage" to="." method="_on_StorePage_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="MenuCanvas/ButtonSelectionController1/OptionsButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="MenuCanvas/ButtonSelectionController1/OptionsButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="." method="_on_CustomizeButton_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="MenuCanvas/ButtonSelectionController1/QuitButton2" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="MenuCanvas/ButtonSelectionController1/QuitButton2" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="." method="_on_QuitButton_pressed"]
