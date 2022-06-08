@@ -26,9 +26,11 @@ func load_var(path):
 func round_float(_float, decimal_num):
 	return int( _float * pow(10, decimal_num) )/(pow(10, decimal_num))
 	
+func equal_with_x_precision(f1, f2, x):
+	return int(f1 * pow(10, x)) == int(f2 * pow(10, x)) 
 
 var suffix_nums = [1000000000.0, 1000000.0, 1000.0]
-func point_num_to_string(point_num, suffixes):
+func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 	for i in range(len(suffixes)):
 		if(abs(point_num) > suffix_nums[i]):
 			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i] 

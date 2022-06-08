@@ -104,15 +104,24 @@ func point_add_popup_event():
 		return
 	
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
+	
 	points_this_round = Global.points_this_round
 	point_num1 = points_this_round
 	point_num2 = Settings.shop["points"]
-	$PointAddPopup/PointsLabel.text = "Points: " + str(points_this_round)
-	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + str(Settings.shop["points"])
-	$PointAddPopup.show()	
-	
 	Settings.shop["points"] += points_this_round
+	
+	$PointAddPopup/PointsLabel.text = "Points: " + Global.point_num_to_string(points_this_round)
+	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
+	
+	var tokens_this_round = get_parent().find_node("LevelController").currrent_level
+	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
+		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
+		
+	$PointAddPopup/TokensEarnedLabel.text = "Tokens Earned: " + str(tokens_this_round)
+	Settings.shop["tokens"] += tokens_this_round
+	
 	Settings.save()
+	$PointAddPopup.show()	
 	$PointAddPopup/WaitTimer.start()
 
 export var point_popup_wait_time = 2.0
@@ -130,8 +139,8 @@ func _on_RackingTimer_timeout():
 			done_racking_points = true
 			$PointAddPopup/WaitTimer.start()
 			
-		$PointAddPopup/PointsLabel.text = "Points: " + str(point_num1)
-		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + str(point_num2)
+		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1)
+		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2)
 
 func _on_ShopButton_pressed():
 	pass

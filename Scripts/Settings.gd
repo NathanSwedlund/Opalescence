@@ -132,6 +132,7 @@ var player = player_default.duplicate()
 
 var shop_default = {
 	"points":0,
+	"tokens":0,
 	"default_bullets_per_burst_mod":0,
 	"starting_health_mod":0,
 	"bomb_scale":1.0,

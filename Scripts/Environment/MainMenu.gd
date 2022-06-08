@@ -16,7 +16,7 @@ export var music_fade_speed = 8
 
 func _ready():
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
-	
+	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
@@ -72,6 +72,7 @@ func _process(_delta):
 		$Player.modulate.a = move_toward($Player.modulate.a, 1.0, fade_speed*_delta)
 		$VersionLabel.modulate.a = move_toward($VersionLabel.modulate.a, 1.0, fade_speed*_delta)
 		$PointsLabel.modulate.a =  move_toward($PointsLabel.modulate.a, 1.0, fade_speed*_delta)
+		$TokensLabel.modulate.a =  move_toward($TokensLabel.modulate.a, 1.0, fade_speed*_delta)
 		for c in $MenuCanvas.get_children():
 			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
 			
@@ -89,10 +90,14 @@ func _process(_delta):
 
 			$VersionLabel.modulate = new_color
 			$PointsLabel.modulate = new_color
+			$TokensLabel.modulate = new_color
+		
 			for c in $MenuCanvas/ButtonSelectionController1.get_children():
 				c.get_node("Light2D").color = new_color
 			for c in $MenuCanvas/ButtonSelectionController2.get_children():
 				c.get_node("Light2D").color = new_color
+			
+			
 			
 			last_color = new_color
 
@@ -101,6 +106,7 @@ func _process(_delta):
 				Settings.save()
 			if(current_button_selection != 0):
 				shift_button_selection(0)
+				
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
@@ -200,10 +206,8 @@ func _on_FullscreenOption_pressed(is_selected):
 	Settings.saved_settings["fullscreen_mode"] = is_selected
 	OS.window_fullscreen = is_selected
 
-
 func _on_ShowIntroOption_pressed(is_selected):
 	Settings.saved_settings["show_intro"] = is_selected
-
 
 func _on_ShowWarningOption_pressed(is_selected):
 	Settings.saved_settings["show_epilepsy_warning"] = is_selected
@@ -294,3 +298,5 @@ func load_standard(settings):
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
+func _on_CustomizeButton_pressed():
+	get_tree().change_scene("res://Scenes/MainScenes/CustomizePage.tscn")
