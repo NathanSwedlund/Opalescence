@@ -33,6 +33,8 @@ func select(button_index):
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
 	selected_button = button_index
-	get_child(selected_button).select()
+	
+	if(get_child(selected_button) != null):
+		get_child(selected_button).select()
 	
 	

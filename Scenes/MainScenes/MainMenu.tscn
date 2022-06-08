@@ -205,7 +205,6 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="CustomizeButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-visible = false
 margin_left = 3973.33
 margin_top = 2533.33
 margin_right = 6694.33
@@ -336,12 +335,44 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 
+[node name="TutorialsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+visible = false
+margin_left = -2546.67
+margin_top = 2133.33
+margin_right = 3039.33
+margin_bottom = 2679.33
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Tutorials"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 2
+button_shift_index = 2
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
+visible = false
+position = Vector2( 2678.53, 341.75 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 3.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
+visible = false
+position = Vector2( 3759, 353.667 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+
 [node name="ChallengeButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = -2559.0
-margin_top = 2133.0
-margin_right = 3027.0
-margin_bottom = 2679.0
+margin_left = -2573.33
+margin_top = 2586.67
+margin_right = 3012.67
+margin_bottom = 3132.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -352,8 +383,8 @@ script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-button_index = 2
-button_shift_index = 2
+button_index = 3
+button_shift_index = 3
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
 visible = false
@@ -363,41 +394,6 @@ texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
-visible = false
-position = Vector2( 3759, 353.667 )
-scale = Vector2( 6.667, 6.667 )
-emitting = false
-amount = 20
-lifetime = 1.5
-process_material = SubResource( 1 )
-
-[node name="TutorialsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
-visible = false
-margin_left = -2559.0
-margin_top = 2707.0
-margin_right = 3027.0
-margin_bottom = 3253.0
-custom_fonts/font = ExtResource( 3 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/focus = SubResource( 6 )
-text = "Tutorials"
-flat = true
-align = 2
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-button_index = 3
-button_shift_index = 3
-
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
-visible = false
-position = Vector2( 2678.53, 341.75 )
-scale = Vector2( 5.2124, 0.604167 )
-texture = ExtResource( 7 )
-energy = 3.0
-
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
 visible = false
 position = Vector2( 3759, 353.667 )
 scale = Vector2( 6.667, 6.667 )
@@ -419,8 +415,8 @@ text = "Back"
 flat = true
 align = 2
 script = ExtResource( 8 )
-button_index = 5
-button_shift_index = 5
+button_index = 4
+button_shift_index = 4
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
 visible = false
@@ -524,14 +520,14 @@ process_material = SubResource( 1 )
 
 [node name="ButtonSelectionController4" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
-button_count = 6
+button_count = 7
 
 [node name="ExtraEasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -20.0
-margin_top = 1060.0
-margin_right = 2999.0
-margin_bottom = 1606.0
+margin_left = 20.0039
+margin_top = 1100.0
+margin_right = 3039.0
+margin_bottom = 1646.0
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -560,10 +556,10 @@ process_material = SubResource( 1 )
 
 [node name="EasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -880.0
-margin_top = 1613.33
-margin_right = 1492.0
-margin_bottom = 2159.33
+margin_left = -839.996
+margin_top = 1653.33
+margin_right = 1532.0
+margin_bottom = 2199.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -592,10 +588,10 @@ process_material = SubResource( 1 )
 
 [node name="MediumButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -1166.67
-margin_top = 2173.33
-margin_right = 2095.33
-margin_bottom = 2719.33
+margin_left = -1126.67
+margin_top = 2213.33
+margin_right = 2135.33
+margin_bottom = 2759.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -624,10 +620,10 @@ process_material = SubResource( 1 )
 
 [node name="HardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -900.0
-margin_top = 2653.33
-margin_right = 1492.33
-margin_bottom = 3199.33
+margin_left = -859.996
+margin_top = 2693.33
+margin_right = 1532.33
+margin_bottom = 3239.33
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -656,10 +652,10 @@ process_material = SubResource( 1 )
 
 [node name="ExtraHardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = -6.66663
-margin_top = 3106.67
-margin_right = 3013.34
-margin_bottom = 3652.67
+margin_left = 33.3373
+margin_top = 3146.67
+margin_right = 3053.34
+margin_bottom = 3692.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -686,6 +682,38 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 
+[node name="NightmareMode" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+visible = false
+margin_left = 46.666
+margin_top = 3560.0
+margin_right = 3066.67
+margin_bottom = 4106.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Nightmare"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 5
+button_shift_index = 5
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/NightmareMode"]
+visible = false
+position = Vector2( 386.2, 315.414 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 3.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/NightmareMode"]
+visible = false
+position = Vector2( 901.617, 315.414 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+
 [node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
 margin_left = 4086.67
@@ -699,8 +727,8 @@ text = "Back"
 flat = true
 align = 2
 script = ExtResource( 8 )
-button_index = 5
-button_shift_index = 5
+button_index = 6
+button_shift_index = 6
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/BackButton"]
 visible = false
@@ -820,12 +848,12 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="MenuCanvas/ButtonSelectionController2/MissionsButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="MenuCanvas/ButtonSelectionController2/MissionsButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="." method="_on_ArcadeButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="." method="_on_ChallengeButton_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="MenuCanvas/ButtonSelectionController2/TutorialsButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="MenuCanvas/ButtonSelectionController2/TutorialsButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="." method="_on_TutorialsButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="." method="_on_ChallengeButton_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/BackButton" to="MenuCanvas/ButtonSelectionController2/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/BackButton" to="MenuCanvas/ButtonSelectionController2/BackButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/BackButton" to="." method="_on_BackButton_pressed"]
@@ -853,6 +881,9 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="MenuCanvas/ButtonSelectionController4/ExtraHardButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="MenuCanvas/ButtonSelectionController4/ExtraHardButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="." method="_on_ExtraHardButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="." method="_on_NightmareMode_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/BackButton" to="MenuCanvas/ButtonSelectionController4/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/BackButton" to="MenuCanvas/ButtonSelectionController4/BackButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/BackButton" to="." method="_on_BackButton_pressed"]

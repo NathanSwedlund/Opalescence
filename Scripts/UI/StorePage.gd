@@ -111,6 +111,5 @@ func _on_AddPointButton_pressed():
 
 func _on_ResetButton_pressed():
 	for p in panels:
-		p.current_val = p.default_val
-		p.update_labels()
+		p.reset()
 		Settings.shop = Settings.shop_default.duplicate()

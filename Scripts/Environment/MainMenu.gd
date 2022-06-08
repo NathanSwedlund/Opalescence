@@ -15,6 +15,7 @@ export var fade_speed = 1
 export var music_fade_speed = 8
 
 func _ready():
+	update_mode_availability()
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
@@ -175,6 +176,44 @@ func _on_ButtonShiftTimer_timeout():
 		$ButtonShiftTimer.stop()
 		play_shift_audio = true
 
+
+func update_mode_availability():
+	var standard_index_mod = 0
+	if(Settings.shop["hard_mode_unlocked"] == false):
+		$MenuCanvas/ButtonSelectionController4/HardButton.queue_free()
+		standard_index_mod += 1
+	if(Settings.shop["extra_hard_mode_unlocked"] == false):
+		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.queue_free()
+		standard_index_mod += 1
+	if(Settings.shop["nightmare_mode_unlocked"] == false):
+		$MenuCanvas/ButtonSelectionController4/NightmareMode.queue_free()
+		standard_index_mod += 1
+		
+	print(Settings.shop)
+	print("\n backButton ind ", $MenuCanvas/ButtonSelectionController4/BackButton.button_index)
+	
+	if($MenuCanvas/ButtonSelectionController4.find_node("HardButton")):
+		$MenuCanvas/ButtonSelectionController4/HardButton.button_index -= standard_index_mod
+		$MenuCanvas/ButtonSelectionController4/HardButton.button_shift_index -= standard_index_mod
+	if($MenuCanvas/ButtonSelectionController4.find_node("ExtraHardButton")):
+		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.button_index -= standard_index_mod
+		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.button_shift_index -= standard_index_mod
+	if($MenuCanvas/ButtonSelectionController4.find_node("NightmareMode")):
+		$MenuCanvas/ButtonSelectionController4/NightmareMode.button_index -= standard_index_mod
+		$MenuCanvas/ButtonSelectionController4/NightmareMode.button_shift_index -= standard_index_mod
+	
+	$MenuCanvas/ButtonSelectionController4/BackButton.button_index -= standard_index_mod
+	$MenuCanvas/ButtonSelectionController4/BackButton.button_shift_index -= standard_index_mod
+	$MenuCanvas/ButtonSelectionController4.button_count -= standard_index_mod
+	
+	print("\n backButton ind ", $MenuCanvas/ButtonSelectionController4/BackButton.button_index)
+	
+	if(Settings.shop["challenge_mode_unlocked"] == false):
+		$MenuCanvas/ButtonSelectionController2/ChallengeButton.queue_free()
+		$MenuCanvas/ButtonSelectionController2.button_count -= 1
+		$MenuCanvas/ButtonSelectionController2/BackButton.button_index -= 1
+		$MenuCanvas/ButtonSelectionController2/BackButton.button_shift_index -= 1
+		
 func _on_StorePage_pressed():
 	Settings.current_main_menu_button_selection = 0
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
@@ -190,7 +229,6 @@ func _on_OptionBackButton_pressed():
 func _on_MusicVolumeOption_pressed(_value):
 	Settings.saved_settings["music_volume"] = _value
 	Settings.apply_sound_settings()
-
 
 func _on_SFXVolumeOption_pressed(_value):
 	Settings.saved_settings["fx_volume"] = _value
@@ -270,6 +308,20 @@ export var standard_diff_settings = {
 		"chaser_max_scale":0.5,
 		"shooter_missile_speed_scale":1.5,
 	},
+	"Nightmare":{
+		"is_mission":false,
+		"mission_title":"ExtraHardStandard",
+		"points_scale":6.0,
+		"starting_health":1,
+		"enemy_health_scale":6,
+		"enemy_time_max":0.3,
+		"enemy_time_min":0.3,
+		"light_scale":0.3,
+		"shrink_scale":0.9,
+		"chaser_min_scale":0.15,
+		"chaser_max_scale":0.35,
+		"shooter_missile_speed_scale":1.8,
+	},
 }
 
 func _on_ExtraEasyButton_pressed():
@@ -291,6 +343,10 @@ func _on_HardButton_pressed():
 func _on_ExtraHardButton_pressed():
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
+
+func _on_NightmareMode_pressed():
+	Settings.reset_settings()
+	load_standard(standard_diff_settings["Nightmare"])
 	
 func load_standard(settings):
 	Settings.current_main_menu_button_selection = 3
@@ -300,3 +356,4 @@ func load_standard(settings):
 
 func _on_CustomizeButton_pressed():
 	get_tree().change_scene("res://Scenes/MainScenes/CustomizePage.tscn")
+

@@ -142,6 +142,10 @@ var shop_default = {
 	"gravity_radius_scale":1000.0,
 	"bullet_burst_speed_scale":1.0,
 	"powerup_time_scale":0.5,
+	"hard_mode_unlocked":false,
+	"extra_hard_mode_unlocked":false,
+	"nightmare_mode_unlocked":false,
+	"challenge_mode_unlocked":false,
 }
 
 var shop = shop_default.duplicate()

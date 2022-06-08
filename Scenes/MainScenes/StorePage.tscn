@@ -6,7 +6,7 @@
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=5]
 [ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=6]
-[ext_resource path="res://Scenes/HelperScenes/UI/StorePanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/HelperScenes/UI/StorePanelBool.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/UI/StorePage.gd" type="Script" id=9]
 
@@ -57,67 +57,25 @@ position = Vector2( 482, 406 )
 
 [node name="Panels" type="Node2D" parent="UI"]
 
-[node name="StorePanel" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.8, 0, 0, 1 )
-position = Vector2( 0, 0 )
-title = "Additional Pellets Per Burst"
-setting_name = "default_bullets_per_burst_mod"
-default_price = 100000.0
-price_mult = 10.0
-val_step = 1.0
-max_val = 3.1
+[node name="StorePanelBool" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Standard Hard Mode"
+setting_name = "hard_mode_unlocked"
+price = 10000
 
-[node name="StorePanel5" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.835294, 0.329412, 0.329412, 1 )
-position = Vector2( 0, 180 )
-title = "Pellet Burst Speed Scale"
-setting_name = "bullet_burst_speed_scale"
-price_mult = 4.5
-val_step = 0.3
-max_val = 3.1
+[node name="StorePanelBool2" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Standard Extra Hard Mode"
+setting_name = "extra_hard_mode_unlocked"
+price = 30000
 
-[node name="StorePanel2" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.12549, 0.780392, 0.0509804, 1 )
-position = Vector2( 0, 350 )
-title = "Additional Starting Health"
-setting_name = "starting_health_mod"
-default_price = 1e+06
-price_mult = 10.0
-val_step = 1.0
-max_val = 2.1
+[node name="StorePanelBool3" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Standard NIGHTMARE Mode"
+setting_name = "nightmare_mode_unlocked"
+price = 100000
 
-[node name="StorePanel3" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.0666667, 0.470588, 0.690196, 1 )
-position = Vector2( 0, 520 )
-title = "Bomb Size Multiplier"
-setting_name = "bomb_scale"
-price_mult = 3.0
-max_val = 2.1
-
-[node name="StorePanel4" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.388235, 0.0941176, 0.678431, 1 )
-position = Vector2( 0, 690 )
-title = "Powerup Time Scale"
-setting_name = "powerup_time_scale"
-val_step = 0.05
-max_val = 1.3
-
-[node name="StorePanel6" parent="UI/Panels" instance=ExtResource( 7 )]
-position = Vector2( 0, 690 )
-title = "Player Light Scale"
-setting_name = "light_scale"
-price_mult = 1.6
-val_step = 0.05
-max_val = 2.05
-
-[node name="StorePanel7" parent="UI/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.568627, 0.968627, 1, 1 )
-position = Vector2( 0, 690 )
-title = "Laser Damage Scale"
-setting_name = "laser_damage_scale"
-default_price = 50000.0
-val_step = 0.25
-max_val = 2.05
+[node name="StorePanelBool4" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Challenge Game Mode"
+setting_name = "challenge_mode_unlocked"
+price = 30000
 
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )

@@ -2,12 +2,9 @@ extends Node2D
 
 export var title = ""
 export var setting_name = ""
-
 export var default_price = 1000.0
 var price
-
 export var price_mult = 2.0
-
 export var val_step = 0.1
 export var max_val = 10.0 
 export var button_index = 0
