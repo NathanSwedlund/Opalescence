@@ -166,7 +166,7 @@ func _ready():
 		shop = shop_default.duplicate()
 	else:
 		shop = shop_default.duplicate()
-		print(shop_settings_from_file)
+#		print(shop_settings_from_file)
 		for key in shop_settings_from_file:
 			shop[key] = shop_settings_from_file[key]
 	

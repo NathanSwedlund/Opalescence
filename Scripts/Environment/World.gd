@@ -17,7 +17,8 @@ func game_over():
 	$PointFactory.is_active = false
 	$EnemyFactory.is_active = false
 	$PowerupFactory.is_active = false
-
+	$LevelController.stop()
+	
 	$HeadsUpDisplay/BombDisplay.visible = false
 #	$HeadsUpDisplay/PointsLabel.visible = false
 	$HeadsUpDisplay/HealthDisplay.visible = false

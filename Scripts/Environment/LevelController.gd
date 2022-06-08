@@ -164,3 +164,7 @@ func increase_level():
 func _on_CountdownTimer_timeout():
 	print("LEVEL TIMER GO")
 	increase_level()
+
+
+func stop():
+	$CountdownTimer.stop()

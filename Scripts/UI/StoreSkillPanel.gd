@@ -27,7 +27,6 @@ func _ready():
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
 	default_val = Settings.get_setting_if_exists(Settings.shop_default, setting_name, default_val)
-	print("Setting, default, ", setting_name, ", ", default_val)
 	current_val = Settings.get_setting_if_exists(Settings.shop, setting_name, default_val)
 	update_labels()
 	
@@ -41,7 +40,6 @@ func try_buy():
 
 		current_val += val_step 
 		Settings.shop[setting_name] = current_val
-		Settings.save()
 		update_labels()
 		$BuyAudio.play()
 		
@@ -59,13 +57,11 @@ func try_sell():
 
 		current_val -= val_step 
 		Settings.shop[setting_name] = current_val
-		Settings.save()
 		update_labels()
 		$BuyAudio.play()
 		
 func update():
 	Settings.shop[setting_name] = current_val
-	Settings.save()
 	update_labels()
 		
 func update_labels():
@@ -76,29 +72,30 @@ func update_labels():
 	
 	$Current.text = "Current: " + str(current_val)
 	var next = current_val + val_step
-	if(next <= max_val and current_val - val_step > default_val):
-		$Last.text = "Last: " + str(current_val - val_step)
+	var last = current_val - val_step
+	if(last < default_val):
+		print(last, default_val, last < default_val)
+		$Last.text = "Last: _"
 		$Price.text = "Price: "+str(Global.point_num_to_string(price, ["b", "m", "k"]))+"tkns"
-		$Next.text = "Next: " + str(current_val + val_step)
+		$Next.text = "Next: " + str(next)
+		$Light2D2.color = modulate
+		$ApplyLess.visible = false
+	elif(next > max_val):
+		$Last.text = "Last: " + str(last)
+		$Price.text = "MAXED"
+		$Next.text = "Next: _"
+		$Light2D2.color = modulate
+		$ApplyMore.visible = false
+	else:
+		$Last.text = "Last: " + str(last)
+		$Price.text = "Price: "+str(Global.point_num_to_string(price, ["b", "m", "k"]))+"tkns"
+		$Next.text = "Next: " + str(next)
 		$Light2D2.color = modulate
 		$ApplyLess.modulate = modulate
 		$ApplyLess.visible = true
 		$ApplyMore.modulate = modulate
 		$ApplyMore.visible = true
 
-	elif(current_val - val_step < default_val):
-		$Last.text = "Last: _"
-		$Price.text = "Price: "+str(Global.point_num_to_string(price, ["b", "m", "k"]))+"tkns"
-		$Next.text = "Next: " + str(current_val + val_step)
-		$Light2D2.color = modulate
-		$ApplyLess.visible = false
-		
-	else:
-		$Last.text = "Last: " + str(current_val - val_step)
-		$Price.text = "MAXED"
-		$Next.text = "Next: _"
-		$Light2D2.color = modulate
-		$ApplyMore.visible = false
 	
 		
 func select():

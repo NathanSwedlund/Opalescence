@@ -10,7 +10,7 @@ var return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 var ui_states = {}
 
 func save_var(path, _var):
-	print("Saving ", _var, " at ", path)
+#	print("Saving ", _var, " at ", path)
 	var file = File.new()
 	file.open(path, File.WRITE)
 	file.store_var(_var)

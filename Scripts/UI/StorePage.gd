@@ -98,11 +98,11 @@ func back_to_main_menu():
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
 func _on_LastPanelButton_pressed():
-	if(!is_shifting):
+	if(!is_shifting and selected != 0):
 		select_last()
 
 func _on_NextPanelButton_pressed():
-	if(!is_shifting):
+	if(!is_shifting and selected != panel_num-1):
 		select_next()
 
 func _on_AddPointButton_pressed():

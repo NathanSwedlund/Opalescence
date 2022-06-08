@@ -9,6 +9,7 @@ func _ready():
 	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 		$BombDisplay.visible = false
 
+var is_racking_points = false
 func _process(delta):
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
@@ -22,6 +23,9 @@ func _process(delta):
 			unpause()
 		else:
 			pause()
+			
+	if(is_racking_points and Input.is_action_just_pressed("ui_cancel")):
+		finish_racking()
 
 func unpause():
 	$PausePopup/Buttons.is_active = false
@@ -103,6 +107,7 @@ func point_add_popup_event():
 	if(done_racking_points):
 		return
 	
+	is_racking_points = true
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
 	
 	points_this_round = Global.points_this_round
@@ -156,17 +161,21 @@ func _on_PausePopupBufferTimer_timeout():
 
 func _on_WaitTimer_timeout():
 	if(done_racking_points or points_this_round == 0):
-		if(return_to_menu_after_done_racking):
-			return_to_menu()
-		else:
-			get_parent().find_node("MusicShuffler").volume_db += point_add_music_mod
-			
-			if(Settings.world["mission_title"] != "challenge"):
-				$ButtonSelectAudio.pitch_scale /= Settings.world["points_scale"]/2
-			$PointAddPopup.hide()
-			$GameOverPopup.show()
-		
+		finish_racking()
 	else:
 		if(Settings.world["mission_title"] != "challenge"):
 			$ButtonSelectAudio.pitch_scale *= Settings.world["points_scale"]/2
 		$PointAddPopup/RackingTimer.start()
+
+func finish_racking():
+	is_racking_points = false
+	done_racking_points = true
+	if(return_to_menu_after_done_racking):
+		return_to_menu()
+	else:
+		get_parent().find_node("MusicShuffler").volume_db += point_add_music_mod
+		
+		if(Settings.world["mission_title"] != "challenge"):
+			$ButtonSelectAudio.pitch_scale /= Settings.world["points_scale"]/2
+		$PointAddPopup.hide()
+		$GameOverPopup.show()
