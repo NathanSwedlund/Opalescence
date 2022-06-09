@@ -1,11 +1,10 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
-[ext_resource path="res://Resources/Textures/Entities/player3-2.png" type="Texture" id=6]
 [ext_resource path="res://Resources/Textures/UI/bombImage-pixel-large.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
@@ -34,9 +33,6 @@ font_data = ExtResource( 9 )
 [sub_resource type="DynamicFont" id=26]
 size = 20
 font_data = ExtResource( 9 )
-
-[sub_resource type="CanvasItemMaterial" id=27]
-light_mode = 1
 
 [sub_resource type="DynamicFont" id=28]
 size = 20
@@ -261,9 +257,9 @@ powerup_probabilities = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 512, 300 )
-shrink_scalar = 0.75
-respawn_position = Vector2( 512, 300 )
+position = Vector2( 490.4, 292.5 )
+scale = Vector2( 0.4, 0.4 )
+respawn_position = Vector2( 640, 360 )
 powerup_times = {
 "Barrage": 5.0,
 "Bombastic": 3.0,
@@ -305,26 +301,24 @@ custom_fonts/font = SubResource( 17 )
 text = "Time: "
 
 [node name="HealthDisplay" type="Node2D" parent="HeadsUpDisplay"]
-position = Vector2( 1031, 33 )
+position = Vector2( 971, 50 )
+
+[node name="playerSprite" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
+modulate = Color( 1, 1, 1, 0.698039 )
+position = Vector2( 0.315002, 0.999985 )
+scale = Vector2( 0.715, 0.731707 )
 
 [node name="Shield" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
 modulate = Color( 1, 1, 1, 0.698039 )
-position = Vector2( -76, 16 )
+position = Vector2( 0.315002, 0.999985 )
 scale = Vector2( 0.715, 0.731707 )
 texture = ExtResource( 10 )
 
-[node name="Sprite" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
-material = SubResource( 27 )
-position = Vector2( -76, 16 )
-rotation = 4.71239
-scale = Vector2( 0.715, 1 )
-texture = ExtResource( 6 )
-
 [node name="Label" type="Label" parent="HeadsUpDisplay/HealthDisplay"]
-margin_left = -39.0
-margin_top = 5.0
-margin_right = 21.0
-margin_bottom = 35.0
+margin_left = 37.315
+margin_top = -10.0
+margin_right = 98.315
+margin_bottom = 20.0
 custom_fonts/font = SubResource( 28 )
 text = "x 3"
 
@@ -705,7 +699,6 @@ pitch_scale = 0.7
 script = ExtResource( 20 )
 
 [node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 

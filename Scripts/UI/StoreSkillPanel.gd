@@ -118,3 +118,9 @@ func _on_ApplyMore_pressed():
 func reset():
 	current_val = default_val
 	update_labels()
+	
+func right():
+	try_buy()
+	
+func left():
+	try_sell()

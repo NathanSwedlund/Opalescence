@@ -77,6 +77,26 @@ title = "Challenge Game Mode"
 setting_name = "challenge_mode_unlocked"
 price = 30000
 
+[node name="StorePanelBool5" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Heat-seeking Pellets"
+setting_name = "bullet2_is_unlocked"
+price = 30000
+
+[node name="StorePanelBool6" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Heavy Pellets"
+setting_name = "bullet3_is_unlocked"
+price = 30000
+
+[node name="StorePanelBool7" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Laser-prototype ship"
+setting_name = "player2_is_unlocked"
+price = 30000
+
+[node name="StorePanelBool8" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Gunner ship"
+setting_name = "player3_is_unlocked"
+price = 30000
+
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
 position = Vector2( -769, 25 )
@@ -123,7 +143,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -155,7 +174,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0

@@ -142,10 +142,24 @@ var shop_default = {
 	"gravity_radius_scale":1000.0,
 	"bullet_burst_speed_scale":1.0,
 	"powerup_time_scale":0.5,
+	
 	"hard_mode_unlocked":false,
 	"extra_hard_mode_unlocked":false,
 	"nightmare_mode_unlocked":false,
 	"challenge_mode_unlocked":false,
+
+	"bullet_type":0,
+	"bullet1_is_unlocked":true,
+	"bullet2_is_unlocked":false,
+	"bullet3_is_unlocked":false,
+	
+	"player1_is_unlocked":true,
+	"player2_is_unlocked":false,
+	"player3_is_unlocked":false,
+	
+	"player_type":2,
+	"monocolor_mode":false,
+	"monocolor_color":Color.white,
 }
 
 var shop = shop_default.duplicate()

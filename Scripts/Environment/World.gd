@@ -32,7 +32,6 @@ func _ready():
 	Settings.apply_sound_settings()
 	start_new_game()
 	
-	
 func save_active_states():
 	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
 	var global_active_states = [Settings.factory["point_is_active"], Settings.factory["enemy_is_active"], Settings.factory["powerup_is_active"]]
@@ -44,6 +43,7 @@ func save_active_states():
 	
 #	print("active_states, ", active_states)
 
+var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn")]
 func start_new_game():
 	Settings.world   = initial_settings[0].duplicate()
 	Settings.factory = initial_settings[1].duplicate()
@@ -70,6 +70,11 @@ func start_new_game():
 	$HeadsUpDisplay/HealthDisplay.visible = true
 	$HeadsUpDisplay/TimeLabel.visible = true
 	
+	var health_sprite = player_type_scenes[Settings.shop["player_type"]].instance()
+	health_sprite.scale /= 2.5
+	health_sprite.rotation_degrees -= 90
+	$HeadsUpDisplay/HealthDisplay.add_child(health_sprite)
+
 
 func stop_factories():
 	$PointFactory.is_active = false

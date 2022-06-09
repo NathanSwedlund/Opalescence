@@ -253,12 +253,14 @@ button_index = 4
 button_shift_index = 4
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
+visible = false
 position = Vector2( 2132.87, 335.416 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
 [node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
+visible = false
 position = Vector2( 2648.28, 335.416 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false

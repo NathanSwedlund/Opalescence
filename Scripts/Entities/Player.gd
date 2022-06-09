@@ -46,6 +46,7 @@ var heads_up_display
 # Primary fire variables
 var directions = {"LEFT":Vector2(-1,0), "RIGHT":Vector2(1,0), "UP":Vector2(0,-1), "DOWN":Vector2(0,1)}
 var bullet_scene = load("res://Scenes/HelperScenes/Bullet.tscn")
+var bullet_scale = 1.0
 var small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/SmallBulletExplosion.tscn")
 var can_shoot = true
 export var starting_bombs = 3
@@ -77,6 +78,7 @@ var vision_light_scale = 3.0
 # Secondary fire variables
 var is_charging_laser = false
 var laser_scene = load("res://Scenes/HelperScenes/Laser.tscn")
+var laser_scale = 1.0
 var can_shoot_laser = true
 var is_shooting_indendiary = false
 
@@ -94,7 +96,7 @@ func _ready():
 
 	reset_settings()
 	Settings.apply_sound_settings()
-		
+	
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
@@ -102,8 +104,9 @@ func _ready():
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
+	
 	reset()
-
+	
 func reset_settings():
 	if(use_global_settings):
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
@@ -163,6 +166,7 @@ func _process(delta):
 		if(modulate == target_color):
 			target_color = colors[randi()%len(colors)]
 
+var bullet_types = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"), ]
 func reset():
 	$Cursor.player = self
 	points = 0
@@ -174,8 +178,35 @@ func reset():
 		heads_up_display.update_bombs(current_bombs)
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
+	load_player_type()
+	bullet_scene = bullet_types[Settings.shop["bullet_type"]]
 	respawn()
 
+var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn")]
+var has_loaded_type = false
+var player_type
+func load_player_type():
+	if(has_loaded_type == false):
+		has_loaded_type = true
+		var index = Settings.shop["player_type"]
+		player_type = player_type_scenes[index].instance()
+		
+		player_type.name = "PlayerType"
+		add_child(player_type)
+		
+		speed *= player_type.speed_scale
+		default_bullets_per_burst = int ( default_bullets_per_burst * player_type.bullets_per_burst_scale)
+		$OuterLight.scale *= player_type.light_scale
+		shrink_scalar *= player_type.light_fade_scale
+		laser_scale *= player_type.laser_scale
+		bullet_scale *= player_type.bullet_scale
+		
+		can_bomb = can_bomb and player_type.can_bomb
+		can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
+		can_shoot = can_shoot and player_type.can_shoot
+
+	
+	
 func add_points(points_num):
 	if(can_collect_points):
 		points += points_num * Settings.world["points_scale"]
@@ -296,6 +327,7 @@ func spawn_bullet():
 	bullet.add_to_group("Bullets")
 	bullet.modulate = modulate
 	bullet.incendiary = is_shooting_indendiary
+	bullet.scale *= bullet_scale
 	bullet.small_bullet_explosion_scene = small_bullet_explosion_scene
 	get_parent().add_child(bullet)
 
@@ -384,9 +416,9 @@ func respawn():
 	position = respawn_position
 	visible = true
 
-	can_shoot = Settings.player["can_shoot"]
-	can_shoot_laser = Settings.player["can_shoot_laser"]
-
+	can_shoot = Settings.player["can_shoot"] and player_type.can_shoot
+	can_shoot_laser = Settings.player["can_shoot_laser"] and player_type.can_shoot_laser
+	can_bomb = Settings.player["can_bomb"] and player_type.can_bomb
 
 func game_over():	
 	if(get_parent().game_is_over):
@@ -421,7 +453,7 @@ func game_over():
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
-	$Sprite.look_at(global_position + get_direction_to_shoot() )
+	$PlayerType.look_at(global_position + get_direction_to_shoot() )
 	play_time += delta
 	if(heads_up_display != null and !get_parent().game_is_over):
 		heads_up_display.find_node("TimeLabel").text = "Time: "+str(int(play_time* 1000.0)/1000.0 )+"s"
@@ -474,7 +506,7 @@ func _on_LaserChargeTimer_timeout():
 	$SoundFX/LaserChargeAudio.stop()
 	is_charging_laser = false
 	$LaserChargeEffect.emitting = is_charging_laser
-	spawn_laser()
+	spawn_laser(laser_scale)
 
 func _on_LaserCooldownTimer_timeout():
 	can_shoot_laser = Settings.player["can_shoot_laser"]

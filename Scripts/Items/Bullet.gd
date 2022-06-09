@@ -3,7 +3,7 @@ extends KinematicBody2D
 var direction = Vector2.ZERO
 export var speed = 700
 
-var base_damge = 2.0
+export var base_damge = 2.0
 var damage_mod = 1.0
 var incendiary = false
 

@@ -55,10 +55,10 @@ func _process(delta):
 			
 		if(Input.is_action_just_pressed("ui_right")):
 			if(selected < panel_num): # Shop Panel
-				ui_elements[selected].try_buy()
+				ui_elements[selected].right()
 		if(Input.is_action_just_pressed("ui_left")):
 			if(selected < panel_num): # Shop Panel
-				ui_elements[selected].try_sell()	
+				ui_elements[selected].left()	
 		if(Input.is_action_just_pressed("ui_accept")):
 			if(selected >= panel_num): # is a button, not a panel
 				ui_elements[selected].emit_signal("pressed")
@@ -103,11 +103,11 @@ func back_to_main_menu():
 	get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
 
 func _on_LastPanelButton_pressed():
-	if(!is_shifting):
+	if(!is_shifting and selected != 0):
 		select_last()
 
 func _on_NextPanelButton_pressed():
-	if(!is_shifting):
+	if(!is_shifting and selected != panel_num-1):
 		select_next()
 
 func _on_ResetButton_pressed():

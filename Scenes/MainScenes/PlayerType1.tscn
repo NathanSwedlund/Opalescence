@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/HelperScenes/PlayerType.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/Entities/Player1.png" type="Texture" id=21]
+
+[node name="PlayerType1" type="Sprite"]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 21 )
+script = ExtResource( 1 )
