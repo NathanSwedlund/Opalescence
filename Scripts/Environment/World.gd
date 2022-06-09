@@ -43,7 +43,6 @@ func save_active_states():
 	
 #	print("active_states, ", active_states)
 
-var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn")]
 func start_new_game():
 	Settings.world   = initial_settings[0].duplicate()
 	Settings.factory = initial_settings[1].duplicate()
@@ -70,7 +69,7 @@ func start_new_game():
 	$HeadsUpDisplay/HealthDisplay.visible = true
 	$HeadsUpDisplay/TimeLabel.visible = true
 	
-	var health_sprite = player_type_scenes[Settings.shop["player_type"]].instance()
+	var health_sprite = Global.player_type_scenes[Settings.shop["player_type"]].instance()
 	health_sprite.scale /= 2.5
 	health_sprite.rotation_degrees -= 90
 	$HeadsUpDisplay/HealthDisplay.add_child(health_sprite)

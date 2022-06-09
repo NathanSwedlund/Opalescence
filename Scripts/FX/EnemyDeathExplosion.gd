@@ -7,6 +7,7 @@ export var shrink_speed = 0.94
 export var point_reward = 0.0
 export var scale_mod = 1.0
 
+var explosion_pitch = 1.0
 var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
 
@@ -21,7 +22,7 @@ func _ready():
 
 		Global.player.add_points(point_reward)
 
-	Global.player.play_enemey_explosion_sound()
+	Global.player.play_enemey_explosion_sound(explosion_pitch)
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
 	

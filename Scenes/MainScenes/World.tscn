@@ -174,6 +174,7 @@ script = ExtResource( 17 )
 modulate = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
 position = Vector2( -181, -122 )
 scale = Vector2( 10.3203, 6.57813 )
+z_index = -7
 texture = ExtResource( 5 )
 centered = false
 
@@ -258,7 +259,6 @@ powerup_probabilities = {
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 490.4, 292.5 )
-scale = Vector2( 0.4, 0.4 )
 respawn_position = Vector2( 640, 360 )
 powerup_times = {
 "Barrage": 5.0,

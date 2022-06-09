@@ -166,7 +166,7 @@ func _process(delta):
 		if(modulate == target_color):
 			target_color = colors[randi()%len(colors)]
 
-var bullet_types = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"), ]
+
 func reset():
 	$Cursor.player = self
 	points = 0
@@ -178,18 +178,18 @@ func reset():
 		heads_up_display.update_bombs(current_bombs)
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
+		
 	load_player_type()
-	bullet_scene = bullet_types[Settings.shop["bullet_type"]]
+	bullet_scene = Global.bullet_type_scenes[Settings.shop["bullet_type"]]
 	respawn()
 
-var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn")]
 var has_loaded_type = false
 var player_type
 func load_player_type():
 	if(has_loaded_type == false):
 		has_loaded_type = true
 		var index = Settings.shop["player_type"]
-		player_type = player_type_scenes[index].instance()
+		player_type = Global.player_type_scenes[index].instance()
 		
 		player_type.name = "PlayerType"
 		add_child(player_type)
@@ -648,5 +648,6 @@ func _on_Vision_timeout():
 	has_powerup["Vision"] = false
 	$OuterLight.scale = default_light_size
 
-func play_enemey_explosion_sound():
+func play_enemey_explosion_sound(explosion_pitch=1.0):
+	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
 	$SoundFX/EnemyExplosionSound.play()
