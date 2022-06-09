@@ -109,7 +109,7 @@ locked_settings = [ "player1_is_unlocked", "player2_is_unlocked", "player3_is_un
 title = "Pellet Type"
 setting_name = "bullet_type"
 images = [ "res://Resources/Textures/Items/bullet-pixel.png", "res://Resources/Textures/Items/bullet-pixel2.png", "res://Resources/Textures/Items/bullet-pixel3.png" ]
-names = [ "Standard", "Target-Seeking", "Heavy" ]
+names = [ "Piercing", "Target-Seeking", "Heavy" ]
 locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked" ]
 
 [node name="Background3" type="Sprite" parent="UI"]

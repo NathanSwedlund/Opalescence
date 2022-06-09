@@ -365,6 +365,7 @@ func die():
 	explosion.modulate = modulate
 	explosion.find_node("Light2D").color = modulate
 	explosion.find_node("Light2D").energy = 4.0
+	explosion.point_reward = -1000	
 	explosion.scale *= 2.6
 	get_parent().add_child(explosion)
 

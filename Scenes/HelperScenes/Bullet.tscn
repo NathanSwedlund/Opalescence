@@ -34,7 +34,6 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-speed = 900
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 6 )

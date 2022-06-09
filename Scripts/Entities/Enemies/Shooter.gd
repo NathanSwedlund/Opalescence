@@ -52,9 +52,9 @@ func take_damage(damage):
 	health -= damage
 	
 	var ratio = (base_health-health)/base_health
-	modulate.r = ratio
-	modulate.g = ratio
-	modulate.b = ratio
+	modulate.r = ratio * Global.player.modulate.r*0.6
+	modulate.g = ratio * Global.player.modulate.g*0.6
+	modulate.b = ratio * Global.player.modulate.b*0.6
 	
 	if(health <= 0):
 		die()

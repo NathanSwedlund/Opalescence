@@ -4,7 +4,7 @@ export var max_size = 1.4
 export var min_size = 0.05
 export var grow_speed = 1.05
 export var shrink_speed = 0.94
-export var point_reward = -1000
+export var point_reward = 0.0
 export var scale_mod = 1.0
 
 var is_growing = true
@@ -24,6 +24,9 @@ func _ready():
 	Global.player.play_enemey_explosion_sound()
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
+	
+	$Light2D.color = modulate
+	$Light2D2.color = modulate
 
 var target_time = 1.0/70.0
 var current_time = 0.0
