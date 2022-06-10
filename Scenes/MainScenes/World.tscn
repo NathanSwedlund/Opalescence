@@ -710,10 +710,10 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="TotalPointsLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
-margin_left = 102.0
-margin_top = 284.0
-margin_right = 802.0
-margin_bottom = 334.0
+margin_left = 40.0
+margin_top = 291.0
+margin_right = 740.0
+margin_bottom = 341.0
 custom_fonts/font = SubResource( 33 )
 text = "Total Points: "
 

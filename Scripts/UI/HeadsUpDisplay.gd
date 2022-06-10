@@ -115,7 +115,7 @@ func point_add_popup_event():
 	point_num2 = Settings.shop["points"]
 	Settings.shop["points"] += points_this_round
 	
-	$PointAddPopup/PointsLabel.text = "Points: " + Global.point_num_to_string(points_this_round)
+	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
 	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
 	var tokens_this_round = get_parent().find_node("LevelController").currrent_level
