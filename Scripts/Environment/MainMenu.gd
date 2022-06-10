@@ -18,6 +18,8 @@ func _ready():
 	update_mode_availability()
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
+	$VersionLabel.text = Global.version
+	
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol

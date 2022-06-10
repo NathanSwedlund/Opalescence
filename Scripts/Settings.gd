@@ -12,6 +12,7 @@ var saved_settings_default = {
 	"colors":null,
 	"show_intro":true,
 	"show_epilepsy_warning":true,
+	"version":"alpha 1.6",
 }
 
 var saved_settings = saved_settings_default.duplicate()
@@ -157,7 +158,7 @@ var shop_default = {
 	"player2_is_unlocked":false,
 	"player3_is_unlocked":false,
 	
-	"player_type":2,
+	"player_type":0,
 	"monocolor_mode":false,
 	"monocolor_color":Color.white,
 }

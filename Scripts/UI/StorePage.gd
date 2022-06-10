@@ -31,7 +31,7 @@ func _ready():
 		panels[i].position = starting_panel_loc
 		panels[i].position.y += i * panel_sep_dist
 		panels[i].page = self
-
+	
 	update_point_label()
 	select(0)
 	update_color()
