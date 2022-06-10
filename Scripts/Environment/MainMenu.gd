@@ -261,7 +261,7 @@ export var standard_diff_settings = {
 		"enemy_health_scale":1.0,
 		"enemy_time_max":4.0,
 		"enemy_time_min":2.0,
-		"light_scale":2,
+		"light_scale":1.6,
 	},
 	"Easy":{
 		"is_mission":false,
@@ -271,7 +271,7 @@ export var standard_diff_settings = {
 		"enemy_health_scale":0.8,
 		"enemy_time_max":4.0,
 		"enemy_time_min":2.0,
-		"light_scale":1,
+		"light_scale":1.3,
 	},
 	"Medium":{
 		"is_mission":false,
@@ -293,7 +293,7 @@ export var standard_diff_settings = {
 		"enemy_time_max":0.9,
 		"enemy_time_min":0.4,
 		"light_scale":0.75,
-		"shrink_scale":0.70,
+		"shrink_scale":0.95,
 		"chaser_min_scale":0.15,
 	},
 	"ExtraHard":{
@@ -305,7 +305,7 @@ export var standard_diff_settings = {
 		"enemy_time_max":0.5,
 		"enemy_time_min":0.4,
 		"light_scale":0.5,
-		"shrink_scale":0.60,
+		"shrink_scale":0.88,
 		"chaser_min_scale":0.15,
 		"chaser_max_scale":0.5,
 		"shooter_missile_speed_scale":1.5,

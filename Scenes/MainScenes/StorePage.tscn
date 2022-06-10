@@ -143,6 +143,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
+visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -174,6 +175,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
+visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
