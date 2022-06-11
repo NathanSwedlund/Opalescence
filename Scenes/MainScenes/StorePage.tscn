@@ -78,7 +78,7 @@ setting_name = "challenge_mode_unlocked"
 price = 400000
 
 [node name="StorePanelBool5" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Heat-seeking Pellets"
+title = "Target-Seeking Pellets"
 setting_name = "bullet2_is_unlocked"
 price = 200000
 
@@ -98,7 +98,7 @@ setting_name = "player3_is_unlocked"
 price = 800000
 
 [node name="StorePanelBool9" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Gunner Scatter Shot"
+title = "Scatter Shot"
 setting_name = "bullet4_is_unlocked"
 price = 1
 
