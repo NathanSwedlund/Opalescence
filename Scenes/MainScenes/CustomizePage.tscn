@@ -62,8 +62,7 @@ position = Vector2( 482, 406 )
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
 title = "Additional Pellets Per Burst"
 setting_name = "default_bullets_per_burst_mod"
-default_price = 2.0
-price_mult = 3.0
+default_price = 4.0
 val_step = 1.0
 max_val = 5.1
 
@@ -116,10 +115,11 @@ position = Vector2( -2, 1027 )
 title = "Laser Damage Scale"
 setting_name = "laser_damage_scale"
 default_price = 10.0
-val_step = 0.5
-max_val = 2.1
+val_step = 0.25
+max_val = 1.6
 
 [node name="StoreSkillPanel8" parent="UI/Panels" instance=ExtResource( 10 )]
+position = Vector2( 1, 1205 )
 title = "Player Type"
 setting_name = "player_type"
 images = [ "res://Resources/Textures/Entities/Player1.png", "res://Resources/Textures/Entities/Player2.png", "res://Resources/Textures/Entities/Player3.png" ]
@@ -127,11 +127,12 @@ names = [ "Default", "Laser-Prototype", "Gunner" ]
 locked_settings = [ "player1_is_unlocked", "player2_is_unlocked", "player3_is_unlocked" ]
 
 [node name="StoreSkillPanel9" parent="UI/Panels" instance=ExtResource( 10 )]
+position = Vector2( -3, 1376 )
 title = "Pellet Type"
 setting_name = "bullet_type"
-images = [ "res://Resources/Textures/Items/bullet-pixel.png", "res://Resources/Textures/Items/bullet-pixel2.png", "res://Resources/Textures/Items/bullet-pixel3.png" ]
-names = [ "Piercing", "Target-Seeking", "Heavy" ]
-locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked" ]
+images = [ "res://Resources/Textures/Items/bullet-pixel.png", "res://Resources/Textures/Items/bullet-pixel2.png", "res://Resources/Textures/Items/bullet-pixel3.png", "res://Resources/Textures/Items/bullet-pixel4.png" ]
+names = [ "Piercing", "Target-Seeking", "Heavy", "Scatter" ]
+locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked", "bullet4_is_unlocked" ]
 
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
@@ -248,7 +249,7 @@ margin_top = 66.0
 margin_right = 360.0
 margin_bottom = 126.0
 custom_fonts/font = SubResource( 4 )
-text = "CUSTOMIZE"
+text = "LOADOUT"
 
 [node name="TokensLabel" type="Label" parent="."]
 margin_left = 718.0

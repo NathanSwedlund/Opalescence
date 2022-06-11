@@ -1,4 +1,4 @@
-extends Node2D
+extends Node2D 
 
 func _ready():
 	OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]

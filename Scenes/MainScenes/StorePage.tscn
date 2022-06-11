@@ -97,6 +97,11 @@ title = "Gunner ship"
 setting_name = "player3_is_unlocked"
 price = 800000
 
+[node name="StorePanelBool9" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Gunner Scatter Shot"
+setting_name = "bullet4_is_unlocked"
+price = 1
+
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
 position = Vector2( -769, 25 )

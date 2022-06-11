@@ -153,10 +153,12 @@ var shop_default = {
 	"bullet1_is_unlocked":true,
 	"bullet2_is_unlocked":false,
 	"bullet3_is_unlocked":false,
+	"bullet4_is_unlocked":true,
 	
 	"player1_is_unlocked":true,
 	"player2_is_unlocked":false,
 	"player3_is_unlocked":false,
+	"player4_is_unlocked":false,
 	
 	"player_type":0,
 	"monocolor_mode":false,
