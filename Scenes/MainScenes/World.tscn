@@ -754,17 +754,20 @@ one_shot = true
 
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
+level_time_lengths = [ 5, 5, 5, 20, 20, 20, 20, 20, 20, 20 ]
 level_count = 9
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 
 [node name="LevelLabel" parent="LevelController" instance=ExtResource( 13 )]
 material = SubResource( 32 )
-margin_left = 228.8
-margin_top = 400.833
-margin_right = 788.8
-margin_bottom = 480.833
+margin_left = 1.0
+margin_top = 401.0
+margin_right = 1019.0
+margin_bottom = 481.0
 text = "Level 0"
+align = 1
+valign = 1
 fade_speed = 0.5
 automatically_fade_out = true
 

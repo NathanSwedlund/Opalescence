@@ -1,6 +1,8 @@
 extends Node
 
 var player = null
+var level_timer = null
+
 var target_frame_rate = 60.0
 var points_this_round = 0
 

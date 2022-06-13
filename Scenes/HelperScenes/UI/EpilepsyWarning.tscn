@@ -16,8 +16,8 @@ script = ExtResource( 3 )
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
-position = Vector2( -16, -22 )
-scale = Vector2( 10.256, 5.96 )
+position = Vector2( -82, -112 )
+scale = Vector2( 11.3203, 7.25 )
 texture = ExtResource( 2 )
 centered = false
 

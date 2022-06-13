@@ -147,7 +147,8 @@ func spawn_blocker():
 func kill_all():
 	for c in $Enemies.get_children():
 		if(c.is_in_group("Enemies")):
-			c.point_reward = 0
+			if(c.get("point_reward") != null):
+				c.point_reward = 0
 			c.die()
 
 func _on_Timer_timeout():

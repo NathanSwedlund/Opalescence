@@ -60,7 +60,7 @@ func kill_all():
 		c.queue_free()
 
 func _on_Timer_timeout():
-	print("point factory: is_active, ", is_active)
+#	print("point factory: is_active, ", is_active)
 	if(is_active):
 		spawn_point()
 
