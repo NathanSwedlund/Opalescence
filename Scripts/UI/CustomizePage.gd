@@ -36,7 +36,6 @@ func _ready():
 	select(0)
 	update_color()
 
-
 func _process(delta):
 	if(is_shifting):
 		$UI/Panels.position.y = move_toward($UI/Panels.position.y, panel_sep_dist*selected * -1, shift_speed*delta)

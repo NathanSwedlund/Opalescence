@@ -30,7 +30,7 @@ func _ready():
 	if(Settings.world["is_mission"]):
 		queue_free()
 		
-#	bosses[1] = load("res://Scenes/HelperScenes/Level1Boss.tscn")
+	bosses[1] = load("res://Scenes/HelperScenes/Level1Boss.tscn")
 			
 	
 	currrent_level = starting_level

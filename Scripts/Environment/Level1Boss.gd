@@ -14,6 +14,7 @@ func _on_MissileTimer_timeout():
 	if(is_active == false):
 		return
 		
+	$MissileSpawnAudio.play()
 	var m = missile_scene.instance()
 	add_to_group("Enemies")
 	add_to_group("Bosses")
