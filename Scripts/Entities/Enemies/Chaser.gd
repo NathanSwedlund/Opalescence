@@ -8,18 +8,22 @@ export var base_health = 10
 var health
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 var point_reward = 400
+var use_global_settings = true
 
 onready var base_color = modulate
 var tags = {"enemy":true}
+var starting_health 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scale *= Settings.get_setting_if_exists(Settings.enemy, "chaser_gen_scale", 1.0)
-	point_reward = Settings.get_setting_if_exists(Settings.enemy, "chaser_point_reward", point_reward)
 	add_to_group("Enemies")
 	add_to_group("Chasers")
-	base_health = Settings.get_setting_if_exists(Settings.enemy, "chaser_base_health", base_health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
+	if(use_global_settings):
+		scale *= Settings.get_setting_if_exists(Settings.enemy, "chaser_gen_scale", 1.0)
+		point_reward = Settings.get_setting_if_exists(Settings.enemy, "chaser_point_reward", point_reward)
+		base_health = Settings.get_setting_if_exists(Settings.enemy, "chaser_base_health", base_health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	speed = base_speed * 1/(scale.y)
 	health = scale.y * base_health
+	starting_health = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -52,7 +56,7 @@ func take_damage(damage):
 	$DamageAudio.play()
 
 	$DamageTimer.start()
-	var ratio = (base_health-health)/base_health
+	var ratio = (starting_health-health)/base_health
 	modulate.r = ratio * Global.player.modulate.r*0.6
 	modulate.g = ratio * Global.player.modulate.g*0.6
 	modulate.b = ratio * Global.player.modulate.b*0.6

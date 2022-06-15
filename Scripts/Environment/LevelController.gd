@@ -30,7 +30,8 @@ func _ready():
 	if(Settings.world["is_mission"]):
 		queue_free()
 		
-	bosses[1] = load("res://Scenes/HelperScenes/Level1Boss.tscn")
+	bosses[2] = load("res://Scenes/HelperScenes/Boss1.tscn")
+	bosses[4] = load("res://Scenes/HelperScenes/Boss2Container.tscn")
 			
 	
 	currrent_level = starting_level
@@ -40,6 +41,7 @@ func _ready():
 
 func increase_level():
 	currrent_level += 1
+	print("INCREASING INCREASING LEVEL, ", currrent_level)
 
 	if(level_has_boss(currrent_level)):
 		var boss = bosses[currrent_level].instance()

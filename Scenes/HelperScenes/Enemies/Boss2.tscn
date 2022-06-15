@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Resources/Audio/FX/EnemyDamage.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Entities/Enemies/Chaser.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Textures/Entities/Enemies/chaser.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+light_mode = 1
+
+[sub_resource type="OccluderPolygon2D" id=1]
+cull_mode = 1
+polygon = PoolVector2Array( 0, -31.3333, 7.9999, -18.2222, 24.9999, -18.4445, 19, -2.66671, 41, 30, 5.00016, 30.2222, 0.000222026, 40.8889, -4.17077, 30, -41, 30, -18.5, -3.77773, -24.5001, -18.6666, -7.0001, -18.6666 )
+
+[node name="Chaser" type="KinematicBody2D"]
+modulate = Color( 0, 0, 0, 1 )
+scale = Vector2( 3, 2 )
+collision_layer = 2
+collision_mask = 91
+script = ExtResource( 2 )
+base_speed = 50
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 2 )
+rotation = 1.5708
+scale = Vector2( 1, 1.5 )
+texture = ExtResource( 3 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( -17.1488, 0.694192 )
+rotation = -1.5708
+scale = Vector2( 0.627111, 1.49086 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 1.5708
+polygon = PoolVector2Array( 1, -46, 42, 46, -43, 46 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = 1.5708
+scale = Vector2( 1, 1.5 )
+occluder = SubResource( 1 )
+
+[node name="DamageTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="DamageAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+script = ExtResource( 4 )
+
+[connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

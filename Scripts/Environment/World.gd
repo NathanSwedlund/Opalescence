@@ -28,6 +28,7 @@ func game_over():
 var active_states = [true, true, true]
 var initial_settings
 func _ready():
+	Global.world = self
 	initial_settings = [Settings.world.duplicate(), Settings.factory.duplicate(), Settings.enemy.duplicate(), Settings.player.duplicate()]
 	save_active_states()
 	Settings.apply_sound_settings()

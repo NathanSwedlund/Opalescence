@@ -5,7 +5,7 @@
 [ext_resource path="res://Resources/Audio/FX/Old/Shootsound.wav" type="AudioStream" id=3]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=4]
 
-[node name="Level1Boss" type="Node2D"]
+[node name="Boss1" type="Node2D"]
 position = Vector2( 58, 44 )
 script = ExtResource( 1 )
 missile_num = 140

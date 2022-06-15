@@ -2,6 +2,7 @@ extends Node
 
 var player = null
 var level_timer = null
+var world = null
 
 var target_frame_rate = 60.0
 var points_this_round = 0
@@ -10,7 +11,6 @@ var version = "alpha 1.6"
 
 var main_menu_has_faded = false
 var return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
-
 var ui_states = {}
 var bullet_type_scenes = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"),load("res://Scenes/HelperScenes/Bullet4.tscn") ]
 var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn")]
