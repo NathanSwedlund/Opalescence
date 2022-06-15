@@ -31,7 +31,7 @@ func _process(delta):
 	if(collision != null):
 		var speed_ratio = speed/speed_max
 		if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blocker") == false):
-			collision.collider.take_damage(base_damge*damage_mod * speed_ratio)
+			collision.collider.take_damage(abs(base_damge*damage_mod * speed_ratio))
 		if(collision.collider.is_in_group("Blockers") and !incendiary):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
 

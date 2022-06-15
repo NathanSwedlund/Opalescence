@@ -24,7 +24,7 @@ func _process(delta):
 		else:
 			pause()
 			
-	if(is_racking_points and Input.is_action_just_pressed("ui_cancel")):
+	if(is_racking_points and (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_accept"))):
 		finish_racking()
 
 func unpause():
