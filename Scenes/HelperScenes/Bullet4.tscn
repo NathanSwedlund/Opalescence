@@ -31,7 +31,7 @@ scale_curve = SubResource( 5 )
 [node name="Bullet4" type="Node2D"]
 scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 3 )
-deg_sep = 6
+deg_sep = 8
 
 [node name="Bullet" type="KinematicBody2D" parent="."]
 collision_layer = 8

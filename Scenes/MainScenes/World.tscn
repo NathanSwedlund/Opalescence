@@ -236,6 +236,7 @@ default_enemy_probabilities = {
 }
 
 [node name="PowerupFactory" parent="." instance=ExtResource( 4 )]
+use_global_settings = false
 left_bound = 50
 right_bound = 964
 up_bound = 50
@@ -754,8 +755,8 @@ one_shot = true
 
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
-level_time_lengths = [ 5, 5, 5, 20, 20, 20, 20, 20, 20, 20 ]
 level_count = 9
+level_time_lengths = [ 5, 2, 2, 2, 2, 2, 2, 2, 2, 2 ]
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 

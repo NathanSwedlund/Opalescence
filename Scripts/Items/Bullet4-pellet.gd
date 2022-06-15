@@ -19,6 +19,7 @@ func _ready():
 		speed_accel *= 2.2
 		damage_mod = 3
 		scale *= 2.2
+		
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,7 +31,7 @@ func _process(delta):
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
-		if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blocker") == false):
+		if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blockers") == false):
 			collision.collider.take_damage(abs(base_damge*damage_mod * speed_ratio))
 		if(collision.collider.is_in_group("Blockers") and !incendiary):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
