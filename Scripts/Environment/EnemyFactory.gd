@@ -144,10 +144,14 @@ func spawn_blocker():
 	enemy.position = spawn_position
 	$Enemies.add_child(enemy)
 
-func kill_all():
+func kill_bosses():
+	for b in get_tree().get_nodes_in_group("Bosses"):
+		b.queue_free()
+
+func kill_all(reward_points=false):
 	for c in $Enemies.get_children():
 		if(c.is_in_group("Enemies")):
-			if(c.get("point_reward") != null):
+			if(!reward_points and c.get("point_reward") != null):
 				c.point_reward = 0
 			c.die()
 

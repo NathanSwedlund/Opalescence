@@ -236,23 +236,22 @@ default_enemy_probabilities = {
 }
 
 [node name="PowerupFactory" parent="." instance=ExtResource( 4 )]
-use_global_settings = false
 left_bound = 50
 right_bound = 964
 up_bound = 50
 down_bound = 550
 time_min = 0.0
-time_max = 4.0
+time_max = 1.0
 powerup_probabilities = {
 "barrage": 1.0,
 "bomb_up": 0.0,
 "bombastic": 1.0,
 "bullet_time": 1.0,
 "gravity_well": 1.0,
-"incendiary": 11111.0,
+"incendiary": 1.0,
 "max_bomb": 1.0,
 "one_up": 1.0,
-"opalescence": 1.0,
+"opalescence": 11111.0,
 "overshield": 1.0,
 "unmaker": 1.0,
 "vision": 1.0
@@ -570,6 +569,7 @@ custom_fonts/font = SubResource( 20 )
 text = "PAUSED"
 
 [node name="PowerupTimerUIs" type="Node2D" parent="HeadsUpDisplay"]
+pause_mode = 1
 position = Vector2( 6, 280 )
 
 [node name="PowerupTimerUI" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
@@ -756,7 +756,7 @@ one_shot = true
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
 level_count = 9
-level_time_lengths = [ 5, 2, 2, 2, 2, 2, 2, 2, 2, 2 ]
+level_time_lengths = [ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ]
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 

@@ -92,6 +92,8 @@ func _on_RestartButton_pressed():
 var return_to_menu_after_done_racking = false
 var done_racking_points = false
 func _on_MenuButton_pressed():
+	Global.player._on_BulletTime_timeout() # to prevent point racking from being slowed by bullet time
+	
 	return_to_menu_after_done_racking = true
 	if(done_racking_points or Global.points_this_round == 0):
 		return_to_menu()

@@ -103,7 +103,6 @@ func _ready():
 
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	bullets_per_burst = default_bullets_per_burst
-	bullets_to_shoot = default_bullets_per_burst
 	
 	reset()
 	
@@ -120,7 +119,7 @@ func reset_settings():
 		default_gravity_pull_scale = Settings.get_setting_if_exists(Settings.player, "default_gravity_pull_scale", default_gravity_pull_scale)
 		default_bullets_burst_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_burst_wait_time", default_bullets_burst_wait_time)
 		is_active = Settings.get_setting_if_exists(Settings.player, "is_active", is_active)
-		can_bomb = Settings.get_setting_if_exists(Settings.player, "can_bomb", can_bomb)
+		can_bomb = can_bomb and Settings.get_setting_if_exists(Settings.player, "can_bomb", can_bomb)
 		starting_bombs = Settings.get_setting_if_exists(Settings.player, "starting_bombs", starting_bombs)
 		powerup_point_value = Settings.get_setting_if_exists(Settings.player, "powerup_point_value", powerup_point_value)
 		bullet_time_time_scale = Settings.get_setting_if_exists(Settings.player, "bullet_time_time_scale", bullet_time_time_scale)
@@ -129,9 +128,9 @@ func reset_settings():
 		gravity_well_radius = Settings.get_setting_if_exists(Settings.player, "gravity_well_radius", gravity_well_radius)
 		barrage_burst_time = Settings.get_setting_if_exists(Settings.player, "barrage_burst_time", barrage_burst_time)
 		unmaker_scale = Settings.get_setting_if_exists(Settings.player, "unmaker_scale", unmaker_scale)
-		can_shoot = Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
+		can_shoot = can_shoot and Settings.get_setting_if_exists(Settings.player, "can_shoot", can_shoot)
 		default_bullets_per_burst = Settings.get_setting_if_exists(Settings.player, "default_bullets_per_burst", default_bullets_per_burst)
-		can_shoot_laser = Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
+		can_shoot_laser = can_shoot_laser and Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size *= Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
@@ -341,7 +340,7 @@ func drop_bomb():
 
 func damage():
 	if(has_powerup["Opalescence"]):
-		get_parent().find_node("EnemyFactory").kill_all()
+		get_parent().find_node("EnemyFactory").kill_all(true)
 	elif(has_powerup["OverShield"]):
 		has_powerup["OverShield"] = false
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
@@ -354,6 +353,7 @@ func damage():
 
 func die():
 	$SoundFX/PlayerExplosionSound.play()
+	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
 		laser.queue_free()
 
@@ -400,6 +400,14 @@ func die():
 	$SoundFX/LaserChargeAudio.stop()
 	$LaserChargeEffect.emitting = false
 
+func pause_bosses():
+	for b in get_tree().get_nodes_in_group("Bosses"):
+		b.is_active = false
+	
+func resume_bosses():
+	for b in get_tree().get_nodes_in_group("Bosses"):
+		b.is_active = true
+
 func respawn():
 	_on_Bombastic_timeout()
 	_on_Barrage_timeout()
@@ -409,7 +417,9 @@ func respawn():
 	_on_Opalescence_timeout()
 	_on_Unmaker_timeout()
 	_on_Vision_timeout()
-
+	
+	resume_bosses()
+	
 	if(get_parent().has_method("start_factories")):
 		get_parent().start_factories()
 

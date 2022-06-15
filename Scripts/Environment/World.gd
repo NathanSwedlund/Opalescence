@@ -16,6 +16,7 @@ func game_over():
 	$Player.is_active = false
 	$PointFactory.is_active = false
 	$EnemyFactory.is_active = false
+	$EnemyFactory.kill_bosses()
 	$PowerupFactory.is_active = false
 	$LevelController.stop()
 	

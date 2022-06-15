@@ -90,25 +90,22 @@ func _process(_delta):
 			$LabelContainer/OpalescenceLabel.modulate = new_color
 			for button_selection in button_selections:
 				button_selection.modulate = new_color
-
+				for b in button_selection.get_children():
+					b.get_node("Light2D").color = new_color
+					
 			$VersionLabel.modulate = new_color
 			$PointsLabel.modulate = new_color
 			$TokensLabel.modulate = new_color
-		
-			for c in $MenuCanvas/ButtonSelectionController1.get_children():
-				c.get_node("Light2D").color = new_color
-			for c in $MenuCanvas/ButtonSelectionController2.get_children():
-				c.get_node("Light2D").color = new_color
-			
-			
 			
 			last_color = new_color
 
-		if(Input.is_action_just_pressed("ui_cancel")):
+		if(Input.is_action_just_pressed("ui_cancel") and is_shifting_button_selection == false):
 			if(current_button_selection == 2):
 				Settings.save()
-			if(current_button_selection != 0):
+			if(current_button_selection == 1):
 				shift_button_selection(0)
+			if(current_button_selection == 3):
+				shift_button_selection(1)
 				
 
 func _on_QuitButton_pressed():
@@ -126,12 +123,19 @@ func toggle_button_selection():
 	$ButtonShiftTimer.start()
 
 func _on_PlayButton_pressed():
+	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+		return 
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
+	if($MenuCanvas/ButtonSelectionController2.is_active == false and $MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
+
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
+	if($MenuCanvas/ButtonSelectionController2.is_active == false):
+		return 
 	shift_button_selection(3)
 
 var play_shift_audio = true
@@ -217,11 +221,17 @@ func update_mode_availability():
 		$MenuCanvas/ButtonSelectionController2/BackButton.button_shift_index -= 1
 		
 func _on_StorePage_pressed():
+	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+		return 
+
 	Settings.current_main_menu_button_selection = 0
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/StorePage.tscn")
 
 func _on_OptionsButton_pressed():
+	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+		return 
+
 	shift_button_selection(2)
 
 func _on_OptionBackButton_pressed():
@@ -327,26 +337,43 @@ export var standard_diff_settings = {
 }
 
 func _on_ExtraEasyButton_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
+		
+	print("$MenuCanvas/ButtonSelectionController4.is_active, ", $MenuCanvas/ButtonSelectionController4.is_active)
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
 	
 func _on_EasyButton2_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
+		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Easy"])
 
 func _on_MediumButton_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
+		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Medium"])
 
 func _on_HardButton_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
+		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Hard"])
 
 func _on_ExtraHardButton_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
 
 func _on_NightmareMode_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Nightmare"])
 	

@@ -11,7 +11,6 @@ var incendiary = false
 
 var small_bullet_explosion_scene 
 export var explosion_scale = 0.5
-
 func _ready():
 #	small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 	base_damge *= Settings.shop["bullet_damage_scale"]
