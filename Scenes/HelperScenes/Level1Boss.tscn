@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Environment/Level1Boss.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/BossAlarm.wav" type="AudioStream" id=2]
 [ext_resource path="res://Resources/Audio/FX/Old/Shootsound.wav" type="AudioStream" id=3]
+[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=4]
 
 [node name="Level1Boss" type="Node2D"]
 position = Vector2( 58, 44 )
@@ -24,6 +25,12 @@ autoplay = true
 [node name="MissileSpawnAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 pitch_scale = 1.66
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -55, 324 )
+scale = Vector2( 0.5, 2.845 )
+texture = ExtResource( 4 )
+energy = 7.0
 
 [connection signal="timeout" from="MissileTimer" to="." method="_on_MissileTimer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
