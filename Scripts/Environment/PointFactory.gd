@@ -30,8 +30,14 @@ func _ready():
 	
 	colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 	
+	var monocolor_color = Settings.get_setting_if_exists(Settings.shop, "monocolor_color", null)
+	if(monocolor_color != null):
+		print("monocolor_color, monocolor_color monocolor_color monocolor_color,  ", monocolor_color)
+		colors = [monocolor_color]
+		
 	var color_override = Settings.get_setting_if_exists(Settings.factory, "point_color_override", null)
 	if(color_override != null):
+		print("color_override, color_override color_override color_override,  ", color_override)
 		colors = color_override
 	
 	color_count = len(colors)

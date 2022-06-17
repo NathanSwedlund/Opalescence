@@ -105,6 +105,7 @@ var points_this_round
 var point_num1
 var point_num2
 var point_add_music_mod = 10
+var default_token_reward = 2
 func point_add_popup_event():
 	if(done_racking_points):
 		return
@@ -120,9 +121,11 @@ func point_add_popup_event():
 	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
 	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
-	var tokens_this_round = get_parent().find_node("LevelController").currrent_level
-	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
-		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
+	var tokens_this_round = default_token_reward
+	if(get_parent().find_node("LevelController") != null):
+		tokens_this_round = get_parent().find_node("LevelController").currrent_level
+		if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
+			tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
 		
 	$PointAddPopup/TokensEarnedLabel.text = "Tokens Earned: " + str(tokens_this_round)
 	Settings.shop["tokens"] += tokens_this_round

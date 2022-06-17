@@ -13,6 +13,9 @@ var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tsc
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if(Settings.shop["monocolor_color"] != null):
+		modulate = Settings.shop["monocolor_color"]
+		
 	if(point_reward != 0):
 		var gpl = point_get_label_scene.instance()
 		gpl.points_num = point_reward

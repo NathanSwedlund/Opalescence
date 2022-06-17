@@ -102,6 +102,11 @@ title = "Scatter Shot"
 setting_name = "bullet4_is_unlocked"
 price = 1
 
+[node name="StorePanelBool10" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Mono-color Mode"
+setting_name = "monocolor_mode_unlocked"
+price = 1
+
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
 position = Vector2( -769, 25 )

@@ -246,11 +246,9 @@ func _on_SFXVolumeOption_pressed(_value):
 	Settings.saved_settings["fx_volume"] = _value
 	Settings.apply_sound_settings()
 
-
 func _on_PaleModeOption_pressed(is_selected):
 	Settings.saved_settings["less_flashy_mode"] = is_selected
 	Settings.reset_colors()
-
 
 func _on_FullscreenOption_pressed(is_selected):
 	Settings.saved_settings["fullscreen_mode"] = is_selected

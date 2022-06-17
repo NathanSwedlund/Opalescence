@@ -160,9 +160,10 @@ var shop_default = {
 	"player3_is_unlocked":false,
 	"player4_is_unlocked":false,
 	
+	
 	"player_type":0,
-	"monocolor_mode":false,
-	"monocolor_color":Color.white,
+	"monocolor_mode_unlocked":false,
+	"monocolor_color":null,
 }
 
 var shop = shop_default.duplicate()

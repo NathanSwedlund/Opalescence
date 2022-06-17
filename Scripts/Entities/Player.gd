@@ -251,6 +251,9 @@ func gain_point(_color):
 
 export var can_change_color = true
 func change_color(new_color):
+	if(Settings.shop["monocolor_color"] != null):
+		new_color = Settings.shop["monocolor_color"].linear_interpolate(new_color, 0.5)
+		
 	if(!can_change_color):
 		return
 		
@@ -423,7 +426,11 @@ func respawn():
 	if(get_parent().has_method("start_factories")):
 		get_parent().start_factories()
 
-	change_color(Color.white)
+	if(Settings.shop["monocolor_color"] != null):
+		change_color(Settings.shop["monocolor_color"])
+	else:
+		change_color(Color.white)
+		
 	position = respawn_position
 	visible = true
 

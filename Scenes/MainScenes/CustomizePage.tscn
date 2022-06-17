@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreSkillPanel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreEqupmentPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
+[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
@@ -73,6 +75,17 @@ setting_name = "bullet_type"
 images = [ "res://Resources/Textures/Items/bullet-pixel.png", "res://Resources/Textures/Items/bullet-pixel2.png", "res://Resources/Textures/Items/bullet-pixel3.png", "res://Resources/Textures/Items/bullet-pixel4.png" ]
 names = [ "Piercing", "Target-Seeking", "Heavy", "Scatter" ]
 locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked", "bullet4_is_unlocked" ]
+
+[node name="StoreSkillPanel10" parent="UI/Panels" instance=ExtResource( 10 )]
+position = Vector2( -3, 1376 )
+script = ExtResource( 11 )
+title = "Mono-col. Color"
+
+[node name="Sprite2" type="Sprite" parent="UI/Panels/StoreSkillPanel10"]
+visible = false
+position = Vector2( -55, -66 )
+scale = Vector2( 1.26829, 0.414633 )
+texture = ExtResource( 12 )
 
 [node name="StoreSkillPanel" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
