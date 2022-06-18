@@ -39,6 +39,8 @@ var frames_per_update_options = {"Min":10, "Low":5, "Mid":3, "High":2, "Ultra":1
 var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
 
+var damage = 7
+
 func _process(delta):
 	current_time += delta
 	if(current_time > target_time):
@@ -51,6 +53,9 @@ func _process(delta):
 					is_growing = false
 				else:
 					scale *= pow(grow_speed, frames_per_update)
+				for i in $Area2D.get_overlapping_bodies():
+					if(i.is_in_group("Enemies")):
+						i.take_damage(damage * delta * frames_per_update)
 			else:
 				if(scale.x <= min_size * scale_mod):
 					queue_free()

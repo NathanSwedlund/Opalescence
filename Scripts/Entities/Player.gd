@@ -84,7 +84,7 @@ var is_shooting_indendiary = false
 
 export var use_global_settings = true
 export var can_collect_points = true
-var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
+var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/PlayerDeathExplosion.tscn")
 var opalescence_shift_speed = 0.5
 var opalescense_player_speed_scale = 3
 var default_player_speed

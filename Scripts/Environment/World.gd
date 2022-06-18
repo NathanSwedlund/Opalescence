@@ -22,9 +22,7 @@ func game_over():
 		$LevelController.stop()
 	
 	$HeadsUpDisplay/BombDisplay.visible = false
-#	$HeadsUpDisplay/PointsLabel.visible = false
 	$HeadsUpDisplay/HealthDisplay.visible = false
-#	$HeadsUpDisplay/TimeLabel.visible = false
 
 var active_states = [true, true, true]
 var initial_settings

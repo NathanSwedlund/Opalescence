@@ -62,14 +62,14 @@ scale = 4.0
 scale_random = 1.0
 color_ramp = SubResource( 6 )
 
-[sub_resource type="Gradient" id=7]
-offsets = PoolRealArray( 0, 0.810811 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351 )
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.278846, 0.75 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 0.738117, 0.738117, 0.738117, 0.738117 )
 
 [sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+gradient = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 1
 emission_sphere_radius = 160.0
 flag_disable_z = true
@@ -148,16 +148,17 @@ local_coords = false
 process_material = SubResource( 5 )
 
 [node name="LaserChargeEffect" type="Particles2D" parent="."]
+scale = Vector2( 1, 0.995154 )
 emitting = false
 amount = 25
 speed_scale = 3.0
-process_material = SubResource( 9 )
+process_material = SubResource( 11 )
 
 [node name="OpalescenceEffect" type="Particles2D" parent="."]
 emitting = false
 amount = 100
 speed_scale = 3.0
-process_material = SubResource( 9 )
+process_material = SubResource( 11 )
 
 [node name="BulletBurstTimer" type="Timer" parent="."]
 wait_time = 0.1
