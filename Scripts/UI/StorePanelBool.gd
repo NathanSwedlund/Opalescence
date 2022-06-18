@@ -66,3 +66,6 @@ func reset():
 	Settings.shop[setting_name] = false
 	has_purchased = false
 	update_labels()
+	
+func set_page(_page):
+	page = _page

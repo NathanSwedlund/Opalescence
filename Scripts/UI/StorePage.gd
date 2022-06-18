@@ -30,7 +30,7 @@ func _ready():
 	for i in range(panel_num):
 		panels[i].position = starting_panel_loc
 		panels[i].position.y += i * panel_sep_dist
-		panels[i].page = self
+		panels[i].set_page(self)
 	
 	update_point_label()
 	select(0)
@@ -60,11 +60,18 @@ func _process(delta):
 func update_color():
 	if(selected < panel_num):
 		var c = panels[selected].modulate
-		$PointsLabel.modulate = c
-		$LastPanelButton.modulate = c
-		$StoreLabel.modulate = c
-		$UI/BackButton.modulate = c
-		$Light2D.color = c
+		change_color(c)
+		
+func change_color(c):
+	$PointsLabel.modulate = c
+	$LastPanelButton.modulate = c
+	$StoreLabel.modulate = c
+	$UI/BackButton.modulate = c
+	$Light2D.color = c
+	$UI/SepBar.modulate = c
+	$UI/SepBar2.modulate = c
+	for p in $UI/Panels.get_children():
+		p.modulate = c
 			
 func select_next():
 	select( (selected + 1) % ui_element_num )
