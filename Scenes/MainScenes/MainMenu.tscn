@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Environment/MainMenu.gd" type="Script" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=13]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=14]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scenes/HelperScenes/UI/StringSelector.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/UI/FloatSelector.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.24999, 506 )
@@ -437,28 +439,28 @@ process_material = SubResource( 1 )
 
 [node name="ButtonSelectionController3" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
-button_count = 7
+button_count = 8
 
 [node name="MusicVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 340, 906.667 )
 scale = Vector2( 5, 5 )
-title = "Music Volume"
-starting_val = 25.0
-max_val = 30.0
-min_val = -1.0
+script = ExtResource( 17 )
+starting_val = 20.0
+max_val = 25.1
 step = 1.0
+setting_name = "music_volume"
 
 [node name="SFXVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 340, 1516.67 )
 scale = Vector2( 5, 5 )
-title = "SFX Volume"
-starting_val = 25.0
-max_val = 30.0
-min_val = -1.0
+script = ExtResource( 17 )
+starting_val = 20.0
+max_val = 25.0
 step = 1.0
 button_index = 1
+setting_name = "fx_volume"
 
 [node name="PaleModeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
 visible = false
@@ -488,6 +490,15 @@ scale = Vector2( 5, 5 )
 title = "Show Epilepsy Warning"
 button_index = 5
 
+[node name="GraphicSetting" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 16 )]
+visible = false
+position = Vector2( 2620, 2080 )
+scale = Vector2( 5, 5 )
+title = "Graphics"
+button_index = 6
+setting_name = "graphical_quality"
+strings = [ "Min", "Low", "Mid", "High", "Ultra" ]
+
 [node name="OptionBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController3"]
 visible = false
 margin_left = 7073.33
@@ -500,7 +511,7 @@ custom_styles/focus = SubResource( 6 )
 text = "Back"
 flat = true
 script = ExtResource( 8 )
-button_index = 6
+button_index = 7
 button_shift_index = 5
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]

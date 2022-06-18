@@ -13,14 +13,18 @@ var exploding = false
 var damage = 40
 
 # Called when the node enters the scene tree for the first time.
+var shrink_speed
 func _ready():
-	pass # Replace with function body.
+	pass
 
-var frames_per_update = 7
+var frames_per_update_options = {"Min":10, "Low":5, "Mid":3, "High":2, "Ultra":1}
+var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
 	if(exploding == false):
 		rotate(rot_speed * delta)
 		if(growing):
@@ -38,16 +42,21 @@ func _process(delta):
 			if(collision.collider.is_in_group("Enemies")):
 				explode()
 	else:
-		current_frame = (current_frame + 1) % frames_per_update
-		if(current_frame == 0):
+		current_frame += 1
+		if(current_frame % frames_per_update == 0):
 			for i in get_parent().find_node("Area2D").get_overlapping_bodies():
 				if(i.is_in_group("Enemies")):
 					i.take_damage(damage * delta * frames_per_update)
+					
+			get_parent().scale.x -= shrink_speed * delta * frames_per_update
+			get_parent().scale.y -= shrink_speed * delta * frames_per_update
+			print("bombscale", scale)
 
 func explode():
 	if(exploding):
 		return
 
+	shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true
 	exploding = true
 	$AudioStreamPlayer.play()

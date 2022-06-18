@@ -35,7 +35,8 @@ func _ready():
 var target_time = 1.0/70.0
 var current_time = 0.0
 
-var frames_per_scale = 2
+var frames_per_update_options = {"Min":10, "Low":5, "Mid":3, "High":2, "Ultra":1}
+var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
 
 func _process(delta):
@@ -44,19 +45,20 @@ func _process(delta):
 		current_frame += 1
 		current_time = 0.0
 		$Light2D2.rotate(0.01)
-		if(current_frame % frames_per_scale == 0):
+		if(current_frame % frames_per_update == 0):
 			if(is_growing):
 				if(scale.x >= max_size * scale_mod):
 					is_growing = false
 				else:
-					scale *= pow(grow_speed, frames_per_scale)
+					scale *= pow(grow_speed, frames_per_update)
 			else:
 				if(scale.x <= min_size * scale_mod):
 					queue_free()
 				else:
-					scale *= pow(shrink_speed, frames_per_scale)
-					modulate.a *= pow(shrink_speed, frames_per_scale)
-					$Light2D.color.a *= pow(shrink_speed, frames_per_scale)
-					$Light2D2.color.a *= pow(shrink_speed, frames_per_scale)
+					var shrink_speed_modded = pow(shrink_speed, frames_per_update)
+					scale *= shrink_speed_modded
+					modulate.a *= shrink_speed_modded
+					$Light2D.color.a *= shrink_speed_modded
+					$Light2D2.color.a *= shrink_speed_modded
 
 	#$LightTimer.start()

@@ -102,6 +102,7 @@ func _process(_delta):
 		if(Input.is_action_just_pressed("ui_cancel") and is_shifting_button_selection == false):
 			if(current_button_selection == 2):
 				Settings.save()
+				shift_button_selection(0)
 			if(current_button_selection == 1):
 				shift_button_selection(0)
 			if(current_button_selection == 3):

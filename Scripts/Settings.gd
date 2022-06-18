@@ -12,6 +12,7 @@ var saved_settings_default = {
 	"colors":null,
 	"show_intro":true,
 	"show_epilepsy_warning":true,
+	"graphical_quality":"High"
 }
 
 var saved_settings = saved_settings_default.duplicate()
