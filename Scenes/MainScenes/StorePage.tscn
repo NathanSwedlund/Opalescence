@@ -57,6 +57,11 @@ position = Vector2( 482, 406 )
 
 [node name="Panels" type="Node2D" parent="UI"]
 
+[node name="StorePanelBool4" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Challenge Game Mode"
+setting_name = "challenge_mode_unlocked"
+price = 400000
+
 [node name="StorePanelBool" parent="UI/Panels" instance=ExtResource( 7 )]
 title = "Standard Hard Mode"
 setting_name = "hard_mode_unlocked"
@@ -72,40 +77,35 @@ title = "Standard NIGHTMARE Mode"
 setting_name = "nightmare_mode_unlocked"
 price = 1000000
 
-[node name="StorePanelBool4" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Challenge Game Mode"
-setting_name = "challenge_mode_unlocked"
-price = 400000
-
-[node name="StorePanelBool5" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Target-Seeking Pellets"
-setting_name = "bullet2_is_unlocked"
-price = 200000
-
-[node name="StorePanelBool6" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Heavy Pellets"
-setting_name = "bullet3_is_unlocked"
-price = 300000
-
-[node name="StorePanelBool7" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Laser-prototype ship"
-setting_name = "player2_is_unlocked"
-price = 700000
-
-[node name="StorePanelBool8" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Gunner ship"
-setting_name = "player3_is_unlocked"
-price = 800000
-
-[node name="StorePanelBool9" parent="UI/Panels" instance=ExtResource( 7 )]
-title = "Scatter Shot"
-setting_name = "bullet4_is_unlocked"
-price = 1
-
 [node name="StorePanelBool10" parent="UI/Panels" instance=ExtResource( 7 )]
 title = "Mono-color Mode"
 setting_name = "monocolor_mode_unlocked"
 price = 1
+
+[node name="StorePanelBool5" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Target-Seeking Pellets"
+setting_name = "bullet2_is_unlocked"
+price = 500000
+
+[node name="StorePanelBool6" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Heavy Pellets"
+setting_name = "bullet3_is_unlocked"
+price = 500000
+
+[node name="StorePanelBool9" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Scatter Shot Pellets"
+setting_name = "bullet4_is_unlocked"
+price = 500000
+
+[node name="StorePanelBool7" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Laser-prototype ship"
+setting_name = "player2_is_unlocked"
+price = 1000000
+
+[node name="StorePanelBool8" parent="UI/Panels" instance=ExtResource( 7 )]
+title = "Gunner ship"
+setting_name = "player3_is_unlocked"
+price = 1000000
 
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
@@ -153,7 +153,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -185,7 +184,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0

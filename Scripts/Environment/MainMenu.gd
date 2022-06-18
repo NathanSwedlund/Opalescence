@@ -184,36 +184,29 @@ func _on_ButtonShiftTimer_timeout():
 
 
 func update_mode_availability():
-	var standard_index_mod = 0
+	var standard_mode_buttons = $MenuCanvas/ButtonSelectionController4.get_child_count()
 	if(Settings.shop["hard_mode_unlocked"] == false):
+		standard_mode_buttons -= 1
 		$MenuCanvas/ButtonSelectionController4/HardButton.queue_free()
-		standard_index_mod += 1
 	if(Settings.shop["extra_hard_mode_unlocked"] == false):
+		standard_mode_buttons -= 1
 		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.queue_free()
-		standard_index_mod += 1
 	if(Settings.shop["nightmare_mode_unlocked"] == false):
+		standard_mode_buttons -= 1
 		$MenuCanvas/ButtonSelectionController4/NightmareMode.queue_free()
-		standard_index_mod += 1
+	
 		
-	print(Settings.shop)
-	print("\n backButton ind ", $MenuCanvas/ButtonSelectionController4/BackButton.button_index)
+	$MenuCanvas/ButtonSelectionController4.button_count = standard_mode_buttons
 	
-	if($MenuCanvas/ButtonSelectionController4.find_node("HardButton")):
-		$MenuCanvas/ButtonSelectionController4/HardButton.button_index -= standard_index_mod
-		$MenuCanvas/ButtonSelectionController4/HardButton.button_shift_index -= standard_index_mod
-	if($MenuCanvas/ButtonSelectionController4.find_node("ExtraHardButton")):
-		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.button_index -= standard_index_mod
-		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.button_shift_index -= standard_index_mod
-	if($MenuCanvas/ButtonSelectionController4.find_node("NightmareMode")):
-		$MenuCanvas/ButtonSelectionController4/NightmareMode.button_index -= standard_index_mod
-		$MenuCanvas/ButtonSelectionController4/NightmareMode.button_shift_index -= standard_index_mod
+	var button_ind = 0
+	for b in $MenuCanvas/ButtonSelectionController4.get_children():
+		if(b.is_queued_for_deletion() == false):
+			b.button_shift_index = button_ind
+			b.button_index = button_ind
+			button_ind += 1
+			
 	
-	$MenuCanvas/ButtonSelectionController4/BackButton.button_index -= standard_index_mod
-	$MenuCanvas/ButtonSelectionController4/BackButton.button_shift_index -= standard_index_mod
-	$MenuCanvas/ButtonSelectionController4.button_count -= standard_index_mod
-	
-	print("\n backButton ind ", $MenuCanvas/ButtonSelectionController4/BackButton.button_index)
-	
+		
 	if(Settings.shop["challenge_mode_unlocked"] == false):
 		$MenuCanvas/ButtonSelectionController2/ChallengeButton.queue_free()
 		$MenuCanvas/ButtonSelectionController2.button_count -= 1
@@ -338,7 +331,6 @@ func _on_ExtraEasyButton_pressed():
 	if($MenuCanvas/ButtonSelectionController4.is_active == false):
 		return 
 		
-	print("$MenuCanvas/ButtonSelectionController4.is_active, ", $MenuCanvas/ButtonSelectionController4.is_active)
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
 	

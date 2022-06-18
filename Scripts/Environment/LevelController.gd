@@ -1,8 +1,6 @@
 extends Node2D
 
-
 export var default_level_time = 60
-
 export var universal_level_settings_scales = {
 	"points_scale":1.2,
 	"enemy_time_min":0.9,
@@ -13,14 +11,13 @@ export var universal_level_settings_scales = {
 	"chaser_max_scale":0.9,
 	"enemy_health_scale":1.1,
 }
-
+	
 export var level_count = 0
 export var starting_level = 0
 export var level_time_lengths = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
 export var level_settings_scales = [{},{},{},{},{},{},{},{},{},{}] # multiplies settings by values
 export var level_settings_mods = [{},{},{},{},{},{},{},{},{},{}] # adds values to settings
 export var level_settings_setters = [{},{},{},{},{},{},{},{},{},{}]
-
 var currrent_level = 0
 var bosses = [null,null,null,null,null,null,null,null,null,null,null,]
 

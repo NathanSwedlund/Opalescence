@@ -105,7 +105,7 @@ var points_this_round
 var point_num1
 var point_num2
 var point_add_music_mod = 10
-var default_token_reward = 2
+var default_token_reward = 0
 func point_add_popup_event():
 	if(done_racking_points):
 		return

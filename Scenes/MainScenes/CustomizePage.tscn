@@ -87,6 +87,30 @@ position = Vector2( -55, -66 )
 scale = Vector2( 1.26829, 0.414633 )
 texture = ExtResource( 12 )
 
+[node name="StoreSkillPanel6" parent="UI/Panels" instance=ExtResource( 9 )]
+position = Vector2( -4, 863 )
+title = "Player Light Scale"
+setting_name = "light_scale"
+default_price = 5.0
+max_val = 1.6
+
+[node name="StoreSkillPanel5" parent="UI/Panels" instance=ExtResource( 9 )]
+modulate = Color( 1, 0.698039, 0.345098, 1 )
+position = Vector2( -1, 689 )
+title = "Powerup Time Scale"
+setting_name = "powerup_time_scale"
+default_price = 1.0
+max_val = 1.51
+
+[node name="StoreSkillPanel4" parent="UI/Panels" instance=ExtResource( 9 )]
+modulate = Color( 0.266667, 1, 0, 1 )
+position = Vector2( -1, 339 )
+title = "Additional Starting Health"
+setting_name = "starting_health_mod"
+default_price = 40.0
+val_step = 1.0
+max_val = 2.1
+
 [node name="StoreSkillPanel" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
 title = "Additional Pellets Per Burst"
@@ -104,15 +128,6 @@ default_price = 2.0
 price_mult = 1.0
 max_val = 2.1
 
-[node name="StoreSkillPanel4" parent="UI/Panels" instance=ExtResource( 9 )]
-modulate = Color( 0.266667, 1, 0, 1 )
-position = Vector2( -1, 339 )
-title = "Additional Starting Health"
-setting_name = "starting_health_mod"
-default_price = 40.0
-val_step = 1.0
-max_val = 2.1
-
 [node name="StoreSkillPanel2" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.501961, 1, 0.658824, 1 )
 position = Vector2( 1, 509 )
@@ -120,23 +135,7 @@ title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
 default_price = 4.0
 val_step = 0.25
-max_val = 2.51
-
-[node name="StoreSkillPanel5" parent="UI/Panels" instance=ExtResource( 9 )]
-modulate = Color( 1, 0.698039, 0.345098, 1 )
-position = Vector2( -1, 689 )
-title = "Powerup Time Scale"
-setting_name = "powerup_time_scale"
-default_price = 1.0
-max_val = 1.51
-
-[node name="StoreSkillPanel6" parent="UI/Panels" instance=ExtResource( 9 )]
-position = Vector2( -4, 863 )
-title = "Player Light Scale"
-setting_name = "light_scale"
-default_price = 5.0
-price_mult = 1.0
-max_val = 3.0
+max_val = 2.1
 
 [node name="StoreSkillPanel7" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0, 0.882353, 1, 1 )
@@ -193,7 +192,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -225,7 +223,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddTokensButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
