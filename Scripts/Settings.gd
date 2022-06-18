@@ -159,6 +159,7 @@ var shop_default = {
 	"player2_is_unlocked":false,
 	"player3_is_unlocked":false,
 	"player4_is_unlocked":false,
+	"player5_is_unlocked":false,
 	
 	
 	"player_type":0,

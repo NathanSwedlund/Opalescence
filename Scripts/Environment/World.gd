@@ -32,7 +32,6 @@ func _ready():
 
 	Global.world = self
 	initial_settings = [Settings.world.duplicate(), Settings.factory.duplicate(), Settings.enemy.duplicate(), Settings.player.duplicate()]
-	
 	Settings.apply_sound_settings()
 	save_active_states()
 	start_new_game()
@@ -89,14 +88,6 @@ func start_factories():
 	$EnemyFactory.reset()
 	$PointFactory.reset()
 	$PowerupFactory.reset()
-	
-	
-#	var factories = [$PointFactory, $EnemyFactory, $PowerupFactory]
-#	for i in range(len(factories)):
-#		factories[i].is_active = active_states[i]
-#	print("2. active_states, ", active_states)
-#	for i in range(len(factories)):
-#		print("3. ", factories[i].is_active)
 	
 func reset():
 	start_new_game()

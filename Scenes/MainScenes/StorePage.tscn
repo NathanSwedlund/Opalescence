@@ -206,6 +206,20 @@ title = "Gunner ship"
 setting_name = "player3_is_unlocked"
 price = 1000000
 
+[node name="StorePanelBool9" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
+position = Vector2( 400, -2.19781 )
+scale = Vector2( 1.0989, 1.0989 )
+title = "Gunner ship"
+setting_name = "player4_is_unlocked"
+price = 1000000
+
+[node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
+position = Vector2( 400, -2.19781 )
+scale = Vector2( 1.0989, 1.0989 )
+title = "Gunner ship"
+setting_name = "player5_is_unlocked"
+price = 1000000
+
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel3"]
 stream = ExtResource( 5 )
 pitch_scale = 0.7
@@ -235,7 +249,7 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Mono-color Scheme"
 setting_name = "monocolor_mode_unlocked"
-price = 1
+price = 350000
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel4"]
 stream = ExtResource( 5 )

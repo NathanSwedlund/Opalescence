@@ -224,8 +224,6 @@ func add_points(points_num):
 		if(Settings.world["has_point_goal"] and points >= Settings.world["point_goal"]):
 			game_over()
 	
-	
-
 func spawn_get_point_label(points_num):
 	var gpl = point_get_label_scene.instance()
 	gpl.points_num = points_num

@@ -64,9 +64,9 @@ position = Vector2( 482, 406 )
 position = Vector2( 1, 1205 )
 title = "Player Type"
 setting_name = "player_type"
-images = [ "res://Resources/Textures/Entities/Player1.png", "res://Resources/Textures/Entities/Player2.png", "res://Resources/Textures/Entities/Player3.png" ]
-names = [ "Default", "Laser-Prototype", "Gunner" ]
-locked_settings = [ "player1_is_unlocked", "player2_is_unlocked", "player3_is_unlocked" ]
+images = [ "res://Resources/Textures/Entities/Player1.png", "res://Resources/Textures/Entities/Player2.png", "res://Resources/Textures/Entities/Player3.png", "res://Resources/Textures/Entities/player4.png", "res://Resources/Textures/Entities/player5.png" ]
+names = [ "Default", "Laser-Prototype", "Gunner", "", "" ]
+locked_settings = [ "player1_is_unlocked", "player2_is_unlocked", "player3_is_unlocked", "player4_is_unlocked", "player5_is_unlocked" ]
 
 [node name="StoreSkillPanel9" parent="UI/Panels" instance=ExtResource( 10 )]
 position = Vector2( -3, 1376 )
