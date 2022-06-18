@@ -3,7 +3,6 @@ extends Node2D
 export var point_multiplier = 1.0
 export var game_is_over = false
 
-
 # Countdown variables
 var countdown_fade_speed = 1
 var countdown_amount = 3
@@ -56,7 +55,7 @@ func start_new_game():
 	Settings.player  = initial_settings[3].duplicate()
 	$LevelController._ready()
 	
-	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]), ["b", "m"] )
+	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]) )
 	$HeadsUpDisplay/CountdownLabel/CountdownAudio.pitch_scale = 1.0
 	countdown_current_value = countdown_amount
 	$HeadsUpDisplay/CountdownLabel.text = str(countdown_amount)
