@@ -69,7 +69,7 @@ energy = 6.0
 
 [node name="WhiteBlast" type="Particles2D" parent="."]
 emitting = false
-amount = 50
+amount = 100
 lifetime = 3.0
 one_shot = true
 speed_scale = 5.0
@@ -78,7 +78,7 @@ local_coords = false
 process_material = SubResource( 3 )
 
 [node name="DebrisOrbit" type="Particles2D" parent="."]
-amount = 30
+amount = 60
 lifetime = 3.41
 speed_scale = 1.5
 explosiveness = 0.51
@@ -87,7 +87,7 @@ process_material = SubResource( 4 )
 
 [node name="BlackBlast" type="Particles2D" parent="."]
 emitting = false
-amount = 50
+amount = 300
 lifetime = 3.0
 one_shot = true
 speed_scale = 5.0

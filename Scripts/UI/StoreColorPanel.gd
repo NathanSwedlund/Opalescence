@@ -30,15 +30,15 @@ func _ready():
 				break
 	
 	update_labels()
-		
+
 func update():
 	Settings.shop[setting_name] = index
 	update_labels()
-		
+
 func update_labels():
 	$Title.text = title
 	Settings.shop[setting_name] = index
-		
+
 func select():
 	$Particles2D.visible = true
 	$Light2D.visible = true
@@ -59,8 +59,14 @@ var equip_audio_fail_pitch = 1.9
 var equip_audio_pitch = 1.0
 
 func _on_ApplyLess_pressed():
+	if(Settings.shop["monocolor_mode_unlocked"] == false):
+		$EquipAudio.pitch_scale = equip_audio_fail_pitch
+		$EquipAudio.play()
+		return
+		
 	var init_index = index
 	index = (index+1) % color_num
+	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
 	
 	if(colors[index] != null):
@@ -73,8 +79,14 @@ func _on_ApplyLess_pressed():
 		Settings.shop["monocolor_color"] = null
 
 func _on_ApplyMore_pressed():
+	if(Settings.shop["monocolor_mode_unlocked"] == false):
+		$EquipAudio.pitch_scale = equip_audio_fail_pitch
+		$EquipAudio.play()
+		return
+		
 	var init_index = index
 	index = (index-1+color_num) % color_num
+	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
 	
 	if(colors[index] != null):

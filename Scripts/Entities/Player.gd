@@ -603,18 +603,14 @@ func get_powerup(_powerup, _color):
 		current_bombs = MAX_BOMBS
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
-
-	# Not currently a valid powerup
-#	if(_powerup == "MaxUp"):
-#		current_health = MAX_HEALTH
-#		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-
+		
 	if(_powerup == "OneUp"):
 		current_health += 1
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
 	if(_powerup == "Opalescence"):
 		$PowerupTimers/Opalescence.start()
 		$PowerupTimers/OpalescenceColorShift.start()
+		$OpalescenceEffect.emitting = true
 		speed *= opalescense_player_speed_scale
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
 	if(_powerup == "OverShield"):
@@ -666,6 +662,7 @@ func _on_Opalescence_timeout():
 	target_color = colors[randi()%len(colors)]
 	has_powerup["Opalescence"] = false
 	speed = default_player_speed
+	$OpalescenceEffect.emitting = false
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():

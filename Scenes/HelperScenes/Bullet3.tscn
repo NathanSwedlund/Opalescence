@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Items/Bullet3.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/Items/bullet-pixel3.png" type="Texture" id=2]
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CanvasItemMaterial" id=7]
 light_mode = 1
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -17,9 +17,10 @@ curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 emission_shape = 2
-emission_box_extents = Vector3( 10, 5.629, 1 )
+emission_box_extents = Vector3( 4, 4, 1 )
 flag_disable_z = true
 direction = Vector3( 0, 0, 0 )
+spread = 15.0
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
@@ -39,7 +40,7 @@ speed_accel = 700.0
 base_damge = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 6 )
+material = SubResource( 7 )
 rotation = -1.5708
 scale = Vector2( 0.590013, 0.829385 )
 texture = ExtResource( 2 )
@@ -49,7 +50,8 @@ position = Vector2( -0.16667, 0 )
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
-position = Vector2( 10.984, 0 )
-amount = 15
+material = SubResource( 7 )
+amount = 400
+lifetime = 0.3
 local_coords = false
 process_material = SubResource( 3 )

@@ -374,5 +374,6 @@ func load_standard(settings):
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func _on_CustomizeButton_pressed():
+	Settings.current_main_menu_button_selection = 0
 	get_tree().change_scene("res://Scenes/MainScenes/CustomizePage.tscn")
 

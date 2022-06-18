@@ -76,7 +76,8 @@ flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
 orbit_velocity = 0.1
 orbit_velocity_random = 1.0
-radial_accel = -200.0
+linear_accel = 47.2
+radial_accel = -100.0
 scale = 20.0
 scale_random = 0.72
 color_ramp = SubResource( 8 )
@@ -149,6 +150,12 @@ process_material = SubResource( 5 )
 [node name="LaserChargeEffect" type="Particles2D" parent="."]
 emitting = false
 amount = 25
+speed_scale = 3.0
+process_material = SubResource( 9 )
+
+[node name="OpalescenceEffect" type="Particles2D" parent="."]
+emitting = false
+amount = 100
 speed_scale = 3.0
 process_material = SubResource( 9 )
 

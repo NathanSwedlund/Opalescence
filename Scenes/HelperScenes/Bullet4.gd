@@ -11,7 +11,7 @@ func _ready():
 	var step = (deg_sep*2)/get_child_count()
 	var weight = step
 	for b in get_children():
-		var sep = deg2rad(move_toward(deg_sep, -deg_sep, weight))
+		var sep = deg2rad(rand_range(deg_sep,-deg_sep)) #deg2rad(move_toward(deg_sep, -deg_sep, weight))
 		weight += step
 		b.rotate(sep)
 		b.direction = direction.rotated(sep)
