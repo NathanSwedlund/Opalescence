@@ -36,6 +36,7 @@ __meta__ = {
 }
 speed = 1200
 base_damge = 1.5
+heat_seeking_turn_speed = 0.04
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 6 )

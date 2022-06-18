@@ -3,7 +3,7 @@ extends KinematicBody2D
 var direction = Vector2.ZERO
 export var speed = 700
 export var speed_accel = 1500.0
-var speed_max = 1500.0
+var speed_max = 900.0
 
 export var base_damge = 2.0
 var damage_mod = 1.0

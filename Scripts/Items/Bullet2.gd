@@ -34,7 +34,7 @@ var seconds_to_update_target = 0.5
 var current_time = 0.0
 var time_to_first_target_lock = 0.1
 var first_target_has_been_locked = false
-var heat_seeking_turn_speed_mod = 0.05
+var heat_seeking_turn_speed_mod = 0.1
 func _process(delta):
 	modulate = Global.player.modulate
 	current_time += delta

@@ -8,17 +8,15 @@ var small_bullet_explosion_scene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Bullet.rotate(deg2rad(deg_sep))
-	$Bullet.incendiary = incendiary
-	$Bullet.direction = direction.rotated(deg2rad(deg_sep))
-	$Bullet.small_bullet_explosion_scene = small_bullet_explosion_scene
+	var step = (deg_sep*2)/get_child_count()
+	var weight = step
+	for b in get_children():
+		var sep = deg2rad(move_toward(deg_sep, -deg_sep, weight))
+		weight += step
+		b.rotate(sep)
+		b.direction = direction.rotated(sep)
+		
+		b.incendiary = incendiary
+		b.small_bullet_explosion_scene = small_bullet_explosion_scene
 	
-	$Bullet2.incendiary = incendiary
-	$Bullet2.direction = direction
-	$Bullet2.small_bullet_explosion_scene = small_bullet_explosion_scene
-	
-	$Bullet3.rotate(-deg2rad(deg_sep))
-	$Bullet3.incendiary = incendiary
-	$Bullet3.direction = direction.rotated(deg2rad(-deg_sep))
-	$Bullet3.small_bullet_explosion_scene = small_bullet_explosion_scene
 	
