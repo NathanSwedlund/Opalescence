@@ -1,16 +1,17 @@
 extends KinematicBody2D
 
 var direction = Vector2.ZERO
-export var speed = 700
-export var speed_accel = 1500.0
-var speed_max = 900.0
+export var speed = 0
+export var speed_accel = 500.0
+export var speed_accel_scale = 3
+var speed_max = 4000.0
 
 export var base_damge = 2.0
 var damage_mod = 1.0
 var incendiary = false
 
 var small_bullet_explosion_scene 
-export var explosion_scale = 0.5
+export var explosion_scale = 0.3
 func _ready():
 	small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 	base_damge *= Settings.shop["bullet_damage_scale"]
@@ -22,6 +23,7 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	speed *= 1+(speed_accel_scale*delta)
 	if(speed < speed_max):
 		speed += delta * speed_accel
 		
@@ -39,6 +41,8 @@ func _process(delta):
 		if(incendiary):
 			explosion.scale_mod *= 3
 		explosion.rotation = $Sprite.rotation
+		explosion.grow_speed = 1.17
+		explosion.shrink_speed = 0.93
 		explosion.modulate = modulate
 		
 			

@@ -62,13 +62,13 @@ centered = false
 position = Vector2( 482, 406 )
 
 [node name="SepBar" type="Sprite" parent="UI"]
-position = Vector2( 96.9999, -116 )
-scale = Vector2( 2730, 1.82 )
+position = Vector2( -29.9999, -117.09 )
+scale = Vector2( 450, 1.82 )
 texture = ExtResource( 10 )
 
 [node name="SepBar2" type="Sprite" parent="UI"]
-position = Vector2( 90.0001, 41 )
-scale = Vector2( 2730, 1.82 )
+position = Vector2( -29.9999, 38.91 )
+scale = Vector2( 450, 1.82 )
 texture = ExtResource( 10 )
 
 [node name="Panels" type="Node2D" parent="UI"]
@@ -228,7 +228,7 @@ align = 1
 
 [node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel4"]
 position = Vector2( 27.4725, 5.49451 )
-scale = Vector2( 0.8, 0.8 )
+scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel4/Panels" instance=ExtResource( 7 )]
 position = Vector2( 0, 0 )
@@ -251,14 +251,14 @@ centered = false
 
 [node name="Darkener2" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.87451 )
-position = Vector2( -577, -123 )
+position = Vector2( -598, -124 )
 scale = Vector2( 2.47656, 1.35938 )
 texture = ExtResource( 1 )
 centered = false
 
 [node name="Darkener3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.87451 )
-position = Vector2( 246, -126 )
+position = Vector2( 191, -124 )
 scale = Vector2( 6.46094, 1.35156 )
 texture = ExtResource( 1 )
 centered = false

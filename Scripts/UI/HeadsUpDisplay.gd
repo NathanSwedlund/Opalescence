@@ -24,7 +24,7 @@ func _process(delta):
 		else:
 			pause()
 			
-	if(is_racking_points and (Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_accept"))):
+	if(is_racking_points and Input.is_action_just_pressed("ui_cancel")):# or Input.is_action_just_pressed("ui_accept"))):
 		finish_racking()
 
 func unpause():
@@ -62,7 +62,6 @@ func update_points(points):
 func game_over(is_mission, mission_complete):
 	point_add_popup_event()
 	print("Global.player.points, ", Global.player.points)
-	$GameOverPopup/Buttons.is_active = true
 	$GameOverPopup/GameOverLabel.text = "COMPLETE" if is_mission and mission_complete else "GAME OVER"
 	game_is_over = true
 
@@ -138,6 +137,7 @@ export var point_popup_wait_time = 2.0
 func _on_RackingTimer_timeout():
 	if(done_racking_points ):
 		$PointAddPopup/RackingTimer.stop()
+		$GameOverPopup/Buttons.is_active = true
 	else:
 		point_num1 -= int(points_this_round/14)
 		point_num2 += int(points_this_round/14)
@@ -173,6 +173,9 @@ func _on_WaitTimer_timeout():
 		$PointAddPopup/RackingTimer.start()
 
 func finish_racking():
+	$PointAddPopup/RackingTimer.stop()
+	$PointAddPopup/WaitTimer.stop()
+
 	is_racking_points = false
 	done_racking_points = true
 	if(return_to_menu_after_done_racking):
@@ -184,3 +187,4 @@ func finish_racking():
 			$ButtonSelectAudio.pitch_scale /= Settings.world["points_scale"]/2
 		$PointAddPopup.hide()
 		$GameOverPopup.show()
+		$GameOverPopup/Buttons.is_active = true
