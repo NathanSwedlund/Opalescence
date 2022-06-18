@@ -189,7 +189,7 @@ script = ExtResource( 8 )
 [node name="PowerupTimers" type="Node2D" parent="."]
 
 [node name="Barrage" type="Timer" parent="PowerupTimers"]
-wait_time = 4.0
+wait_time = 6.0
 one_shot = true
 
 [node name="Bombastic" type="Timer" parent="PowerupTimers"]
@@ -200,7 +200,7 @@ one_shot = true
 one_shot = true
 
 [node name="GravityWell" type="Timer" parent="PowerupTimers"]
-wait_time = 10.0
+wait_time = 15.0
 one_shot = true
 
 [node name="Incendiary" type="Timer" parent="PowerupTimers"]

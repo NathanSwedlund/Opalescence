@@ -72,7 +72,7 @@ var transformative_powerups = ["Barrage", "Bombastic", "BulletTime", "GravityWel
 var has_powerup = {}
 var powerup_point_value = 1000
 var bullet_time_time_scale = 0.2
-var bullet_time_player_speed_mult = 2.0
+var bullet_time_player_speed_mult = 4.0
 var vision_light_scale = 3.0
 
 # Secondary fire variables
@@ -86,7 +86,10 @@ export var use_global_settings = true
 export var can_collect_points = true
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 var opalescence_shift_speed = 0.5
+var opalescense_player_speed_scale = 3
+var default_player_speed
 export var default_bullets_cooldown_wait_time = 0.3
+var max_bomb_bomb_scale = 3.0
 
 func _ready():
 	Global.points_this_round = 0
@@ -152,6 +155,8 @@ func reset_settings():
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
+				
+	default_player_speed = speed
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
@@ -333,11 +338,11 @@ func spawn_bullet():
 	bullet.small_bullet_explosion_scene = small_bullet_explosion_scene
 	get_parent().add_child(bullet)
 
-func drop_bomb():
+func drop_bomb(_scale=1.0):
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
 	bomb.position = position
-	bomb.scale *= Settings.shop["bomb_scale"]
+	bomb.scale *= Settings.shop["bomb_scale"] * _scale
 	$SoundFX/DropBombAudio.play()
 	get_parent().add_child(bomb)
 
@@ -499,7 +504,8 @@ func _input(event):
 
 func _on_BulletCooldownTimer_timeout():
 	can_shoot = Settings.player["can_shoot"]
-	bullets_to_shoot = default_bullets_per_burst
+	if(has_powerup["Barrage"] == false):
+		bullets_to_shoot = default_bullets_per_burst
 
 func _on_BulletBurstTimer_timeout():
 	bullets_to_shoot -= 1
@@ -593,6 +599,7 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Incendiary.wait_time, _color, _powerup)
 		is_shooting_indendiary = true
 	if(_powerup == "MaxBomb"):
+		drop_bomb(max_bomb_bomb_scale)
 		current_bombs = MAX_BOMBS
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
@@ -608,6 +615,7 @@ func get_powerup(_powerup, _color):
 	if(_powerup == "Opalescence"):
 		$PowerupTimers/Opalescence.start()
 		$PowerupTimers/OpalescenceColorShift.start()
+		speed *= opalescense_player_speed_scale
 		start_powerup_timer($PowerupTimers/Opalescence.wait_time, _color, _powerup)
 	if(_powerup == "OverShield"):
 		$ShieldSprite.visible = true
@@ -634,6 +642,7 @@ func _on_Bombastic_timeout():
 func _on_Barrage_timeout():
 	has_powerup["Barrage"] = false
 	bullets_per_burst = default_bullets_per_burst
+	bullets_to_shoot = default_bullets_per_burst
 	$BulletBurstTimer.wait_time = default_bullets_burst_wait_time
 	$BulletBurstTimer.stop()
 	can_shoot = Settings.player["can_shoot"]
@@ -656,6 +665,7 @@ func _on_Incendiary_timeout():
 func _on_Opalescence_timeout():
 	target_color = colors[randi()%len(colors)]
 	has_powerup["Opalescence"] = false
+	speed = default_player_speed
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():

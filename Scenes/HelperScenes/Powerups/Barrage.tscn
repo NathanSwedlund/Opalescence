@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/HelperScenes/Items/PowerupPill.tscn" type="PackedScene" id=1]
 
 [node name="Barrage" type="Node2D"]
-modulate = Color( 0.694118, 0.423529, 0, 1 )
+modulate = Color( 1, 0.611765, 0.00392157, 1 )
 light_mask = 0
 
 [node name="PowerupPill" parent="." instance=ExtResource( 1 )]
