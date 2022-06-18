@@ -27,7 +27,7 @@ func _process(delta):
 		$Light2D.color.a = move_toward($Light2D.color.a, 1.0, boss_light_fade_speed*delta)
 		if($Light2D.color.a == 1):
 			should_fade_light_in = false
-			fade_light_out()
+
 			
 	if(should_fade_light_out):
 		$Light2D.color.a = move_toward($Light2D.color.a, 0.0, boss_light_fade_speed*delta)
@@ -60,6 +60,7 @@ func _on_WaitTimer_timeout():
 		c.point_reward = 5000
 		add_child(c)
 		starting = false
+		fade_light_out()
 	else:
 		Global.world.find_node("EnemyFactory").is_active = true
 		boss_fight_completed()

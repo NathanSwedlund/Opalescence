@@ -20,6 +20,6 @@ autoplay = true
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 516, 337 )
 texture = ExtResource( 3 )
-energy = 4.59
+energy = 7.0
 
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
