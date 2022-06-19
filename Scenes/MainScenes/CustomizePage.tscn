@@ -92,7 +92,7 @@ position = Vector2( -4, 863 )
 title = "Player Light Scale"
 setting_name = "light_scale"
 default_price = 5.0
-max_val = 1.6
+max_val = 2.0
 
 [node name="StoreSkillPanel5" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 1, 0.698039, 0.345098, 1 )
@@ -115,7 +115,7 @@ max_val = 2.1
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
 title = "Additional Pellets Per Burst"
 setting_name = "default_bullets_per_burst_mod"
-default_price = 4.0
+default_price = 5.0
 val_step = 1.0
 max_val = 5.1
 
@@ -124,7 +124,7 @@ modulate = Color( 1, 0.588235, 0.588235, 1 )
 position = Vector2( -1, 170 )
 title = "Pellet Burst Speed Scale"
 setting_name = "bullet_burst_speed_scale"
-default_price = 2.0
+default_price = 4.0
 price_mult = 1.0
 max_val = 2.1
 
@@ -133,7 +133,7 @@ modulate = Color( 0.501961, 1, 0.658824, 1 )
 position = Vector2( 1, 509 )
 title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
-default_price = 4.0
+default_price = 8.0
 val_step = 0.25
 max_val = 2.1
 
@@ -142,7 +142,7 @@ modulate = Color( 0, 0.882353, 1, 1 )
 position = Vector2( -2, 1027 )
 title = "Laser Damage Scale"
 setting_name = "laser_damage_scale"
-default_price = 10.0
+default_price = 20.0
 val_step = 0.25
 max_val = 1.6
 

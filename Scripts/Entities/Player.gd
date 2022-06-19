@@ -476,8 +476,8 @@ func game_over():
 			mission_complete = true
 
 	points = 0
-	play_time = 0
 	heads_up_display.game_over(is_mission, mission_complete)
+	play_time = 0
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):

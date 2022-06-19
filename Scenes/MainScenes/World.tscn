@@ -330,7 +330,7 @@ position = Vector2( 28, 26.95 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 7 )
 
-[node name="TimeLabel2" type="Label" parent="HeadsUpDisplay/BombDisplay"]
+[node name="BombLabel" type="Label" parent="HeadsUpDisplay/BombDisplay"]
 margin_left = 71.0
 margin_top = 19.0
 margin_right = 237.0

@@ -54,14 +54,12 @@ func update_bombs(bomb_count):
 		$BombDisplay.visible = false
 	elif(bomb_count == 1):
 		$BombDisplay.visible = true
-		$BombDisplay/TimeLabel2.visible = false
+		$BombDisplay/BombLabel.visible = false
 	else:
 		$BombDisplay.visible = true
-		$BombDisplay/TimeLabel2.visible = true
-		$BombDisplay/TimeLabel2.text = str(Global.player.current_bombs)
+		$BombDisplay/BombLabel.visible = true
+		$BombDisplay/BombLabel.text = str(Global.player.current_bombs)
 		
-		
-
 func update_points(points):
 	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 
@@ -127,10 +125,10 @@ func point_add_popup_event():
 	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
 	var tokens_this_round = default_token_reward
-	if(get_parent().find_node("LevelController") != null):
-		tokens_this_round = get_parent().find_node("LevelController").currrent_level
-		if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
-			tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
+	tokens_this_round = int(Global.player.play_time/10)
+	print("Global.player.play_time", Global.player.play_time)
+	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
+		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
 		
 	$PointAddPopup/TokensEarnedLabel.text = "Tokens Earned: " + str(tokens_this_round)
 	Settings.shop["tokens"] += tokens_this_round
