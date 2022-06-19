@@ -50,11 +50,17 @@ func update_health(health_count, has_shield):
 	$HealthDisplay/Shield.visible = has_shield
 
 func update_bombs(bomb_count):
-	for c in $BombDisplay.get_children():
-		c.visible = false
-
-	for i in bomb_count:
-		$BombDisplay.get_child(i).visible = true
+	if(bomb_count == 0):
+		$BombDisplay.visible = false
+	elif(bomb_count == 1):
+		$BombDisplay.visible = true
+		$BombDisplay/TimeLabel2.visible = false
+	else:
+		$BombDisplay.visible = true
+		$BombDisplay/TimeLabel2.visible = true
+		$BombDisplay/TimeLabel2.text = str(Global.player.current_bombs)
+		
+		
 
 func update_points(points):
 	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])

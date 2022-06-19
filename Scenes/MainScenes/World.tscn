@@ -325,20 +325,19 @@ text = "x 3"
 [node name="BombDisplay" type="Node2D" parent="HeadsUpDisplay"]
 position = Vector2( 1082, 650 )
 
-[node name="Bomb1" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 75, 25 )
+[node name="BombImage" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
+position = Vector2( 28, 26.95 )
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 7 )
 
-[node name="Bomb2" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 113, 25 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 7 )
-
-[node name="Bomb3" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 151, 25 )
-scale = Vector2( 0.9, 0.9 )
-texture = ExtResource( 7 )
+[node name="TimeLabel2" type="Label" parent="HeadsUpDisplay/BombDisplay"]
+margin_left = 71.0
+margin_top = 19.0
+margin_right = 237.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 17 )
+text = "x 1
+"
 
 [node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
 margin_left = -11.0

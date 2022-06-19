@@ -73,14 +73,12 @@ func _on_ApplyLess_pressed():
 	$EquipAudio.play()
 	select_image( index )
 
-
 func _on_ApplyMore_pressed():
 	var init_index = index
 	
 	index = (index-1+image_num) % image_num
 	while(Settings.shop[locked_settings[index]] != true):
 		index = (index-1+image_num) % image_num
-		
 		
 	if(init_index == index): # no other equipment to swap to
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch

@@ -195,28 +195,28 @@ scale = Vector2( 0.65, 0.65 )
 [node name="StorePanelBool7" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
-title = "Laser-prototype ship"
+title = "Laser-er"
 setting_name = "player2_is_unlocked"
 price = 1000000
 
 [node name="StorePanelBool8" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 400, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
-title = "Gunner ship"
+title = "Gunner"
 setting_name = "player3_is_unlocked"
 price = 1000000
 
 [node name="StorePanelBool9" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 400, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
-title = "Gunner ship"
+title = "Bomber"
 setting_name = "player4_is_unlocked"
 price = 1000000
 
 [node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 400, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
-title = "Gunner ship"
+title = "Speeder"
 setting_name = "player5_is_unlocked"
 price = 1000000
 

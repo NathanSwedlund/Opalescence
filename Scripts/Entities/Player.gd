@@ -25,7 +25,7 @@ var mouse_direction_from_player = Vector2.ZERO
 
 # bomb variables
 export var can_bomb = true
-const MAX_BOMBS = 3
+var max_bombs = 3
 var current_health
 var current_bombs
 var bomb_scene = load("res://Scenes/HelperScenes/Powerups/Bomb.tscn")
@@ -88,6 +88,7 @@ var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/PlayerDea
 var opalescence_shift_speed = 0.5
 var opalescense_player_speed_scale = 3
 var default_player_speed
+var bomb_scale = 1.0
 export var default_bullets_cooldown_wait_time = 0.3
 var max_bomb_bomb_scale = 3.0
 
@@ -110,6 +111,9 @@ func _ready():
 	reset()
 	
 func reset_settings():
+	load_player_type()
+	
+	can_shoot = can_shoot and player_type.can_shoot
 	if(use_global_settings):
 		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
@@ -137,12 +141,29 @@ func reset_settings():
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size *= Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
-		$OuterLight.scale = default_light_size
-
+	
+	speed *= player_type.speed_scale
+	default_bullets_per_burst += player_type.bullets_per_burst_mod
+	bullets_per_burst = default_bullets_per_burst
+	bullets_to_shoot = default_bullets_per_burst
+	
+	default_light_size *= player_type.light_scale
+	shrink_scalar *= player_type.light_fade_scale
+	laser_scale *= player_type.laser_scale
+	bullet_scale *= player_type.bullet_scale
+	bomb_scale *= player_type.bomb_scale
+	max_bombs = player_type.bomb_num_max
+	Settings.world["points_scale"] *= player_type.points_scale
+	
+	current_bombs = max_bombs
+	starting_bombs = max_bombs
+	can_bomb = can_bomb and player_type.can_bomb
+	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
+	$OuterLight.scale = default_light_size
+	
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
-		
 	if(use_global_settings and Settings.world["is_mission"] == false):
 		if(Settings.shop["default_bullets_per_burst_mod"]):
 			default_bullets_per_burst += Settings.shop["default_bullets_per_burst_mod"]
@@ -183,7 +204,6 @@ func reset():
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
 		
-	load_player_type()
 	bullet_scene = Global.bullet_type_scenes[Settings.shop["bullet_type"]]
 	respawn()
 
@@ -198,19 +218,6 @@ func load_player_type():
 		player_type.name = "PlayerType"
 		add_child(player_type)
 		
-		speed *= player_type.speed_scale
-		default_bullets_per_burst = int ( default_bullets_per_burst * player_type.bullets_per_burst_scale)
-		$OuterLight.scale *= player_type.light_scale
-		shrink_scalar *= player_type.light_fade_scale
-		laser_scale *= player_type.laser_scale
-		bullet_scale *= player_type.bullet_scale
-		
-		can_bomb = can_bomb and player_type.can_bomb
-		can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
-		can_shoot = can_shoot and player_type.can_shoot
-
-	
-	
 func add_points(points_num):
 	if(can_collect_points):
 		points += points_num * Settings.world["points_scale"]
@@ -288,7 +295,7 @@ func get_input():
 				current_bombs -= 1
 			if(heads_up_display != null):
 				heads_up_display.update_bombs(current_bombs)
-			drop_bomb()
+			drop_bomb(bomb_scale)
 	if(Input.is_action_just_pressed("mouse_left") and can_shoot):
 		shoot()
 	if(can_shoot_laser and Input.is_action_just_pressed("mouse_right")):
@@ -572,12 +579,12 @@ func get_powerup(_powerup, _color):
 	if(_powerup == "Bombastic"):
 		$PowerupTimers/Bombastic.start()
 		start_powerup_timer($PowerupTimers/Bombastic.wait_time, _color, _powerup)
-		current_bombs = MAX_BOMBS
+		current_bombs = max_bombs
 		heads_up_display.update_bombs(current_bombs)
 		inf_bombs = true
 
 	# Not currently a valid powerup
-#	if(_powerup == "BombUp" and current_bombs < MAX_BOMBS):
+#	if(_powerup == "BombUp" and current_bombs < max_bombs):
 #		current_bombs += 1
 #		heads_up_display.update_bombs(current_bombs)
 
@@ -598,7 +605,7 @@ func get_powerup(_powerup, _color):
 		is_shooting_indendiary = true
 	if(_powerup == "MaxBomb"):
 		drop_bomb(max_bomb_bomb_scale)
-		current_bombs = MAX_BOMBS
+		current_bombs = max_bombs
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
 		
