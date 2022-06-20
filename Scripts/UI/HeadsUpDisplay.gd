@@ -125,7 +125,12 @@ func point_add_popup_event():
 	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
 	var tokens_this_round = default_token_reward
-	tokens_this_round = int(Global.player.play_time/10)
+	tokens_this_round = int(Global.player.play_time/10.0)
+	if(Settings.world["mission_title"] != "challenge"):
+		tokens_this_round *= Settings.world["points_scale"]
+		
+	tokens_this_round = int(tokens_this_round)
+	
 	print("Global.player.play_time", Global.player.play_time)
 	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
 		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])

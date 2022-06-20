@@ -529,6 +529,7 @@ func _on_BulletBurstTimer_timeout():
 func spawn_laser(_scale=1.0, _laser_time=-1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 	var laser = laser_scene.instance()
 	laser.scale *= _scale
+	laser.max_fade_in_width *= _scale
 	if(_laser_time != -1.0):
 		laser.total_time = _laser_time
 		laser.particle_intensity_scale = _particle_intensity_scale
