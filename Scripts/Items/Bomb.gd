@@ -50,7 +50,7 @@ func _process(delta):
 					
 			get_parent().scale.x -= shrink_speed * delta * frames_per_update
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
-			print("bombscale", scale)
+#			print("bombscale", scale)
 
 func explode():
 	if(exploding):

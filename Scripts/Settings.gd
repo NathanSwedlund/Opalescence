@@ -2,7 +2,7 @@ extends Node
 
 var save_data = {}
 
-var default_colors = [Color.red, Color.orange, Color.yellow, Color.green, Color.cadetblue, Color.aqua, Color.pink]
+var default_colors = [Color.red, Color.orangered, Color.yellow, Color.green, Color.cadetblue, Color.aqua, Color.magenta, Color.springgreen]									
 
 var saved_settings_default = {
 	"fx_volume":20,

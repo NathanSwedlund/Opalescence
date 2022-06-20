@@ -6,7 +6,7 @@ export var button_index = 0
 
 export var is_selected = false
 export var select_scale = 1.1
-export var colors = [null, Color.white, Color.red, Color.blue, Color.yellow, Color.green, Color.hotpink, Color.cyan]
+export var colors = [null, Color.white, Color.red, Color.blue, Color.yellow, Color.green, Color.hotpink, Color.cyan, Color.orange, Color.violet, Color.dodgerblue, Color.forestgreen, Color.beige, Color.firebrick, Color.lemonchiffon, Color.magenta, Color.bisque, Color.chocolate, Color.chartreuse]
 
 var color_num = 0
 var index = 0

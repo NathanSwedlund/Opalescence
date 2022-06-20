@@ -69,9 +69,10 @@ custom_fonts/font = SubResource( 1 )
 text = "OPALESCENCE"
 
 [node name="Particles2D2" type="Particles2D" parent="."]
+visible = false
 modulate = Color( 0.294118, 0.294118, 0.294118, 1 )
 position = Vector2( 489.6, 271.667 )
-scale = Vector2( 1, 1 )
+emitting = false
 amount = 308
 lifetime = 5.0
 speed_scale = 0.72

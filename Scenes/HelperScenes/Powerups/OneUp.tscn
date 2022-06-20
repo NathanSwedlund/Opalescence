@@ -3,6 +3,6 @@
 [ext_resource path="res://Scenes/HelperScenes/Items/PowerupPill.tscn" type="PackedScene" id=1]
 
 [node name="OneUp" type="Node2D"]
-modulate = Color( 1, 0, 0.913725, 1 )
+modulate = Color( 1, 0.317647, 0.811765, 1 )
 
 [node name="PowerupPill" parent="." instance=ExtResource( 1 )]
