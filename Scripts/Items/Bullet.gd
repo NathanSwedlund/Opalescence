@@ -10,7 +10,7 @@ var incendiary = false
 var small_bullet_explosion_scene
 var damaged_enemies = []
 func _ready():
-	base_damge *= Settings.shop["bullet_damage_scale"]
+	base_damge *= Settings.player["bullet_damage_scale"]
 
 	if(incendiary):
 		speed *= 2.2

@@ -127,6 +127,8 @@ var player_default = {
 	"can_shoot":true,
 	"default_bullets_per_burst":3,
 	"can_shoot_laser":true,
+	"bullet_type_override":null,
+	"player_type_override":null,
 }
 
 var player = player_default.duplicate()
@@ -138,7 +140,6 @@ var shop_default = {
 	"starting_health_mod":0,
 	"bomb_scale":1.0,
 	"light_scale":1.0,
-	"bullet_damage_scale":1.0,
 	"laser_damage_scale":1.0,
 	"gravity_radius_scale":1000.0,
 	"bullet_burst_speed_scale":1.0,
@@ -149,20 +150,20 @@ var shop_default = {
 	"nightmare_mode_unlocked":false,
 	"challenge_mode_unlocked":false,
 
+	
 	"bullet_type":0,
 	"bullet1_is_unlocked":true,
 	"bullet2_is_unlocked":false,
 	"bullet3_is_unlocked":false,
 	"bullet4_is_unlocked":false,
 	
+	"player_type":0,
 	"player1_is_unlocked":true,
 	"player2_is_unlocked":false,
 	"player3_is_unlocked":false,
 	"player4_is_unlocked":false,
 	"player5_is_unlocked":false,
 	
-	
-	"player_type":0,
 	"monocolor_mode_unlocked":false,
 	"monocolor_color":null,
 }
@@ -238,9 +239,10 @@ func apply_sound_settings():
 		else:
 			c.volume_db = Settings.saved_settings["fx_volume"] + min_vol + c.default_vol
 
-func change_settings(new_settings):
+func change_settings(new_settings, exceptions=[]):
 	var setting_dicts = [world, player, enemy, factory]
 	for key in new_settings:
 		for i in range(len(setting_dicts)):
-			if(new_settings[key] != null and key in setting_dicts[i]):
+			if(new_settings[key] != null and key in setting_dicts[i] and (key in exceptions) == false):
+				print("key, ", key)
 				setting_dicts[i][key] = new_settings[key]

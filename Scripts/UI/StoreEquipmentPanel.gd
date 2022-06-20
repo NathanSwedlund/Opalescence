@@ -23,7 +23,7 @@ func _ready():
 		
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
-	index = Settings.get_setting_if_exists(Settings.shop, setting_name, index)
+	index = int(Settings.get_setting_if_exists(Settings.shop, setting_name, index))
 	update_labels()
 		
 func update():
@@ -52,7 +52,7 @@ func deselect():
 
 func select_image(_index):
 	index = _index
-	Settings.shop[setting_name] = index
+	Settings.player[setting_name] = index
 	update_labels()
 	
 var equip_audio_fail_pitch = 1.9

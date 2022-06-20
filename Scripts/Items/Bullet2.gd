@@ -12,7 +12,7 @@ var target = null
 export var heat_seeking_turn_speed = 0.01
 
 func _ready():
-	base_damge *= Settings.shop["bullet_damage_scale"]
+	base_damge *= Settings.player["bullet_damage_scale"]
 
 	if(incendiary):
 		speed *= 2.2

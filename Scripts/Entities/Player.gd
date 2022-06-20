@@ -204,7 +204,11 @@ func reset():
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
 		
+	print("Global.bullet_type_scenes, ", Global.bullet_type_scenes)
 	bullet_scene = Global.bullet_type_scenes[Settings.shop["bullet_type"]]
+	if(Settings.player["bullet_type_override"] != null):
+		bullet_scene = Global.bullet_type_scenes[Settings.player["bullet_type_override"]]
+	
 	respawn()
 
 var has_loaded_type = false
@@ -213,8 +217,10 @@ func load_player_type():
 	if(has_loaded_type == false):
 		has_loaded_type = true
 		var index = Settings.shop["player_type"]
+		if(Settings.player["player_type_override"] != null):
+			index = Settings.player["player_type_override"]
+	
 		player_type = Global.player_type_scenes[index].instance()
-		
 		player_type.name = "PlayerType"
 		add_child(player_type)
 		
