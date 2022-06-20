@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreEqupmentPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Audio/Music/Space Battle.wav" type="AudioStream" id=13]
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
@@ -298,6 +299,12 @@ script = ExtResource( 1 )
 position = Vector2( 517.75, 113 )
 scale = Vector2( 2.44125, 0.46 )
 texture = ExtResource( 8 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
+script = ExtResource( 1 )
+is_music = true
 
 [connection signal="mouse_entered" from="UI/BackButton" to="UI/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="UI/BackButton" to="UI/BackButton" method="mouse_exited"]

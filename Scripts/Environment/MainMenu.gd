@@ -289,7 +289,7 @@ export var standard_diff_settings = {
 	"Hard":{
 		"is_mission":false,
 		"mission_title":"HardStandard",
-		"points_scale":2.0,
+		"points_scale":1.5,
 		"starting_health":2,
 		"enemy_health_scale":2.5,
 		"enemy_time_max":0.9,
@@ -301,7 +301,7 @@ export var standard_diff_settings = {
 	"ExtraHard":{
 		"is_mission":false,
 		"mission_title":"ExtraHardStandard",
-		"points_scale":4.0,
+		"points_scale":2.0,
 		"starting_health":2,
 		"enemy_health_scale":4,
 		"enemy_time_max":0.5,
@@ -315,7 +315,7 @@ export var standard_diff_settings = {
 	"Nightmare":{
 		"is_mission":false,
 		"mission_title":"ExtraHardStandard",
-		"points_scale":6.0,
+		"points_scale":4.0,
 		"starting_health":1,
 		"enemy_health_scale":6,
 		"enemy_time_max":0.3,
