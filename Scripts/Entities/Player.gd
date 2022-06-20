@@ -106,7 +106,7 @@ func _ready():
 		has_powerup[tp] = false
 
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
-	bullets_per_burst = default_bullets_per_burst
+
 	
 	reset()
 	
@@ -177,12 +177,18 @@ func reset_settings():
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
 				
+	print("Changing, default_bullets_per_burst, ", default_bullets_per_burst)
 	default_player_speed = speed
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
+var frame = 0
 func _process(delta):
+	frame += 1
+	if(frame % 20 == 0):
+		print("default_bullets_per_burst, ", default_bullets_per_burst)
+		print("bullets_per_burst, ", bullets_per_burst)
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -320,6 +326,7 @@ func shoot():
 		return
 
 	if(has_powerup["Barrage"] == false):
+		bullets_per_burst = default_bullets_per_burst
 		bullets_to_shoot = bullets_per_burst
 
 	if(bullets_to_shoot > 1):
