@@ -52,7 +52,8 @@ func start_new_game():
 	Settings.factory = initial_settings[1].duplicate()
 	Settings.enemy   = initial_settings[2].duplicate()
 	Settings.player  = initial_settings[3].duplicate()
-	$LevelController._ready()
+	if(get_node("LevelController")):
+		$LevelController._ready()
 	
 	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]) )
 	$HeadsUpDisplay/CountdownLabel/CountdownAudio.pitch_scale = 1.0

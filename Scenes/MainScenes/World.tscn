@@ -258,8 +258,8 @@ powerup_probabilities = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 490.4, 292.5 )
-respawn_position = Vector2( 640, 360 )
+position = Vector2( 510, 300 )
+respawn_position = Vector2( 510, 300 )
 powerup_times = {
 "Barrage": 5.0,
 "Bombastic": 3.0,

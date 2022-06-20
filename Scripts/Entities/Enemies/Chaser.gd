@@ -56,13 +56,16 @@ func take_damage(damage):
 	$DamageAudio.play()
 
 	$DamageTimer.start()
+
+	if(health <= 0):
+		die()
+		return 
+		
 	var ratio = (starting_health-health)/base_health
 	modulate.r = ratio * Global.player.modulate.r*0.6
 	modulate.g = ratio * Global.player.modulate.g*0.6
 	modulate.b = ratio * Global.player.modulate.b*0.6
 	
-	if(health <= 0):
-		die()
 	
 func die():
 	var explosion = death_explosion_scene.instance()

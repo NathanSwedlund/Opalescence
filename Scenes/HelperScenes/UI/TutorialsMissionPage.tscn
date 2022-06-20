@@ -160,10 +160,10 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.4,
 "min_scale": null,
 "point_colors": null,
-"point_goal": 2000.0,
+"point_goal": 4000.0,
 "point_is_active": true,
 "point_time_max": null,
 "point_time_min": null,
@@ -237,10 +237,10 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
-"min_scale": null,
+"light_scale": 1.5,
+"min_scale": 1.5,
 "point_colors": null,
-"point_goal": 3000.0,
+"point_goal": 5000.0,
 "point_is_active": false,
 "point_time_max": null,
 "point_time_min": null,
@@ -271,7 +271,7 @@ settings = {
 "shrink_scalar": 1.0,
 "speed": null,
 "starting_bombs": null,
-"starting_health": null,
+"starting_health": 5,
 "time_goal": 0.0,
 "unmaker_scale": null,
 "vision_light_scale": null
@@ -314,7 +314,7 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.5,
 "min_scale": null,
 "point_colors": null,
 "point_goal": 5000.0,
@@ -391,7 +391,7 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.5,
 "min_scale": null,
 "point_colors": null,
 "point_goal": 10000.0,
@@ -468,7 +468,7 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.5,
 "min_scale": null,
 "point_colors": null,
 "point_goal": 5000.0,
@@ -545,7 +545,7 @@ settings = {
 "has_time_goal": false,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.5,
 "min_scale": null,
 "point_colors": null,
 "point_goal": 100000.0,
@@ -622,7 +622,7 @@ settings = {
 "has_time_goal": true,
 "is_active": true,
 "is_mission": true,
-"light_scale": 2.0,
+"light_scale": 1.5,
 "min_scale": null,
 "point_colors": null,
 "point_goal": 0.0,
@@ -676,7 +676,6 @@ autostart = true
 
 [node name="Buttons" type="Node2D" parent="."]
 position = Vector2( -3.2, -1.66667 )
-scale = Vector2( 1, 1 )
 
 [node name="ButtonSelectionController" type="Node2D" parent="Buttons"]
 position = Vector2( 0, 1.19209e-07 )
