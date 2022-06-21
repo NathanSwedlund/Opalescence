@@ -1,10 +1,13 @@
 extends KinematicBody2D
 
-export var speed = 4.0
+export var default_speed = 400.0
+var speed
 export var starting_health = 3
-export var shrink_scalar = 0.99
+export var default_shrink_scalar = 0.99
+var shrink_scalar
 
 onready var default_light_size = $OuterLight.scale
+var light_size = Vector2.ZERO
 export var min_scale = 0.5
 
 # Gravity Variables
@@ -46,11 +49,15 @@ var heads_up_display
 # Primary fire variables
 var directions = {"LEFT":Vector2(-1,0), "RIGHT":Vector2(1,0), "UP":Vector2(0,-1), "DOWN":Vector2(0,1)}
 var bullet_scene = load("res://Scenes/HelperScenes/Bullet.tscn")
-var bullet_scale = 1.0
+export var default_bomb_scale = 1.0
+var bullet_scale 
+export var default_bullet_scale = 1.0
 var small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/SmallBulletExplosion.tscn")
 var can_shoot = true
 export var starting_bombs = 3
 var inf_bombs = false
+
+
 
 var bullet_audio_default_pitch = 1.0
 var incendiary_audio_pitch = 0.7
@@ -78,7 +85,8 @@ var vision_light_scale = 3.0
 # Secondary fire variables
 var is_charging_laser = false
 var laser_scene = load("res://Scenes/HelperScenes/Laser.tscn")
-var laser_scale = 1.0
+export var default_laser_scale = 1.0
+var laser_scale
 var can_shoot_laser = true
 var is_shooting_indendiary = false
 
@@ -94,20 +102,19 @@ var max_bomb_bomb_scale = 3.0
 
 func _ready():
 	Global.points_this_round = 0
-	speed *= global_scale.x
+
+	default_speed *= global_scale.x
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")
 
 	reset_settings()
 	Settings.apply_sound_settings()
-	
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
 
+	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
-
-	
 	reset()
 	
 func reset_settings():
@@ -115,10 +122,10 @@ func reset_settings():
 	
 	can_shoot = can_shoot and player_type.can_shoot
 	if(use_global_settings):
-		speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
+		default_speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
-		shrink_scalar = Settings.get_setting_if_exists(Settings.player, "shrink_scalar", shrink_scalar)
-		shrink_scalar = 1 + (shrink_scalar - 1) *  Settings.get_setting_if_exists(Settings.player, "light_fade_scale", 1.0)
+		default_shrink_scalar = Settings.get_setting_if_exists(Settings.player, "shrink_scalar", default_shrink_scalar)
+		default_shrink_scalar = 1 + (default_shrink_scalar - 1) *  Settings.get_setting_if_exists(Settings.player, "light_fade_scale", 1.0)
 		min_scale = Settings.get_setting_if_exists(Settings.player, "min_scale", min_scale)
 		gravity_radius = Settings.get_setting_if_exists(Settings.player, "gravity_radius", gravity_radius)
 		gravity_pull_scale = Settings.get_setting_if_exists(Settings.player, "gravity_pull_scale", gravity_pull_scale)
@@ -140,18 +147,20 @@ func reset_settings():
 		can_shoot_laser = can_shoot_laser and Settings.get_setting_if_exists(Settings.player, "can_shoot_laser", can_shoot_laser)
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
-		default_light_size *= Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
+		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
 	
+	light_size = default_light_size
+	speed = default_speed
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 	
-	default_light_size *= player_type.light_scale
-	shrink_scalar *= player_type.light_fade_scale
-	laser_scale *= player_type.laser_scale
-	bullet_scale *= player_type.bullet_scale
-	bomb_scale *= player_type.bomb_scale
+	light_size *= player_type.light_scale
+	shrink_scalar = default_shrink_scalar * player_type.light_fade_scale
+	laser_scale = default_laser_scale *  player_type.laser_scale
+	bullet_scale = default_bullet_scale *  player_type.bullet_scale
+	bomb_scale = default_bomb_scale * player_type.bomb_scale
 	max_bombs = player_type.bomb_num_max
 	Settings.world["points_scale"] *= player_type.points_scale
 	
@@ -159,7 +168,7 @@ func reset_settings():
 	starting_bombs = max_bombs
 	can_bomb = can_bomb and player_type.can_bomb
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
-	$OuterLight.scale = default_light_size
+	$OuterLight.scale = light_size
 	
 	for pt in powerup_times:
 		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
@@ -170,7 +179,7 @@ func reset_settings():
 		if(Settings.shop["starting_health_mod"]):
 			starting_health += Settings.shop["starting_health_mod"]
 		if(Settings.shop["light_scale"]):
-			default_light_size *= Settings.shop["light_scale"]
+			light_size *= Settings.shop["light_scale"]
 		if(Settings.shop["bullet_burst_speed_scale"]):
 			default_bullets_burst_wait_time /= Settings.shop["bullet_burst_speed_scale"]
 		if(Settings.shop["powerup_time_scale"]):
@@ -183,12 +192,7 @@ func reset_settings():
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
-var frame = 0
 func _process(delta):
-	frame += 1
-	if(frame % 20 == 0):
-		print("default_bullets_per_burst, ", default_bullets_per_burst)
-		print("bullets_per_burst, ", bullets_per_burst)
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -196,7 +200,6 @@ func _process(delta):
 		change_color(modulate)
 		if(modulate == target_color):
 			target_color = colors[randi()%len(colors)]
-
 
 func reset():
 	$Cursor.player = self
@@ -257,9 +260,9 @@ func gain_point(_color):
 		change_color(_color)
 
 	if(has_powerup["Vision"]):
-		$OuterLight.scale = default_light_size * vision_light_scale
+		$OuterLight.scale = light_size * vision_light_scale
 	else:
-		$OuterLight.scale = default_light_size
+		$OuterLight.scale = light_size
 
 	add_points(points_per_points_collected)
 	spawn_get_point_label(points_per_points_collected)
@@ -491,6 +494,7 @@ func game_over():
 	points = 0
 	heads_up_display.game_over(is_mission, mission_complete)
 	play_time = 0
+	Settings.world["points_scale"] = Settings.world["default_points_scale"]
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
@@ -691,7 +695,7 @@ func _on_Unmaker_timeout():
 
 func _on_Vision_timeout():
 	has_powerup["Vision"] = false
-	$OuterLight.scale = default_light_size
+	$OuterLight.scale = light_size
 
 func play_enemey_explosion_sound(explosion_pitch=1.0):
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch

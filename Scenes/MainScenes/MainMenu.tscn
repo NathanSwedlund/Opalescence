@@ -757,8 +757,6 @@ process_material = SubResource( 1 )
 
 [node name="Player" parent="." groups=["Points"] instance=ExtResource( 9 )]
 position = Vector2( 699, 399 )
-speed = 0.0
-shrink_scalar = 0.9
 gravity_radius = 400
 respawn_position = Vector2( 700, 400 )
 is_active = false

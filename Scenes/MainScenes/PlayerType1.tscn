@@ -7,3 +7,4 @@
 scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 21 )
 script = ExtResource( 1 )
+laser_scale = 1.2
