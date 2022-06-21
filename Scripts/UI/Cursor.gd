@@ -14,14 +14,12 @@ func _input(event):
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
 
-
 var right_stick_direction
 func _process(_delta):
 	if(not is_in_controller_mode):
 		mouse_direction_from_player = (mouse_position - player.global_position).normalized()
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
-	
 	
 	$Sprite.visible = is_in_controller_mode
 	right_stick_direction = Vector2.ZERO

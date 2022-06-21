@@ -755,7 +755,6 @@ one_shot = true
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
 level_count = 9
-level_time_lengths = [ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ]
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 

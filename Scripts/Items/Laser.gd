@@ -20,7 +20,7 @@ export var min_vol = -40
 export var laser_sound_fade_scale = 3
 var laser_vol
 
-var frames_per_damage = 7
+var frames_per_damage = 3
 var current_frame = 0
 
 # Called when the node enters the scene tree for the first time.
