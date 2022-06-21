@@ -23,16 +23,17 @@ func _process(_delta):
 		is_in_controller_mode = false
 	
 	
-	$Sprite.visible = is_in_controller_mode
-	right_stick_direction = Vector2.ZERO
-	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
-	right_stick_direction.x = Input.get_action_strength("controller_right_stick_right") - Input.get_action_strength("controller_right_stick_left")
-	if(right_stick_direction != Vector2.ZERO or is_in_controller_mode):
-		is_in_controller_mode = true
-		
-		if(right_stick_direction != Vector2.ZERO):
-			visible = true
-			position = right_stick_direction.normalized() * cursor_sep_from_player
+#	$Sprite.visible = is_in_controller_mode
+#	right_stick_direction = Vector2.ZERO
+#	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
+#	right_stick_direction.x = Input.get_action_strength("controller_right_stick_right") - Input.get_action_strength("controller_right_stick_left")
+#	if(right_stick_direction != Vector2.ZERO or is_in_controller_mode):
+#		is_in_controller_mode = true
+#
+#
+#		if(right_stick_direction != Vector2.ZERO):
+#			visible = true
+#			position = right_stick_direction.normalized() * cursor_sep_from_player
 
 
 

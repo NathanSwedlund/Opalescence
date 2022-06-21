@@ -322,7 +322,7 @@ func get_input():
 		$LaserChargeEffect.emitting = is_charging_laser
 
 func shoot():
-	if(can_shoot == false):
+	if(can_shoot == false and has_powerup["Barrage"] == false):
 		return
 
 	if(has_powerup["Barrage"] == false):
@@ -589,7 +589,6 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Barrage.wait_time, _color, _powerup)
 		bullets_per_burst = 10000 # very big number will be cut off by _on_Barrage_timeout()
 		bullets_to_shoot = 10000
-		shoot()
 	if(_powerup == "Bombastic"):
 		$PowerupTimers/Bombastic.start()
 		start_powerup_timer($PowerupTimers/Bombastic.wait_time, _color, _powerup)
@@ -649,6 +648,9 @@ func get_powerup(_powerup, _color):
 
 	if(_powerup in transformative_powerups):
 		has_powerup[_powerup] = true
+		
+	if(_powerup == "Barrage"):
+		shoot()
 
 func _on_Bombastic_timeout():
 	has_powerup["Bombastic"] = false

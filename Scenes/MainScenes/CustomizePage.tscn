@@ -108,7 +108,8 @@ modulate = Color( 0.266667, 1, 0, 1 )
 position = Vector2( -1, 339 )
 title = "Additional Starting Health"
 setting_name = "starting_health_mod"
-default_price = 40.0
+default_price = 100.0
+price_mult = 5.0
 val_step = 1.0
 max_val = 2.1
 
@@ -117,6 +118,7 @@ modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
 title = "Additional Pellets Per Burst"
 setting_name = "default_bullets_per_burst_mod"
 default_price = 5.0
+price_mult = 3.0
 val_step = 1.0
 max_val = 5.1
 
@@ -126,7 +128,8 @@ position = Vector2( -1, 170 )
 title = "Pellet Burst Speed Scale"
 setting_name = "bullet_burst_speed_scale"
 default_price = 4.0
-price_mult = 1.0
+price_mult = 3.0
+val_step = 0.2
 max_val = 2.1
 
 [node name="StoreSkillPanel2" parent="UI/Panels" instance=ExtResource( 9 )]
@@ -135,6 +138,7 @@ position = Vector2( 1, 509 )
 title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
 default_price = 8.0
+price_mult = 3.0
 val_step = 0.25
 max_val = 2.1
 
@@ -144,6 +148,7 @@ position = Vector2( -2, 1027 )
 title = "Laser Damage Scale"
 setting_name = "laser_damage_scale"
 default_price = 20.0
+price_mult = 4.0
 val_step = 0.25
 max_val = 1.6
 

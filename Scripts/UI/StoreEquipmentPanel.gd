@@ -61,7 +61,7 @@ var equip_audio_pitch = 1.0
 func _on_ApplyLess_pressed():
 	var init_index = index
 	
-	index = (index+1) % image_num
+	index = (index-1+image_num) % image_num
 	while(Settings.shop[locked_settings[index]] != true):
 		index = (index+1) % image_num
 		
@@ -76,7 +76,7 @@ func _on_ApplyLess_pressed():
 func _on_ApplyMore_pressed():
 	var init_index = index
 	
-	index = (index-1+image_num) % image_num
+	index = (index+1) % image_num	
 	while(Settings.shop[locked_settings[index]] != true):
 		index = (index-1+image_num) % image_num
 		
