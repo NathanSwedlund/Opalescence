@@ -102,10 +102,10 @@ light_mask = 2
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 volume_db = 6.118
-pitch_scale = 1.49
+pitch_scale = 1.23
 autoplay = true
 script = ExtResource( 7 )
-default_vol = 6.0
+default_vol = 8.0
 
 [connection signal="timeout" from="FadeOutTimer" to="." method="_on_FadeOutTimer_timeout"]
 [connection signal="timeout" from="NotFadingTimer" to="." method="_on_NotFadingTimer_timeout"]

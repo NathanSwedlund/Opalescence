@@ -1,10 +1,11 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/HelperScenes/UI/ScreenShake.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Resources/Textures/UI/bombImage-pixel-large.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
@@ -27,7 +28,7 @@
 extents = Vector2( 3.24999, 506 )
 
 [sub_resource type="DynamicFont" id=17]
-size = 20
+size = 18
 font_data = ExtResource( 9 )
 
 [sub_resource type="DynamicFont" id=26]
@@ -166,6 +167,10 @@ font_data = ExtResource( 9 )
 [sub_resource type="CanvasItemMaterial" id=32]
 light_mode = 1
 
+[sub_resource type="DynamicFont" id=35]
+size = 12
+font_data = ExtResource( 9 )
+
 [node name="World" type="Node2D"]
 scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 17 )
@@ -274,6 +279,7 @@ powerup_times = {
 
 [node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
 pause_mode = 2
+follow_viewport_enable = true
 script = ExtResource( 8 )
 
 [node name="PointsLabel" type="Label" parent="HeadsUpDisplay"]
@@ -293,10 +299,10 @@ custom_fonts/font = SubResource( 26 )
 text = "High Score:"
 
 [node name="TimeLabel" type="Label" parent="HeadsUpDisplay"]
-margin_left = 36.0
-margin_top = 53.0
-margin_right = 202.0
-margin_bottom = 74.0
+margin_left = 35.0
+margin_top = 45.0
+margin_right = 201.0
+margin_bottom = 66.0
 custom_fonts/font = SubResource( 17 )
 text = "Time: "
 
@@ -340,6 +346,7 @@ text = "x 1
 "
 
 [node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
+visible = true
 margin_left = -11.0
 margin_top = 108.0
 margin_right = 29.0
@@ -457,8 +464,8 @@ margin_bottom = 146.0
 
 [node name="Background" type="Sprite" parent="HeadsUpDisplay/PausePopup"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.72549 )
-position = Vector2( -12, -112 )
-scale = Vector2( 10.2891, 5.89062 )
+position = Vector2( -272, -262 )
+scale = Vector2( 13.4297, 7.96875 )
 texture = ExtResource( 5 )
 centered = false
 
@@ -699,13 +706,14 @@ pitch_scale = 0.7
 script = ExtResource( 20 )
 
 [node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
+visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Background" type="Sprite" parent="HeadsUpDisplay/PointAddPopup"]
 modulate = Color( 0, 0, 0, 0.819608 )
-position = Vector2( -4, -75 )
-scale = Vector2( 10.0938, 6.4375 )
+position = Vector2( -230, -145 )
+scale = Vector2( 13, 7.875 )
 texture = ExtResource( 5 )
 centered = false
 
@@ -770,10 +778,37 @@ valign = 1
 fade_speed = 0.5
 automatically_fade_out = true
 
+[node name="LevelLabel2" parent="LevelController" instance=ExtResource( 13 )]
+material = SubResource( 32 )
+margin_left = 45.6
+margin_top = 55.0
+margin_right = 171.6
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 35 )
+text = "Level:"
+valign = 1
+script = null
+
 [node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 autoplay = true
 song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3" ]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="ExplosionScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "explosion"
+
+[node name="LaserScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "laser"
+
+[node name="BombScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "bomb"
+
+[node name="MiscScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "misc"
 
 [connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]
 [connection signal="popup_hide" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="deactivate"]

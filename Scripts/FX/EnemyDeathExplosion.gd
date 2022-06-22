@@ -7,12 +7,21 @@ export var shrink_speed = 0.94
 export var point_reward = 0.0
 export var scale_mod = 1.0
 
-var explosion_pitch = 1.0
+var explosion_pitch = 1.2
+var explosion_vol_db = -10
+
 var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
-
+var shake_amp = 5
+var shake_dur = 0.1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("scale_mod, ", scale_mod)
+	explosion_pitch -= scale_mod/5
+	shake_dur *= scale_mod
+	shake_amp *= scale_mod
+	explosion_vol_db += (scale_mod-1)*10
+	Global.shakes["explosion"].start(shake_amp, shake_dur)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
 		
@@ -25,7 +34,7 @@ func _ready():
 
 		Global.player.add_points(point_reward)
 
-	Global.player.play_enemey_explosion_sound(explosion_pitch)
+	Global.player.play_enemey_explosion_sound(explosion_pitch, explosion_vol_db)
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
 	

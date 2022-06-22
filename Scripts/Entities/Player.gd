@@ -332,6 +332,9 @@ func shoot():
 		bullets_per_burst = default_bullets_per_burst
 		bullets_to_shoot = bullets_per_burst
 
+	if(has_powerup["Incendiary"]):
+		Global.shakes["misc"].start()
+		
 	if(bullets_to_shoot > 1):
 		can_shoot = false
 		$BulletBurstTimer.start()
@@ -371,16 +374,18 @@ func damage():
 	if(has_powerup["Opalescence"]):
 		get_parent().find_node("EnemyFactory").kill_all(true)
 	elif(has_powerup["OverShield"]):
+		$ShieldDestroyedParticles.emitting = true
+		$SoundFX/OverSheildLostAudio.play()
 		has_powerup["OverShield"] = false
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
 		get_parent().find_node("EnemyFactory").kill_all()
-		get_parent().find_node("PointFactory").kill_all()
-		get_parent().find_node("PowerupFactory").kill_all()
 		$ShieldSprite.visible = false
 	else:
 		die()
 
 func die():
+	Global.shakes["explosion"].start(20, 0.95, 24, 1)
+	
 	$SoundFX/PlayerExplosionSound.play()
 	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
@@ -412,15 +417,15 @@ func die():
 
 	current_health -= 1
 	if(current_health <= 0):
-		game_over()
+		$GameOverWaitTimer.start()
 	else:
 		$RespawnTimer.start()
+		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == true):
 			timer.stop_timer()
 
-	heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 
 	is_charging_laser = false
 	can_shoot = false
@@ -697,6 +702,11 @@ func _on_Vision_timeout():
 	has_powerup["Vision"] = false
 	$OuterLight.scale = light_size
 
-func play_enemey_explosion_sound(explosion_pitch=1.0):
+func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db=0.0):
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
+	$SoundFX/EnemyExplosionSound.volume_db = volume_db
 	$SoundFX/EnemyExplosionSound.play()
+
+
+func _on_GameOverWaitTimer_timeout():
+	game_over()

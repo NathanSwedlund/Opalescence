@@ -1,5 +1,6 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=40 format=2]
 
+[ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=4]
@@ -19,7 +20,7 @@
 [ext_resource path="res://Resources/Audio/FX/BulletFire.wav" type="AudioStream" id=18]
 [ext_resource path="res://Resources/Audio/FX/BombDeploy.wav" type="AudioStream" id=19]
 [ext_resource path="res://Resources/Audio/FX/Opalescence.wav" type="AudioStream" id=20]
-[ext_resource path="res://Resources/Audio/FX/EnemyExplosion.wav" type="AudioStream" id=21]
+[ext_resource path="res://Resources/Audio/FX/OverSheildLost.wav" type="AudioStream" id=21]
 [ext_resource path="res://Resources/Audio/FX/PlayerExplosion.wav" type="AudioStream" id=22]
 [ext_resource path="res://Resources/Audio/FX/OneUp.wav" type="AudioStream" id=23]
 [ext_resource path="res://Resources/Audio/FX/BullletFailedHit.wav" type="AudioStream" id=24]
@@ -85,6 +86,26 @@ color_ramp = SubResource( 8 )
 [sub_resource type="DynamicFont" id=10]
 size = 30
 font_data = ExtResource( 7 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.96861, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1000.0
+angular_velocity = 71.4
+orbit_velocity = 0.5
+orbit_velocity_random = 1.0
+scale = 40.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
@@ -313,9 +334,15 @@ volume_db = 10.0
 script = ExtResource( 26 )
 default_vol = 10.0
 
+[node name="OverSheildLostAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 21 )
+script = ExtResource( 26 )
+default_vol = 10.0
+
 [node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 22 )
 script = ExtResource( 26 )
+default_vol = 5.0
 
 [node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 13 )
@@ -335,7 +362,7 @@ stream = ExtResource( 17 )
 script = ExtResource( 26 )
 
 [node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
-stream = ExtResource( 21 )
+stream = ExtResource( 1 )
 script = ExtResource( 26 )
 
 [node name="ShieldSprite" type="Sprite" parent="."]
@@ -344,6 +371,20 @@ self_modulate = Color( 1, 1, 1, 0.0235294 )
 position = Vector2( 0, -5 )
 scale = Vector2( 2.39024, 2.39024 )
 texture = ExtResource( 9 )
+
+[node name="ShieldDestroyedParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 600
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.2
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 14 )
+
+[node name="GameOverWaitTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
 
 [connection signal="timeout" from="BulletBurstTimer" to="." method="_on_BulletBurstTimer_timeout"]
 [connection signal="timeout" from="BulletCooldownTimer" to="." method="_on_BulletCooldownTimer_timeout"]
@@ -360,3 +401,4 @@ texture = ExtResource( 9 )
 [connection signal="timeout" from="PowerupTimers/OpalescenceColorShift" to="." method="_on_OpalescenceColorShift_timeout"]
 [connection signal="timeout" from="PowerupTimers/Unmaker" to="." method="_on_Unmaker_timeout"]
 [connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
+[connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]

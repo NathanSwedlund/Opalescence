@@ -35,15 +35,16 @@ func _ready():
 	$LevelLabel.fade_out()
 	$CountdownTimer.wait_time = level_time_lengths[currrent_level]
 	$CountdownTimer.start()
+	$LevelLabel2.text = "Level: " + str(currrent_level)
 
 func increase_level():
 	currrent_level += 1
-	print("INCREASING INCREASING LEVEL, ", currrent_level)
 
 	if(level_has_boss(currrent_level)):
 		var boss = bosses[currrent_level].instance()
 		get_parent().find_node("EnemyFactory").find_node("Enemies").add_child(boss)
 		$LevelLabel.text = "Level " + str(currrent_level) + " Boss"
+		$LevelLabel2.text = "Level: " + str(currrent_level) + " Boss"
 		$LevelLabel.fade_out()
 		$CountdownTimer.stop()
 		
@@ -74,6 +75,7 @@ func increase_level():
 		get_parent().find_node("PointFactory").reset()
 		get_parent().find_node("EnemyFactory").reset()
 		get_parent().find_node("PowerupFactory").reset()
+
 		
 #		print("Now at Level ", str(currrent_level))
 #		print(Settings.factory)
@@ -89,6 +91,7 @@ func level_has_boss(level):
 	
 func start_level_timer():
 	$LevelLabel.text = "Level " + str(currrent_level)
+	$LevelLabel2.text = "Level: " + str(currrent_level)
 	$LevelLabel.fade_out()
 	$CountdownTimer.stop()
 	if(currrent_level < level_count):

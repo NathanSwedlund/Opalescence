@@ -112,21 +112,21 @@ position = Vector2( 464.92, -3.38129 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard Hard Mode"
 setting_name = "hard_mode_unlocked"
-price = 10000
+price = 300000
 
 [node name="StorePanelBool2" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
 position = Vector2( 839.56, 3.05176e-05 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard Extra Hard Mode"
 setting_name = "extra_hard_mode_unlocked"
-price = 70000
+price = 700000
 
 [node name="StorePanelBool3" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
 position = Vector2( 1293.41, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard NIGHTMARE Mode"
 setting_name = "nightmare_mode_unlocked"
-price = 1000000
+price = 2000000
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel"]
 stream = ExtResource( 5 )

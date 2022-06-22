@@ -55,7 +55,8 @@ func _process(delta):
 func explode():
 	if(exploding):
 		return
-
+		
+	Global.shakes["bomb"].start(3*get_parent().scale.x, 0.75, 40, 1)
 	shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true
 	exploding = true

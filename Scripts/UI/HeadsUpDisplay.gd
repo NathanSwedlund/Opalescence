@@ -80,7 +80,9 @@ func change_color(new_color):
 	$PausePopup/Buttons/MenuButton/Light2D.color = new_color
 	$PausePopup/Buttons/ResumeButton/Light2D.color = new_color
 	$PausePopup/Buttons/OptionsButton/Light2D.color = new_color
-	
+	if(get_parent().get_node("LevelController") != null):
+		get_parent().get_node("LevelController").modulate = new_color
+
 func reset():
 	$GameOverPopup/Buttons.is_active = false
 	$GameOverPopup.hide()
