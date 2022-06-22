@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
@@ -26,6 +26,7 @@
 [ext_resource path="res://Resources/Audio/FX/BullletFailedHit.wav" type="AudioStream" id=24]
 [ext_resource path="res://Resources/Audio/FX/IncendiaryBulletFire.wav" type="AudioStream" id=25]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=27]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 35 )
@@ -160,11 +161,13 @@ shape = SubResource( 1 )
 amount = 50
 lifetime = 4.0
 process_material = SubResource( 2 )
+script = ExtResource( 27 )
 
 [node name="Particles2D2" type="Particles2D" parent="."]
 amount = 20
 local_coords = false
 process_material = SubResource( 5 )
+script = ExtResource( 27 )
 
 [node name="LaserChargeEffect" type="Particles2D" parent="."]
 scale = Vector2( 1, 0.995154 )
@@ -172,12 +175,14 @@ emitting = false
 amount = 25
 speed_scale = 3.0
 process_material = SubResource( 11 )
+script = ExtResource( 27 )
 
 [node name="OpalescenceEffect" type="Particles2D" parent="."]
 emitting = false
 amount = 100
 speed_scale = 3.0
 process_material = SubResource( 11 )
+script = ExtResource( 27 )
 
 [node name="BulletBurstTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -381,6 +386,7 @@ speed_scale = 1.2
 explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 14 )
+script = ExtResource( 27 )
 
 [node name="GameOverWaitTimer" type="Timer" parent="."]
 wait_time = 1.2

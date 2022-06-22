@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Textures/FX/EnemyLight.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.416216, 1 )
@@ -80,6 +81,7 @@ speed_scale = 5.0
 explosiveness = 0.85
 local_coords = false
 process_material = SubResource( 3 )
+script = ExtResource( 4 )
 
 [node name="DebrisOrbit" type="Particles2D" parent="."]
 amount = 60
@@ -88,6 +90,7 @@ speed_scale = 1.5
 explosiveness = 0.51
 local_coords = false
 process_material = SubResource( 4 )
+script = ExtResource( 4 )
 
 [node name="BlackBlast" type="Particles2D" parent="."]
 emitting = false
@@ -98,6 +101,7 @@ speed_scale = 5.0
 explosiveness = 0.85
 local_coords = false
 process_material = SubResource( 5 )
+script = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 scale = Vector2( 0.45, 0.45 )

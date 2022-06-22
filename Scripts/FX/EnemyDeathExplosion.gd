@@ -50,7 +50,7 @@ func _ready():
 var target_time = 1.0/70.0
 var current_time = 0.0
 
-var frames_per_update_options = {"Min":10, "Low":5, "Mid":3, "High":2, "Ultra":1}
+var frames_per_update_options = {"Min":7, "Low":4, "Mid":3, "High":2, "Ultra":1}
 var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
 

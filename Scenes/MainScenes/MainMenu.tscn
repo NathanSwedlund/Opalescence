@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Environment/MainMenu.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=14]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=15]
 [ext_resource path="res://Scenes/HelperScenes/UI/StringSelector.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3.24999, 506 )
@@ -142,6 +143,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="CustomizeButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
 margin_left = -286.667
@@ -174,6 +176,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="StorePage" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
 margin_left = -1426.67
@@ -205,6 +208,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="OptionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
 margin_left = -840.003
@@ -236,6 +240,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
 margin_left = 6886.67
@@ -268,6 +273,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="ButtonSelectionController2" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
@@ -304,6 +310,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="MissionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
@@ -336,6 +343,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="TutorialsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
@@ -368,6 +376,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="ChallengeButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
@@ -403,6 +412,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
@@ -435,6 +445,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="ButtonSelectionController3" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
@@ -539,6 +550,7 @@ scale = Vector2( 6.667, 6.667 )
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="ButtonSelectionController4" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
@@ -575,6 +587,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="EasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -607,6 +620,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="MediumButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -639,6 +653,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="HardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -671,6 +686,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="ExtraHardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -703,6 +719,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="NightmareMode" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -735,6 +752,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="StandardBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
@@ -767,6 +785,7 @@ emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
+script = ExtResource( 17 )
 
 [node name="Player" parent="." groups=["Points"] instance=ExtResource( 9 )]
 position = Vector2( 699, 399 )

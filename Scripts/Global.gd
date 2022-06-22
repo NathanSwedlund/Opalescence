@@ -17,6 +17,7 @@ var bullet_type_scenes = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("r
 var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn"), load("res://Scenes/MainScenes/PlayerType4.tscn"), load("res://Scenes/MainScenes/PlayerType5.tscn")]
 
 var shakes = {}
+var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}
 
 func save_var(path, _var):
 #	print("Saving ", _var, " at ", path)
