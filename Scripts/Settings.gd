@@ -101,7 +101,7 @@ var player_default = {
 	"starting_health":3,
 	"shrink_scalar":0.90,
 	"light_fade_scale":1.0,
-	"light_scale":1.0,
+	"light_scale":1.4,
 	"min_scale":0.5,
 	"gravity_radius":100.0,
 	"gravity_pull_scale":1.0,

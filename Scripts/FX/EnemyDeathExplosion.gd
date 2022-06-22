@@ -8,7 +8,8 @@ export var point_reward = 0.0
 export var scale_mod = 1.0
 
 var explosion_pitch = 1.2
-var explosion_vol_db = -10
+var explosion_vol_db = -15
+var max_vol_db = -6
 
 var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
@@ -20,7 +21,12 @@ func _ready():
 	explosion_pitch -= scale_mod/5
 	shake_dur *= scale_mod
 	shake_amp *= scale_mod
-	explosion_vol_db += (scale_mod-1)*10
+	explosion_vol_db += (scale_mod-1)*5
+	if(explosion_vol_db > max_vol_db):
+		explosion_vol_db = max_vol_db
+		
+	print("explosion_vol_db, ", explosion_vol_db)
+	
 	Global.shakes["explosion"].start(shake_amp, shake_dur)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]

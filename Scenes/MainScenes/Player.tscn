@@ -342,7 +342,7 @@ default_vol = 10.0
 [node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 22 )
 script = ExtResource( 26 )
-default_vol = 5.0
+default_vol = 2.0
 
 [node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 13 )
