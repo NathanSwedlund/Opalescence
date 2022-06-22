@@ -55,7 +55,7 @@ func reset():
 		shift_button_selection(Settings.current_main_menu_button_selection, false)
 		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
-		
+		$MenuCanvas/ButtonSelectionController3/ScreenShakeScaleOption.update_current_val(Settings.saved_settings["screen_shake_scale"])
 		$MusicShuffler.volume_db = -80
 		
 func _on_ChallengeButton_pressed():
@@ -378,4 +378,7 @@ func load_standard(settings):
 func _on_CustomizeButton_pressed():
 	Settings.current_main_menu_button_selection = 0
 	get_tree().change_scene("res://Scenes/MainScenes/CustomizePage.tscn")
+
+func _on_ScreenShakeScaleOption_pressed(_value):
+	Settings.saved_settings["screen_shake_scale"] = _value
 

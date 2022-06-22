@@ -438,12 +438,13 @@ process_material = SubResource( 1 )
 
 [node name="ButtonSelectionController3" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
-button_count = 8
+button_count = 9
 
 [node name="MusicVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 340, 906.667 )
 scale = Vector2( 5, 5 )
+title = "Music Volume"
 starting_val = 20.0
 max_val = 25.1
 step = 1.0
@@ -453,8 +454,10 @@ setting_name = "music_volume"
 visible = false
 position = Vector2( 340, 1516.67 )
 scale = Vector2( 5, 5 )
+title = "SFX Volume"
 starting_val = 20.0
-max_val = 25.0
+max_val = 25.1
+min_val = -0.1
 step = 1.0
 button_index = 1
 setting_name = "fx_volume"
@@ -496,6 +499,15 @@ button_index = 6
 setting_name = "graphical_quality"
 strings = [ "Min", "Low", "Mid", "High", "Ultra" ]
 
+[node name="ScreenShakeScaleOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 2633.33, 2706.67 )
+scale = Vector2( 5, 5 )
+title = "Screen Shake Scale"
+max_val = 100.0
+button_index = 7
+setting_name = "screen_shake_scale"
+
 [node name="OptionBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController3"]
 visible = false
 margin_left = 7073.33
@@ -508,7 +520,7 @@ custom_styles/focus = SubResource( 6 )
 text = "Back"
 flat = true
 script = ExtResource( 8 )
-button_index = 7
+button_index = 8
 button_shift_index = 5
 
 [node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
@@ -870,6 +882,7 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/FullscreenOption" to="." method="_on_FullscreenOption_pressed"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ShowIntroOption" to="." method="_on_ShowIntroOption_pressed"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ShowWarningOption" to="." method="_on_ShowWarningOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ScreenShakeScaleOption" to="." method="_on_ScreenShakeScaleOption_pressed"]
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="." method="_on_OptionBackButton_pressed"]

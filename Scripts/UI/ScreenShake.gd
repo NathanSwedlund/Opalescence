@@ -13,6 +13,11 @@ func _ready():
 	Global.shakes[shake_name] = self
 
 func start(amplitude = 3, duration = 0.1, Freq = 20, priority = 0):
+	amplitude *= Settings.saved_settings["screen_shake_scale"]
+	print("SCREEN SHAKE SCALE, ", Settings.saved_settings["screen_shake_scale"])
+	if(amplitude == 0):
+		return
+		
 	if (priority >= self.priority):
 		self.priority = priority
 		self.amplitude = amplitude
