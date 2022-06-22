@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Items/Bullet3.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/Items/bullet-pixel3.png" type="Texture" id=2]
@@ -8,6 +8,12 @@ light_mode = 1
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.16667, 6 )
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
 
 [sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -27,6 +33,7 @@ orbit_velocity_random = 0.0
 scale = 3.0
 scale_random = 0.74
 scale_curve = SubResource( 5 )
+color_ramp = SubResource( 9 )
 
 [node name="Bullet3" type="KinematicBody2D"]
 collision_layer = 8
@@ -35,8 +42,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-speed_accel = 700.0
-base_damge = 3.0
+speed_accel = 200.0
+speed_accel_scale = 4
+base_damge = 6.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 7 )
@@ -50,7 +58,7 @@ shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 7 )
-amount = 400
-lifetime = 0.3
+amount = 900
+lifetime = 0.5
 local_coords = false
 process_material = SubResource( 3 )

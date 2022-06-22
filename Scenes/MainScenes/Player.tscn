@@ -103,7 +103,7 @@ initial_velocity = 1000.0
 angular_velocity = 71.4
 orbit_velocity = 0.5
 orbit_velocity_random = 1.0
-scale = 40.0
+scale = 15.0
 scale_random = 1.0
 scale_curve = SubResource( 13 )
 
@@ -242,7 +242,7 @@ one_shot = true
 wait_time = 0.05
 
 [node name="Unmaker" type="Timer" parent="PowerupTimers"]
-wait_time = 4.0
+wait_time = 3.0
 
 [node name="Vision" type="Timer" parent="PowerupTimers"]
 wait_time = 12.0
@@ -378,7 +378,7 @@ amount = 600
 lifetime = 2.0
 one_shot = true
 speed_scale = 1.2
-explosiveness = 0.8
+explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 14 )
 

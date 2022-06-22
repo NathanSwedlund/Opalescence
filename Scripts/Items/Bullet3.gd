@@ -4,7 +4,7 @@ var direction = Vector2.ZERO
 export var speed = 0
 export var speed_accel = 500.0
 export var speed_accel_scale = 3
-var speed_max = 4000.0
+var speed_max = 5000.0
 
 export var base_damge = 2.0
 var damage_mod = 1.0

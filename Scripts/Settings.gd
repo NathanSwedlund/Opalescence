@@ -39,8 +39,8 @@ var factory_default = {
 	"point_color_override":null,
 
 	"enemy_is_active":true,
-	"enemy_time_min":1,
-	"enemy_time_max":2,
+	"enemy_time_min":0.8,
+	"enemy_time_max":1.5,
 	"enemy_spawn_time_speed":1.0,
 	"enemy_spawn_away_radius":200,
 	"enemy_blocker_prob":0.05,
@@ -70,7 +70,7 @@ var factory_default = {
 var factory = factory_default.duplicate()
 
 var enemy_default = {
-	"enemy_health_scale":1.0,
+	"enemy_health_scale":0.7,
 
 	"chaser_gen_scale":1.0,
 	"chaser_min_scale":0.25,

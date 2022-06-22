@@ -366,7 +366,8 @@ func drop_bomb(_scale=1.0):
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
 	bomb.position = position
-	bomb.scale *= Settings.shop["bomb_scale"] * _scale
+	if(Settings.world["is_mission"] == false):
+		bomb.scale *= Settings.shop["bomb_scale"] * _scale
 	$SoundFX/DropBombAudio.play()
 	get_parent().add_child(bomb)
 
