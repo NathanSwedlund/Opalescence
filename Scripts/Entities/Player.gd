@@ -484,7 +484,7 @@ func game_over():
 
 	$BulletBurstTimer.stop() 
 
-	Global.play_time = Settings.world["has_time_goal"]
+	Global.play_time = Global.round_float(play_time, 3)
 	points = 0
 	heads_up_display.game_over()
 	play_time = 0

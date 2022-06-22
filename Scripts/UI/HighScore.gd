@@ -19,7 +19,7 @@ func load_high_scores():
 
 func record_score(score, score_title, more_is_better=true):
 	var old_score = get_score(score_title)
-	if((score > old_score and more_is_better) or (score < old_score and !more_is_better) ):
+	if((old_score == 0 and Settings.world["has_point_goal"]) or (score > old_score and more_is_better) or (score < old_score and !more_is_better) ):
 		high_scores[score_title] = score
 		save_high_scores()
 

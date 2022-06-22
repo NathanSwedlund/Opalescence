@@ -6,7 +6,7 @@ var pause_audio_pitch_scale = 0.66
 var is_pitching_music = false
 var old_high_score =  HighScore.get_score(Settings.world["mission_title"])
 
-var points_suffix = "s" if Settings.world["has_point_goal"] else "pts"
+var points_suffix = " s" if Settings.world["has_point_goal"] else ""
 func _ready():
 	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 		$BombDisplay.visible = false
@@ -69,7 +69,7 @@ func update_bombs(bomb_count):
 		$BombDisplay/BombLabel.text = str(Global.player.current_bombs)
 		
 func update_points(points):
-	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"]) + points_suffix
+	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 
 func game_over():
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
@@ -86,11 +86,15 @@ func game_over():
 			HighScore.record_score(Global.points_this_round, mission_title, true)
 			mission_complete = true
 	
-	var made_new_high_score = old_high_score < Global.points_this_round
+	var made_new_high_score = false
 	if(Settings.world["is_mission"]):
-		if(Settings.world["has_point_goal"]):
-			made_new_high_score = old_high_score > Global.play_time
-
+		if(mission_complete):
+			if(Settings.world["has_point_goal"]):
+				made_new_high_score = (old_high_score > Global.play_time) or (old_high_score == 0)
+			else: # time goal
+				old_high_score < Global.points_this_round
+	else:
+		made_new_high_score = old_high_score < Global.points_this_round
 	
 	print("high_score, ", old_high_score)
 	print("Global.points_this_round, ", Global.points_this_round)
@@ -166,8 +170,8 @@ func point_add_popup_event():
 	point_num2 = Settings.shop["points"]
 	Settings.shop["points"] += points_this_round
 	
-	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round) + points_suffix
-	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"]) + points_suffix
+	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
+	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
 	var tokens_this_round = default_token_reward
 	tokens_this_round = int(Global.player.play_time/10.0)
@@ -203,8 +207,8 @@ func _on_RackingTimer_timeout():
 			done_racking_points = true
 			$PointAddPopup/WaitTimer.start()
 			
-		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1) + points_suffix
-		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2) + points_suffix
+		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1)
+		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2)
 
 func _on_ShopButton_pressed():
 	pass
@@ -252,7 +256,10 @@ func _on_HighScoreWaitTimer_timeout():
 		$HighScorePopup/HighScoreLabel.text = ":New High Score:"
 		$HighScorePopup/HighScoreLabel2.fade_in()
 		$HighScorePopup/AudioStreamPlayer.play()
-		$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round) + points_suffix
+		if(Settings.world["has_point_goal"]):
+			$HighScorePopup/HighScoreLabel2.text = str(Global.play_time) + points_suffix
+		else:
+			$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round) + points_suffix
 		$HighScorePopup/Particles2D.emitting = true
 
 	if(high_score_timeout_count == 4):
