@@ -238,10 +238,10 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 
 [node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
-margin_left = 5960.0
-margin_top = 3413.33
-margin_right = 8352.33
-margin_bottom = 3959.33
+margin_left = 6886.67
+margin_top = 3406.67
+margin_right = 8102.67
+margin_bottom = 4006.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -406,10 +406,10 @@ process_material = SubResource( 1 )
 
 [node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
 visible = false
-margin_left = 4153.33
-margin_top = 3486.66
-margin_right = 8272.33
-margin_bottom = 4032.66
+margin_left = 6886.67
+margin_top = 3406.67
+margin_right = 8102.67
+margin_bottom = 4006.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -510,15 +510,16 @@ setting_name = "screen_shake_scale"
 
 [node name="OptionBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController3"]
 visible = false
-margin_left = 7073.33
-margin_top = 3353.33
-margin_right = 8289.33
-margin_bottom = 3899.33
+margin_left = 6886.67
+margin_top = 3406.67
+margin_right = 8102.67
+margin_bottom = 4006.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
 text = "Back"
 flat = true
+align = 2
 script = ExtResource( 8 )
 button_index = 8
 button_shift_index = 5
@@ -735,12 +736,12 @@ amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 
-[node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="StandardBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
 visible = false
-margin_left = 4086.67
-margin_top = 3326.67
-margin_right = 8205.67
-margin_bottom = 3872.67
+margin_left = 6886.67
+margin_top = 3406.67
+margin_right = 8102.67
+margin_bottom = 4006.67
 custom_fonts/font = ExtResource( 3 )
 custom_styles/pressed = SubResource( 5 )
 custom_styles/focus = SubResource( 6 )
@@ -751,14 +752,14 @@ script = ExtResource( 8 )
 button_index = 6
 button_shift_index = 6
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/BackButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/StandardBackButton"]
 visible = false
 position = Vector2( 2678.53, 341.75 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/BackButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/StandardBackButton"]
 visible = false
 position = Vector2( 3759, 353.667 )
 scale = Vector2( 6.667, 6.667 )
@@ -904,7 +905,7 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="." method="_on_NightmareMode_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/BackButton" to="MenuCanvas/ButtonSelectionController4/BackButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/BackButton" to="MenuCanvas/ButtonSelectionController4/BackButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="MenuCanvas/ButtonSelectionController4/StandardBackButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="MenuCanvas/ButtonSelectionController4/StandardBackButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="." method="_on_StandardBackButton_pressed"]
 [connection signal="timeout" from="ButtonShiftTimer" to="." method="_on_ButtonShiftTimer_timeout"]

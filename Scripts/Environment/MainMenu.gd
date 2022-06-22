@@ -129,9 +129,8 @@ func _on_PlayButton_pressed():
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
-	if($MenuCanvas/ButtonSelectionController2.is_active == false and $MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/ButtonSelectionController2.is_active == false):
 		return 
-
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
@@ -381,4 +380,11 @@ func _on_CustomizeButton_pressed():
 
 func _on_ScreenShakeScaleOption_pressed(_value):
 	Settings.saved_settings["screen_shake_scale"] = _value
+
+
+
+func _on_StandardBackButton_pressed():
+	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+		return
+	shift_button_selection(1)
 
