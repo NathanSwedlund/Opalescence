@@ -57,6 +57,7 @@ var can_shoot = true
 export var starting_bombs = 3
 var inf_bombs = false
 
+var default_laser_charge_time
 
 
 var bullet_audio_default_pitch = 1.0
@@ -115,6 +116,7 @@ func _ready():
 
 	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
+	default_laser_charge_time = $LaserChargeTimer.wait_time
 	reset()
 	
 func reset_settings():
