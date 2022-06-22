@@ -8,10 +8,9 @@ export var automatically_fade_out = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	modulate.a = 0.0
-	if(automatically_fade_in):
+	if(automatically_fade_in and not automatically_fade_out):
 		fade_in()
-	elif(automatically_fade_out):
+	if(automatically_fade_out and not automatically_fade_in):
 		fade_out()
 
 func _process(delta):

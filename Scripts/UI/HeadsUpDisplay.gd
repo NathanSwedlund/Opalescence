@@ -4,6 +4,7 @@ var game_is_over = false
 var can_unpause = false
 var pause_audio_pitch_scale = 0.66
 var is_pitching_music = false
+var high_score =  HighScore.get_score(Settings.world["mission_title"])
 
 func _ready():
 	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
@@ -64,10 +65,20 @@ func update_points(points):
 	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 
 func game_over(is_mission, mission_complete):
-	point_add_popup_event()
+	print("high_score, ", high_score)
+	print("Global.points_this_round, ", Global.points_this_round)
+	if(Global.points_this_round > high_score):
+		new_high_score_event()
+	else:
+		point_add_popup_event()
 	print("Global.player.points, ", Global.player.points)
 	$GameOverPopup/GameOverLabel.text = "COMPLETE" if is_mission and mission_complete else "GAME OVER"
 	game_is_over = true
+
+func new_high_score_event():
+	$HighScorePopup/HighScoreLabel2.text = str(high_score)
+	$HighScorePopup/HighScoreWaitTimer.start()
+	$HighScorePopup.show()
 
 func change_color(new_color):
 	for c in get_children():
@@ -184,6 +195,7 @@ func _on_WaitTimer_timeout():
 		$PointAddPopup/RackingTimer.start()
 
 func finish_racking():
+	HighScore.reset_high_scores()
 	$PointAddPopup/RackingTimer.stop()
 	$PointAddPopup/WaitTimer.stop()
 
@@ -199,3 +211,23 @@ func finish_racking():
 		$PointAddPopup.hide()
 		$GameOverPopup.show()
 		$GameOverPopup/Buttons.is_active = true
+
+
+var high_score_timeout_count = 0
+func _on_HighScoreWaitTimer_timeout():
+	if(high_score_timeout_count == 0):
+		$HighScorePopup/HighScoreLabel2.fade_out()
+	if(high_score_timeout_count == 1):
+		$HighScorePopup/HighScoreLabel.text = ":New High Score:"
+		$HighScorePopup/HighScoreLabel2.fade_in()
+		$HighScorePopup/AudioStreamPlayer.play()
+		$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round)
+		$HighScorePopup/Particles2D.emitting = true
+
+	if(high_score_timeout_count == 4):
+		$HighScorePopup/HighScoreWaitTimer.stop()
+		$HighScorePopup.hide()
+		point_add_popup_event()
+		
+	high_score_timeout_count += 1
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -23,6 +23,8 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=21]
 [ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=22]
 [ext_resource path="res://Scripts/Environment/LevelController.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/UI/FadeInLabel.gd" type="Script" id=24]
+[ext_resource path="res://Resources/Audio/FX/NewHighScore.wav" type="AudioStream" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3.24999, 506 )
@@ -163,6 +165,38 @@ font_data = ExtResource( 9 )
 [sub_resource type="DynamicFont" id=34]
 size = 30
 font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=36]
+size = 70
+font_data = ExtResource( 9 )
+
+[sub_resource type="Gradient" id=37]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=38]
+gradient = SubResource( 37 )
+
+[sub_resource type="Curve" id=39]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=40]
+curve = SubResource( 39 )
+
+[sub_resource type="ParticlesMaterial" id=41]
+emission_shape = 2
+emission_box_extents = Vector3( 200, 10, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 400, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.35
+orbit_velocity = 0.03
+orbit_velocity_random = 1.0
+damping = 100.0
+scale = 20.0
+scale_random = 1.0
+scale_curve = SubResource( 40 )
+color_ramp = SubResource( 38 )
 
 [sub_resource type="CanvasItemMaterial" id=32]
 light_mode = 1
@@ -706,7 +740,6 @@ pitch_scale = 0.7
 script = ExtResource( 20 )
 
 [node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -759,6 +792,54 @@ wait_time = 0.1
 [node name="WaitTimer" type="Timer" parent="HeadsUpDisplay/PointAddPopup"]
 wait_time = 0.7
 one_shot = true
+
+[node name="HighScorePopup" type="Popup" parent="HeadsUpDisplay"]
+visible = true
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="HeadsUpDisplay/HighScorePopup"]
+modulate = Color( 0, 0, 0, 0.819608 )
+position = Vector2( -230, -145 )
+scale = Vector2( 13, 7.875 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="HighScoreLabel" type="Label" parent="HeadsUpDisplay/HighScorePopup"]
+margin_left = 5.0
+margin_top = 213.0
+margin_right = 1277.0
+margin_bottom = 283.0
+custom_fonts/font = SubResource( 36 )
+text = ":Old High Score:"
+align = 1
+
+[node name="HighScoreLabel2" type="Label" parent="HeadsUpDisplay/HighScorePopup"]
+margin_left = 12.0
+margin_top = 325.0
+margin_right = 1268.0
+margin_bottom = 395.0
+custom_fonts/font = SubResource( 36 )
+text = "0"
+align = 1
+script = ExtResource( 24 )
+fade_speed = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/HighScorePopup"]
+position = Vector2( 642, 362 )
+emitting = false
+amount = 700
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 41 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HeadsUpDisplay/HighScorePopup"]
+stream = ExtResource( 25 )
+pitch_scale = 1.45
+script = ExtResource( 20 )
+
+[node name="HighScoreWaitTimer" type="Timer" parent="HeadsUpDisplay/HighScorePopup"]
 
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
@@ -835,4 +916,5 @@ shake_name = "misc"
 [connection signal="timeout" from="HeadsUpDisplay/CountdownLabel/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
 [connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/RackingTimer" to="HeadsUpDisplay" method="_on_RackingTimer_timeout"]
 [connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/WaitTimer" to="HeadsUpDisplay" method="_on_WaitTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/HighScorePopup/HighScoreWaitTimer" to="HeadsUpDisplay" method="_on_HighScoreWaitTimer_timeout"]
 [connection signal="timeout" from="LevelController/CountdownTimer" to="LevelController" method="_on_CountdownTimer_timeout"]
