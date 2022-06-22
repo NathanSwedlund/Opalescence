@@ -4,13 +4,16 @@ var game_is_over = false
 var can_unpause = false
 var pause_audio_pitch_scale = 0.66
 var is_pitching_music = false
-var high_score =  HighScore.get_score(Settings.world["mission_title"])
+var old_high_score =  HighScore.get_score(Settings.world["mission_title"])
 
+var points_suffix = "s" if Settings.world["has_point_goal"] else "pts"
 func _ready():
 	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 		$BombDisplay.visible = false
 
 var is_racking_points = false
+var is_showing_new_high_score = false
+
 func _process(delta):
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
@@ -27,6 +30,10 @@ func _process(delta):
 			
 	if(is_racking_points and Input.is_action_just_pressed("ui_cancel")):# or Input.is_action_just_pressed("ui_accept"))):
 		finish_racking()
+		
+	if(is_showing_new_high_score  and Input.is_action_just_pressed("ui_cancel")):
+		finish_showing_high_score()
+			
 
 func unpause():
 	$PausePopup/Buttons.is_active = false
@@ -62,21 +69,49 @@ func update_bombs(bomb_count):
 		$BombDisplay/BombLabel.text = str(Global.player.current_bombs)
 		
 func update_points(points):
-	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
+	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"]) + points_suffix
 
-func game_over(is_mission, mission_complete):
-	print("high_score, ", high_score)
+func game_over():
+	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
+	var is_mission = Settings.world["is_mission"]
+	var mission_complete = false
+	var mission_title = Settings.world["mission_title"]
+	if(!is_mission):
+		HighScore.record_score(Global.points_this_round, mission_title)
+	else:
+		if(Settings.world["has_point_goal"] and Settings.world["point_goal"] <= Global.points_this_round):
+			HighScore.record_score(Global.round_float(Global.play_time, 3), mission_title, false)
+			mission_complete = true
+		if(Settings.world["has_time_goal"] and Settings.world["time_goal"] <= Global.play_time):
+			HighScore.record_score(Global.points_this_round, mission_title, true)
+			mission_complete = true
+	
+	var made_new_high_score = old_high_score < Global.points_this_round
+	if(Settings.world["is_mission"]):
+		if(Settings.world["has_point_goal"]):
+			made_new_high_score = old_high_score > Global.play_time
+
+	
+	print("high_score, ", old_high_score)
 	print("Global.points_this_round, ", Global.points_this_round)
-	if(Global.points_this_round > high_score):
+	$PausePopup.hide()	
+	if(made_new_high_score):
 		new_high_score_event()
 	else:
-		point_add_popup_event()
+		if(done_racking_points or Global.points_this_round == 0):
+			return_to_menu()
+		else:
+			point_add_popup_event()
+			
 	print("Global.player.points, ", Global.player.points)
 	$GameOverPopup/GameOverLabel.text = "COMPLETE" if is_mission and mission_complete else "GAME OVER"
 	game_is_over = true
 
 func new_high_score_event():
-	$HighScorePopup/HighScoreLabel2.text = str(high_score)
+	if(Global.points_this_round <= 0):
+		return
+	is_showing_new_high_score = true
+	$HighScorePopup/HighScoreLabel2.text = str(old_high_score) + points_suffix
 	$HighScorePopup/HighScoreWaitTimer.start()
 	$HighScorePopup.show()
 
@@ -109,13 +144,11 @@ var return_to_menu_after_done_racking = false
 var done_racking_points = false
 func _on_MenuButton_pressed():
 	Global.player._on_BulletTime_timeout() # to prevent point racking from being slowed by bullet time
-	
-	return_to_menu_after_done_racking = true
-	if(done_racking_points or Global.points_this_round == 0):
+	if(game_is_over):
 		return_to_menu()
 	else:
-		$PausePopup.hide()
-		point_add_popup_event()
+		return_to_menu_after_done_racking = true
+		game_over()
 
 var points_this_round
 var point_num1
@@ -127,15 +160,14 @@ func point_add_popup_event():
 		return
 	
 	is_racking_points = true
-	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
 	
 	points_this_round = Global.points_this_round
 	point_num1 = points_this_round
 	point_num2 = Settings.shop["points"]
 	Settings.shop["points"] += points_this_round
 	
-	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
-	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
+	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round) + points_suffix
+	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"]) + points_suffix
 	
 	var tokens_this_round = default_token_reward
 	tokens_this_round = int(Global.player.play_time/10.0)
@@ -171,8 +203,8 @@ func _on_RackingTimer_timeout():
 			done_racking_points = true
 			$PointAddPopup/WaitTimer.start()
 			
-		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1)
-		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2)
+		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1) + points_suffix
+		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2) + points_suffix
 
 func _on_ShopButton_pressed():
 	pass
@@ -195,7 +227,6 @@ func _on_WaitTimer_timeout():
 		$PointAddPopup/RackingTimer.start()
 
 func finish_racking():
-	HighScore.reset_high_scores()
 	$PointAddPopup/RackingTimer.stop()
 	$PointAddPopup/WaitTimer.stop()
 
@@ -221,13 +252,18 @@ func _on_HighScoreWaitTimer_timeout():
 		$HighScorePopup/HighScoreLabel.text = ":New High Score:"
 		$HighScorePopup/HighScoreLabel2.fade_in()
 		$HighScorePopup/AudioStreamPlayer.play()
-		$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round)
+		$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round) + points_suffix
 		$HighScorePopup/Particles2D.emitting = true
 
 	if(high_score_timeout_count == 4):
-		$HighScorePopup/HighScoreWaitTimer.stop()
-		$HighScorePopup.hide()
-		point_add_popup_event()
+		finish_showing_high_score()
 		
 	high_score_timeout_count += 1
 	
+func finish_showing_high_score():
+	high_score_timeout_count = 0
+	is_showing_new_high_score = false
+	old_high_score = Global.points_this_round
+	$HighScorePopup/HighScoreWaitTimer.stop()
+	$HighScorePopup.hide()
+	point_add_popup_event()

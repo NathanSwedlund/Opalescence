@@ -170,8 +170,9 @@ func reset_settings():
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
 	$OuterLight.scale = light_size
 	
-	for pt in powerup_times:
-		$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
+	if(Settings.world["is_mission"] == false):
+		for pt in powerup_times:
+			$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
 
 	if(use_global_settings and Settings.world["is_mission"] == false):
 		if(Settings.shop["default_bullets_per_burst_mod"]):
@@ -482,23 +483,10 @@ func game_over():
 	get_parent().find_node("PowerupFactory").is_active = false
 
 	$BulletBurstTimer.stop() 
-	
-	var is_mission = Settings.world["is_mission"]
-	var mission_complete = false
-	var score_title = Settings.world["mission_title"]
 
-	if(!is_mission):
-		HighScore.record_score(points, score_title)
-	else:
-		if(Settings.world["has_point_goal"] and Settings.world["point_goal"] <= points):
-			HighScore.record_score(Global.round_float(play_time, 3), score_title, false)
-			mission_complete = true
-		if(Settings.world["has_time_goal"] and Settings.world["time_goal"] <= play_time):
-			HighScore.record_score(points, score_title, true)
-			mission_complete = true
-
+	Global.play_time = Settings.world["has_time_goal"]
 	points = 0
-	heads_up_display.game_over(is_mission, mission_complete)
+	heads_up_display.game_over()
 	play_time = 0
 	Settings.world["points_scale"] = Settings.world["default_points_scale"]
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)

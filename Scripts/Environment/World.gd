@@ -46,7 +46,7 @@ func save_active_states():
 			active_states[i] = factories[i].is_active
 	
 #	print("active_states, ", active_states)
-
+var points_suffix = "s" if Settings.world["has_point_goal"] else "pts"
 func start_new_game():
 	Settings.world   = initial_settings[0].duplicate()
 	Settings.factory = initial_settings[1].duplicate()
@@ -55,7 +55,8 @@ func start_new_game():
 	if(get_node("LevelController")):
 		$LevelController._ready()
 	
-	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]) )
+
+	$HeadsUpDisplay/HighScoreLabel.text = "High Score: " + Global.point_num_to_string( HighScore.get_score(Settings.world["mission_title"]) ) + points_suffix
 	$HeadsUpDisplay/CountdownLabel/CountdownAudio.pitch_scale = 1.0
 	countdown_current_value = countdown_amount
 	$HeadsUpDisplay/CountdownLabel.text = str(countdown_amount)
