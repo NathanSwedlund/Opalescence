@@ -481,7 +481,7 @@ func game_over():
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
-
+	visible = false
 	$BulletBurstTimer.stop() 
 
 	Global.play_time = Global.round_float(play_time, 3)

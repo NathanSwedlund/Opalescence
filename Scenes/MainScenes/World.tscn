@@ -341,7 +341,7 @@ custom_fonts/font = SubResource( 17 )
 text = "Time: "
 
 [node name="HealthDisplay" type="Node2D" parent="HeadsUpDisplay"]
-position = Vector2( 971, 50 )
+position = Vector2( 1108, 55 )
 
 [node name="playerSprite" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
 modulate = Color( 1, 1, 1, 0.698039 )
@@ -380,7 +380,6 @@ text = "x 1
 "
 
 [node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
-visible = true
 margin_left = -11.0
 margin_top = 108.0
 margin_right = 29.0
@@ -794,7 +793,6 @@ wait_time = 0.7
 one_shot = true
 
 [node name="HighScorePopup" type="Popup" parent="HeadsUpDisplay"]
-visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 
