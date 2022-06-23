@@ -696,12 +696,12 @@ func _on_Vision_timeout():
 	$OuterLight.scale = light_size
 
 func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
-	print("$SoundFX/EnemyExplosionSound.volume_db , ",$SoundFX/EnemyExplosionSound.volume_db )
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
+	if($SoundFX/EnemyExplosionSound.playing):
+		$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
 	if($SoundFX/EnemyExplosionSound.volume_db != -80):
 		$SoundFX/EnemyExplosionSound.volume_db += volume_db_mod
 		
-	print("$SoundFX/EnemyExplosionSound.volume_db , ",$SoundFX/EnemyExplosionSound.volume_db )
 	$SoundFX/EnemyExplosionSound.play()
 
 
@@ -711,4 +711,3 @@ func _on_GameOverWaitTimer_timeout():
 
 func _on_EnemyExplosionSound_finished():
 	$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
-	print("$SoundFX/EnemyExplosionSound.volume_db, ", $SoundFX/EnemyExplosionSound.volume_db)

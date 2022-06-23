@@ -62,8 +62,8 @@ func _on_PointCheckTimer_timeout():
 		if(point_to_cover == null):
 			looking_for_point = true
 
-var damage_audio_base_pitch = 0.5
-var damage_audio_max_pith = 3.0
+var damage_audio_base_pitch = 0.2
+var damage_audio_max_pith = 3.5
 func take_damage(damage, play_sound=true):
 	$DamageTimer.start()
 	health -= damage
@@ -75,7 +75,7 @@ func take_damage(damage, play_sound=true):
 		die()
 		
 	if(play_sound):
-		$DamageAudio.pitch_scale = move_toward(damage_audio_base_pitch, damage_audio_max_pith, ratio)
+		$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 		$DamageAudio.play()
 
 func die():

@@ -47,7 +47,7 @@ func shoot():
 	get_parent().add_child(missile)
 
 var damage_audio_base_pitch = 0.8
-var damage_audio_max_pith = 2.5
+var damage_audio_max_pith = 2.0
 func take_damage(damage):
 	$DamageAudio.play()
 	$DamageTimer.start()
@@ -61,7 +61,7 @@ func take_damage(damage):
 	if(health <= 0):
 		die()
 	
-	$DamageAudio.pitch_scale = move_toward(damage_audio_base_pitch, damage_audio_max_pith, ratio)
+	$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 	$DamageAudio.play()
 	
 func die():

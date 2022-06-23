@@ -64,6 +64,9 @@ func _on_ChallengeButton_pressed():
 
 var last_color = Color.white
 func _process(_delta):
+	if(Input.is_action_just_pressed("fullscreen")):
+		$UpdateFulscreenButtonTimer.start()
+	
 	if(target_music_db != current_music_db):
 		target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol	
 		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
@@ -388,3 +391,7 @@ func _on_StandardBackButton_pressed():
 		return
 	shift_button_selection(1)
 
+
+
+func _on_UpdateFulscreenButtonTimer_timeout():
+	$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)

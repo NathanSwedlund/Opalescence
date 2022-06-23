@@ -45,3 +45,8 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 		if(abs(point_num) > suffix_nums[i]):
 			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i] 
 	return str(point_num)
+
+func _process(delta):
+	if(Input.is_action_just_pressed("fullscreen")):
+		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"] 
+		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"] 
