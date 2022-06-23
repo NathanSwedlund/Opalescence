@@ -25,7 +25,7 @@ var current_frame = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Global.shakes["laser"].start(max_fade_in_width/50.0, total_time*0.8, 100)
+	Global.shakes["laser"].start(max_fade_in_width/10.0, total_time*0.8, 200)
 	
 	if(Settings.world["is_mission"] == false):
 		damage *= Settings.shop["laser_damage_scale"]

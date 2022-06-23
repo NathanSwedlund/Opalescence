@@ -335,8 +335,7 @@ func shoot():
 		bullets_per_burst = default_bullets_per_burst
 		bullets_to_shoot = bullets_per_burst
 
-	if(has_powerup["Incendiary"]):
-		Global.shakes["misc"].start()
+
 		
 	if(bullets_to_shoot > 1):
 		can_shoot = false
@@ -355,6 +354,8 @@ func spawn_bullet():
 	$SoundFX/BulletFireAudio.play()
 	if(has_powerup["Incendiary"]):
 		$SoundFX/IncendiaryBulletFire.play()
+		Global.shakes["misc"].start()
+
 
 	bullet.direction = get_direction_to_shoot()
 	bullet.position = position
@@ -388,7 +389,7 @@ func damage():
 		die()
 
 func die():
-	Global.shakes["explosion"].start(20, 0.95, 24, 1)
+	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	
 	$SoundFX/PlayerExplosionSound.play()
 	pause_bosses()

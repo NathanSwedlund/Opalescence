@@ -864,7 +864,7 @@ custom_fonts/font = SubResource( 3 )
 text = "OPALESCENCE"
 
 [node name="MusicShuffler" parent="." instance=ExtResource( 4 )]
-song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/Audio/Music/G-One.mp3" ]
+song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/Audio/Music/G-One.mp3", "res://Resources/Audio/Music/Ghosts of Nightmare.wav", "res://Resources/Audio/Music/Visions.wav" ]
 
 [connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_exited"]

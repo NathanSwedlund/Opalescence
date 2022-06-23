@@ -8,13 +8,13 @@ export var point_reward = 0.0
 export var scale_mod = 1.0
 
 var explosion_pitch = 1.2
-var explosion_vol_db = -15
-var max_vol_db = -6
+var explosion_vol_db = -10
+var max_vol_db = 0
 
 var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
-var shake_amp = 5
-var shake_dur = 0.1
+var shake_amp = 12
+var shake_dur = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print("scale_mod, ", scale_mod)
@@ -24,10 +24,10 @@ func _ready():
 	explosion_vol_db += (scale_mod-1)*5
 	if(explosion_vol_db > max_vol_db):
 		explosion_vol_db = max_vol_db
-		
+	
 	print("explosion_vol_db, ", explosion_vol_db)
 	
-	Global.shakes["explosion"].start(shake_amp, shake_dur)
+	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
 		

@@ -12,8 +12,9 @@ export var shake_name = ""
 func _ready():
 	Global.shakes[shake_name] = self
 
-func start(amplitude = 3, duration = 0.1, Freq = 20, priority = 0):
-	amplitude *= Settings.saved_settings["screen_shake_scale"]
+func start(amplitude = 4.5, duration = 0.1, Freq = 35, priority = 0):
+	amplitude *= Settings.saved_settings["screen_shake_scale"]/2
+	Freq *= Settings.saved_settings["screen_shake_scale"]/2
 	print("SCREEN SHAKE SCALE, ", Settings.saved_settings["screen_shake_scale"])
 	if(amplitude == 0):
 		return

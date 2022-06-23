@@ -12,7 +12,7 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreEqupmentPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Audio/Music/Space Battle.wav" type="AudioStream" id=13]
+[ext_resource path="res://Resources/Audio/Music/Opalescence Shop.wav" type="AudioStream" id=13]
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
@@ -307,8 +307,10 @@ texture = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
+volume_db = 4.0
 autoplay = true
 script = ExtResource( 1 )
+default_vol = 4.0
 is_music = true
 
 [connection signal="mouse_entered" from="UI/BackButton" to="UI/BackButton" method="mouse_entered"]

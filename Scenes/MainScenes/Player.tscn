@@ -281,9 +281,9 @@ default_vol = 10.0
 
 [node name="BulletFireAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 18 )
-volume_db = 10.0
+volume_db = 4.0
 script = ExtResource( 26 )
-default_vol = 10.0
+default_vol = 4.0
 
 [node name="BulletHitFail" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 24 )

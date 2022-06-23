@@ -18,7 +18,7 @@
 [ext_resource path="res://Resources/Textures/Entities/Player3.png" type="Texture" id=16]
 [ext_resource path="res://Resources/Textures/Entities/player5.png" type="Texture" id=17]
 [ext_resource path="res://Resources/Textures/Entities/player4.png" type="Texture" id=18]
-[ext_resource path="res://Resources/Audio/Music/Space Battle.wav" type="AudioStream" id=19]
+[ext_resource path="res://Resources/Audio/Music/Opalescence Shop.wav" type="AudioStream" id=19]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -466,8 +466,10 @@ texture = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+volume_db = 4.0
 autoplay = true
 script = ExtResource( 2 )
+default_vol = 4.0
 is_music = true
 
 [connection signal="mouse_entered" from="UI/BackButton" to="UI/BackButton" method="mouse_entered"]
