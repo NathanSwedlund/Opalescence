@@ -47,7 +47,6 @@ func _physics_process(delta):
 func _on_PointCheckTimer_timeout():
 	if(looking_for_point):
 		looking_for_point = false
-
 		var closest_dist = INF
 		var closest_point = null
 		for i in get_tree().get_nodes_in_group("Points"):
@@ -73,7 +72,7 @@ func take_damage(damage, play_sound=true):
 	modulate.b = ratio * Global.player.modulate.b*0.6
 	if(health <= 0):
 		die()
-		
+
 	if(play_sound):
 		$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 		$DamageAudio.play()

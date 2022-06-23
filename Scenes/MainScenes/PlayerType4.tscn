@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/HelperScenes/PlayerType.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/Entities/player4.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/Entities/player4Hi-Res.png" type="Texture" id=2]
 
 [node name="PlayerType4" type="Sprite"]
-scale = Vector2( 3.26, 2.5 )
+scale = Vector2( 1.09, 0.83 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 bullets_per_burst_mod = -2

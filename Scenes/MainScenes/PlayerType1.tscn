@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/HelperScenes/PlayerType.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/Entities/Player1.png" type="Texture" id=21]
+[ext_resource path="res://Resources/Textures/Entities/player1Hi-Res.png" type="Texture" id=2]
 
 [node name="PlayerType1" type="Sprite"]
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 21 )
+scale = Vector2( 0.83, 0.83 )
+texture = ExtResource( 2 )
 script = ExtResource( 1 )
 laser_scale = 1.2

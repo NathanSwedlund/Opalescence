@@ -6,7 +6,7 @@
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=4]
 [ext_resource path="res://Resources/Textures/UI/SelectionFrame.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=6]
-[ext_resource path="res://Resources/Textures/Entities/Player1.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Textures/Entities/player1Hi-Res.png" type="Texture" id=7]
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.639752, 0.667045 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -50,6 +50,7 @@ script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -49, -67 )
+scale = Vector2( 0.33, 0.33 )
 texture = ExtResource( 7 )
 
 [node name="Light2D" type="Light2D" parent="."]
