@@ -9,6 +9,7 @@ var index_in_playlist = 0
 var song_order
 func _ready():
 	song_order = Array(range(len(song_paths)))
+	randomize()
 	song_order.shuffle()
 	print(song_order)
 	if(len(song_paths) == 0):
