@@ -75,7 +75,7 @@ var enemy_default = {
 
 	"chaser_gen_scale":1.0,
 	"chaser_min_scale":0.25,
-	"chaser_max_scale":1.0,
+	"chaser_max_scale":1.3,
 	"chaser_base_health":13,
 	"chaser_point_reward":800,
 
