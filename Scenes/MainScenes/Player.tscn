@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Resources/Audio/FX/IncendiaryBulletFire.wav" type="AudioStream" id=25]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=27]
+[ext_resource path="res://Resources/Audio/FX/LaserCooldown.wav" type="AudioStream" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 35 )
@@ -107,6 +108,31 @@ orbit_velocity_random = 1.0
 scale = 15.0
 scale_random = 1.0
 scale_curve = SubResource( 13 )
+
+[sub_resource type="Gradient" id=15]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 56.3
+tangential_accel = 16.35
+damping = 200.0
+angle = 74.7
+angle_random = 1.0
+scale = 6.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 16 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.4, 0.4 )
@@ -365,6 +391,12 @@ default_vol = 10.0
 stream = ExtResource( 17 )
 script = ExtResource( 26 )
 
+[node name="LaserCooldownAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 28 )
+volume_db = -5.0
+script = ExtResource( 26 )
+default_vol = -5.0
+
 [node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 1 )
 script = ExtResource( 26 )
@@ -387,8 +419,21 @@ local_coords = false
 process_material = SubResource( 14 )
 script = ExtResource( 27 )
 
+[node name="LaserCooldown" type="Particles2D" parent="."]
+emitting = false
+amount = 200
+lifetime = 0.5
+speed_scale = 0.6
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 17 )
+script = ExtResource( 27 )
+
 [node name="GameOverWaitTimer" type="Timer" parent="."]
 wait_time = 1.2
+one_shot = true
+
+[node name="LaserExistsTimer" type="Timer" parent="."]
 one_shot = true
 
 [connection signal="timeout" from="BulletBurstTimer" to="." method="_on_BulletBurstTimer_timeout"]
@@ -408,3 +453,4 @@ one_shot = true
 [connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
 [connection signal="finished" from="SoundFX/EnemyExplosionSound" to="." method="_on_EnemyExplosionSound_finished"]
 [connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]
+[connection signal="timeout" from="LaserExistsTimer" to="." method="_on_LaserExistsTimer_timeout"]

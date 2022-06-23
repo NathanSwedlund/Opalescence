@@ -536,6 +536,8 @@ func _on_BulletBurstTimer_timeout():
 		$BulletCooldownTimer.start()
 
 func spawn_laser(_scale=1.0, _laser_time=-1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
+	$LaserExistsTimer.wait_time = _laser_time
+	$LaserExistsTimer.start()
 	var laser = laser_scene.instance()
 	laser.scale *= _scale
 	laser.max_fade_in_width *= _scale
@@ -554,6 +556,9 @@ func _on_LaserChargeTimer_timeout():
 	spawn_laser(laser_scale)
 
 func _on_LaserCooldownTimer_timeout():
+	$LaserCooldown.emitting = false
+	$SoundFX/LaserCooldownAudio.stop()
+	print("LASER SEEEEEEEEEEEEEEE")
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func _on_RespawnTimer_timeout():
@@ -710,3 +715,8 @@ func _on_GameOverWaitTimer_timeout():
 
 func _on_EnemyExplosionSound_finished():
 	$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
+
+
+func _on_LaserExistsTimer_timeout():
+	$LaserCooldown.emitting = true
+	$SoundFX/LaserCooldownAudio.play()
