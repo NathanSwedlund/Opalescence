@@ -694,9 +694,10 @@ func _on_Vision_timeout():
 	has_powerup["Vision"] = false
 	$OuterLight.scale = light_size
 
-func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db=0.0):
+func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
-	$SoundFX/EnemyExplosionSound.volume_db = volume_db
+	if($SoundFX/EnemyExplosionSound.volume_db != -80):
+		$SoundFX/EnemyExplosionSound.volume_db += volume_db_mod
 	$SoundFX/EnemyExplosionSound.play()
 
 
