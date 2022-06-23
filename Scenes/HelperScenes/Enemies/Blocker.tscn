@@ -13,7 +13,7 @@ polygon = PoolVector2Array( -0.5, -40, 11.5, -28.5, 28, -28, 28.5, -11.5, 40, -0
 
 [node name="Blocker" type="KinematicBody2D"]
 modulate = Color( 0, 0, 0, 1 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 2.4, 2.4 )
 collision_layer = 2
 collision_mask = 91
 script = ExtResource( 2 )
@@ -40,6 +40,7 @@ occluder = SubResource( 1 )
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 script = ExtResource( 4 )
+default_vol = 3.0
 
 [connection signal="timeout" from="PointCheckTimer" to="." method="_on_PointCheckTimer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

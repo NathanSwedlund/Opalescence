@@ -25,11 +25,12 @@ func _ready():
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
 	
 	if(Settings.saved_settings["music_volume"] == 0):
-		$MusicShuffler.stop()
-		
-	reset()
-	$MusicShuffler.volume_db = current_music_db
+		$MusicShuffler.volume_db = -80
+	else:	
+		$MusicShuffler.volume_db = current_music_db
+	
 	$MusicShuffler.play()
+	reset()
 	
 func reset():
 	if(is_fading_in):
@@ -264,7 +265,7 @@ export var standard_diff_settings = {
 		"starting_health":5,
 		"enemy_health_scale":0.6,
 		"enemy_time_max":2.0,
-		"enemy_time_min":1.5,
+		"enemy_time_min":0.5,
 		"light_scale":2.0,
 	},
 	"Easy":{
@@ -274,7 +275,7 @@ export var standard_diff_settings = {
 		"starting_health":4,
 		"enemy_health_scale":0.8,
 		"enemy_time_max":2.0,
-		"enemy_time_min":1.5,
+		"enemy_time_min":0.5,
 		"light_scale":1.8,
 	},
 	"Medium":{
@@ -283,8 +284,8 @@ export var standard_diff_settings = {
 		"points_scale":1.0,
 		"starting_health":3,
 		"enemy_health_scale":1.8,
-		"enemy_time_max":2.0,
-		"enemy_time_min":1.0,
+		"enemy_time_max":1.7,
+		"enemy_time_min":0.5,
 		"light_scale":1.6,
 		"chaser_min_scale":0.15,
 	},
@@ -294,8 +295,8 @@ export var standard_diff_settings = {
 		"points_scale":1.5,
 		"starting_health":2,
 		"enemy_health_scale":2.5,
-		"enemy_time_max":0.9,
-		"enemy_time_min":0.4,
+		"enemy_time_max":1.0,
+		"enemy_time_min":0.5,
 		"light_scale":1.4,
 		"shrink_scale":0.95,
 		"chaser_min_scale":0.15,
@@ -307,7 +308,7 @@ export var standard_diff_settings = {
 		"starting_health":2,
 		"enemy_health_scale":4,
 		"enemy_time_max":0.5,
-		"enemy_time_min":0.4,
+		"enemy_time_min":0.2,
 		"light_scale":1.0,
 		"shrink_scale":0.88,
 		"chaser_min_scale":0.15,
@@ -321,7 +322,7 @@ export var standard_diff_settings = {
 		"starting_health":1,
 		"enemy_health_scale":6,
 		"enemy_time_max":0.3,
-		"enemy_time_min":0.3,
+		"enemy_time_min":0.1,
 		"light_scale":0.7,
 		"min_scale":0.2,
 		"shrink_scale":0.9,

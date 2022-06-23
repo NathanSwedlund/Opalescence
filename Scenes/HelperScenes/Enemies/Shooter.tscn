@@ -49,6 +49,7 @@ script = ExtResource( 5 )
 [node name="ShootAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 script = ExtResource( 5 )
+default_vol = 3.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]

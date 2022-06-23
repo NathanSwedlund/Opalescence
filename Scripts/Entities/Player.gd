@@ -704,7 +704,6 @@ func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
 		
 	$SoundFX/EnemyExplosionSound.play()
 
-
 func _on_GameOverWaitTimer_timeout():
 	game_over()
 

@@ -42,5 +42,6 @@ one_shot = true
 [node name="DamageAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 script = ExtResource( 4 )
+default_vol = 3.0
 
 [connection signal="timeout" from="DamageTimer" to="." method="_on_DamageTimer_timeout"]
