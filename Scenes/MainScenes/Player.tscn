@@ -287,10 +287,9 @@ default_vol = 4.0
 
 [node name="BulletHitFail" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 24 )
-volume_db = 10.0
-pitch_scale = 1.47
+pitch_scale = 0.35
 script = ExtResource( 26 )
-default_vol = 10.0
+default_vol = -4.0
 
 [node name="DropBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 19 )
@@ -407,4 +406,5 @@ one_shot = true
 [connection signal="timeout" from="PowerupTimers/OpalescenceColorShift" to="." method="_on_OpalescenceColorShift_timeout"]
 [connection signal="timeout" from="PowerupTimers/Unmaker" to="." method="_on_Unmaker_timeout"]
 [connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
+[connection signal="finished" from="SoundFX/EnemyExplosionSound" to="." method="_on_EnemyExplosionSound_finished"]
 [connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]

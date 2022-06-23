@@ -50,11 +50,10 @@ func _process(delta):
 #			elif(collision.collider.is_in_group("Lasers")):
 #				take_damage(collision.collider.damage)
 				#collision.collider.queue_free() # delete the point if it runs into it
-
+var damage_audio_base_pitch = 1.0
+var damage_audio_max_pith = 2.0
 func take_damage(damage):	
 	health -= damage
-	$DamageAudio.play()
-
 	$DamageTimer.start()
 
 	if(health <= 0):
@@ -66,6 +65,8 @@ func take_damage(damage):
 	modulate.g = ratio * Global.player.modulate.g*0.6
 	modulate.b = ratio * Global.player.modulate.b*0.6
 	
+	$DamageAudio.pitch_scale = move_toward(damage_audio_base_pitch, damage_audio_max_pith, ratio)
+	$DamageAudio.play()
 	
 func die():
 	var explosion = death_explosion_scene.instance()

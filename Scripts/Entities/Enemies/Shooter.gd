@@ -46,6 +46,8 @@ func shoot():
 	missile.position += missile.direction*dist_ahead_to_spawn_missile
 	get_parent().add_child(missile)
 
+var damage_audio_base_pitch = 0.8
+var damage_audio_max_pith = 2.5
 func take_damage(damage):
 	$DamageAudio.play()
 	$DamageTimer.start()
@@ -58,7 +60,10 @@ func take_damage(damage):
 	
 	if(health <= 0):
 		die()
-
+	
+	$DamageAudio.pitch_scale = move_toward(damage_audio_base_pitch, damage_audio_max_pith, ratio)
+	$DamageAudio.play()
+	
 func die():
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position

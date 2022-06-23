@@ -62,11 +62,9 @@ func _on_PointCheckTimer_timeout():
 		if(point_to_cover == null):
 			looking_for_point = true
 
-
+var damage_audio_base_pitch = 0.5
+var damage_audio_max_pith = 3.0
 func take_damage(damage, play_sound=true):
-	if(play_sound):
-		$DamageAudio.play()
-
 	$DamageTimer.start()
 	health -= damage
 	var ratio = (base_health-health)/base_health
@@ -75,6 +73,10 @@ func take_damage(damage, play_sound=true):
 	modulate.b = ratio * Global.player.modulate.b*0.6
 	if(health <= 0):
 		die()
+		
+	if(play_sound):
+		$DamageAudio.pitch_scale = move_toward(damage_audio_base_pitch, damage_audio_max_pith, ratio)
+		$DamageAudio.play()
 
 func die():
 	var explosion = death_explosion_scene.instance()

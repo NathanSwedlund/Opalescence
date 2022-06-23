@@ -458,6 +458,7 @@ scale = Vector2( 5, 5 )
 title = "Music Volume"
 starting_val = 20.0
 max_val = 25.1
+min_val = -0.1
 step = 1.0
 setting_name = "music_volume"
 

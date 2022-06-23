@@ -100,7 +100,7 @@ var default_player_speed
 var bomb_scale = 1.0
 export var default_bullets_cooldown_wait_time = 0.3
 var max_bomb_bomb_scale = 3.0
-
+var default_enemy_explosion_vol
 func _ready():
 	Global.points_this_round = 0
 
@@ -118,6 +118,7 @@ func _ready():
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	default_laser_charge_time = $LaserChargeTimer.wait_time
 	reset()
+	default_enemy_explosion_vol = $SoundFX/EnemyExplosionSound.volume_db
 	
 func reset_settings():
 	load_player_type()
@@ -695,11 +696,19 @@ func _on_Vision_timeout():
 	$OuterLight.scale = light_size
 
 func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
+	print("$SoundFX/EnemyExplosionSound.volume_db , ",$SoundFX/EnemyExplosionSound.volume_db )
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
 	if($SoundFX/EnemyExplosionSound.volume_db != -80):
 		$SoundFX/EnemyExplosionSound.volume_db += volume_db_mod
+		
+	print("$SoundFX/EnemyExplosionSound.volume_db , ",$SoundFX/EnemyExplosionSound.volume_db )
 	$SoundFX/EnemyExplosionSound.play()
 
 
 func _on_GameOverWaitTimer_timeout():
 	game_over()
+
+
+func _on_EnemyExplosionSound_finished():
+	$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
+	print("$SoundFX/EnemyExplosionSound.volume_db, ", $SoundFX/EnemyExplosionSound.volume_db)
