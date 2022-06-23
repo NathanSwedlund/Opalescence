@@ -871,7 +871,7 @@ script = null
 [node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 autoplay = true
-song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3", "res://Resources/Audio/Music/Space Battle.wav", "res://Resources/Audio/Music/OPALESCNECEGame2.wav", "res://Resources/Audio/Music/Subject#39.wav" ]
+song_paths = [ "res://Resources/Audio/Music/Jagged Skies.mp3", "res://Resources/Audio/Music/Knight City.mp3", "res://Resources/Audio/Music/OPALESCENCE.wav", "res://Resources/Audio/Music/The Wayward Mines.mp3", "res://Resources/Audio/Music/SpaceBattle2.wav", "res://Resources/Audio/Music/OPALESCNECEGame2.wav", "res://Resources/Audio/Music/Subject#39.wav", "res://Resources/Audio/Music/Impurity2.wav" ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
