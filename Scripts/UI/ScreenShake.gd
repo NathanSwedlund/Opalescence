@@ -15,14 +15,12 @@ func _ready():
 func start(amplitude = 4.5, duration = 0.1, Freq = 35, priority = 0):
 	amplitude *= Settings.saved_settings["screen_shake_scale"]/2
 	Freq *= Settings.saved_settings["screen_shake_scale"]/2
-	print("SCREEN SHAKE SCALE, ", Settings.saved_settings["screen_shake_scale"])
 	if(amplitude == 0):
 		return
 		
 	if (priority >= self.priority):
 		self.priority = priority
 		self.amplitude = amplitude
-
 		$Duration.wait_time = duration
 		$Freq.wait_time = 1 / float(Freq)
 		$Duration.start()

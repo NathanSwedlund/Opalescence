@@ -197,6 +197,7 @@ var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
 var target_color = colors[randi()%len(colors)]
 func _process(delta):
+
 	if("Opalescence" in has_powerup.keys() and has_powerup["Opalescence"]):
 		modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 		modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
@@ -501,7 +502,7 @@ func _physics_process(delta):
 	$PlayerType.look_at(global_position + get_direction_to_shoot() )
 	play_time += delta
 	if(heads_up_display != null and !get_parent().game_is_over):
-		heads_up_display.find_node("TimeLabel").text = "Time: "+str(int(play_time* 1000.0)/1000.0 )+"s"
+		heads_up_display.find_node("TimeLabel").text = "Time: "+str(Global.round_float(play_time, 3))+"s"
 	if(Settings.world["has_time_goal"] and play_time >= Settings.world["time_goal"]):
 		play_time = Settings.world["time_goal"]
 		game_over()
@@ -698,6 +699,7 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
+	_on_LaserCooldownTimer_timeout()
 	has_powerup["Unmaker"] = false
 
 func _on_Vision_timeout():

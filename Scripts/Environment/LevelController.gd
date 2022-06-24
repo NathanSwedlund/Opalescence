@@ -112,6 +112,6 @@ func stop():
 #		if(c != $CountdownTimer and c != $LevelLabel):
 #			c.queue_free()
 
-#func _process(delta):
-#	if(Input.is_action_just_pressed("ui_q")):
-#		increase_level()
+func _process(delta):
+	if(Input.is_action_just_pressed("ui_q")):
+		increase_level()

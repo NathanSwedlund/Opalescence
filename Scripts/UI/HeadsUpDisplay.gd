@@ -71,6 +71,7 @@ func update_bombs(bomb_count):
 func update_points(points):
 	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 
+var tokens_this_round
 func game_over():
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
 	var is_mission = Settings.world["is_mission"]
@@ -85,6 +86,14 @@ func game_over():
 		if(Settings.world["has_time_goal"] and Settings.world["time_goal"] <= Global.play_time):
 			HighScore.record_score(Global.points_this_round, mission_title, true)
 			mission_complete = true
+			
+			
+	tokens_this_round = default_token_reward
+	print("Global.player.play_time, ", Global.player.play_time)
+	tokens_this_round = int(Global.player.play_time/10.0)
+	if(Settings.world["mission_title"] != "challenge"):
+		tokens_this_round *= Settings.world["points_scale"]
+		tokens_this_round = int(tokens_this_round)
 	
 	var made_new_high_score = false
 	if(Settings.world["is_mission"]):
@@ -173,14 +182,6 @@ func point_add_popup_event():
 	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
 	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
 	
-	var tokens_this_round = default_token_reward
-	tokens_this_round = int(Global.player.play_time/10.0)
-	if(Settings.world["mission_title"] != "challenge"):
-		tokens_this_round *= Settings.world["points_scale"]
-		
-	tokens_this_round = int(tokens_this_round)
-	
-	print("Global.player.play_time", Global.player.play_time)
 	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
 		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
 		
