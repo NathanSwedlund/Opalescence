@@ -7,7 +7,7 @@ var world = null
 var target_frame_rate = 60.0
 var points_this_round = 0
 
-var version = "beta 1.0"
+var version = "v1.0"
 var play_time = 0.0
 
 var main_menu_has_faded = false

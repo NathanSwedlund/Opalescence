@@ -22,7 +22,6 @@ func _ready():
 	should_fade_light_in = true
 	
 func _process(delta):
-	print("$Light2D.modulate.a, ", $Light2D.color.a)
 	if(should_fade_light_in):
 		$Light2D.color.a = move_toward($Light2D.color.a, 1.0, boss_light_fade_speed*delta)
 		if($Light2D.color.a == 1):

@@ -19,7 +19,6 @@ var shake_dur = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	explosion_vol_db_mod = (scale_mod-1)*5
-	print("scale_mod, ", scale_mod)
 	explosion_pitch -= scale_mod/5
 	shake_dur *= scale_mod
 	shake_amp *= scale_mod
@@ -28,7 +27,6 @@ func _ready():
 	if(explosion_vol_db_mod < min_vol_db):
 		explosion_vol_db_mod = min_vol_db
 	
-	print("explosion_vol_db, ", explosion_vol_db_mod)
 	
 	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):

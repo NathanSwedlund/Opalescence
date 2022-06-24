@@ -18,6 +18,7 @@ func _ready():
 	
 	starting = true
 	add_to_group("Bosses")
+	add_to_group("Enemies")
 	fade_light_in()
 	
 func _process(delta):
@@ -66,6 +67,6 @@ func _on_WaitTimer_timeout():
 		boss_fight_completed()
 	
 func boss_fight_completed():
-	print("BOSS COMPLETED")
+
 	Global.level_timer.start_level_timer()
 	queue_free()

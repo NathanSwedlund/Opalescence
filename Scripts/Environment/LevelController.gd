@@ -27,8 +27,9 @@ func _ready():
 	if(Settings.world["is_mission"]):
 		queue_free()
 		
-	bosses[2] = load("res://Scenes/HelperScenes/Boss1.tscn")
+	bosses[2] = load("res://Scenes/HelperScenes/Enemies/Boss1.tscn")
 	bosses[4] = load("res://Scenes/HelperScenes/Boss2Container.tscn")
+	bosses[6] = load("res://Scenes/HelperScenes/Boss3Container.tscn")
 			
 	
 	currrent_level = starting_level
@@ -110,3 +111,7 @@ func stop():
 #	for c in get_children():
 #		if(c != $CountdownTimer and c != $LevelLabel):
 #			c.queue_free()
+
+#func _process(delta):
+#	if(Input.is_action_just_pressed("ui_q")):
+#		increase_level()

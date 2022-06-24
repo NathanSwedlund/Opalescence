@@ -310,8 +310,8 @@ centered = false
 
 [node name="Darkener2" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.87451 )
-position = Vector2( -598, -124 )
-scale = Vector2( 2.47656, 1.35938 )
+position = Vector2( -753, -166 )
+scale = Vector2( 3.86719, 1.98438 )
 texture = ExtResource( 1 )
 centered = false
 

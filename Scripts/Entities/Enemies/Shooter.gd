@@ -10,6 +10,8 @@ var base_health
 onready var base_color = modulate
 var point_reward = 550
 var dist_ahead_to_spawn_missile = 70
+var missiles_have_explosion = true
+var can_shoot = true
 
 var dist_squared_to_erase_points = 1000
 func _ready():
@@ -18,7 +20,7 @@ func _ready():
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	shoot_freq_range = Settings.get_setting_if_exists(Settings.enemy, "shooter_shoot_freq_range", shoot_freq_range)
 	base_health = health
-	
+	player = Global.player
 	add_to_group("Enemies")
 	add_to_group("Shooters")
 	reset_shoot_timer()
@@ -36,6 +38,9 @@ func _process(delta):
 		look_at(player.global_position)
 
 func shoot():
+	if(can_shoot == false):
+		return 
+		
 	$ShootAudio.play()
 	var missile = missile_scene.instance()
 	var direction_to_player = global_position.direction_to(player.global_position).normalized()
@@ -44,6 +49,7 @@ func shoot():
 	missile.parent_shooter = self
 	missile.position = position
 	missile.position += missile.direction*dist_ahead_to_spawn_missile
+	missile.has_explosion = missiles_have_explosion
 	get_parent().add_child(missile)
 
 var damage_audio_base_pitch = 0.8

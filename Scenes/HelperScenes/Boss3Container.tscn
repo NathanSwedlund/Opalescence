@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/Audio/FX/BossAlarm.wav" type="AudioStream" id=1]
+[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Environment/Boss3Container.gd" type="Script" id=3]
+
+[node name="Boss3Container" type="Node2D"]
+script = ExtResource( 3 )
+missile_num = 140
+
+[node name="WaitTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[node name="BossAlarm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 0.64
+autoplay = true
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 528.5, -31.5 )
+scale = Vector2( 6.2125, 0.6625 )
+texture = ExtResource( 2 )
+energy = 7.74
+
+[connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]

@@ -24,7 +24,7 @@ func _ready():
 		play()
 		
 func _process(delta):
-	if(Input.is_action_just_pressed("ui_r")):
+	if(Input.is_action_just_pressed("ui_v")):
 		_on_MusicShuffler_finished()
 
 func _on_MusicShuffler_finished():
