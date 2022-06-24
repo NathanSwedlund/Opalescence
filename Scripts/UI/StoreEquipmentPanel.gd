@@ -63,7 +63,7 @@ func _on_ApplyLess_pressed():
 	
 	index = (index-1+image_num) % image_num
 	while(Settings.shop[locked_settings[index]] != true):
-		index = (index+1) % image_num
+		index = (index-1+image_num) % image_num
 		
 	if(init_index == index): # no other equipment to swap to
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
@@ -78,7 +78,7 @@ func _on_ApplyMore_pressed():
 	
 	index = (index+1) % image_num	
 	while(Settings.shop[locked_settings[index]] != true):
-		index = (index-1+image_num) % image_num
+		index = (index+1) % image_num
 		
 	if(init_index == index): # no other equipment to swap to
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
