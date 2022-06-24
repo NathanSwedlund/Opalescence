@@ -10,10 +10,10 @@ func _ready():
 		if(Settings.saved_settings["music_volume"] == 0):
 			volume_db = -80
 		else:
-			volume_db = default_vol + Settings.saved_settings["music_volume"] + Settings.min_vol
+			volume_db = default_vol + Settings.saved_settings["music_volume"]/2 + Settings.min_vol
 	else:
 		add_to_group("FX")
 		if(Settings.saved_settings["fx_volume"] == 0):
 			volume_db = -80
 		else:
-			volume_db = default_vol + Settings.saved_settings["fx_volume"] + Settings.min_vol
+			volume_db = default_vol + Settings.saved_settings["fx_volume"]/2 + Settings.min_vol

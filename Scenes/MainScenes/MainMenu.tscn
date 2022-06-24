@@ -487,10 +487,10 @@ visible = false
 position = Vector2( 340, 906.667 )
 scale = Vector2( 5, 5 )
 title = "Music Volume"
-starting_val = 20.0
-max_val = 25.1
+starting_val = 100.0
+max_val = 120.1
 min_val = -0.1
-step = 1.0
+step = 5.0
 setting_name = "music_volume"
 
 [node name="SFXVolumeOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 6 )]
@@ -498,10 +498,10 @@ visible = false
 position = Vector2( 340, 1516.67 )
 scale = Vector2( 5, 5 )
 title = "SFX Volume"
-starting_val = 20.0
-max_val = 25.1
+starting_val = 100.0
+max_val = 125.1
 min_val = -0.1
-step = 1.0
+step = 5.0
 button_index = 1
 setting_name = "fx_volume"
 
