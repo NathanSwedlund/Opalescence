@@ -22,12 +22,13 @@ func _ready():
 	$Light2D2.color = modulate
 	if(Settings.shop["monocolor_mode_unlocked"] != false):
 		var c = Settings.shop["monocolor_color"]
-		for i in range(len(colors)):
-			if(colors[i] == c):
-				index = i
-				$Sprite2.visible = true
-				modulate = c
-				break
+		if(c != null):
+			for i in range(len(colors)):
+				if(colors[i] == c):
+					index = i
+					$Sprite2.visible = true
+					modulate = c
+					break
 	
 	update_labels()
 
