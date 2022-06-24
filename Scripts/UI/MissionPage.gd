@@ -70,8 +70,6 @@ func load_scene_from_panel():
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func start_shifting():
-	for i in range(panel_num):
-		
 	$Pages.get_child(selected).scale /= selected_scale
 	$Pages.get_children()[selected].find_node("Description").visible = false
 	$Pages.get_children()[selected].modulate.a = 0.2

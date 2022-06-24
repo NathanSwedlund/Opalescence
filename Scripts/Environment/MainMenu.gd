@@ -46,6 +46,7 @@ func reset():
 		$VersionLabel.modulate.a = 0.0
 		$Player.scale = Vector2.ZERO
 		$PointsLabel.modulate.a = 0.0
+		$TokensLabel.modulate.a = 0.0
 		
 	else:
 		$PointFactory.is_active = true
@@ -78,6 +79,7 @@ func _process(_delta):
 		$MusicShuffler.volume_db = current_music_db
 		
 	if(is_fading_in):
+		fade_speed *= 1.02
 		$Player.scale.y = move_toward($Player.scale.y, target_player_scale.y, fade_speed*_delta)
 		$Player.scale.x = move_toward($Player.scale.x, target_player_scale.x, fade_speed*_delta)
 		$Player.modulate.a = move_toward($Player.modulate.a, 1.0, fade_speed*_delta)
@@ -137,17 +139,17 @@ func toggle_button_selection():
 	$ButtonShiftTimer.start()
 
 func _on_PlayButton_pressed():
-	if($MenuCanvas/MainSelection.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
 		return 
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
-	if($MenuCanvas/PlayModeSelection.is_active == false):
+	if($MenuCanvas/PlayModeSelection.is_active == false or is_fading_in):
 		return 
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
-	if($MenuCanvas/PlayModeSelection.is_active == false):
+	if($MenuCanvas/PlayModeSelection.is_active == false or is_fading_in):
 		return 
 	shift_button_selection(3)
 
@@ -155,7 +157,6 @@ var play_shift_audio = true
 func shift_button_selection(button_selection_num, _play_shift_audio=true):
 	if(is_fading_in):
 		return
-		
 	play_shift_audio = _play_shift_audio
 #	if(button_selection_num != current_button_selection):
 	target_button_selection = button_selection_num
@@ -230,7 +231,7 @@ func update_mode_availability():
 		$MenuCanvas/PlayModeSelection/BackButton.button_shift_index -= 1
 		
 func _on_StorePage_pressed():
-	if($MenuCanvas/MainSelection.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
 		return 
 
 	Settings.current_main_menu_button_selection = 0
@@ -238,7 +239,7 @@ func _on_StorePage_pressed():
 	get_tree().change_scene("res://Scenes/MainScenes/StorePage.tscn")
 
 func _on_OptionsButton_pressed():
-	if($MenuCanvas/MainSelection.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
 		return 
 
 	shift_button_selection(2)
@@ -345,41 +346,41 @@ export var standard_diff_settings = {
 }
 
 func _on_ExtraEasyButton_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
 	
 func _on_EasyButton2_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Easy"])
 
 func _on_MediumButton_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Medium"])
 
 func _on_HardButton_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Hard"])
 
 func _on_ExtraHardButton_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
 
 func _on_NightmareMode_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Nightmare"])
@@ -400,7 +401,7 @@ func _on_ScreenShakeScaleOption_pressed(_value):
 
 
 func _on_StandardBackButton_pressed():
-	if($MenuCanvas/StandardModesSelection.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return
 	shift_button_selection(1)
 
