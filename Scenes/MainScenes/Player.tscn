@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
@@ -27,7 +27,8 @@
 [ext_resource path="res://Resources/Audio/FX/IncendiaryBulletFire.wav" type="AudioStream" id=25]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=26]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=27]
-[ext_resource path="res://Resources/Audio/FX/LaserCooldown.wav" type="AudioStream" id=28]
+[ext_resource path="res://Resources/Audio/FX/LaserCooling.wav" type="AudioStream" id=28]
+[ext_resource path="res://Resources/Audio/FX/LaserCooldownComplete.wav" type="AudioStream" id=29]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 35 )
@@ -66,8 +67,8 @@ scale_random = 1.0
 color_ramp = SubResource( 6 )
 
 [sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0, 0.278846, 0.75 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 0.738117, 0.738117, 0.738117, 0.738117 )
+offsets = PoolRealArray( 0, 0.303514, 0.479233, 0.75 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 1, 1, 1, 0.865905, 0.738117, 0.738117, 0.738117, 0.738117 )
 
 [sub_resource type="GradientTexture" id=8]
 gradient = SubResource( 9 )
@@ -109,13 +110,26 @@ scale = 15.0
 scale_random = 1.0
 scale_curve = SubResource( 13 )
 
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 1
+emission_sphere_radius = 160.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = -100.0
+scale = 5.0
+scale_random = 0.72
+color_ramp = SubResource( 8 )
+
 [sub_resource type="Gradient" id=15]
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=16]
 gradient = SubResource( 15 )
 
-[sub_resource type="ParticlesMaterial" id=17]
+[sub_resource type="ParticlesMaterial" id=18]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -393,9 +407,14 @@ script = ExtResource( 26 )
 
 [node name="LaserCooldownAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 28 )
-volume_db = -5.0
 script = ExtResource( 26 )
-default_vol = -5.0
+
+[node name="LaserCooldownCompleteAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 29 )
+volume_db = 10.0
+pitch_scale = 0.73
+script = ExtResource( 26 )
+default_vol = 10.0
 
 [node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 1 )
@@ -420,13 +439,22 @@ process_material = SubResource( 14 )
 script = ExtResource( 27 )
 
 [node name="LaserCooldown" type="Particles2D" parent="."]
+scale = Vector2( 1, 0.995154 )
 emitting = false
-amount = 200
+amount = 25
+speed_scale = 3.0
+process_material = SubResource( 19 )
+script = ExtResource( 27 )
+
+[node name="LaserReady" type="Particles2D" parent="."]
+emitting = false
+amount = 300
 lifetime = 0.5
+one_shot = true
 speed_scale = 0.6
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 17 )
+process_material = SubResource( 18 )
 script = ExtResource( 27 )
 
 [node name="GameOverWaitTimer" type="Timer" parent="."]

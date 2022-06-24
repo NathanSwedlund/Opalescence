@@ -396,9 +396,9 @@ func die():
 	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
 		laser.queue_free()
-
+	
 	bullets_to_shoot = default_bullets_per_burst
-
+	
 	# summon explosion
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
@@ -408,37 +408,39 @@ func die():
 	explosion.point_reward = -1000	
 	explosion.scale *= 2.6
 	get_parent().add_child(explosion)
-
+	
 	$BulletBurstTimer.stop()
-
+	
 	visible = false
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").kill_all()
 	get_parent().find_node("PowerupFactory").kill_all()
-
+	
 	get_parent().find_node("EnemyFactory").is_active = false
 
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
-
+	
 	current_health -= 1
 	if(current_health <= 0):
 		$GameOverWaitTimer.start()
 	else:
 		$RespawnTimer.start()
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-
+	
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == true):
 			timer.stop_timer()
-
-
+	
 	is_charging_laser = false
 	can_shoot = false
 	can_shoot_laser = false
 	$LaserChargeTimer.stop()
 	$SoundFX/LaserChargeAudio.stop()
 	$LaserChargeEffect.emitting = false
+	$LaserCooldown.emitting = false
+	$SoundFX/LaserCooldownAudio.stop()
+	$LaserExistsTimer.stop()
 
 func pause_bosses():
 	for b in get_tree().get_nodes_in_group("Bosses"):
@@ -557,7 +559,9 @@ func _on_LaserChargeTimer_timeout():
 
 func _on_LaserCooldownTimer_timeout():
 	$LaserCooldown.emitting = false
+	$LaserReady.emitting = true
 	$SoundFX/LaserCooldownAudio.stop()
+	$SoundFX/LaserCooldownCompleteAudio.play()
 	print("LASER SEEEEEEEEEEEEEEE")
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 

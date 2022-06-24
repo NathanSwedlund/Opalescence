@@ -11,13 +11,13 @@
 [ext_resource path="res://Scripts/UI/StorePage.gd" type="Script" id=9]
 [ext_resource path="res://Resources/Textures/FX/pixel.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/UI/StoreSuperPanel.gd" type="Script" id=11]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel4.png" type="Texture" id=12]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel3.png" type="Texture" id=13]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel2.png" type="Texture" id=14]
-[ext_resource path="res://Resources/Textures/Entities/Player2.png" type="Texture" id=15]
-[ext_resource path="res://Resources/Textures/Entities/Player3.png" type="Texture" id=16]
-[ext_resource path="res://Resources/Textures/Entities/player5.png" type="Texture" id=17]
-[ext_resource path="res://Resources/Textures/Entities/player4.png" type="Texture" id=18]
+[ext_resource path="res://Resources/Textures/Items/bullet-3Hi-Res.png" type="Texture" id=12]
+[ext_resource path="res://Resources/Textures/Items/bullet-4Hi-Res.png" type="Texture" id=13]
+[ext_resource path="res://Resources/Textures/Items/bullet-2Hi-Res.png" type="Texture" id=14]
+[ext_resource path="res://Resources/Textures/Entities/player3Hi_Res.png" type="Texture" id=15]
+[ext_resource path="res://Resources/Textures/Entities/player4Hi-Res.png" type="Texture" id=16]
+[ext_resource path="res://Resources/Textures/Entities/player2Hi-Res2.png" type="Texture" id=17]
+[ext_resource path="res://Resources/Textures/Entities/player5Hi-Res.png" type="Texture" id=18]
 [ext_resource path="res://Resources/Audio/Music/Opalescence Shop.wav" type="AudioStream" id=19]
 
 [sub_resource type="DynamicFont" id=1]
@@ -161,8 +161,8 @@ setting_name = "bullet2_is_unlocked"
 price = 500000
 
 [node name="Bullet-pixel2" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool5"]
-position = Vector2( 50, -65 )
-scale = Vector2( 2, 2 )
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 14 )
 
 [node name="StorePanelBool6" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
@@ -174,9 +174,9 @@ setting_name = "bullet3_is_unlocked"
 price = 500000
 
 [node name="Bullet-pixel3" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool6"]
-position = Vector2( 50, -65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 13 )
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 12 )
 
 [node name="StorePanelBool9" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
 modulate = Color( 0.0916443, 0.710938, 0.362585, 1 )
@@ -187,9 +187,9 @@ setting_name = "bullet4_is_unlocked"
 price = 500000
 
 [node name="Bullet-pixel4" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool9"]
-position = Vector2( 50, -65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 12 )
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 13 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel2"]
 stream = ExtResource( 5 )
@@ -223,9 +223,10 @@ setting_name = "player2_is_unlocked"
 price = 1000000
 
 [node name="Player2" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool7"]
-position = Vector2( 60, -65 )
+position = Vector2( 166.769, -51.229 )
+rotation = 4.71239
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 15 )
+texture = ExtResource( 17 )
 
 [node name="StorePanelBool8" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 400, -2.19781 )
@@ -235,9 +236,10 @@ setting_name = "player3_is_unlocked"
 price = 1000000
 
 [node name="Player3" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool8"]
-position = Vector2( 60, -65 )
+position = Vector2( 166.769, -51.229 )
+rotation = 4.71239
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 16 )
+texture = ExtResource( 15 )
 
 [node name="StorePanelBool9" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 1100, -2.19781 )
@@ -247,9 +249,10 @@ setting_name = "player4_is_unlocked"
 price = 1000000
 
 [node name="Player4" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool9"]
-position = Vector2( 60, -65 )
+position = Vector2( 166.769, -51.229 )
+rotation = 4.71239
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 18 )
+texture = ExtResource( 16 )
 
 [node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 1800, -2.2 )
@@ -259,9 +262,10 @@ setting_name = "player5_is_unlocked"
 price = 1000000
 
 [node name="Player5" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool10"]
-position = Vector2( 60, -65 )
+position = Vector2( 166.769, -51.229 )
+rotation = 4.71239
 scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 17 )
+texture = ExtResource( 18 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel3"]
 stream = ExtResource( 5 )
@@ -458,18 +462,18 @@ flat = true
 
 [node name="SuperPanelNextButton" type="Button" parent="."]
 margin_left = 683.0
-margin_top = 4.0
+margin_top = 285.0
 margin_right = 1376.0
-margin_bottom = 718.0
+margin_bottom = 458.0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
 flat = true
 
 [node name="SuperPanelLastButton" type="Button" parent="."]
 margin_left = -471.0
-margin_top = 14.0
-margin_right = 222.0
-margin_bottom = 728.0
+margin_top = 261.0
+margin_right = 215.0
+margin_bottom = 456.0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
 flat = true

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LaserCooldownComplete.wav-b89ea8d4af2085b344e92b6bbcc91a76.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/FX/LaserCooldownComplete.wav"
+dest_files=[ "res://.import/LaserCooldownComplete.wav-b89ea8d4af2085b344e92b6bbcc91a76.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
