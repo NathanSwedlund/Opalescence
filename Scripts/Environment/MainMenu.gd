@@ -153,6 +153,9 @@ func _on_StandardButton_pressed():
 
 var play_shift_audio = true
 func shift_button_selection(button_selection_num, _play_shift_audio=true):
+	if(is_fading_in):
+		return
+		
 	play_shift_audio = _play_shift_audio
 #	if(button_selection_num != current_button_selection):
 	target_button_selection = button_selection_num
