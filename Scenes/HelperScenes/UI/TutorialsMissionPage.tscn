@@ -691,7 +691,7 @@ margin_bottom = 481.0
 custom_fonts/font = SubResource( 12 )
 custom_styles/pressed = SubResource( 13 )
 custom_styles/focus = SubResource( 14 )
-text = "Ready"
+text = "Play"
 flat = true
 align = 2
 script = ExtResource( 12 )
@@ -700,16 +700,16 @@ button_index = 0
 button_shift_index = 0
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
-visible = false
 position = Vector2( 192, 24.167 )
 scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 4 )
-energy = 2.0
+energy = 1.5
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/ReadyButton"]
-visible = false
 position = Vector2( 158.4, 21.6666 )
+rotation = 3.14159
 scale = Vector2( 0.8, 0.2 )
+emitting = false
 amount = 20
 lifetime = 0.5
 process_material = SubResource( 19 )
@@ -731,16 +731,16 @@ button_index = 1
 button_shift_index = 1
 
 [node name="Light2D" type="Light2D" parent="Buttons/ButtonSelectionController/BackButton"]
-visible = false
 position = Vector2( 184, 19.9995 )
 scale = Vector2( 0.6, 0.1 )
 texture = ExtResource( 4 )
-energy = 2.0
+energy = 1.5
 
 [node name="Particles2D" type="Particles2D" parent="Buttons/ButtonSelectionController/BackButton"]
-visible = false
 position = Vector2( 179.2, 22.4998 )
+rotation = 3.14159
 scale = Vector2( 0.8, 0.2 )
+emitting = false
 amount = 20
 lifetime = 0.5
 process_material = SubResource( 19 )
