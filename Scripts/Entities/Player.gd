@@ -50,7 +50,7 @@ var heads_up_display
 var directions = {"LEFT":Vector2(-1,0), "RIGHT":Vector2(1,0), "UP":Vector2(0,-1), "DOWN":Vector2(0,1)}
 var bullet_scene = load("res://Scenes/HelperScenes/Bullet.tscn")
 export var default_bomb_scale = 1.0
-var bullet_scale 
+var bullet_scale
 export var default_bullet_scale = 1.0
 var small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/SmallBulletExplosion.tscn")
 var can_shoot = true
@@ -119,10 +119,10 @@ func _ready():
 	default_laser_charge_time = $LaserChargeTimer.wait_time
 	reset()
 	default_enemy_explosion_vol = $SoundFX/EnemyExplosionSound.volume_db
-	
+
 func reset_settings():
 	load_player_type()
-	
+
 	can_shoot = can_shoot and player_type.can_shoot
 	if(use_global_settings):
 		default_speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
@@ -151,14 +151,14 @@ func reset_settings():
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
-	
+
 	light_size = default_light_size
 	speed = default_speed
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
-	
+
 	light_size *= player_type.light_scale
 	shrink_scalar = default_shrink_scalar * player_type.light_fade_scale
 	laser_scale = default_laser_scale *  player_type.laser_scale
@@ -166,13 +166,13 @@ func reset_settings():
 	bomb_scale = default_bomb_scale * player_type.bomb_scale
 	max_bombs = player_type.bomb_num_max
 	Settings.world["points_scale"] *= player_type.points_scale
-	
+
 	current_bombs = max_bombs
 	starting_bombs = max_bombs
 	can_bomb = can_bomb and player_type.can_bomb
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
 	$OuterLight.scale = light_size
-	
+
 	if(Settings.world["is_mission"] == false):
 		for pt in powerup_times:
 			$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
@@ -189,8 +189,7 @@ func reset_settings():
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
-				
-	print("Changing, default_bullets_per_burst, ", default_bullets_per_burst)
+
 	default_player_speed = speed
 
 var shift_speed = 1
@@ -217,12 +216,11 @@ func reset():
 		heads_up_display.update_bombs(current_bombs)
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
 		heads_up_display.update_points(points)
-		
-	print("Global.bullet_type_scenes, ", Global.bullet_type_scenes)
+
 	bullet_scene = Global.bullet_type_scenes[Settings.shop["bullet_type"]]
 	if(Settings.player["bullet_type_override"] != null):
 		bullet_scene = Global.bullet_type_scenes[Settings.player["bullet_type_override"]]
-	
+
 	respawn()
 
 var has_loaded_type = false
@@ -233,24 +231,24 @@ func load_player_type():
 		var index = Settings.shop["player_type"]
 		if(Settings.player["player_type_override"] != null):
 			index = Settings.player["player_type_override"]
-	
+
 		player_type = Global.player_type_scenes[index].instance()
 		player_type.name = "PlayerType"
 		add_child(player_type)
-		
+
 func add_points(points_num):
 	if(can_collect_points):
 		points += points_num * Settings.world["points_scale"]
 		if(heads_up_display != null):
 			heads_up_display.update_points(points)
-	
+
 		Global.points_this_round = int(points)
 		if(Settings.world["mission_title"] == "challenge"):
 			Global.points_this_round = int(points/Settings.world["points_scale"])
 
 		if(Settings.world["has_point_goal"] and points >= Settings.world["point_goal"]):
 			game_over()
-	
+
 func spawn_get_point_label(points_num):
 	var gpl = point_get_label_scene.instance()
 	gpl.points_num = points_num
@@ -283,10 +281,10 @@ export var can_change_color = true
 func change_color(new_color):
 	if(Settings.shop["monocolor_color"] != null):
 		new_color = Settings.shop["monocolor_color"].linear_interpolate(new_color, 0.5)
-		
+
 	if(!can_change_color):
 		return
-		
+
 	modulate = new_color
 	$OuterLight.color = new_color
 	$InnerLight.color = new_color
@@ -338,7 +336,7 @@ func shoot():
 		bullets_to_shoot = bullets_per_burst
 
 
-		
+
 	if(bullets_to_shoot > 1):
 		can_shoot = false
 		$BulletBurstTimer.start()
@@ -372,7 +370,7 @@ func drop_bomb(_scale=1.0):
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
 	bomb.position = position
-	if(Settings.world["is_mission"] == false):
+	if(Settings.world["is_mission"] == false or _scale == max_bomb_bomb_scale):
 		bomb.scale *= Settings.shop["bomb_scale"] * _scale
 	$SoundFX/DropBombAudio.play()
 	get_parent().add_child(bomb)
@@ -392,47 +390,47 @@ func damage():
 
 func die():
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
-	
+
 	$SoundFX/PlayerExplosionSound.play()
 	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
 		laser.queue_free()
-	
+
 	bullets_to_shoot = default_bullets_per_burst
-	
+
 	# summon explosion
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
 	explosion.modulate = modulate
 	explosion.find_node("Light2D").color = modulate
 	explosion.find_node("Light2D").energy = 4.0
-	explosion.point_reward = -1000	
+	explosion.point_reward = -1000
 	explosion.scale *= 2.6
 	get_parent().add_child(explosion)
-	
+
 	$BulletBurstTimer.stop()
-	
+
 	visible = false
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").kill_all()
 	get_parent().find_node("PowerupFactory").kill_all()
-	
+
 	get_parent().find_node("EnemyFactory").is_active = false
 
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
-	
+
 	current_health -= 1
 	if(current_health <= 0):
 		$GameOverWaitTimer.start()
 	else:
 		$RespawnTimer.start()
 		heads_up_display.update_health(current_health, 	has_powerup["OverShield"])
-	
+
 	for timer in get_tree().get_nodes_in_group("PowerupTimerUIs"):
 		if(timer.is_timing == true):
 			timer.stop_timer()
-	
+
 	is_charging_laser = false
 	can_shoot = false
 	can_shoot_laser = false
@@ -446,7 +444,7 @@ func die():
 func pause_bosses():
 	for b in get_tree().get_nodes_in_group("Bosses"):
 		b.is_active = false
-	
+
 func resume_bosses():
 	for b in get_tree().get_nodes_in_group("Bosses"):
 		b.is_active = true
@@ -460,9 +458,9 @@ func respawn():
 	_on_Opalescence_timeout()
 	_on_Unmaker_timeout()
 	_on_Vision_timeout()
-	
+
 	resume_bosses()
-	
+
 	if(get_parent().has_method("start_factories")):
 		get_parent().start_factories()
 
@@ -470,7 +468,7 @@ func respawn():
 		change_color(Settings.shop["monocolor_color"])
 	else:
 		change_color(Color.white)
-		
+
 	position = respawn_position
 	visible = true
 
@@ -478,7 +476,7 @@ func respawn():
 	can_shoot_laser = Settings.player["can_shoot_laser"] and player_type.can_shoot_laser
 	can_bomb = Settings.player["can_bomb"] and player_type.can_bomb
 
-func game_over():	
+func game_over():
 	if(get_parent().game_is_over):
 		return
 
@@ -489,7 +487,7 @@ func game_over():
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
 	visible = false
-	$BulletBurstTimer.stop() 
+	$BulletBurstTimer.stop()
 
 	Global.play_time = Global.round_float(play_time, 3)
 	points = 0
@@ -539,14 +537,18 @@ func _on_BulletBurstTimer_timeout():
 		$BulletCooldownTimer.start()
 
 func spawn_laser(_scale=1.0, _laser_time=-1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
-	$LaserExistsTimer.wait_time = _laser_time
-	$LaserExistsTimer.start()
+
+
 	var laser = laser_scene.instance()
 	laser.scale *= _scale
 	laser.max_fade_in_width *= _scale
 	if(_laser_time != -1.0):
 		laser.total_time = _laser_time
 		laser.particle_intensity_scale = _particle_intensity_scale
+	else:
+		if(has_powerup["Unmaker"] == false):
+			$LaserExistsTimer.wait_time = laser.total_time
+			$LaserExistsTimer.start()
 	laser.find_node("LaserSound").pitch_scale *= _pitch_scale
 	add_child(laser)
 
@@ -558,12 +560,12 @@ func _on_LaserChargeTimer_timeout():
 	$LaserChargeEffect.emitting = is_charging_laser
 	spawn_laser(laser_scale)
 
-func _on_LaserCooldownTimer_timeout():
+func _on_LaserCooldownTimer_timeout(make_sound=true):
 	$LaserCooldown.emitting = false
 	$LaserReady.emitting = true
 	$SoundFX/LaserCooldownAudio.stop()
-	$SoundFX/LaserCooldownCompleteAudio.play()
-	print("LASER SEEEEEEEEEEEEEEE")
+	if(make_sound):
+		$SoundFX/LaserCooldownCompleteAudio.play()
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func _on_RespawnTimer_timeout():
@@ -633,7 +635,7 @@ func get_powerup(_powerup, _color):
 		current_bombs = max_bombs
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)
-		
+
 	if(_powerup == "OneUp"):
 		current_health += 1
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
@@ -649,6 +651,8 @@ func get_powerup(_powerup, _color):
 	if(_powerup == "Unmaker"):
 		var unmaker_particle_intensity = 2.0
 		var unmaker_pitch_scale = 0.5
+		has_powerup["Unmaker"] = true
+		can_shoot_laser = false
 		spawn_laser(unmaker_scale, $PowerupTimers/Unmaker.wait_time, unmaker_particle_intensity, unmaker_pitch_scale)
 		$PowerupTimers/Unmaker.start()
 		start_powerup_timer($PowerupTimers/Unmaker.wait_time, _color, _powerup)
@@ -660,7 +664,7 @@ func get_powerup(_powerup, _color):
 
 	if(_powerup in transformative_powerups):
 		has_powerup[_powerup] = true
-		
+
 	if(_powerup == "Barrage"):
 		shoot()
 
@@ -699,8 +703,9 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
-	_on_LaserCooldownTimer_timeout()
+	can_shoot_laser = Settings.player["can_shoot_laser"]
 	has_powerup["Unmaker"] = false
+
 
 func _on_Vision_timeout():
 	has_powerup["Vision"] = false
@@ -712,7 +717,7 @@ func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
 		$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
 	if($SoundFX/EnemyExplosionSound.volume_db != -80):
 		$SoundFX/EnemyExplosionSound.volume_db += volume_db_mod
-		
+
 	$SoundFX/EnemyExplosionSound.play()
 
 func _on_GameOverWaitTimer_timeout():

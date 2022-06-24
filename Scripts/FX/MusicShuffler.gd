@@ -11,18 +11,17 @@ func _ready():
 	song_order = Array(range(len(song_paths)))
 	randomize()
 	song_order.shuffle()
-	print(song_order)
 	if(len(song_paths) == 0):
 		return
-		
+
 	for s in song_paths:
 		songs.append(load(s))
-		
+
 	current_song = randi()%len(songs)
 	stream = songs[current_song]
 	if(autoplay):
 		play()
-		
+
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_v")):
 		_on_MusicShuffler_finished()

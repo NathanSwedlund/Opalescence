@@ -20,7 +20,6 @@ var shakes = {}
 var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}
 
 func save_var(path, _var):
-#	print("Saving ", _var, " at ", path)
 	var file = File.new()
 	file.open(path, File.WRITE)
 	file.store_var(_var)
@@ -32,21 +31,21 @@ func load_var(path):
 	var settings_from_file = file.get_var()
 	file.close()
 	return settings_from_file
-	
+
 func round_float(_float, decimal_num):
 	return int( _float * pow(10, decimal_num) )/(pow(10, decimal_num))
-	
+
 func equal_with_x_precision(f1, f2, x):
-	return int(f1 * pow(10, x)) == int(f2 * pow(10, x)) 
+	return int(f1 * pow(10, x)) == int(f2 * pow(10, x))
 
 var suffix_nums = [1000000000.0, 1000000.0, 1000.0]
 func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 	for i in range(len(suffixes)):
 		if(abs(point_num) > suffix_nums[i]):
-			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i] 
+			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i]
 	return str(point_num)
 
 func _process(delta):
 	if(Input.is_action_just_pressed("fullscreen")):
-		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"] 
-		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"] 
+		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"]
+		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]

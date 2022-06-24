@@ -6,10 +6,8 @@ var time_left
 var is_timing = false
 var powerup_name = ""
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("PowerupTimerUIs")
-	#start_timer(wait_time)
 
 func start_timer(_wait_time):
 	visible = true
@@ -21,7 +19,6 @@ func stop_timer():
 	visible = false
 	is_timing = false
 	time_left = 0
-
 
 func visual_timer_update():
 	$VisualTimer.get_material().set_shader_param("value", (time_left/wait_time) * -100 + 100)

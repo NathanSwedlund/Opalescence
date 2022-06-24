@@ -2,7 +2,7 @@ extends Node
 
 var save_data = {}
 
-var default_colors = [Color.red, Color.orangered, Color.yellow, Color.green, Color.cadetblue, Color.aqua, Color.magenta, Color.springgreen]									
+var default_colors = [Color.red, Color.orangered, Color.yellow, Color.green, Color.cadetblue, Color.aqua, Color.magenta, Color.springgreen]
 
 var saved_settings_default = {
 	"fx_volume":20,
@@ -109,12 +109,12 @@ var player_default = {
 	"default_bullets_cooldown_wait_time":0.3,
 	"is_active":true,
 	"can_bomb":true,
-	
+
 	"bomb_scale":1.0,
 	"bullet_damage_scale":1.0,
 	"laser_damage_scale":1.0,
 	"gravity_radius_scale":1.0,
-	
+
 	"starting_bombs":3,
 	"powerup_point_value":1000,
 	"opalescence_shift_speed":0.7,
@@ -145,26 +145,26 @@ var shop_default = {
 	"gravity_radius_scale":1000.0,
 	"bullet_burst_speed_scale":1.0,
 	"powerup_time_scale":0.5,
-	
+
 	"hard_mode_unlocked":false,
 	"extra_hard_mode_unlocked":false,
 	"nightmare_mode_unlocked":false,
 	"challenge_mode_unlocked":false,
 
-	
+
 	"bullet_type":0,
 	"bullet1_is_unlocked":true,
 	"bullet2_is_unlocked":false,
 	"bullet3_is_unlocked":false,
 	"bullet4_is_unlocked":false,
-	
+
 	"player_type":0,
 	"player1_is_unlocked":true,
 	"player2_is_unlocked":false,
 	"player3_is_unlocked":false,
 	"player4_is_unlocked":false,
 	"player5_is_unlocked":false,
-	
+
 	"monocolor_mode_unlocked":false,
 	"monocolor_color":null,
 }
@@ -185,21 +185,20 @@ func _ready():
 		saved_settings = saved_settings_default.duplicate()
 		for key in saved_settings_from_file:
 			saved_settings[key] = saved_settings_from_file[key]
-			
+
 	var shop_settings_from_file = Global.load_var(shop_settings_path)
 	if(shop_settings_from_file == null):
 		shop = shop_default.duplicate()
 	else:
 		shop = shop_default.duplicate()
-#		print(shop_settings_from_file)
 		for key in shop_settings_from_file:
 			shop[key] = shop_settings_from_file[key]
-	
+
 	reset_colors()
 
 func save():
 	Global.save_var(saved_settings_path, saved_settings)
-	Global.save_var(shop_settings_path, shop)	
+	Global.save_var(shop_settings_path, shop)
 
 func reset_colors():
 	saved_settings["colors"] = default_colors.duplicate()
@@ -227,7 +226,7 @@ func reset_settings():
 #func _process(delta):
 #	if(Input.is_key_pressed(KEY_0)):
 #		reset_settings()
-	
+
 var min_vol = -30
 var max_vol = 10
 func apply_sound_settings():
@@ -247,5 +246,4 @@ func change_settings(new_settings, exceptions=[]):
 	for key in new_settings:
 		for i in range(len(setting_dicts)):
 			if(new_settings[key] != null and key in setting_dicts[i] and (key in exceptions) == false):
-				print("key, ", key)
 				setting_dicts[i][key] = new_settings[key]

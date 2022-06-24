@@ -24,7 +24,7 @@ var current_frame = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+
 	if(exploding == false):
 		rotate(rot_speed * delta)
 		if(growing):
@@ -47,15 +47,14 @@ func _process(delta):
 			for i in get_parent().find_node("Area2D").get_overlapping_bodies():
 				if(i.is_in_group("Enemies")):
 					i.take_damage(damage * delta * frames_per_update)
-					
+
 			get_parent().scale.x -= shrink_speed * delta * frames_per_update
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
-#			print("bombscale", scale)
 
 func explode():
 	if(exploding):
 		return
-		
+
 	Global.shakes["bomb"].start(15*get_parent().scale.x, 0.9, 80, 1)
 	shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true

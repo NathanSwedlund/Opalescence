@@ -27,19 +27,17 @@ func _ready():
 
 		time_min = Settings.get_setting_if_exists(Settings.factory, "point_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "point_time_max", time_max)
-	
+
 	colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
-	
+
 	var monocolor_color = Settings.get_setting_if_exists(Settings.shop, "monocolor_color", null)
 	if(monocolor_color != null):
-		print("monocolor_color, monocolor_color monocolor_color monocolor_color,  ", monocolor_color)
 		colors = [monocolor_color]
-		
+
 	var color_override = Settings.get_setting_if_exists(Settings.factory, "point_color_override", null)
 	if(color_override != null):
-		print("color_override, color_override color_override color_override,  ", color_override)
 		colors = color_override
-	
+
 	color_count = len(colors)
 	randomize()
 
@@ -66,7 +64,6 @@ func kill_all():
 		c.queue_free()
 
 func _on_Timer_timeout():
-#	print("point factory: is_active, ", is_active)
 	if(is_active):
 		spawn_point()
 

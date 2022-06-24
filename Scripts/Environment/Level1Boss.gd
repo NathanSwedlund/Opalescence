@@ -20,21 +20,21 @@ export var missile_num = 280
 func _ready():
 	$Light2D.color.a = 0
 	should_fade_light_in = true
-	
+
 func _process(delta):
 	if(should_fade_light_in):
 		$Light2D.color.a = move_toward($Light2D.color.a, 1.0, boss_light_fade_speed*delta)
 		if($Light2D.color.a == 1):
 			should_fade_light_in = false
-			
+
 	if(should_fade_light_out):
 		$Light2D.color.a = move_toward($Light2D.color.a, 0.0, boss_light_fade_speed*delta)
-		
+
 
 func _on_MissileTimer_timeout():
 	if(is_active == false):
 		return
-		
+
 	$MissileSpawnAudio.play()
 	var m = missile_scene.instance()
 	add_to_group("Enemies")
@@ -44,7 +44,7 @@ func _on_MissileTimer_timeout():
 	m.direction = pos1_dir
 	m.has_explosion = false
 	add_child(m)
-	
+
 	count += 1
 	if(count > missile_num):
 		$WaitTimer.start()
@@ -57,15 +57,13 @@ func die():
 			c.die()
 
 func _on_WaitTimer_timeout():
-	print("WAIT TIMER TIMEOTU")
-		
+
 	if(count == 0):
 		$MissileTimer.start()
 		$WaitTimer.stop()
 	if(count > missile_num):
-		print("BOSS COMPLETED")
 		boss_fight_completed()
 		queue_free()
-		
+
 func boss_fight_completed():
 	Global.level_timer.start_level_timer()

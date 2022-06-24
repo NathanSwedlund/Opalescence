@@ -11,7 +11,7 @@ export var universal_level_settings_scales = {
 	"chaser_max_scale":0.9,
 	"enemy_health_scale":1.1,
 }
-	
+
 export var level_count = 0
 export var starting_level = 0
 export var level_time_lengths = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
@@ -26,12 +26,12 @@ func _ready():
 	Global.level_timer = self
 	if(Settings.world["is_mission"]):
 		queue_free()
-		
+
 	bosses[2] = load("res://Scenes/HelperScenes/Enemies/Boss1.tscn")
 	bosses[4] = load("res://Scenes/HelperScenes/Boss2Container.tscn")
 	bosses[6] = load("res://Scenes/HelperScenes/Boss3Container.tscn")
-			
-	
+
+
 	currrent_level = starting_level
 	$LevelLabel.fade_out()
 	$CountdownTimer.wait_time = level_time_lengths[currrent_level]
@@ -48,48 +48,45 @@ func increase_level():
 		$LevelLabel2.text = "Level: " + str(currrent_level) + " Boss"
 		$LevelLabel.fade_out()
 		$CountdownTimer.stop()
-		
+
 	else:
 		start_level_timer()
-		
+
 		for dict in [Settings.player, Settings.world, Settings.factory, Settings.enemy]:
 			if(currrent_level < level_count): # Level specific setting changes
 				for key in level_settings_scales[currrent_level-1].keys():
 					if(dict.has(key)):
 						dict[key] *= level_settings_scales[currrent_level-1][key]
-						
+
 				for key in level_settings_mods[currrent_level-1].keys():
 					if(dict.has(key)):
 						dict[key] += level_settings_mods[currrent_level-1][key]
-				
+
 				for key in level_settings_setters[currrent_level-1].keys():
 					if(dict.has(key)):
 						dict[key] = level_settings_setters[currrent_level-1][key]
-			
+
 			# Universal setting changers for every level
 			for key in universal_level_settings_scales.keys():
 				if(dict.has(key)):
 					dict[key] *= universal_level_settings_scales[key]
-		
+
 		# Resetting levels
 		Global.player.reset_settings()
 		get_parent().find_node("PointFactory").reset()
 		get_parent().find_node("EnemyFactory").reset()
 		get_parent().find_node("PowerupFactory").reset()
 
-		
-#		print("Now at Level ", str(currrent_level))
-#		print(Settings.factory)
-#		print("\n\n")
+
 
 func level_has_boss(level):
 	if(level > level_count):
 		return false
 	if(bosses[level] == null):
 		return false
-	
+
 	return true
-	
+
 func start_level_timer():
 	$LevelLabel.text = "Level " + str(currrent_level)
 	$LevelLabel2.text = "Level: " + str(currrent_level)
@@ -100,10 +97,9 @@ func start_level_timer():
 	else:
 		$CountdownTimer.wait_time = default_level_time
 	$CountdownTimer.start()
-	
+
 
 func _on_CountdownTimer_timeout():
-	print("LEVEL TIMER GO")
 	increase_level()
 
 func stop():

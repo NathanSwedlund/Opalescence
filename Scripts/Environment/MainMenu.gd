@@ -27,6 +27,8 @@ func _ready():
 	
 	if(Settings.saved_settings["music_volume"] == 0):
 		$MusicShuffler.volume_db = -80
+		target_music_db = -80
+		current_music_db = -80
 	else:	
 		$MusicShuffler.volume_db = current_music_db
 	

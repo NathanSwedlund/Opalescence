@@ -79,7 +79,6 @@ export var settings = {
 func _ready():
 	settings["mission_title"] = title
 
-	print("HighScore.get_score(",title, "), ", HighScore.get_score(title))
 	$Title.text = title
 	$HighScore.text = "High Score: "+str(HighScore.get_score(title))
 
