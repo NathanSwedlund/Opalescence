@@ -225,7 +225,9 @@ func reset_settings():
 	factory = factory_default.duplicate()
 
 #func _process(delta):
-
+#	if(Input.is_key_pressed(KEY_0)):
+#		reset_settings()
+	
 var min_vol = -30
 var max_vol = 10
 func apply_sound_settings():

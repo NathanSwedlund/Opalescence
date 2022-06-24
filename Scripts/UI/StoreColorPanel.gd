@@ -20,7 +20,7 @@ func _ready():
 	
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
-	if(Settings.shop["monocolor_color"] != null):
+	if(Settings.shop["monocolor_mode_unlocked"] != false):
 		var c = Settings.shop["monocolor_color"]
 		for i in range(len(colors)):
 			if(colors[i] == c):
@@ -52,12 +52,9 @@ func deselect():
 	$Light2D2.visible = false
 	is_selected = false
 	scale /= select_scale
-
-
 	
 var equip_audio_fail_pitch = 1.9
 var equip_audio_pitch = 1.0
-
 func _on_ApplyLess_pressed():
 	if(Settings.shop["monocolor_mode_unlocked"] == false):
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch

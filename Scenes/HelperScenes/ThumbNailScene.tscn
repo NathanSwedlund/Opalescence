@@ -52,7 +52,6 @@ valign = 1
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 615, 416 )
 scale = Vector2( 1, 1 )
-shrink_scalar = 1.0
 gravity_radius = 0
 powerup_times = {
 "Barrage": 5.0,

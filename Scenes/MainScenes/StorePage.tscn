@@ -357,6 +357,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
+visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -388,6 +389,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
+visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
@@ -454,6 +456,24 @@ custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
 flat = true
 
+[node name="SuperPanelNextButton" type="Button" parent="."]
+margin_left = 683.0
+margin_top = 4.0
+margin_right = 1376.0
+margin_bottom = 718.0
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+flat = true
+
+[node name="SuperPanelLastButton" type="Button" parent="."]
+margin_left = -471.0
+margin_top = 14.0
+margin_right = 222.0
+margin_bottom = 728.0
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+flat = true
+
 [node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 pitch_scale = 0.7
@@ -483,3 +503,5 @@ is_music = true
 [connection signal="pressed" from="UI/AddPointButton" to="." method="_on_AddPointButton_pressed"]
 [connection signal="pressed" from="NextPanelButton" to="." method="_on_NextPanelButton_pressed"]
 [connection signal="pressed" from="LastPanelButton" to="." method="_on_LastPanelButton_pressed"]
+[connection signal="pressed" from="SuperPanelNextButton" to="." method="_on_SuperPanelNextButton_pressed"]
+[connection signal="pressed" from="SuperPanelLastButton" to="." method="_on_SuperPanelLastButton_pressed"]

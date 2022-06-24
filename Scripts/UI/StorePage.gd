@@ -120,3 +120,11 @@ func _on_ResetButton_pressed():
 	for p in panels:
 		p.reset()
 		Settings.shop = Settings.shop_default.duplicate()
+
+
+func _on_SuperPanelLastButton_pressed():
+	Input.action_press("ui_left")
+
+
+func _on_SuperPanelNextButton_pressed():
+	Input.action_press("ui_right")
