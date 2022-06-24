@@ -35,6 +35,20 @@ script = ExtResource( 4 )
 fade_speed = 0.3
 automatically_fade_in = true
 
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 141.0
+margin_top = 114.0
+margin_right = 1164.0
+margin_bottom = 561.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "WARNING:"
+autowrap = true
+script = ExtResource( 4 )
+fade_speed = 0.3
+automatically_fade_in = true
+
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true

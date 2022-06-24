@@ -9,3 +9,6 @@ func _ready():
 func _on_Timer_timeout():
 	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
  
+func _process(delta):
+	if(Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_accept")):
+		get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")

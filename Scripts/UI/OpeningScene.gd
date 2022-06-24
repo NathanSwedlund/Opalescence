@@ -56,3 +56,6 @@ func _process(delta):
 		$LabelContainer.scale.y = move_toward($LabelContainer.scale.y, destination_scale.y, scale_speed*delta)
 		$LabelContainer.position.x = move_toward($LabelContainer.position.x, destination_position.x, move_speed*delta)
 		$LabelContainer.position.y = move_toward($LabelContainer.position.y, destination_position.y, move_speed*delta)
+
+	if(Input.is_action_just_pressed("ui_cancel") or Input.is_action_just_pressed("ui_accept")):
+		get_tree().change_scene("res://Scenes/MainScenes/MainMenu.tscn")
