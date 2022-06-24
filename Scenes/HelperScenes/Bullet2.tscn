@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Items/Bullet2.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel2.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/Items/bullet-2Hi-Res.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=6]
@@ -44,7 +44,7 @@ heat_seeking_turn_speed = 0.04
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 6 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.2, 0.194 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

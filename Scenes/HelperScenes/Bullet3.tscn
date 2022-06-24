@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Items/Bullet3.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel3.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/Items/bullet-3Hi-Res.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=3]
 
 [sub_resource type="CanvasItemMaterial" id=7]
@@ -50,7 +50,7 @@ base_damge = 6.0
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 7 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

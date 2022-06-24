@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Items/Bullet4-pellet.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/Items/bullet-pixel4.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/Items/bullet-4Hi-Res.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/HelperScenes/Bullet4.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
 
@@ -52,7 +52,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
@@ -81,7 +81,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet2"]
@@ -110,7 +110,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet3"]
@@ -139,7 +139,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet4"]
@@ -168,7 +168,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet5"]
@@ -197,7 +197,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet6"]
@@ -226,7 +226,7 @@ base_damge = 1.0
 material = SubResource( 6 )
 position = Vector2( -0.706129, -0.0998397 )
 rotation = -1.5708
-scale = Vector2( 0.590013, 0.829385 )
+scale = Vector2( 0.197, 0.276 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet7"]
