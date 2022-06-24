@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Environment/MainMenu.gd" type="Script" id=2]
@@ -39,6 +39,37 @@ scale_random = 1.0
 
 [sub_resource type="DynamicFont" id=8]
 size = 300
+font_data = ExtResource( 15 )
+
+[sub_resource type="CanvasItemMaterial" id=10]
+light_mode = 1
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 2
+emission_box_extents = Vector3( 7.13, 219.62, 1 )
+flag_disable_z = true
+direction = Vector3( -7.829, 0, 0 )
+spread = 138.1
+gravity = Vector3( -300, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=12]
+emission_shape = 2
+emission_box_extents = Vector3( 7.13, 101.33, 1 )
+flag_disable_z = true
+direction = Vector3( -7.829, 0, 0 )
+spread = 138.1
+gravity = Vector3( -300, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="DynamicFont" id=9]
+size = 40
 font_data = ExtResource( 15 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -108,12 +139,12 @@ offset = Vector2( 0, 100 )
 scale = Vector2( 0.15, 0.15 )
 transform = Transform2D( 0.15, 0, 0, 0.15, 0, 100 )
 
-[node name="ButtonSelectionController1" type="Node2D" parent="MenuCanvas"]
+[node name="MainSelection" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
 button_count = 5
 is_active = true
 
-[node name="PlayButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+[node name="PlayButton" type="Button" parent="MenuCanvas/MainSelection"]
 margin_left = -843.0
 margin_top = 1600.0
 margin_right = 1529.0
@@ -128,16 +159,16 @@ script = ExtResource( 8 )
 button_index = 0
 button_shift_index = 0
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/PlayButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/MainSelection/PlayButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 1276.33, 293.333 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/PlayButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/MainSelection/PlayButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 2289.67, 306.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -145,7 +176,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="CustomizeButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+[node name="CustomizeButton" type="Button" parent="MenuCanvas/MainSelection"]
 margin_left = -286.667
 margin_top = 2080.0
 margin_right = 2434.33
@@ -161,14 +192,14 @@ right_margin_mod_on_hover = 100
 button_index = 1
 button_shift_index = 1
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/MainSelection/CustomizeButton"]
 visible = false
-position = Vector2( 1265.87, 262.417 )
+position = Vector2( 1260, 286.667 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/CustomizeButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/MainSelection/CustomizeButton"]
 visible = false
 position = Vector2( 2306.34, 227 )
 scale = Vector2( 6.667, 6.667 )
@@ -178,7 +209,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="StorePage" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+[node name="StorePage" type="Button" parent="MenuCanvas/MainSelection"]
 margin_left = -1426.67
 margin_top = 2826.67
 margin_right = 1835.33
@@ -193,16 +224,16 @@ script = ExtResource( 8 )
 button_index = 2
 button_shift_index = 2
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/StorePage"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/MainSelection/StorePage"]
 visible = false
-position = Vector2( 384.583, 316.753 )
+position = Vector2( 1873.34, 319.997 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/StorePage"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/MainSelection/StorePage"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3200, 326.664 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -210,7 +241,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="OptionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+[node name="OptionsButton" type="Button" parent="MenuCanvas/MainSelection"]
 margin_left = -840.003
 margin_top = 3273.33
 margin_right = 2421.99
@@ -225,16 +256,16 @@ script = ExtResource( 8 )
 button_index = 3
 button_shift_index = 3
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/OptionsButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/MainSelection/OptionsButton"]
 visible = false
 position = Vector2( 384.583, 316.753 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/OptionsButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/MainSelection/OptionsButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3113.34, 313.337 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -242,7 +273,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="QuitButton2" type="Button" parent="MenuCanvas/ButtonSelectionController1"]
+[node name="QuitButton2" type="Button" parent="MenuCanvas/MainSelection"]
 margin_left = 6886.67
 margin_top = 3406.67
 margin_right = 8102.67
@@ -258,28 +289,28 @@ right_margin_mod_on_hover = -150
 button_index = 4
 button_shift_index = 4
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/MainSelection/QuitButton2"]
 visible = false
-position = Vector2( 2132.87, 335.416 )
+position = Vector2( 1153.33, 339.997 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController1/QuitButton2"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/MainSelection/QuitButton2"]
 visible = false
-position = Vector2( 2648.28, 335.416 )
+position = Vector2( 6.66309, 333.33 )
+rotation = 3.14159
 scale = Vector2( 6.667, 6.667 )
-emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="ButtonSelectionController2" type="Node2D" parent="MenuCanvas"]
+[node name="PlayModeSelection" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
 button_count = 5
 
-[node name="StandardButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+[node name="StandardButton" type="Button" parent="MenuCanvas/PlayModeSelection"]
 visible = false
 margin_left = -2559.0
 margin_top = 1060.0
@@ -295,16 +326,16 @@ script = ExtResource( 8 )
 button_index = 0
 button_shift_index = 0
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/StandardButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/PlayModeSelection/StandardButton"]
 visible = false
-position = Vector2( 2685.2, 355.417 )
+position = Vector2( 3365.67, 326.667 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/StandardButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/PlayModeSelection/StandardButton"]
 visible = false
-position = Vector2( 3725.67, 320 )
+position = Vector2( 5239, 306.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -312,7 +343,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="MissionsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+[node name="MissionsButton" type="Button" parent="MenuCanvas/PlayModeSelection"]
 visible = false
 margin_left = -2559.0
 margin_top = 1613.0
@@ -328,16 +359,16 @@ script = ExtResource( 8 )
 button_index = 1
 button_shift_index = 1
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/MissionsButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/PlayModeSelection/MissionsButton"]
 visible = false
-position = Vector2( 2572.33, 307 )
+position = Vector2( 3559, 307 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/MissionsButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/PlayModeSelection/MissionsButton"]
 visible = false
-position = Vector2( 3745.67, 313.667 )
+position = Vector2( 5219, 347 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -345,7 +376,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="TutorialsButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+[node name="TutorialsButton" type="Button" parent="MenuCanvas/PlayModeSelection"]
 visible = false
 margin_left = -2546.67
 margin_top = 2133.33
@@ -361,16 +392,16 @@ script = ExtResource( 8 )
 button_index = 2
 button_shift_index = 2
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/PlayModeSelection/TutorialsButton"]
 visible = false
-position = Vector2( 2678.53, 341.75 )
+position = Vector2( 3600, 313.336 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/TutorialsButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/PlayModeSelection/TutorialsButton"]
 visible = false
-position = Vector2( 3759, 353.667 )
+position = Vector2( 5526.67, 340.003 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -378,7 +409,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="ChallengeButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+[node name="ChallengeButton" type="Button" parent="MenuCanvas/PlayModeSelection"]
 visible = false
 margin_left = -2573.33
 margin_top = 2586.67
@@ -397,16 +428,16 @@ __meta__ = {
 button_index = 3
 button_shift_index = 3
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/PlayModeSelection/ChallengeButton"]
 visible = false
-position = Vector2( 2579, 347 )
+position = Vector2( 3520, 313.33 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/ChallengeButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/PlayModeSelection/ChallengeButton"]
 visible = false
-position = Vector2( 3759, 353.667 )
+position = Vector2( 5566.66, 346.664 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -414,7 +445,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="BackButton" type="Button" parent="MenuCanvas/ButtonSelectionController2"]
+[node name="BackButton" type="Button" parent="MenuCanvas/PlayModeSelection"]
 visible = false
 margin_left = 6886.67
 margin_top = 3406.67
@@ -430,28 +461,28 @@ script = ExtResource( 8 )
 button_index = 4
 button_shift_index = 4
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/PlayModeSelection/BackButton"]
 visible = false
-position = Vector2( 2678.53, 341.75 )
+position = Vector2( 853.33, 333.33 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController2/BackButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/PlayModeSelection/BackButton"]
 visible = false
-position = Vector2( 3759, 353.667 )
+position = Vector2( 19.9971, 339.997 )
+rotation = 3.14159
 scale = Vector2( 6.667, 6.667 )
-emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="ButtonSelectionController3" type="Node2D" parent="MenuCanvas"]
+[node name="OptionsSelection" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
-button_count = 9
+button_count = 10
 
-[node name="MusicVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
+[node name="MusicVolumeOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 340, 906.667 )
 scale = Vector2( 5, 5 )
@@ -462,7 +493,7 @@ min_val = -0.1
 step = 1.0
 setting_name = "music_volume"
 
-[node name="SFXVolumeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
+[node name="SFXVolumeOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 340, 1516.67 )
 scale = Vector2( 5, 5 )
@@ -474,35 +505,35 @@ step = 1.0
 button_index = 1
 setting_name = "fx_volume"
 
-[node name="PaleModeOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
+[node name="PaleModeOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 10 )]
 visible = false
 position = Vector2( 340, 2116.67 )
 scale = Vector2( 5, 5 )
 title = "Low Saturation Mode"
 button_index = 2
 
-[node name="FullscreenOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
+[node name="FullscreenOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 10 )]
 visible = false
 position = Vector2( 340, 2716.67 )
 scale = Vector2( 5, 5 )
 title = "Fullscreen Mode"
 button_index = 3
 
-[node name="ShowIntroOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
+[node name="ShowIntroOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 10 )]
 visible = false
 position = Vector2( 2640, 906.667 )
 scale = Vector2( 5, 5 )
 title = "Show Intro Sequence"
 button_index = 4
 
-[node name="ShowWarningOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 10 )]
+[node name="ShowWarningOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 10 )]
 visible = false
 position = Vector2( 2640, 1516.67 )
 scale = Vector2( 5, 5 )
 title = "Show Epilepsy Warning"
 button_index = 5
 
-[node name="GraphicSetting" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 16 )]
+[node name="GraphicSetting" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 16 )]
 visible = false
 position = Vector2( 2620, 2080 )
 scale = Vector2( 5, 5 )
@@ -511,7 +542,7 @@ button_index = 6
 setting_name = "graphical_quality"
 strings = [ "Min", "Low", "Mid", "High", "Ultra" ]
 
-[node name="ScreenShakeScaleOption" parent="MenuCanvas/ButtonSelectionController3" instance=ExtResource( 6 )]
+[node name="ScreenShakeScaleOption" parent="MenuCanvas/OptionsSelection" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 2633.33, 2706.67 )
 scale = Vector2( 5, 5 )
@@ -520,7 +551,41 @@ max_val = 100.0
 button_index = 7
 setting_name = "screen_shake_scale"
 
-[node name="OptionBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController3"]
+[node name="ResetButton" type="Button" parent="MenuCanvas/OptionsSelection"]
+visible = false
+margin_left = 6760.0
+margin_top = 2900.0
+margin_right = 8277.0
+margin_bottom = 3500.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Reset"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 8
+button_shift_index = 5
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/OptionsSelection/ResetButton"]
+visible = false
+position = Vector2( 933.333, 346.667 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 3.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/OptionsSelection/ResetButton"]
+visible = false
+position = Vector2( 153.333, 320 )
+rotation = 3.14159
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+script = ExtResource( 17 )
+
+[node name="OptionBackButton" type="Button" parent="MenuCanvas/OptionsSelection"]
 visible = false
 margin_left = 6886.67
 margin_top = 3406.67
@@ -533,19 +598,19 @@ text = "Back"
 flat = true
 align = 2
 script = ExtResource( 8 )
-button_index = 8
+button_index = 9
 button_shift_index = 5
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/OptionsSelection/OptionBackButton"]
 visible = false
-position = Vector2( 1113.33, 306.666 )
+position = Vector2( 959.997, 333.33 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController3/OptionBackButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/OptionsSelection/OptionBackButton"]
 visible = false
-position = Vector2( 433.334, 346.666 )
+position = Vector2( 119.997, 313.33 )
 rotation = 3.14159
 scale = Vector2( 6.667, 6.667 )
 amount = 20
@@ -553,11 +618,11 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="ButtonSelectionController4" type="Node2D" parent="MenuCanvas"]
+[node name="StandardModesSelection" type="Node2D" parent="MenuCanvas"]
 script = ExtResource( 13 )
 button_count = 7
 
-[node name="ExtraEasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="ExtraEasyButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = 20.0039
 margin_top = 1100.0
@@ -573,16 +638,16 @@ script = ExtResource( 8 )
 button_index = 0
 button_shift_index = 0
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/ExtraEasyButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/ExtraEasyButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 1333.33, 326.667 )
+scale = Vector2( 7.36161, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/ExtraEasyButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/ExtraEasyButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 2966.66, 306.667 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -590,7 +655,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="EasyButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="EasyButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = -839.996
 margin_top = 1653.33
@@ -606,16 +671,16 @@ script = ExtResource( 8 )
 button_index = 1
 button_shift_index = 1
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/EasyButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/EasyButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 979.19, 316.753 )
+scale = Vector2( 6.40161, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/EasyButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/EasyButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 2353.33, 320.003 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -623,7 +688,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="MediumButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="MediumButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = -1126.67
 margin_top = 2213.33
@@ -639,16 +704,16 @@ script = ExtResource( 8 )
 button_index = 2
 button_shift_index = 2
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/MediumButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/MediumButton"]
 visible = false
-position = Vector2( 384.583, 316.753 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 1469.19, 316.753 )
+scale = Vector2( 7.38162, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/MediumButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/MediumButton"]
 visible = false
-position = Vector2( 900, 316.753 )
+position = Vector2( 3133.34, 346.67 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -656,7 +721,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="HardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="HardButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = -859.996
 margin_top = 2693.33
@@ -672,16 +737,16 @@ script = ExtResource( 8 )
 button_index = 3
 button_shift_index = 3
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/HardButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/HardButton"]
 visible = false
-position = Vector2( 1399.53, 315.417 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 1423.33, 315.417 )
+scale = Vector2( 5.26, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/HardButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/HardButton"]
 visible = false
-position = Vector2( 1914.95, 315.417 )
+position = Vector2( 2353.33, 320.003 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -689,7 +754,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="ExtraHardButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="ExtraHardButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = 33.3373
 margin_top = 3146.67
@@ -705,16 +770,16 @@ script = ExtResource( 8 )
 button_index = 4
 button_shift_index = 4
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/ExtraHardButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/ExtraHardButton"]
 visible = false
-position = Vector2( 386.2, 315.414 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 1310, 315.414 )
+scale = Vector2( 7.06, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/ExtraHardButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/ExtraHardButton"]
 visible = false
-position = Vector2( 901.617, 315.414 )
+position = Vector2( 2953.33, 319.997 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -722,7 +787,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="NightmareMode" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="NightmareMode" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = 46.666
 margin_top = 3560.0
@@ -738,16 +803,16 @@ script = ExtResource( 8 )
 button_index = 5
 button_shift_index = 5
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/NightmareMode"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/NightmareMode"]
 visible = false
-position = Vector2( 386.2, 315.414 )
-scale = Vector2( 5.2124, 0.604167 )
+position = Vector2( 1400, 326.666 )
+scale = Vector2( 7.05287, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/NightmareMode"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/NightmareMode"]
 visible = false
-position = Vector2( 901.617, 315.414 )
+position = Vector2( 2986.67, 333.333 )
 scale = Vector2( 6.667, 6.667 )
 emitting = false
 amount = 20
@@ -755,7 +820,7 @@ lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
-[node name="StandardBackButton" type="Button" parent="MenuCanvas/ButtonSelectionController4"]
+[node name="StandardBackButton" type="Button" parent="MenuCanvas/StandardModesSelection"]
 visible = false
 margin_left = 6886.67
 margin_top = 3406.67
@@ -771,24 +836,247 @@ script = ExtResource( 8 )
 button_index = 6
 button_shift_index = 6
 
-[node name="Light2D" type="Light2D" parent="MenuCanvas/ButtonSelectionController4/StandardBackButton"]
+[node name="Light2D" type="Light2D" parent="MenuCanvas/StandardModesSelection/StandardBackButton"]
 visible = false
-position = Vector2( 2678.53, 341.75 )
+position = Vector2( 1160, 353.33 )
 scale = Vector2( 5.2124, 0.604167 )
 texture = ExtResource( 7 )
 energy = 3.0
 
-[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ButtonSelectionController4/StandardBackButton"]
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/StandardModesSelection/StandardBackButton"]
 visible = false
-position = Vector2( 3759, 353.667 )
+position = Vector2( 53.3301, 319.997 )
+rotation = 3.14159
 scale = Vector2( 6.667, 6.667 )
-emitting = false
 amount = 20
 lifetime = 1.5
 process_material = SubResource( 1 )
 script = ExtResource( 17 )
 
+[node name="ResetSelection" type="Node2D" parent="MenuCanvas"]
+script = ExtResource( 13 )
+button_count = 3
+
+[node name="ResetSettingsButton" type="Button" parent="MenuCanvas/ResetSelection"]
+visible = false
+margin_left = 2646.67
+margin_top = 1626.67
+margin_right = 5968.67
+margin_bottom = 2226.67
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Settings"
+flat = true
+script = ExtResource( 8 )
+button_index = 0
+button_shift_index = 0
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ResetSelection/ResetSettingsButton"]
+visible = false
+position = Vector2( 1460, 333.333 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 10.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ResetSelection/ResetSettingsButton"]
+visible = false
+position = Vector2( 433.334, 346.666 )
+rotation = 3.14159
+scale = Vector2( 6.667, 6.667 )
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+script = ExtResource( 17 )
+
+[node name="ResetAllContentButton" type="Button" parent="MenuCanvas/ResetSelection"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+material = SubResource( 10 )
+margin_left = 2760.0
+margin_top = 3040.0
+margin_right = 6082.0
+margin_bottom = 3640.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "All Content"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 1
+button_shift_index = 1
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ResetSelection/ResetAllContentButton"]
+visible = false
+position = Vector2( 1606.67, 340 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+color = Color( 1, 0.431373, 0.431373, 1 )
+energy = 10.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ResetSelection/ResetAllContentButton"]
+visible = false
+position = Vector2( 433.334, 346.666 )
+rotation = 3.14159
+scale = Vector2( 6.667, 6.667 )
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+script = ExtResource( 17 )
+
+[node name="CancelResetButton" type="Button" parent="MenuCanvas/ResetSelection"]
+visible = false
+margin_left = 6460.0
+margin_top = 3380.0
+margin_right = 8278.0
+margin_bottom = 3980.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Cancel"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 2
+button_shift_index = 2
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ResetSelection/CancelResetButton"]
+visible = false
+position = Vector2( 906.666, 360 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 10.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ResetSelection/CancelResetButton"]
+visible = false
+position = Vector2( 433.334, 346.666 )
+rotation = 3.14159
+scale = Vector2( 6.667, 6.667 )
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 1 )
+script = ExtResource( 17 )
+
+[node name="ResetConfirmSelection" type="Node2D" parent="MenuCanvas"]
+script = ExtResource( 13 )
+button_count = 2
+
+[node name="NoButton" type="Button" parent="MenuCanvas/ResetConfirmSelection"]
+visible = false
+margin_left = 646.667
+margin_top = 1586.67
+margin_right = 3968.67
+margin_bottom = 2186.67
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Dont Erase"
+flat = true
+align = 2
+script = ExtResource( 8 )
+button_index = 0
+button_shift_index = 0
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ResetConfirmSelection/NoButton"]
+visible = false
+position = Vector2( 1673.33, 340.001 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 10.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ResetConfirmSelection/NoButton"]
+visible = false
+position = Vector2( 1640, 346.667 )
+rotation = 4.71239
+scale = Vector2( 6.667, 6.667 )
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 11 )
+script = ExtResource( 17 )
+
+[node name="YesButton" type="Button" parent="MenuCanvas/ResetConfirmSelection"]
+visible = false
+modulate = Color( 1, 0, 0, 1 )
+margin_left = 4500.0
+margin_top = 1600.0
+margin_right = 7822.0
+margin_bottom = 2200.0
+custom_fonts/font = ExtResource( 3 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+text = "Erase"
+flat = true
+script = ExtResource( 8 )
+button_index = 1
+button_shift_index = 1
+
+[node name="Light2D" type="Light2D" parent="MenuCanvas/ResetConfirmSelection/YesButton"]
+visible = false
+position = Vector2( 1633.33, 340 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 7 )
+energy = 10.0
+
+[node name="Particles2D" type="Particles2D" parent="MenuCanvas/ResetConfirmSelection/YesButton"]
+visible = false
+position = Vector2( 1653.33, 353.333 )
+rotation = 4.71239
+scale = Vector2( 6.667, 6.667 )
+amount = 40
+lifetime = 1.5
+process_material = SubResource( 12 )
+script = ExtResource( 17 )
+
+[node name="ResetPopup" type="Popup" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="ResetPopup"]
+modulate = Color( 0, 0, 0, 0.85098 )
+position = Vector2( 577.2, 246.25 )
+scale = Vector2( 18.1313, 11.7513 )
+z_index = 1
+texture = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="ResetPopup"]
+z_index = 1
+
+[node name="Label" type="Label" parent="ResetPopup/Node2D"]
+margin_left = 80.8
+margin_top = 86.6667
+margin_right = 1080.8
+margin_bottom = 136.667
+custom_fonts/font = SubResource( 9 )
+text = "Choose What to Reset"
+align = 1
+
+[node name="ResetConfirmPopup" type="Popup" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="ResetConfirmPopup"]
+modulate = Color( 0, 0, 0, 0.85098 )
+position = Vector2( 577.2, 246.25 )
+scale = Vector2( 18.1313, 11.7513 )
+z_index = 1
+texture = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="ResetConfirmPopup"]
+z_index = 1
+
+[node name="Label" type="Label" parent="ResetConfirmPopup/Node2D"]
+margin_left = 96.8
+margin_top = 88.3333
+margin_right = 1096.8
+margin_bottom = 214.333
+custom_fonts/font = SubResource( 9 )
+text = "Are you sure you want to erase all content and settings?"
+align = 1
+autowrap = true
+
 [node name="Player" parent="." groups=["Points"] instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 699, 399 )
 gravity_radius = 400
 respawn_position = Vector2( 700, 400 )
@@ -854,7 +1142,6 @@ text = "Tokens:"
 [node name="LabelContainer" type="Node2D" parent="."]
 position = Vector2( 0, -80 )
 scale = Vector2( 0.7, 0.7 )
-z_index = 1
 
 [node name="OpalescenceLabel" type="Label" parent="LabelContainer"]
 margin_left = 76.0
@@ -871,66 +1158,84 @@ song_paths = [ "res://Resources/Audio/Music/Opalescence2.wav", "res://Resources/
 wait_time = 0.1
 one_shot = true
 
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="MenuCanvas/ButtonSelectionController1/PlayButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="MenuCanvas/ButtonSelectionController1/CustomizeButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/CustomizeButton" to="." method="_on_CustomizeButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/StorePage" to="MenuCanvas/ButtonSelectionController1/StorePage" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/StorePage" to="MenuCanvas/ButtonSelectionController1/StorePage" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/StorePage" to="." method="_on_StorePage_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="MenuCanvas/ButtonSelectionController1/OptionsButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="MenuCanvas/ButtonSelectionController1/OptionsButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="MenuCanvas/ButtonSelectionController1/QuitButton2" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="MenuCanvas/ButtonSelectionController1/QuitButton2" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController1/QuitButton2" to="." method="_on_QuitButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/StandardButton" to="MenuCanvas/ButtonSelectionController2/StandardButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/StandardButton" to="MenuCanvas/ButtonSelectionController2/StandardButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/StandardButton" to="." method="_on_StandardButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="MenuCanvas/ButtonSelectionController2/MissionsButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="MenuCanvas/ButtonSelectionController2/MissionsButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/MissionsButton" to="." method="_on_ArcadeButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="MenuCanvas/ButtonSelectionController2/TutorialsButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="MenuCanvas/ButtonSelectionController2/TutorialsButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/TutorialsButton" to="." method="_on_TutorialsButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="MenuCanvas/ButtonSelectionController2/ChallengeButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/ChallengeButton" to="." method="_on_ChallengeButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController2/BackButton" to="MenuCanvas/ButtonSelectionController2/BackButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController2/BackButton" to="MenuCanvas/ButtonSelectionController2/BackButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController2/BackButton" to="." method="_on_BackButton_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/MusicVolumeOption" to="." method="_on_MusicVolumeOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/SFXVolumeOption" to="." method="_on_SFXVolumeOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/PaleModeOption" to="." method="_on_PaleModeOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/FullscreenOption" to="." method="_on_FullscreenOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ShowIntroOption" to="." method="_on_ShowIntroOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ShowWarningOption" to="." method="_on_ShowWarningOption_pressed"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/ScreenShakeScaleOption" to="." method="_on_ScreenShakeScaleOption_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="MenuCanvas/ButtonSelectionController3/OptionBackButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController3/OptionBackButton" to="." method="_on_OptionBackButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/ExtraEasyButton" to="MenuCanvas/ButtonSelectionController4/ExtraEasyButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/ExtraEasyButton" to="MenuCanvas/ButtonSelectionController4/ExtraEasyButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/ExtraEasyButton" to="." method="_on_ExtraEasyButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/EasyButton" to="MenuCanvas/ButtonSelectionController4/EasyButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/EasyButton" to="MenuCanvas/ButtonSelectionController4/EasyButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/EasyButton" to="." method="_on_EasyButton2_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/MediumButton" to="MenuCanvas/ButtonSelectionController4/MediumButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/MediumButton" to="MenuCanvas/ButtonSelectionController4/MediumButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/MediumButton" to="." method="_on_MediumButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/HardButton" to="MenuCanvas/ButtonSelectionController4/HardButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/HardButton" to="MenuCanvas/ButtonSelectionController4/HardButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/HardButton" to="." method="_on_HardButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="MenuCanvas/ButtonSelectionController4/ExtraHardButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="MenuCanvas/ButtonSelectionController4/ExtraHardButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/ExtraHardButton" to="." method="_on_ExtraHardButton_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="MenuCanvas/ButtonSelectionController4/NightmareMode" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/NightmareMode" to="." method="_on_NightmareMode_pressed"]
-[connection signal="mouse_entered" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="MenuCanvas/ButtonSelectionController4/StandardBackButton" method="mouse_entered"]
-[connection signal="mouse_exited" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="MenuCanvas/ButtonSelectionController4/StandardBackButton" method="mouse_exited"]
-[connection signal="pressed" from="MenuCanvas/ButtonSelectionController4/StandardBackButton" to="." method="_on_StandardBackButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/MainSelection/PlayButton" to="MenuCanvas/MainSelection/PlayButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/MainSelection/PlayButton" to="MenuCanvas/MainSelection/PlayButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/MainSelection/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/MainSelection/CustomizeButton" to="MenuCanvas/MainSelection/CustomizeButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/MainSelection/CustomizeButton" to="MenuCanvas/MainSelection/CustomizeButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/MainSelection/CustomizeButton" to="." method="_on_CustomizeButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/MainSelection/StorePage" to="MenuCanvas/MainSelection/StorePage" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/MainSelection/StorePage" to="MenuCanvas/MainSelection/StorePage" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/MainSelection/StorePage" to="." method="_on_StorePage_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/MainSelection/OptionsButton" to="MenuCanvas/MainSelection/OptionsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/MainSelection/OptionsButton" to="MenuCanvas/MainSelection/OptionsButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/MainSelection/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/MainSelection/QuitButton2" to="MenuCanvas/MainSelection/QuitButton2" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/MainSelection/QuitButton2" to="MenuCanvas/MainSelection/QuitButton2" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/MainSelection/QuitButton2" to="." method="_on_QuitButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/PlayModeSelection/StandardButton" to="MenuCanvas/PlayModeSelection/StandardButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/PlayModeSelection/StandardButton" to="MenuCanvas/PlayModeSelection/StandardButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/PlayModeSelection/StandardButton" to="." method="_on_StandardButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/PlayModeSelection/MissionsButton" to="MenuCanvas/PlayModeSelection/MissionsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/PlayModeSelection/MissionsButton" to="MenuCanvas/PlayModeSelection/MissionsButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/PlayModeSelection/MissionsButton" to="." method="_on_ArcadeButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/PlayModeSelection/TutorialsButton" to="MenuCanvas/PlayModeSelection/TutorialsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/PlayModeSelection/TutorialsButton" to="MenuCanvas/PlayModeSelection/TutorialsButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/PlayModeSelection/TutorialsButton" to="." method="_on_TutorialsButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/PlayModeSelection/ChallengeButton" to="MenuCanvas/PlayModeSelection/ChallengeButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/PlayModeSelection/ChallengeButton" to="MenuCanvas/PlayModeSelection/ChallengeButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/PlayModeSelection/ChallengeButton" to="." method="_on_ChallengeButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/PlayModeSelection/BackButton" to="MenuCanvas/PlayModeSelection/BackButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/PlayModeSelection/BackButton" to="MenuCanvas/PlayModeSelection/BackButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/PlayModeSelection/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/MusicVolumeOption" to="." method="_on_MusicVolumeOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/SFXVolumeOption" to="." method="_on_SFXVolumeOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/PaleModeOption" to="." method="_on_PaleModeOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/FullscreenOption" to="." method="_on_FullscreenOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/ShowIntroOption" to="." method="_on_ShowIntroOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/ShowWarningOption" to="." method="_on_ShowWarningOption_pressed"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/ScreenShakeScaleOption" to="." method="_on_ScreenShakeScaleOption_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/OptionsSelection/ResetButton" to="MenuCanvas/OptionsSelection/ResetButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/OptionsSelection/ResetButton" to="MenuCanvas/OptionsSelection/ResetButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/OptionsSelection/OptionBackButton" to="MenuCanvas/OptionsSelection/OptionBackButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/OptionsSelection/OptionBackButton" to="MenuCanvas/OptionsSelection/OptionBackButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/OptionsSelection/OptionBackButton" to="." method="_on_OptionBackButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/ExtraEasyButton" to="MenuCanvas/StandardModesSelection/ExtraEasyButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/ExtraEasyButton" to="MenuCanvas/StandardModesSelection/ExtraEasyButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/ExtraEasyButton" to="." method="_on_ExtraEasyButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/EasyButton" to="MenuCanvas/StandardModesSelection/EasyButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/EasyButton" to="MenuCanvas/StandardModesSelection/EasyButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/EasyButton" to="." method="_on_EasyButton2_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/MediumButton" to="MenuCanvas/StandardModesSelection/MediumButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/MediumButton" to="MenuCanvas/StandardModesSelection/MediumButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/MediumButton" to="." method="_on_MediumButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/HardButton" to="MenuCanvas/StandardModesSelection/HardButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/HardButton" to="MenuCanvas/StandardModesSelection/HardButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/HardButton" to="." method="_on_HardButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/ExtraHardButton" to="MenuCanvas/StandardModesSelection/ExtraHardButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/ExtraHardButton" to="MenuCanvas/StandardModesSelection/ExtraHardButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/ExtraHardButton" to="." method="_on_ExtraHardButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/NightmareMode" to="MenuCanvas/StandardModesSelection/NightmareMode" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/NightmareMode" to="MenuCanvas/StandardModesSelection/NightmareMode" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/NightmareMode" to="." method="_on_NightmareMode_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/StandardModesSelection/StandardBackButton" to="MenuCanvas/StandardModesSelection/StandardBackButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/StandardModesSelection/StandardBackButton" to="MenuCanvas/StandardModesSelection/StandardBackButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/StandardModesSelection/StandardBackButton" to="." method="_on_StandardBackButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ResetSelection/ResetSettingsButton" to="MenuCanvas/ResetSelection/ResetSettingsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ResetSelection/ResetSettingsButton" to="MenuCanvas/ResetSelection/ResetSettingsButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ResetSelection/ResetSettingsButton" to="." method="_on_ResetSettingsButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ResetSelection/ResetAllContentButton" to="MenuCanvas/ResetSelection/ResetAllContentButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ResetSelection/ResetAllContentButton" to="MenuCanvas/ResetSelection/ResetAllContentButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ResetSelection/ResetAllContentButton" to="." method="_on_ResetAllContentButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ResetSelection/CancelResetButton" to="MenuCanvas/ResetSelection/CancelResetButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ResetSelection/CancelResetButton" to="MenuCanvas/ResetSelection/CancelResetButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ResetSelection/CancelResetButton" to="." method="_on_CancelResetButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ResetConfirmSelection/NoButton" to="MenuCanvas/ResetConfirmSelection/NoButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ResetConfirmSelection/NoButton" to="MenuCanvas/ResetConfirmSelection/NoButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ResetConfirmSelection/NoButton" to="." method="_on_NoButton_pressed"]
+[connection signal="mouse_entered" from="MenuCanvas/ResetConfirmSelection/YesButton" to="MenuCanvas/ResetConfirmSelection/YesButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="MenuCanvas/ResetConfirmSelection/YesButton" to="MenuCanvas/ResetConfirmSelection/YesButton" method="mouse_exited"]
+[connection signal="pressed" from="MenuCanvas/ResetConfirmSelection/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="timeout" from="ButtonShiftTimer" to="." method="_on_ButtonShiftTimer_timeout"]
 [connection signal="timeout" from="UpdateFulscreenButtonTimer" to="." method="_on_UpdateFulscreenButtonTimer_timeout"]

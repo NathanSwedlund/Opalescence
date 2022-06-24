@@ -5,6 +5,7 @@ var is_shifting_button_selection = false
 var current_shifting_index = 0
 var target_button_selection
 var button_selections
+var modulated_button_selections
 
 var is_fading_in = true
 var is_fading_in_music = true
@@ -47,16 +48,17 @@ func reset():
 	else:
 		$PointFactory.is_active = true
 		Settings.apply_sound_settings()
-		$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
+		$MenuCanvas/OptionsSelection/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
 		
-		$MenuCanvas/ButtonSelectionController3/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
-		$MenuCanvas/ButtonSelectionController3/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
-		$MenuCanvas/ButtonSelectionController3/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
-		button_selections = [$MenuCanvas/ButtonSelectionController1, $MenuCanvas/ButtonSelectionController2, $MenuCanvas/ButtonSelectionController3, $MenuCanvas/ButtonSelectionController4,]
+		$MenuCanvas/OptionsSelection/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
+		$MenuCanvas/OptionsSelection/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
+		$MenuCanvas/OptionsSelection/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
+		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
+		modulated_button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection,]
 		shift_button_selection(Settings.current_main_menu_button_selection, false)
-		$MenuCanvas/ButtonSelectionController3/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
-		$MenuCanvas/ButtonSelectionController3/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
-		$MenuCanvas/ButtonSelectionController3/ScreenShakeScaleOption.update_current_val(Settings.saved_settings["screen_shake_scale"])
+		$MenuCanvas/OptionsSelection/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
+		$MenuCanvas/OptionsSelection/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
+		$MenuCanvas/OptionsSelection/ScreenShakeScaleOption.update_current_val(Settings.saved_settings["screen_shake_scale"])
 		$MusicShuffler.volume_db = -80
 		
 func _on_ChallengeButton_pressed():
@@ -92,7 +94,7 @@ func _process(_delta):
 		if($Player.modulate != last_color):
 			var new_color = $Player.modulate
 			$LabelContainer/OpalescenceLabel.modulate = new_color
-			for button_selection in button_selections:
+			for button_selection in modulated_button_selections:
 				button_selection.modulate = new_color
 				for b in button_selection.get_children():
 					b.get_node("Light2D").color = new_color
@@ -111,6 +113,11 @@ func _process(_delta):
 				shift_button_selection(0)
 			if(current_button_selection == 3):
 				shift_button_selection(1)
+			if(current_button_selection == 4):
+				shift_button_selection(2)
+				$ResetPopup.hide()
+			if(current_button_selection == 5):
+				_on_NoButton_pressed()
 				
 
 func _on_QuitButton_pressed():
@@ -128,17 +135,17 @@ func toggle_button_selection():
 	$ButtonShiftTimer.start()
 
 func _on_PlayButton_pressed():
-	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false):
 		return 
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
-	if($MenuCanvas/ButtonSelectionController2.is_active == false):
+	if($MenuCanvas/PlayModeSelection.is_active == false):
 		return 
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
-	if($MenuCanvas/ButtonSelectionController2.is_active == false):
+	if($MenuCanvas/PlayModeSelection.is_active == false):
 		return 
 	shift_button_selection(3)
 
@@ -188,22 +195,22 @@ func _on_ButtonShiftTimer_timeout():
 
 
 func update_mode_availability():
-	var standard_mode_buttons = $MenuCanvas/ButtonSelectionController4.get_child_count()
+	var standard_mode_buttons = $MenuCanvas/StandardModesSelection.get_child_count()
 	if(Settings.shop["hard_mode_unlocked"] == false):
 		standard_mode_buttons -= 1
-		$MenuCanvas/ButtonSelectionController4/HardButton.queue_free()
+		$MenuCanvas/StandardModesSelection/HardButton.queue_free()
 	if(Settings.shop["extra_hard_mode_unlocked"] == false):
 		standard_mode_buttons -= 1
-		$MenuCanvas/ButtonSelectionController4/ExtraHardButton.queue_free()
+		$MenuCanvas/StandardModesSelection/ExtraHardButton.queue_free()
 	if(Settings.shop["nightmare_mode_unlocked"] == false):
 		standard_mode_buttons -= 1
-		$MenuCanvas/ButtonSelectionController4/NightmareMode.queue_free()
+		$MenuCanvas/StandardModesSelection/NightmareMode.queue_free()
 	
 		
-	$MenuCanvas/ButtonSelectionController4.button_count = standard_mode_buttons
+	$MenuCanvas/StandardModesSelection.button_count = standard_mode_buttons
 	
 	var button_ind = 0
-	for b in $MenuCanvas/ButtonSelectionController4.get_children():
+	for b in $MenuCanvas/StandardModesSelection.get_children():
 		if(b.is_queued_for_deletion() == false):
 			b.button_shift_index = button_ind
 			b.button_index = button_ind
@@ -212,13 +219,13 @@ func update_mode_availability():
 	
 		
 	if(Settings.shop["challenge_mode_unlocked"] == false):
-		$MenuCanvas/ButtonSelectionController2/ChallengeButton.queue_free()
-		$MenuCanvas/ButtonSelectionController2.button_count -= 1
-		$MenuCanvas/ButtonSelectionController2/BackButton.button_index -= 1
-		$MenuCanvas/ButtonSelectionController2/BackButton.button_shift_index -= 1
+		$MenuCanvas/PlayModeSelection/ChallengeButton.queue_free()
+		$MenuCanvas/PlayModeSelection.button_count -= 1
+		$MenuCanvas/PlayModeSelection/BackButton.button_index -= 1
+		$MenuCanvas/PlayModeSelection/BackButton.button_shift_index -= 1
 		
 func _on_StorePage_pressed():
-	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false):
 		return 
 
 	Settings.current_main_menu_button_selection = 0
@@ -226,7 +233,7 @@ func _on_StorePage_pressed():
 	get_tree().change_scene("res://Scenes/MainScenes/StorePage.tscn")
 
 func _on_OptionsButton_pressed():
-	if($MenuCanvas/ButtonSelectionController1.is_active == false):
+	if($MenuCanvas/MainSelection.is_active == false):
 		return 
 
 	shift_button_selection(2)
@@ -333,41 +340,41 @@ export var standard_diff_settings = {
 }
 
 func _on_ExtraEasyButton_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
 	
 func _on_EasyButton2_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Easy"])
 
 func _on_MediumButton_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Medium"])
 
 func _on_HardButton_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 		
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Hard"])
 
 func _on_ExtraHardButton_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
 
 func _on_NightmareMode_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return 
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Nightmare"])
@@ -388,11 +395,53 @@ func _on_ScreenShakeScaleOption_pressed(_value):
 
 
 func _on_StandardBackButton_pressed():
-	if($MenuCanvas/ButtonSelectionController4.is_active == false):
+	if($MenuCanvas/StandardModesSelection.is_active == false):
 		return
 	shift_button_selection(1)
 
 
 
 func _on_UpdateFulscreenButtonTimer_timeout():
-	$MenuCanvas/ButtonSelectionController3/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)
+	$MenuCanvas/OptionsSelection/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)
+
+
+func _on_ResetSettingsButton_pressed():
+	Settings.reset_settings()
+	Settings.saved_settings = Settings.saved_settings_default.duplicate()
+	Settings.reset_colors()
+	update()
+	shift_button_selection(0)
+	
+	Settings.save()
+	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
+
+func _on_ResetAllContentButton_pressed():
+	$ResetConfirmPopup.show()
+	$ResetPopup.hide()
+	shift_button_selection(5)
+
+func reset_all_content():
+	HighScore.reset_high_scores()
+	Settings.reset_settings()
+	Settings.saved_settings = Settings.saved_settings_default.duplicate()
+	Settings.reset_colors()
+	Settings.shop = Settings.shop_default.duplicate()
+	
+	Settings.save()
+	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
+
+func _on_CancelResetButton_pressed():
+	shift_button_selection(2)
+	$ResetPopup.hide()
+
+func _on_ResetButton_pressed():
+	shift_button_selection(4)
+	$ResetPopup.show()
+
+func _on_NoButton_pressed():
+	$ResetPopup.show()
+	$ResetConfirmPopup.hide()
+	shift_button_selection(4)
+
+func _on_YesButton_pressed():
+	reset_all_content()
