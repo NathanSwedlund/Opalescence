@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/HelperScenes/PlayerType.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/Entities/player5Hi-Res.png" type="Texture" id=2]
+
+[node name="PlayerType5" type="Sprite"]
+scale = Vector2( 0.83, 0.83 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+speed_scale = 2.0
+light_scale = 5.0
+light_fade_scale = -8.0
+bullets_per_burst_mod = 1
+laser_scale = 1.2
+bomb_num_max = 1

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Unmaker2.wav-6b44ee79639074c888dacc105cf60b03.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/FX/Unmaker2.wav"
+dest_files=[ "res://.import/Unmaker2.wav-6b44ee79639074c888dacc105cf60b03.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

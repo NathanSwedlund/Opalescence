@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/OPALESCNECEGame2.mp3-ebfd5bfa599b1bb311c2e38644ea6fa6.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/World/OPALESCNECEGame2.mp3"
+dest_files=[ "res://.import/OPALESCNECEGame2.mp3-ebfd5bfa599b1bb311c2e38644ea6fa6.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

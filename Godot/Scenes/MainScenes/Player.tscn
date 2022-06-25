@@ -1,0 +1,484 @@
+[gd_scene load_steps=47 format=2]
+
+[ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
+[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/HelperScenes/UI/Cursor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://Scripts/UI/PowerupLabel.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=9]
+[ext_resource path="res://Resources/Audio/FX/Barrage.wav" type="AudioStream" id=10]
+[ext_resource path="res://Resources/Audio/FX/GravityWell.wav" type="AudioStream" id=11]
+[ext_resource path="res://Resources/Audio/FX/Vision.wav" type="AudioStream" id=12]
+[ext_resource path="res://Resources/Audio/FX/Unmaker.wav" type="AudioStream" id=13]
+[ext_resource path="res://Resources/Audio/FX/OverSheild.wav" type="AudioStream" id=14]
+[ext_resource path="res://Resources/Audio/FX/GainBomb.wav" type="AudioStream" id=15]
+[ext_resource path="res://Resources/Audio/FX/BulletTime.wav" type="AudioStream" id=16]
+[ext_resource path="res://Resources/Audio/FX/LaserCharge.wav" type="AudioStream" id=17]
+[ext_resource path="res://Resources/Audio/FX/BulletFire.wav" type="AudioStream" id=18]
+[ext_resource path="res://Resources/Audio/FX/BombDeploy.wav" type="AudioStream" id=19]
+[ext_resource path="res://Resources/Audio/FX/Opalescence.wav" type="AudioStream" id=20]
+[ext_resource path="res://Resources/Audio/FX/OverSheildLost.wav" type="AudioStream" id=21]
+[ext_resource path="res://Resources/Audio/FX/PlayerExplosion.wav" type="AudioStream" id=22]
+[ext_resource path="res://Resources/Audio/FX/OneUp.wav" type="AudioStream" id=23]
+[ext_resource path="res://Resources/Audio/FX/BullletFailedHit.wav" type="AudioStream" id=24]
+[ext_resource path="res://Resources/Audio/FX/IncendiaryBulletFire.wav" type="AudioStream" id=25]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=26]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=27]
+[ext_resource path="res://Resources/Audio/FX/LaserCooling.wav" type="AudioStream" id=28]
+[ext_resource path="res://Resources/Audio/FX/LaserCooldownComplete.wav" type="AudioStream" id=29]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 35 )
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=20]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 86.41
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.2
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 20 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 86.41
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 500.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_random = 1.0
+color_ramp = SubResource( 21 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.303514, 0.479233, 0.75 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 1, 1, 1, 0.865905, 0.738117, 0.738117, 0.738117, 0.738117 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=11]
+emission_shape = 1
+emission_sphere_radius = 160.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = -100.0
+scale = 20.0
+scale_random = 0.72
+color_ramp = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 30
+font_data = ExtResource( 7 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.96861, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 1000.0
+angular_velocity = 71.4
+orbit_velocity = 0.5
+orbit_velocity_random = 1.0
+scale = 15.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 1
+emission_sphere_radius = 160.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = -100.0
+scale = 5.0
+scale_random = 0.72
+color_ramp = SubResource( 8 )
+
+[sub_resource type="Gradient" id=15]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=16]
+gradient = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 56.3
+tangential_accel = 16.35
+damping = 200.0
+angle = 74.7
+angle_random = 1.0
+scale = 6.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 16 )
+
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.4, 0.4 )
+collision_layer = 16
+collision_mask = 7
+script = ExtResource( 3 )
+default_speed = 500.0
+min_scale = 0.3
+powerup_times = {
+"Barrage": 5.0,
+"Bombastic": 3.0,
+"BulletTime": 1.0,
+"GravityWell": 10.0,
+"Incendiary": 5.0,
+"Opalescence": 10.0,
+"OpalescenceColorShift": 0.05,
+"Unmaker": 10.0,
+"Vision": 15.0
+}
+
+[node name="Background" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+position = Vector2( -152.5, -292.5 )
+scale = Vector2( 100, 100 )
+texture = ExtResource( 5 )
+
+[node name="InnerLight" type="Light2D" parent="."]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
+texture_scale = 1.5
+energy = 2.73
+shadow_enabled = true
+
+[node name="OuterLight" type="Light2D" parent="."]
+position = Vector2( 15, 7.25006 )
+texture = ExtResource( 2 )
+texture_scale = 2.5
+energy = 2.0
+shadow_enabled = true
+
+[node name="MidLight" type="Light2D" parent="OuterLight"]
+texture = ExtResource( 4 )
+texture_scale = 0.5
+energy = 2.4
+shadow_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 50
+lifetime = 4.0
+process_material = SubResource( 2 )
+script = ExtResource( 27 )
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+amount = 20
+local_coords = false
+process_material = SubResource( 5 )
+script = ExtResource( 27 )
+
+[node name="LaserChargeEffect" type="Particles2D" parent="."]
+scale = Vector2( 1, 0.995154 )
+emitting = false
+amount = 25
+speed_scale = 3.0
+process_material = SubResource( 11 )
+script = ExtResource( 27 )
+
+[node name="OpalescenceEffect" type="Particles2D" parent="."]
+emitting = false
+amount = 100
+speed_scale = 3.0
+process_material = SubResource( 11 )
+script = ExtResource( 27 )
+
+[node name="BulletBurstTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="BulletCooldownTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="LaserCooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="LaserChargeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="RespawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Cursor" parent="." instance=ExtResource( 6 )]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PowerupLabel" type="Label" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 145.0
+margin_top = 164.0
+margin_right = 1169.0
+margin_bottom = 197.0
+custom_fonts/font = SubResource( 10 )
+align = 1
+script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="CanvasLayer/PowerupLabel"]
+
+[node name="PowerupTimers" type="Node2D" parent="."]
+
+[node name="Barrage" type="Timer" parent="PowerupTimers"]
+wait_time = 6.0
+one_shot = true
+
+[node name="Bombastic" type="Timer" parent="PowerupTimers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="BulletTime" type="Timer" parent="PowerupTimers"]
+one_shot = true
+
+[node name="GravityWell" type="Timer" parent="PowerupTimers"]
+wait_time = 15.0
+one_shot = true
+
+[node name="Incendiary" type="Timer" parent="PowerupTimers"]
+wait_time = 8.0
+one_shot = true
+
+[node name="Opalescence" type="Timer" parent="PowerupTimers"]
+wait_time = 10.0
+one_shot = true
+
+[node name="OpalescenceColorShift" type="Timer" parent="PowerupTimers"]
+wait_time = 0.05
+
+[node name="Unmaker" type="Timer" parent="PowerupTimers"]
+wait_time = 3.0
+
+[node name="Vision" type="Timer" parent="PowerupTimers"]
+wait_time = 12.0
+one_shot = true
+
+[node name="SoundFX" type="Node2D" parent="."]
+
+[node name="BarrageAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 10 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="BombasticAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 10 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="BombUpAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 15 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="BulletTimeAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 16 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="BulletFireAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 18 )
+volume_db = 4.0
+script = ExtResource( 26 )
+default_vol = 4.0
+
+[node name="BulletHitFail" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 24 )
+pitch_scale = 0.35
+script = ExtResource( 26 )
+default_vol = -4.0
+
+[node name="DropBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 19 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="GravityWellAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 11 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="IncendiaryAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 10 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="IncendiaryBulletFire" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 25 )
+volume_db = 10.0
+pitch_scale = 0.41
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="MaxBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 15 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="OneUpAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 23 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="OpalescenceAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 20 )
+script = ExtResource( 26 )
+
+[node name="OverShieldAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 14 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="OverSheildLostAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 21 )
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="PlayerExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 22 )
+script = ExtResource( 26 )
+default_vol = 2.0
+
+[node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 13 )
+volume_db = -3.816
+pitch_scale = 0.7
+script = ExtResource( 26 )
+default_vol = -80.0
+
+[node name="VisionAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 12 )
+volume_db = 10.0
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="LaserChargeAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 17 )
+script = ExtResource( 26 )
+
+[node name="LaserCooldownAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 28 )
+script = ExtResource( 26 )
+
+[node name="LaserCooldownCompleteAudio" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 29 )
+volume_db = 10.0
+pitch_scale = 0.73
+script = ExtResource( 26 )
+default_vol = 10.0
+
+[node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
+stream = ExtResource( 1 )
+script = ExtResource( 26 )
+
+[node name="ShieldSprite" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.0235294 )
+position = Vector2( 0, -5 )
+scale = Vector2( 2.39024, 2.39024 )
+texture = ExtResource( 9 )
+
+[node name="ShieldDestroyedParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 600
+lifetime = 2.0
+one_shot = true
+speed_scale = 1.2
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 14 )
+script = ExtResource( 27 )
+
+[node name="LaserCooldown" type="Particles2D" parent="."]
+scale = Vector2( 1, 0.995154 )
+emitting = false
+amount = 25
+speed_scale = 3.0
+process_material = SubResource( 19 )
+script = ExtResource( 27 )
+
+[node name="LaserReady" type="Particles2D" parent="."]
+emitting = false
+amount = 300
+lifetime = 0.5
+one_shot = true
+speed_scale = 0.6
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 18 )
+script = ExtResource( 27 )
+
+[node name="GameOverWaitTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="LaserExistsTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="BulletBurstTimer" to="." method="_on_BulletBurstTimer_timeout"]
+[connection signal="timeout" from="BulletCooldownTimer" to="." method="_on_BulletCooldownTimer_timeout"]
+[connection signal="timeout" from="LaserCooldownTimer" to="." method="_on_LaserCooldownTimer_timeout"]
+[connection signal="timeout" from="LaserChargeTimer" to="." method="_on_LaserChargeTimer_timeout"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
+[connection signal="timeout" from="CanvasLayer/PowerupLabel/Timer" to="CanvasLayer/PowerupLabel" method="_on_Timer_timeout"]
+[connection signal="timeout" from="PowerupTimers/Barrage" to="." method="_on_Barrage_timeout"]
+[connection signal="timeout" from="PowerupTimers/Bombastic" to="." method="_on_Bombastic_timeout"]
+[connection signal="timeout" from="PowerupTimers/BulletTime" to="." method="_on_BulletTime_timeout"]
+[connection signal="timeout" from="PowerupTimers/GravityWell" to="." method="_on_GravityWell_timeout"]
+[connection signal="timeout" from="PowerupTimers/Incendiary" to="." method="_on_Incendiary_timeout"]
+[connection signal="timeout" from="PowerupTimers/Opalescence" to="." method="_on_Opalescence_timeout"]
+[connection signal="timeout" from="PowerupTimers/OpalescenceColorShift" to="." method="_on_OpalescenceColorShift_timeout"]
+[connection signal="timeout" from="PowerupTimers/Unmaker" to="." method="_on_Unmaker_timeout"]
+[connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
+[connection signal="finished" from="SoundFX/EnemyExplosionSound" to="." method="_on_EnemyExplosionSound_finished"]
+[connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]
+[connection signal="timeout" from="LaserExistsTimer" to="." method="_on_LaserExistsTimer_timeout"]

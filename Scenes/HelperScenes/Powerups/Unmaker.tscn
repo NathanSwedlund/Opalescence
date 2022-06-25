@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Scenes/HelperScenes/Items/PowerupPill.tscn" type="PackedScene" id=1]
-
-[node name="Unmaker" type="Node2D"]
-modulate = Color( 0.27451, 0.560784, 1, 1 )
-
-[node name="PowerupPill" parent="." instance=ExtResource( 1 )]

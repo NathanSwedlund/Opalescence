@@ -1,0 +1,241 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Items/Bullet4-pellet.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/Items/bullet-4Hi-Res.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/HelperScenes/Bullet4.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8.16667, 6 )
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 5.629, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.74
+scale_curve = SubResource( 5 )
+
+[node name="Bullet4" type="Node2D"]
+scale = Vector2( 0.4, 0.4 )
+script = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": "s"
+}
+deg_sep = 20
+
+[node name="Bullet" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet2" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet2"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet2"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet2"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet3" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet3"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet3"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet3"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet4" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet4"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet4"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet4"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet5" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet5"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet5"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet5"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet6" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet6"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet6"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet6"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="Bullet7" type="KinematicBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+speed = 1000
+speed_accel = -500.0
+base_damge = 1.0
+
+[node name="Sprite" type="Sprite" parent="Bullet7"]
+material = SubResource( 6 )
+position = Vector2( -0.706129, -0.0998397 )
+rotation = -1.5708
+scale = Vector2( 0.197, 0.276 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet7"]
+position = Vector2( -0.16667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="Bullet7"]
+position = Vector2( 10.984, 0 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )

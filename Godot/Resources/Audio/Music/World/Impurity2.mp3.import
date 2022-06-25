@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Impurity2.mp3-53bd73df49ec99c08bb6038ae7cf3499.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/World/Impurity2.mp3"
+dest_files=[ "res://.import/Impurity2.mp3-53bd73df49ec99c08bb6038ae7cf3499.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

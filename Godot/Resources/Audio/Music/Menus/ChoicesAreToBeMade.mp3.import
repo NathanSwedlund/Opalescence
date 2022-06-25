@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ChoicesAreToBeMade.mp3-d02578642f302e0b0ae881ad53afccbe.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Menus/ChoicesAreToBeMade.mp3"
+dest_files=[ "res://.import/ChoicesAreToBeMade.mp3-d02578642f302e0b0ae881ad53afccbe.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

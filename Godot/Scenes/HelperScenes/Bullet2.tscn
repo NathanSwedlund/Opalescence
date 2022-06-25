@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Items/Bullet2.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/Items/bullet-2Hi-Res.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.66667, 5 )
+
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 1
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 0.74
+scale_curve = SubResource( 5 )
+
+[node name="Bullet2" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_vertical_guides_": [ -114.0 ]
+}
+base_damge = 1.0
+heat_seeking_turn_speed = 0.04
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 6 )
+rotation = -1.5708
+scale = Vector2( 0.2, 0.194 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1.66667, 0 )
+shape = SubResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 7 )
+position = Vector2( 9.53674e-07, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+amount = 15
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 3 )

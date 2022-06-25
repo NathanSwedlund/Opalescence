@@ -1,0 +1,928 @@
+[gd_scene load_steps=59 format=2]
+
+[ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/HelperScenes/UI/ScreenShake.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Resources/Textures/UI/bombImage-pixel-large.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=11]
+[ext_resource path="res://Scenes/HelperScenes/MusicShuffler.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/HelperScenes/UI/FadeInLabel.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/HelperScenes/PixelDynamicFont.tres" type="DynamicFont" id=14]
+[ext_resource path="res://Scenes/HelperScenes/UI/Circle_progress_bar.gdshader" type="Shader" id=15]
+[ext_resource path="res://Scripts/UI/ButtonSelectionController.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/Environment/World.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/UI/PowerupTimer.gd" type="Script" id=18]
+[ext_resource path="res://Resources/Audio/FX/countdown.wav" type="AudioStream" id=19]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=20]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=21]
+[ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=22]
+[ext_resource path="res://Scripts/Environment/LevelController.gd" type="Script" id=23]
+[ext_resource path="res://Scripts/UI/FadeInLabel.gd" type="Script" id=24]
+[ext_resource path="res://Resources/Audio/FX/NewHighScore.wav" type="AudioStream" id=25]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3.24999, 506 )
+
+[sub_resource type="DynamicFont" id=17]
+size = 18
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=26]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=28]
+size = 20
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=18]
+size = 80
+outline_color = Color( 0.0313726, 0.0313726, 0.0313726, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="StyleBoxEmpty" id=29]
+
+[sub_resource type="StyleBoxEmpty" id=30]
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 25.021, 1 )
+flag_disable_z = true
+direction = Vector3( -7.829, 0, 0 )
+spread = 138.1
+gravity = Vector3( -1500, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="ParticlesMaterial" id=19]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 25.021, 1 )
+flag_disable_z = true
+direction = Vector3( -7.829, 0, 0 )
+spread = 138.1
+gravity = Vector3( -1500, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+scale = 3.0
+scale_random = 1.0
+
+[sub_resource type="DynamicFont" id=20]
+size = 100
+font_data = ExtResource( 9 )
+
+[sub_resource type="CanvasItemMaterial" id=42]
+light_mode = 1
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.605405, 0.935135 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.607843, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0, 0, 0, 0, 0.952941, 0.952941, 0.952941, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=21]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=24]
+shader = ExtResource( 15 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=25]
+size = 200
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=33]
+size = 49
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 30
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=36]
+size = 70
+font_data = ExtResource( 9 )
+
+[sub_resource type="Gradient" id=37]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=38]
+gradient = SubResource( 37 )
+
+[sub_resource type="Curve" id=39]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=40]
+curve = SubResource( 39 )
+
+[sub_resource type="ParticlesMaterial" id=41]
+emission_shape = 2
+emission_box_extents = Vector3( 200, 10, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 400, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.35
+orbit_velocity = 0.03
+orbit_velocity_random = 1.0
+damping = 100.0
+scale = 20.0
+scale_random = 1.0
+scale_curve = SubResource( 40 )
+color_ramp = SubResource( 38 )
+
+[sub_resource type="CanvasItemMaterial" id=32]
+light_mode = 1
+
+[sub_resource type="DynamicFont" id=35]
+size = 12
+font_data = ExtResource( 9 )
+
+[node name="World" type="Node2D"]
+scale = Vector2( 1.25, 1.2 )
+script = ExtResource( 17 )
+
+[node name="Background" type="Sprite" parent="."]
+modulate = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+position = Vector2( -181, -122 )
+scale = Vector2( 10.3203, 6.57813 )
+z_index = -7
+texture = ExtResource( 5 )
+centered = false
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+color = Color( 0, 0, 0, 1 )
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2( 0, 298.5 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1010, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2( 12, 297 )
+shape = SubResource( 1 )
+
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 820, -1 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2( 0.500014, 308 )
+shape = SubResource( 1 )
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2( 850, 589 )
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2( 12.75, 342.957 )
+shape = SubResource( 1 )
+
+[node name="PointFactory" parent="." instance=ExtResource( 1 )]
+left_bound = 10
+right_bound = 1014
+up_bound = 10
+down_bound = 590
+time_min = 0.1
+time_max = 0.2
+
+[node name="EnemyFactory" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+left_bound = 50
+right_bound = 964
+up_bound = 50
+down_bound = 550
+time_min = 5.0
+time_max = 10.0
+default_enemy_probabilities = {
+"blocker": 1.0,
+"chaser": 0.0,
+"comet": 0.0,
+"shooter": 0.0
+}
+
+[node name="PowerupFactory" parent="." instance=ExtResource( 4 )]
+left_bound = 50
+right_bound = 964
+up_bound = 50
+down_bound = 550
+time_min = 0.0
+time_max = 1.0
+powerup_probabilities = {
+"barrage": 1.0,
+"bomb_up": 0.0,
+"bombastic": 1.0,
+"bullet_time": 1.0,
+"gravity_well": 1.0,
+"incendiary": 1.0,
+"max_bomb": 1.0,
+"one_up": 1.0,
+"opalescence": 11111.0,
+"overshield": 1.0,
+"unmaker": 1.0,
+"vision": 1.0
+}
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 510, 300 )
+respawn_position = Vector2( 510, 300 )
+powerup_times = {
+"Barrage": 5.0,
+"Bombastic": 3.0,
+"BulletTime": 1.0,
+"GravityWell": 10.0,
+"Incendiary": 5.0,
+"Opalescence": 10.0,
+"OpalescenceColorShift": 0.05,
+"Unmaker": 10.0,
+"Vision": 15.0
+}
+
+[node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
+pause_mode = 2
+follow_viewport_enable = true
+script = ExtResource( 8 )
+
+[node name="PointsLabel" type="Label" parent="HeadsUpDisplay"]
+margin_left = 37.0
+margin_top = 19.0
+margin_right = 203.0
+margin_bottom = 40.0
+custom_fonts/font = SubResource( 17 )
+text = "Points: "
+
+[node name="HighScoreLabel" type="Label" parent="HeadsUpDisplay"]
+margin_left = 493.0
+margin_top = 22.0
+margin_right = 722.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 26 )
+text = "High Score:"
+
+[node name="TimeLabel" type="Label" parent="HeadsUpDisplay"]
+margin_left = 35.0
+margin_top = 45.0
+margin_right = 201.0
+margin_bottom = 66.0
+custom_fonts/font = SubResource( 17 )
+text = "Time: "
+
+[node name="HealthDisplay" type="Node2D" parent="HeadsUpDisplay"]
+position = Vector2( 1108, 55 )
+
+[node name="playerSprite" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
+modulate = Color( 1, 1, 1, 0.698039 )
+position = Vector2( 0.315002, 0.999985 )
+scale = Vector2( 0.715, 0.731707 )
+
+[node name="Shield" type="Sprite" parent="HeadsUpDisplay/HealthDisplay"]
+modulate = Color( 1, 1, 1, 0.698039 )
+position = Vector2( 0.315002, 0.999985 )
+scale = Vector2( 0.715, 0.731707 )
+texture = ExtResource( 10 )
+
+[node name="Label" type="Label" parent="HeadsUpDisplay/HealthDisplay"]
+margin_left = 37.315
+margin_top = -10.0
+margin_right = 98.315
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 28 )
+text = "x 3"
+
+[node name="BombDisplay" type="Node2D" parent="HeadsUpDisplay"]
+position = Vector2( 1082, 650 )
+
+[node name="BombImage" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
+position = Vector2( 28, 26.95 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 7 )
+
+[node name="BombLabel" type="Label" parent="HeadsUpDisplay/BombDisplay"]
+margin_left = 71.0
+margin_top = 19.0
+margin_right = 237.0
+margin_bottom = 62.0
+custom_fonts/font = SubResource( 17 )
+text = "x 1
+"
+
+[node name="GameOverPopup" type="Popup" parent="HeadsUpDisplay"]
+margin_left = -11.0
+margin_top = 108.0
+margin_right = 29.0
+margin_bottom = 148.0
+rect_pivot_offset = Vector2( -518, 284 )
+
+[node name="GameOverLabel" type="Label" parent="HeadsUpDisplay/GameOverPopup"]
+margin_left = 271.0
+margin_top = 71.0
+margin_right = 991.0
+margin_bottom = 171.0
+custom_fonts/font = SubResource( 18 )
+text = "Game Over"
+
+[node name="Buttons" type="Node2D" parent="HeadsUpDisplay/GameOverPopup"]
+scale = Vector2( 0.15, 0.15 )
+script = ExtResource( 16 )
+button_count = 2
+
+[node name="RestartButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
+margin_left = 353.0
+margin_top = 1453.33
+margin_right = 2472.0
+margin_bottom = 1999.33
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Restart"
+flat = true
+script = ExtResource( 11 )
+button_index = 0
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton"]
+position = Vector2( 413.667, 326.67 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 3.1
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton"]
+position = Vector2( 877.833, 313.337 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
+
+[node name="MenuButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
+margin_left = 353.0
+margin_top = 2720.0
+margin_right = 1569.0
+margin_bottom = 3266.0
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Menu"
+flat = true
+script = ExtResource( 11 )
+button_index = 1
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton"]
+visible = false
+position = Vector2( 362.416, 313.337 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 3.1
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton"]
+visible = false
+position = Vector2( 877.833, 313.337 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 19 )
+
+[node name="ShopButton" type="Button" parent="HeadsUpDisplay/GameOverPopup/Buttons"]
+visible = false
+margin_left = 353.0
+margin_top = 2087.0
+margin_right = 1569.0
+margin_bottom = 2633.0
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Shop"
+flat = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+button_index = 0
+button_shift_index = 0
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
+visible = false
+position = Vector2( 362.416, 313.337 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 1.78
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton"]
+visible = false
+position = Vector2( 877.833, 313.337 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
+
+[node name="PausePopup" type="Popup" parent="HeadsUpDisplay"]
+margin_left = -11.0
+margin_top = 106.0
+margin_right = 29.0
+margin_bottom = 146.0
+
+[node name="Background" type="Sprite" parent="HeadsUpDisplay/PausePopup"]
+modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.72549 )
+position = Vector2( -272, -262 )
+scale = Vector2( 13.4297, 7.96875 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="Buttons" type="Node2D" parent="HeadsUpDisplay/PausePopup"]
+scale = Vector2( 0.15, 0.15 )
+script = ExtResource( 16 )
+button_count = 2
+
+[node name="ResumeButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
+margin_left = 353.0
+margin_top = 1453.0
+margin_right = 2171.0
+margin_bottom = 1999.0
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Resume"
+flat = true
+script = ExtResource( 11 )
+button_index = 0
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/ResumeButton"]
+position = Vector2( 375.749, 323 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 5.49
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/ResumeButton"]
+position = Vector2( 891.166, 323 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
+
+[node name="MenuButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
+margin_left = 353.0
+margin_top = 2720.0
+margin_right = 1569.0
+margin_bottom = 3266.0
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Menu"
+flat = true
+script = ExtResource( 11 )
+button_index = 1
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/MenuButton"]
+visible = false
+position = Vector2( 375.749, 323 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 5.49
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/MenuButton"]
+visible = false
+position = Vector2( 891.166, 323 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 19 )
+
+[node name="OptionsButton" type="Button" parent="HeadsUpDisplay/PausePopup/Buttons"]
+visible = false
+margin_left = 353.0
+margin_top = 2087.0
+margin_right = 2472.0
+margin_bottom = 2633.0
+custom_fonts/font = ExtResource( 14 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/focus = SubResource( 30 )
+text = "Options"
+flat = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+button_index = 1
+
+[node name="Light2D" type="Light2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
+visible = false
+position = Vector2( 375.749, 323 )
+scale = Vector2( 5.2124, 0.604167 )
+texture = ExtResource( 22 )
+energy = 5.49
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/PausePopup/Buttons/OptionsButton"]
+position = Vector2( 891.166, 323 )
+scale = Vector2( 6.667, 6.667 )
+emitting = false
+amount = 20
+lifetime = 1.5
+process_material = SubResource( 2 )
+
+[node name="PausePopupBufferTimer" type="Timer" parent="HeadsUpDisplay/PausePopup"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Label" type="Label" parent="HeadsUpDisplay/PausePopup"]
+margin_left = 342.0
+margin_top = 66.0
+margin_right = 947.0
+margin_bottom = 166.0
+custom_fonts/font = SubResource( 20 )
+text = "PAUSED"
+
+[node name="PowerupTimerUIs" type="Node2D" parent="HeadsUpDisplay"]
+pause_mode = 1
+position = Vector2( 6, 280 )
+
+[node name="PowerupTimerUI" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI"]
+material = SubResource( 14 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI2" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 45 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI2"]
+material = SubResource( 15 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI3" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 90 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI3"]
+material = SubResource( 16 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI4" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 135 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI4"]
+material = SubResource( 21 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI5" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 180 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI5"]
+material = SubResource( 22 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI6" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 225 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI6"]
+material = SubResource( 23 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="PowerupTimerUI7" type="Node2D" parent="HeadsUpDisplay/PowerupTimerUIs"]
+visible = false
+light_mask = 0
+material = SubResource( 42 )
+position = Vector2( 0, 270 )
+z_index = 1
+script = ExtResource( 18 )
+
+[node name="VisualTimer" type="Panel" parent="HeadsUpDisplay/PowerupTimerUIs/PowerupTimerUI7"]
+material = SubResource( 24 )
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="CountdownLabel" type="Label" parent="HeadsUpDisplay"]
+pause_mode = 1
+margin_left = 551.0
+margin_top = 245.0
+margin_right = 751.0
+margin_bottom = 445.0
+custom_fonts/font = SubResource( 25 )
+text = "3"
+
+[node name="CountdownTimer" type="Timer" parent="HeadsUpDisplay/CountdownLabel"]
+one_shot = true
+
+[node name="CountdownAudio" type="AudioStreamPlayer" parent="HeadsUpDisplay/CountdownLabel"]
+stream = ExtResource( 19 )
+volume_db = -5.0
+script = ExtResource( 20 )
+default_vol = -5.0
+
+[node name="ButtonSelectAudio" type="AudioStreamPlayer" parent="HeadsUpDisplay"]
+stream = ExtResource( 21 )
+pitch_scale = 0.7
+script = ExtResource( 20 )
+
+[node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="HeadsUpDisplay/PointAddPopup"]
+modulate = Color( 0, 0, 0, 0.819608 )
+position = Vector2( -230, -145 )
+scale = Vector2( 13, 7.875 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="TotalPointsLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
+margin_left = 40.0
+margin_top = 291.0
+margin_right = 740.0
+margin_bottom = 341.0
+custom_fonts/font = SubResource( 33 )
+text = "Total Points: "
+
+[node name="Node2D" type="Node2D" parent="HeadsUpDisplay/PointAddPopup"]
+position = Vector2( 53, 19 )
+rotation = 1.5708
+
+[node name="Arrow Label" type="Label" parent="HeadsUpDisplay/PointAddPopup/Node2D"]
+margin_left = 170.998
+margin_top = -575.001
+margin_right = 284.998
+margin_bottom = -525.001
+custom_fonts/font = SubResource( 33 )
+text = "->"
+
+[node name="PointsLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
+margin_left = 49.0
+margin_top = 125.0
+margin_right = 735.0
+margin_bottom = 175.0
+custom_fonts/font = SubResource( 33 )
+text = "Points Earned:"
+
+[node name="TokensEarnedLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
+margin_left = 39.0
+margin_top = 534.0
+margin_right = 739.0
+margin_bottom = 584.0
+custom_fonts/font = SubResource( 34 )
+text = "Tokens Earned: "
+
+[node name="RackingTimer" type="Timer" parent="HeadsUpDisplay/PointAddPopup"]
+wait_time = 0.1
+
+[node name="WaitTimer" type="Timer" parent="HeadsUpDisplay/PointAddPopup"]
+wait_time = 0.7
+one_shot = true
+
+[node name="HighScorePopup" type="Popup" parent="HeadsUpDisplay"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Background" type="Sprite" parent="HeadsUpDisplay/HighScorePopup"]
+modulate = Color( 0, 0, 0, 0.819608 )
+position = Vector2( -230, -145 )
+scale = Vector2( 13, 7.875 )
+texture = ExtResource( 5 )
+centered = false
+
+[node name="HighScoreLabel" type="Label" parent="HeadsUpDisplay/HighScorePopup"]
+margin_left = 5.0
+margin_top = 213.0
+margin_right = 1277.0
+margin_bottom = 283.0
+custom_fonts/font = SubResource( 36 )
+text = ":Old High Score:"
+align = 1
+
+[node name="HighScoreLabel2" type="Label" parent="HeadsUpDisplay/HighScorePopup"]
+margin_left = 12.0
+margin_top = 325.0
+margin_right = 1268.0
+margin_bottom = 395.0
+custom_fonts/font = SubResource( 36 )
+text = "0"
+align = 1
+script = ExtResource( 24 )
+fade_speed = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="HeadsUpDisplay/HighScorePopup"]
+position = Vector2( 642, 362 )
+emitting = false
+amount = 700
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 41 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HeadsUpDisplay/HighScorePopup"]
+stream = ExtResource( 25 )
+pitch_scale = 1.45
+script = ExtResource( 20 )
+
+[node name="HighScoreWaitTimer" type="Timer" parent="HeadsUpDisplay/HighScorePopup"]
+
+[node name="LevelController" type="Node2D" parent="."]
+script = ExtResource( 23 )
+level_count = 9
+
+[node name="CountdownTimer" type="Timer" parent="LevelController"]
+
+[node name="LevelLabel" parent="LevelController" instance=ExtResource( 13 )]
+material = SubResource( 32 )
+margin_left = 1.0
+margin_top = 401.0
+margin_right = 1019.0
+margin_bottom = 481.0
+text = "Level 0"
+align = 1
+valign = 1
+fade_speed = 0.5
+automatically_fade_out = true
+
+[node name="LevelLabel2" parent="LevelController" instance=ExtResource( 13 )]
+material = SubResource( 32 )
+margin_left = 45.6
+margin_top = 55.0
+margin_right = 171.6
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 35 )
+text = "Level:"
+valign = 1
+script = null
+
+[node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
+pause_mode = 2
+autoplay = true
+song_paths = [ "res://Resources/Audio/Music/World/Impurity2.mp3", "res://Resources/Audio/Music/World/Jagged Skies.mp3", "res://Resources/Audio/Music/World/Knight City.mp3", "res://Resources/Audio/Music/World/OPALESCNECEGame2.mp3", "res://Resources/Audio/Music/World/Subject#39.mp3", "res://Resources/Audio/Music/World/The Wayward Mines.mp3" ]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+
+[node name="ExplosionScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "explosion"
+
+[node name="LaserScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "laser"
+
+[node name="BombScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "bomb"
+
+[node name="MiscScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
+shake_name = "misc"
+
+[connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]
+[connection signal="popup_hide" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="deactivate"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/RestartButton" to="HeadsUpDisplay" method="_on_RestartButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/MenuButton" to="HeadsUpDisplay" method="_on_MenuButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/GameOverPopup/Buttons/ShopButton" to="HeadsUpDisplay" method="_on_ShopButton_pressed"]
+[connection signal="popup_hide" from="HeadsUpDisplay/PausePopup" to="HeadsUpDisplay/PausePopup/Buttons" method="deactivate"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/ResumeButton" to="HeadsUpDisplay" method="_on_ResumeButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay/PausePopup/Buttons/MenuButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay/PausePopup/Buttons/MenuButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/MenuButton" to="HeadsUpDisplay" method="_on_MenuButton_pressed"]
+[connection signal="mouse_entered" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_entered"]
+[connection signal="mouse_exited" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" method="mouse_exited"]
+[connection signal="pressed" from="HeadsUpDisplay/PausePopup/Buttons/OptionsButton" to="HeadsUpDisplay" method="_on_OptionsButton_pressed"]
+[connection signal="timeout" from="HeadsUpDisplay/PausePopup/PausePopupBufferTimer" to="HeadsUpDisplay" method="_on_PausePopupBufferTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/CountdownLabel/CountdownTimer" to="." method="_on_CountdownTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/RackingTimer" to="HeadsUpDisplay" method="_on_RackingTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/PointAddPopup/WaitTimer" to="HeadsUpDisplay" method="_on_WaitTimer_timeout"]
+[connection signal="timeout" from="HeadsUpDisplay/HighScorePopup/HighScoreWaitTimer" to="HeadsUpDisplay" method="_on_HighScoreWaitTimer_timeout"]
+[connection signal="timeout" from="LevelController/CountdownTimer" to="LevelController" method="_on_CountdownTimer_timeout"]

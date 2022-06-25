@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Visions.mp3-e9e1198e1ab959aa78c46b76ee91bc60.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Menus/Visions.mp3"
+dest_files=[ "res://.import/Visions.mp3-e9e1198e1ab959aa78c46b76ee91bc60.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,173 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/FX/EnemyLight.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.416216, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0432432, 0.0432432, 0.0432432, 0.956757, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+radial_accel_random = 0.62
+scale = 4.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 1.0
+orbit_velocity_random = 0.65
+radial_accel_random = 0.62
+scale = 3.0
+scale_random = 1.0
+color = Color( 0, 0, 0, 1 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 20.0
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+radial_accel_random = 0.62
+scale = 4.0
+scale_random = 1.0
+color = Color( 0, 0, 0, 1 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 200.0
+
+[sub_resource type="CanvasItemMaterial" id=11]
+light_mode = 1
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.278846, 0.75 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 0.738117, 0.738117, 0.738117, 0.738117 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 488.0
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = 100.0
+damping = 1000.0
+damping_random = 1.0
+scale = 20.0
+scale_random = 0.72
+color_ramp = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=12]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 488.0
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = 100.0
+damping = 1000.0
+damping_random = 1.0
+scale = 20.0
+scale_random = 0.72
+color = Color( 0.172549, 0.172549, 0.172549, 1 )
+color_ramp = SubResource( 8 )
+
+[node name="PlayerDeathExplosion" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+max_size = 1.8
+grow_speed = 1.02
+shrink_speed = 0.98
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+energy = 3.3
+
+[node name="Light2D2" type="Light2D" parent="."]
+rotation = 0.727802
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+energy = 6.0
+
+[node name="WhiteBlast" type="Particles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.85
+local_coords = false
+process_material = SubResource( 3 )
+script = ExtResource( 4 )
+
+[node name="DebrisOrbit" type="Particles2D" parent="."]
+amount = 60
+lifetime = 3.41
+speed_scale = 1.5
+explosiveness = 0.51
+local_coords = false
+process_material = SubResource( 4 )
+script = ExtResource( 4 )
+
+[node name="BlackBlast" type="Particles2D" parent="."]
+emitting = false
+amount = 300
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.85
+local_coords = false
+process_material = SubResource( 5 )
+script = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+scale = Vector2( 0.45, 0.45 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2( 1.13793, 1.13793 )
+shape = SubResource( 6 )
+
+[node name="DyingEffect" type="Particles2D" parent="."]
+material = SubResource( 11 )
+scale = Vector2( 0.7, 0.7 )
+amount = 300
+speed_scale = 3.0
+explosiveness = 0.17
+visibility_rect = Rect2( -400, -400, 800, 800 )
+process_material = SubResource( 10 )
+script = ExtResource( 4 )
+
+[node name="DyingEffect2" type="Particles2D" parent="."]
+material = SubResource( 11 )
+scale = Vector2( 0.299336, 0.316667 )
+amount = 300
+speed_scale = 3.0
+explosiveness = 0.17
+visibility_rect = Rect2( -400, -400, 800, 800 )
+process_material = SubResource( 12 )
+script = ExtResource( 4 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Wayward Mines.mp3-4ade832bc7943b25264033fe381f9fca.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/World/The Wayward Mines.mp3"
+dest_files=[ "res://.import/The Wayward Mines.mp3-4ade832bc7943b25264033fe381f9fca.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

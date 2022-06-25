@@ -1,0 +1,25 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/HelperScenes/UI/Circle_progress_bar.gdshader" type="Shader" id=1]
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.605405, 0.935135 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.607843, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 0, 0, 0, 0, 0.952941, 0.952941, 0.952941, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/value = 0.0
+shader_param/thickness = 100.0
+shader_param/offset = 0.0
+shader_param/smoothing = 0.0
+shader_param/fg = SubResource( 6 )
+shader_param/bg = SubResource( 4 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Opalescence Shop.mp3-5c800ea4f396d9363f97f0f5bbca932c.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Menus/Opalescence Shop.mp3"
+dest_files=[ "res://.import/Opalescence Shop.mp3-5c800ea4f396d9363f97f0f5bbca932c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

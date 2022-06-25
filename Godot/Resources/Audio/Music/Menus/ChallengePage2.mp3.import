@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/ChallengePage2.mp3-a3889b1caa2c8269cd48e9dcbb911d65.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Menus/ChallengePage2.mp3"
+dest_files=[ "res://.import/ChallengePage2.mp3-a3889b1caa2c8269cd48e9dcbb911d65.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

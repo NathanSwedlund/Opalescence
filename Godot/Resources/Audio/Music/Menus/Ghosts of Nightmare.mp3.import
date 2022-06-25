@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ghosts of Nightmare.mp3-dafe617b03eca9815cc00bc3945132a0.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/Menus/Ghosts of Nightmare.mp3"
+dest_files=[ "res://.import/Ghosts of Nightmare.mp3-dafe617b03eca9815cc00bc3945132a0.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

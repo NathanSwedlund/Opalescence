@@ -1,0 +1,392 @@
+{
+	"format": "BeepBox",
+	"version": 9,
+	"scale": "easy :)",
+	"key": "C",
+	"introBars": 0,
+	"loopBars": 1,
+	"beatsPerBar": 8,
+	"ticksPerBeat": 4,
+	"beatsPerMinute": 176,
+	"layeredInstruments": false,
+	"patternInstruments": false,
+	"channels": [
+		{
+			"type": "pitch",
+			"instruments": [
+				{
+					"type": "Picked String",
+					"volume": 80,
+					"eqFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 8000,
+							"linearGain": 0.3536
+						}
+					],
+					"preset": 136,
+					"effects": [
+						"reverb"
+					],
+					"reverb": 33,
+					"fadeInSeconds": 0,
+					"fadeOutTicks": 48,
+					"harmonics": [
+						100,
+						100,
+						100,
+						86,
+						100,
+						86,
+						57,
+						100,
+						100,
+						86,
+						100,
+						86,
+						100,
+						86,
+						100,
+						71,
+						57,
+						71,
+						71,
+						100,
+						86,
+						71,
+						86,
+						86,
+						100,
+						86,
+						86,
+						86
+					],
+					"unison": "piano",
+					"stringSustain": 79,
+					"envelopes": []
+				}
+			],
+			"patterns": [
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				}
+			],
+			"sequence": [
+				1
+			],
+			"octaveScrollBar": 3
+		},
+		{
+			"type": "pitch",
+			"instruments": [
+				{
+					"type": "FM",
+					"volume": 80,
+					"eqFilter": [],
+					"preset": 651,
+					"effects": [
+						"transition type",
+						"vibrato",
+						"reverb"
+					],
+					"transition": "slide in pattern",
+					"vibrato": "light",
+					"reverb": 33,
+					"fadeInSeconds": 0.0263,
+					"fadeOutTicks": -3,
+					"algorithm": "1 2 3 4",
+					"feedbackType": "1⟲ 2⟲",
+					"feedbackAmplitude": 5,
+					"operators": [
+						{
+							"frequency": "2×",
+							"amplitude": 13
+						},
+						{
+							"frequency": "5×",
+							"amplitude": 12
+						},
+						{
+							"frequency": "1×",
+							"amplitude": 0
+						},
+						{
+							"frequency": "1×",
+							"amplitude": 0
+						}
+					],
+					"envelopes": [
+						{
+							"target": "noteVolume",
+							"envelope": "note size"
+						},
+						{
+							"target": "feedbackAmplitude",
+							"envelope": "flare 2"
+						}
+					]
+				}
+			],
+			"patterns": [
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				}
+			],
+			"sequence": [
+				1
+			],
+			"octaveScrollBar": 2
+		},
+		{
+			"type": "pitch",
+			"instruments": [
+				{
+					"type": "FM",
+					"volume": 80,
+					"eqFilter": [],
+					"preset": 962,
+					"effects": [
+						"note filter"
+					],
+					"noteFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 13454.34,
+							"linearGain": 0.25
+						}
+					],
+					"fadeInSeconds": 0,
+					"fadeOutTicks": -3,
+					"algorithm": "1 2 3←4",
+					"feedbackType": "1⟲",
+					"feedbackAmplitude": 5,
+					"operators": [
+						{
+							"frequency": "~1×",
+							"amplitude": 12
+						},
+						{
+							"frequency": "2×",
+							"amplitude": 15
+						},
+						{
+							"frequency": "4×",
+							"amplitude": 14
+						},
+						{
+							"frequency": "~1×",
+							"amplitude": 3
+						}
+					],
+					"envelopes": [
+						{
+							"target": "noteFilterAllFreqs",
+							"envelope": "twang 1"
+						},
+						{
+							"target": "operatorAmplitude",
+							"envelope": "note size",
+							"index": 0
+						},
+						{
+							"target": "operatorAmplitude",
+							"envelope": "note size",
+							"index": 1
+						},
+						{
+							"target": "operatorAmplitude",
+							"envelope": "flare 1",
+							"index": 2
+						},
+						{
+							"target": "operatorAmplitude",
+							"envelope": "flare 2",
+							"index": 3
+						},
+						{
+							"target": "feedbackAmplitude",
+							"envelope": "flare 1"
+						}
+					]
+				}
+			],
+			"patterns": [
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				}
+			],
+			"sequence": [
+				1
+			],
+			"octaveScrollBar": 1
+		},
+		{
+			"type": "drum",
+			"instruments": [
+				{
+					"type": "noise",
+					"volume": 80,
+					"eqFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 1681.79,
+							"linearGain": 1
+						}
+					],
+					"effects": [
+						"note filter"
+					],
+					"noteFilter": [
+						{
+							"type": "low-pass",
+							"cutoffHz": 4756.83,
+							"linearGain": 0.7071
+						}
+					],
+					"fadeInSeconds": 0,
+					"fadeOutTicks": -3,
+					"wave": "white",
+					"envelopes": [
+						{
+							"target": "noteFilterAllFreqs",
+							"envelope": "twang 3"
+						}
+					]
+				}
+			],
+			"patterns": [
+				{
+					"notes": [
+						{
+							"pitches": [
+								6,
+								9,
+								10
+							],
+							"points": [
+								{
+									"tick": 0,
+									"pitchBend": 0,
+									"volume": 100
+								},
+								{
+									"tick": 23,
+									"pitchBend": 0,
+									"volume": 0
+								}
+							],
+							"continuesLastPattern": false
+						}
+					]
+				},
+				{
+					"notes": [
+						{
+							"pitches": [
+								10,
+								0
+							],
+							"points": [
+								{
+									"tick": 0,
+									"pitchBend": 0,
+									"volume": 100
+								},
+								{
+									"tick": 1,
+									"pitchBend": 0,
+									"volume": 0
+								}
+							],
+							"continuesLastPattern": false
+						}
+					]
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				},
+				{
+					"notes": []
+				}
+			],
+			"sequence": [
+				2
+			]
+		}
+	]
+}

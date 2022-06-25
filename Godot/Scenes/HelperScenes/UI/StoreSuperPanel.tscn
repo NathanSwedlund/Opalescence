@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/StoreSuperPanel.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="StoreSuperPanel" type="Node2D"]
+position = Vector2( -1, -1 )
+scale = Vector2( 0.91, 0.91 )
+script = ExtResource( 3 )
+
+[node name="Title" type="Label" parent="."]
+margin_left = -319.22
+margin_top = -157.483
+margin_right = 161.78
+margin_bottom = -122.483
+custom_fonts/font = SubResource( 1 )
+text = "TITLE"
+align = 1
+
+[node name="Panels" type="Node2D" parent="."]
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+pitch_scale = 0.7
+script = ExtResource( 2 )
