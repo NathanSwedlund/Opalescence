@@ -1,10 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/HelperScenes/UI/ThumbNailScene.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=6]
+[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/MainScenes/PlayerType3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/MainScenes/PlayerType1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/MainScenes/PlayerType2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/MainScenes/Player.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=3]
 size = 40
@@ -13,6 +19,39 @@ font_data = ExtResource( 1 )
 [sub_resource type="DynamicFont" id=2]
 size = 80
 font_data = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 1
+emission_sphere_radius = 86.41
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.2
+orbit_velocity_random = 0.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 4 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
+emission_shape = 1
+emission_sphere_radius = 86.41
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 500.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 4.0
+scale_random = 1.0
+color_ramp = SubResource( 6 )
 
 [node name="ThumbNailScene" type="Node2D"]
 script = ExtResource( 5 )
@@ -49,10 +88,117 @@ text = "OPALESCENCE"
 align = 1
 valign = 1
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 615, 416 )
-scale = Vector2( 1, 1 )
-gravity_radius = 0
+[node name="PlayerType2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1006.86, 393.706 )
+rotation = 3.92699
+
+[node name="InnerLight" type="Light2D" parent="PlayerType2"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+texture_scale = 1.5
+energy = 2.93
+shadow_enabled = true
+
+[node name="OuterLight" type="Light2D" parent="PlayerType2"]
+position = Vector2( 15, 7.25006 )
+texture = ExtResource( 7 )
+texture_scale = 2.5
+energy = 2.0
+shadow_enabled = true
+
+[node name="MidLight" type="Light2D" parent="PlayerType2/OuterLight"]
+texture = ExtResource( 2 )
+texture_scale = 0.5
+energy = 2.4
+shadow_enabled = true
+
+[node name="Particles2D" type="Particles2D" parent="PlayerType2"]
+amount = 50
+lifetime = 4.0
+process_material = SubResource( 8 )
+script = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="PlayerType2"]
+amount = 20
+local_coords = false
+process_material = SubResource( 9 )
+script = ExtResource( 6 )
+
+[node name="PlayerType1" parent="." instance=ExtResource( 9 )]
+position = Vector2( 652, 422 )
+rotation = -1.5708
+
+[node name="InnerLight" type="Light2D" parent="PlayerType1"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+texture_scale = 1.5
+energy = 2.93
+shadow_enabled = true
+
+[node name="OuterLight" type="Light2D" parent="PlayerType1"]
+position = Vector2( 15, 7.25006 )
+texture = ExtResource( 7 )
+texture_scale = 2.5
+energy = 2.0
+shadow_enabled = true
+
+[node name="MidLight" type="Light2D" parent="PlayerType1/OuterLight"]
+texture = ExtResource( 2 )
+texture_scale = 0.5
+energy = 2.4
+shadow_enabled = true
+
+[node name="Particles2D" type="Particles2D" parent="PlayerType1"]
+amount = 50
+lifetime = 4.0
+process_material = SubResource( 8 )
+script = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="PlayerType1"]
+amount = 20
+local_coords = false
+process_material = SubResource( 9 )
+script = ExtResource( 6 )
+
+[node name="PlayerType3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 266.856, 401.706 )
+rotation = -0.785398
+
+[node name="InnerLight" type="Light2D" parent="PlayerType3"]
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 2 )
+texture_scale = 1.5
+energy = 2.93
+shadow_enabled = true
+
+[node name="OuterLight" type="Light2D" parent="PlayerType3"]
+position = Vector2( 15, 7.25006 )
+texture = ExtResource( 7 )
+texture_scale = 2.5
+energy = 2.0
+shadow_enabled = true
+
+[node name="MidLight" type="Light2D" parent="PlayerType3/OuterLight"]
+texture = ExtResource( 2 )
+texture_scale = 0.5
+energy = 2.4
+shadow_enabled = true
+
+[node name="Particles2D" type="Particles2D" parent="PlayerType3"]
+amount = 50
+lifetime = 4.0
+process_material = SubResource( 8 )
+script = ExtResource( 6 )
+
+[node name="Particles2D2" type="Particles2D" parent="PlayerType3"]
+amount = 20
+local_coords = false
+process_material = SubResource( 9 )
+script = ExtResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 11 )]
+position = Vector2( -115, -133 )
+respawn_position = Vector2( -10000, 0 )
 powerup_times = {
 "Barrage": 5.0,
 "Bombastic": 3.0,
@@ -64,5 +210,3 @@ powerup_times = {
 "Unmaker": 10.0,
 "Vision": 15.0
 }
-use_global_settings = false
-can_change_color = false
