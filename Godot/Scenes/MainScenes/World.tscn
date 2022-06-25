@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/MainScenes/PowerupFactory.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/HelperScenes/UI/ScreenShake.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Resources/Textures/UI/bombImage-pixel-large.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Textures/UI/bombImage.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/UI/HeadsUpDisplay.gd" type="Script" id=8]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=10]
@@ -369,8 +369,8 @@ text = "x 3"
 position = Vector2( 1082, 650 )
 
 [node name="BombImage" type="Sprite" parent="HeadsUpDisplay/BombDisplay"]
-position = Vector2( 28, 26.95 )
-scale = Vector2( 0.9, 0.9 )
+position = Vector2( 40, 26 )
+scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 7 )
 
 [node name="BombLabel" type="Label" parent="HeadsUpDisplay/BombDisplay"]

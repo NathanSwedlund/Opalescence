@@ -223,11 +223,11 @@ func reset_settings():
 	enemy = enemy_default.duplicate()
 	factory = factory_default.duplicate()
 
-func _process(delta):
-	if(Input.is_key_pressed(KEY_0)):
-#		reset_settings()
-		shop["points"] *= 2
-		shop["points"] += 1000322
+#func _process(delta):
+##	if(Input.is_key_pressed(KEY_0)):
+##		reset_settings()
+#		shop["points"] *= 2
+#		shop["points"] += 1000322
 		
 
 var min_vol = -50
