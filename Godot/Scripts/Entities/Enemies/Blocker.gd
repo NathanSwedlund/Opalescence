@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export var speed = 1
+export var speed = 60
 export var health = 150
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
 
@@ -26,7 +26,7 @@ var blocker_damage_mod = 1.0
 func _physics_process(delta):
 	if(point_to_cover != null and is_instance_valid(point_to_cover)):
 		var move_direction = position.direction_to(point_to_cover.position)
-		var collision = move_and_collide(move_direction*speed, delta)
+		var collision = move_and_collide(move_direction*speed*delta, delta)
 		if(collision != null):
 			if(collision.collider.name == "Player"):
 				collision.collider.damage()

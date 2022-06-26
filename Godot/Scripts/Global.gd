@@ -48,4 +48,5 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 func _process(delta):
 	if(Input.is_action_just_pressed("fullscreen")):
 		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"]
+		Settings.save()
 		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]

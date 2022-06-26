@@ -29,6 +29,8 @@ func _process(delta):
 			collision.collider.take_damage(abs(base_damge*damage_mod * speed_ratio))
 		if(collision.collider.is_in_group("Blockers") and !incendiary):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
+		if(collision.collider.is_in_group("Blockers") and incendiary):
+			collision.collider.take_damage(abs(base_damge*damage_mod * speed_ratio))
 
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
