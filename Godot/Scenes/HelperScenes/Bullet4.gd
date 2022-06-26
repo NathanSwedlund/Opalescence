@@ -17,7 +17,6 @@ func _ready():
 		b.direction = direction.rotated(sep)
 		
 		b.set_incendiary(incendiary)
-		print("incendiary, ", incendiary)
 		b.small_bullet_explosion_scene = small_bullet_explosion_scene
 	
 	

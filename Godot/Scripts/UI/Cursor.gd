@@ -52,7 +52,6 @@ func _process(_delta):
 				if(current_target == null or current_target_dist > enemy_dist):
 					if(aim_dist < auto_aim_bias and enemy_dist < auto_aim_radius_squared and e.is_in_group("Explosion") == false):
 						position = enemy_dir * cursor_sep_from_player
-						print(e, "  ::  aim_dist: ", aim_dist)
 						auto_aim_is_engaged = true
 						current_target = e
 						current_target_dist = enemy_dist

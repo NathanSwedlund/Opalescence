@@ -121,6 +121,7 @@ func new_high_score_event():
 		return
 	is_showing_new_high_score = true
 	$HighScorePopup/HighScoreLabel2.text = str(old_high_score) + points_suffix
+	print("old_high_score, ", old_high_score)
 	$HighScorePopup/HighScoreWaitTimer.start()
 	$HighScorePopup.show()
 
@@ -176,7 +177,7 @@ func point_add_popup_event():
 	Settings.shop["points"] += points_this_round
 
 	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
-	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"])
+	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"]-points_this_round)
 
 	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
 		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
@@ -267,7 +268,7 @@ func _on_HighScoreWaitTimer_timeout():
 func finish_showing_high_score():
 	high_score_timeout_count = 0
 	is_showing_new_high_score = false
-	old_high_score = Global.points_this_round
+	old_high_score = HighScore.get_score(Settings.world["mission_title"])
 	$HighScorePopup/HighScoreWaitTimer.stop()
 	$HighScorePopup.hide()
 	point_add_popup_event()
