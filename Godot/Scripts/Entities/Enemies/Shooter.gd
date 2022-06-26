@@ -54,15 +54,16 @@ func shoot():
 
 var damage_audio_base_pitch = 0.8
 var damage_audio_max_pith = 2.0
-func take_damage(damage):
+func take_damage(damage, play_sound=true, color_override=null):
 	$DamageAudio.play()
 	$DamageTimer.start()
 	health -= damage
+	var color_target= Global.player.modulate if color_override == null else color_override
 	
 	var ratio = (base_health-health)/base_health
-	modulate.r = ratio * Global.player.modulate.r*0.6
-	modulate.g = ratio * Global.player.modulate.g*0.6
-	modulate.b = ratio * Global.player.modulate.b*0.6
+	modulate.r = ratio * color_target.r*0.6
+	modulate.g = ratio * color_target.g*0.6
+	modulate.b = ratio * color_target.b*0.6
 	
 	if(health <= 0):
 		die()

@@ -63,13 +63,17 @@ func _on_PointCheckTimer_timeout():
 
 var damage_audio_base_pitch = 0.2
 var damage_audio_max_pith = 3.5
-func take_damage(damage, play_sound=true):
+func take_damage(damage, play_sound=true, color_override=null):
 	$DamageTimer.start()
 	health -= damage
+	var target_color = Global.player.modulate
+	if(color_override != null):
+		target_color = color_override
+		
 	var ratio = (base_health-health)/base_health
-	modulate.r = ratio * Global.player.modulate.r*0.6
-	modulate.g = ratio * Global.player.modulate.g*0.6
-	modulate.b = ratio * Global.player.modulate.b*0.6
+	modulate.r = ratio * target_color.r*0.6
+	modulate.g = ratio * target_color.g*0.6
+	modulate.b = ratio * target_color.b*0.6
 	if(health <= 0):
 		die()
 

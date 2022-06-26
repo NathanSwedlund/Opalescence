@@ -30,7 +30,7 @@ func _physics_process(delta):
 				collision.collider.damage()
 			die()
 
-func take_damage(damage):
+func take_damage(damage, play_sound=true, color_override=null):
 	die()
 	
 func die():

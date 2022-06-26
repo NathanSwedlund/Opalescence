@@ -5,9 +5,9 @@ var cursor_sep_from_player  = 100
 var player:Node2D
 var mouse_direction_from_player
 var mouse_position = Vector2.ZERO
-var auto_aim_bias = 0.1
+var auto_aim_bias = 0.2
 var auto_aim_radius_squared = 700*700
-var auto_aim_frame_wait = 10
+var auto_aim_frame_wait = 3
 var auto_aim_is_engaged = false
 var current_frame = 0
 

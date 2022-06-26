@@ -52,7 +52,7 @@ func _process(delta):
 				#collision.collider.queue_free() # delete the point if it runs into it
 var damage_audio_base_pitch = 1.0
 var damage_audio_max_pith = 1.2
-func take_damage(damage):	
+func take_damage(damage, play_sound=true, color_override=null):	
 	health -= damage
 	$DamageTimer.start()
 
@@ -60,10 +60,11 @@ func take_damage(damage):
 		die()
 		return 
 		
+	var color_target= Global.player.modulate if color_override == null else color_override
 	var ratio = (starting_health-health)/starting_health
-	modulate.r = ratio * Global.player.modulate.r*0.6
-	modulate.g = ratio * Global.player.modulate.g*0.6
-	modulate.b = ratio * Global.player.modulate.b*0.6
+	modulate.r = ratio * color_target.r*0.6
+	modulate.g = ratio * color_target.g*0.6
+	modulate.b = ratio * color_target.b*0.6
 	
 	$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 	$DamageAudio.play()

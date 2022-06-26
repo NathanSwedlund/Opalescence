@@ -27,7 +27,6 @@ func _ready():
 	if(explosion_vol_db_mod < min_vol_db):
 		explosion_vol_db_mod = min_vol_db
 	
-	
 	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
@@ -71,7 +70,7 @@ func _process(delta):
 					scale *= pow(grow_speed, frames_per_update)
 				for i in $Area2D.get_overlapping_bodies():
 					if(i.is_in_group("Enemies")):
-						i.take_damage(damage * delta * frames_per_update)
+						i.take_damage(damage * delta * frames_per_update, true, Color.white)
 			else:
 				if(scale.x <= min_size * scale_mod):
 					queue_free()

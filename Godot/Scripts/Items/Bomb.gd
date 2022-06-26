@@ -46,7 +46,7 @@ func _process(delta):
 		if(current_frame % frames_per_update == 0):
 			for i in get_parent().find_node("Area2D").get_overlapping_bodies():
 				if(i.is_in_group("Enemies")):
-					i.take_damage(damage * delta * frames_per_update)
+					i.take_damage(damage * delta * frames_per_update, true, modulate)
 
 			get_parent().scale.x -= shrink_speed * delta * frames_per_update
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
