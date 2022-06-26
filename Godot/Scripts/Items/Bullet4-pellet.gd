@@ -13,12 +13,7 @@ var small_bullet_explosion_scene
 export var explosion_scale = 0.5
 func _ready():
 #	small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
-	base_damge *= Settings.player["bullet_damage_scale"]
-	if(incendiary):
-		speed_accel *= 2.2
-		damage_mod = 3
-		scale *= 2.2
-		
+	base_damge *= Settings.player["bullet_damage_scale"]		
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,3 +38,11 @@ func _process(delta):
 			
 		get_parent().add_child(explosion)
 		queue_free()
+
+
+func set_incendiary(_incendiary):
+	incendiary = _incendiary
+	if(incendiary):
+		speed *= 2.2
+		damage_mod = 3
+		scale *= 2.2
