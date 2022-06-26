@@ -24,7 +24,7 @@ func _ready():
 		
 
 func _process(delta):
-	if(Input.is_action_just_pressed("ui_v")):
+	if(Input.is_action_just_pressed("ui_v") or Input.is_action_just_pressed("controller_y")):
 		_on_MusicShuffler_finished()
 
 func _on_MusicShuffler_finished():

@@ -45,7 +45,12 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 			return str(round_float( point_num/suffix_nums[i], 3)) + suffixes[i]
 	return str(point_num)
 
+var last_full_screen = null
 func _process(delta):
+	print("OS.keep_screen_on, ", OS.keep_screen_on)
+	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
+		last_full_screen = Settings.saved_settings["fullscreen_mode"]
+		OS.keep_screen_on = last_full_screen
 	if(Input.is_action_just_pressed("fullscreen")):
 		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"]
 		Settings.save()
