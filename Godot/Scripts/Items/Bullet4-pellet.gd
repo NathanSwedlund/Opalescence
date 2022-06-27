@@ -46,5 +46,4 @@ func set_incendiary(_incendiary):
 	incendiary = _incendiary
 	if(incendiary):
 		speed *= 2.2
-		damage_mod = 3
 		scale *= 2.2

@@ -27,6 +27,8 @@ func _process(_delta):
 		mouse_direction_from_player = (mouse_position - player.global_position).normalized()
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
+		if(OS.keep_screen_on == true):
+			OS.keep_screen_on = false
 		
 	
 	$Sprite.visible = is_in_controller_mode
@@ -35,6 +37,8 @@ func _process(_delta):
 	right_stick_direction.x = Input.get_action_strength("controller_right_stick_right") - Input.get_action_strength("controller_right_stick_left")
 	if(right_stick_direction != Vector2.ZERO or is_in_controller_mode):
 		is_in_controller_mode = true
+		if(OS.keep_screen_on == false):
+			OS.keep_screen_on = true
 		
 		if(right_stick_direction != Vector2.ZERO and auto_aim_is_engaged == false):
 			visible = true

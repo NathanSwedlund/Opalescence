@@ -47,7 +47,6 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 
 var last_full_screen = null
 func _process(delta):
-	print("OS.keep_screen_on, ", OS.keep_screen_on)
 	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
 		last_full_screen = Settings.saved_settings["fullscreen_mode"]
 		OS.keep_screen_on = last_full_screen

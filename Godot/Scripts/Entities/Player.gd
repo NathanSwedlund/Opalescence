@@ -120,9 +120,9 @@ func _ready():
 	reset()
 	default_enemy_explosion_vol = $SoundFX/EnemyExplosionSound.volume_db
 
+var first_load = true
 func reset_settings():
 	load_player_type()
-
 	can_shoot = can_shoot and player_type.can_shoot
 	if(use_global_settings):
 		default_speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
@@ -167,8 +167,10 @@ func reset_settings():
 	max_bombs = player_type.bomb_num_max
 	Settings.world["points_scale"] *= player_type.points_scale
 
-	current_bombs = max_bombs
 	starting_bombs = max_bombs
+	if(first_load):
+		current_bombs = max_bombs
+		
 	can_bomb = can_bomb and player_type.can_bomb
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
 	$OuterLight.scale = light_size
@@ -191,6 +193,7 @@ func reset_settings():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
 
 	default_player_speed = speed
+	first_load = false
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
