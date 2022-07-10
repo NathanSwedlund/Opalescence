@@ -46,6 +46,7 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 	return str(point_num)
 
 var last_full_screen = null
+var time_left_vibrating = 0
 func _process(delta):
 	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
 		last_full_screen = Settings.saved_settings["fullscreen_mode"]
@@ -54,3 +55,29 @@ func _process(delta):
 		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"]
 		Settings.save()
 		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
+	
+	if(time_left_vibrating < 0):
+		time_left_vibrating = 0
+		last_vibration_priority = 0
+		vibration_is_happening = false
+	else:
+		time_left_vibrating -= delta
+
+const VIB_DEVICE = 0
+var last_vibration_priority = 0
+var vibration_is_happening = false
+func vibrate_controller(dur=0.5, weak_mag_mult=1.0, strong_mag_mult=1.0, priority=0):
+	var start_new_vibration = false
+	
+	if(last_vibration_priority < priority):
+		last_vibration_priority = priority
+		start_new_vibration = true
+	
+	if(dur > time_left_vibrating):
+		start_new_vibration = true
+		
+	if(start_new_vibration or (vibration_is_happening == false)):
+		vibration_is_happening = true
+		Input.stop_joy_vibration(VIB_DEVICE)
+		Input.start_joy_vibration(VIB_DEVICE,weak_mag_mult, strong_mag_mult, dur)
+		time_left_vibrating = dur

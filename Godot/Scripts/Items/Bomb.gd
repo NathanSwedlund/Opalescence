@@ -52,6 +52,7 @@ func _process(delta):
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
 
 func explode():
+	Global.vibrate_controller(1.5,0.4,0.4,1)
 	if(exploding):
 		return
 

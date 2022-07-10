@@ -166,6 +166,7 @@ var point_num2
 var point_add_music_mod = 10
 var default_token_reward = 0
 func point_add_popup_event():
+	Global.vibration_is_happening = false
 	if(done_racking_points):
 		return
 
@@ -204,10 +205,14 @@ func _on_RackingTimer_timeout():
 			point_num1 = 0
 			done_racking_points = true
 			$PointAddPopup/WaitTimer.start()
+			Input.stop_joy_vibration(Global.VIB_DEVICE)
 
 		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1)
 		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2)
-
+		
+		if(Global.vibration_is_happening == false):
+			print("racking vibe")
+			Global.vibrate_controller(2.5,1.0,0.5,1)
 func _on_ShopButton_pressed():
 	pass
 
@@ -229,6 +234,7 @@ func _on_WaitTimer_timeout():
 		$PointAddPopup/RackingTimer.start()
 
 func finish_racking():
+	Input.stop_joy_vibration(Global.VIB_DEVICE)
 	$PointAddPopup/RackingTimer.stop()
 	$PointAddPopup/WaitTimer.stop()
 
@@ -259,6 +265,7 @@ func _on_HighScoreWaitTimer_timeout():
 		else:
 			$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round) + points_suffix
 		$HighScorePopup/Particles2D.emitting = true
+		Global.vibrate_controller(1.0,1.0,0.5,1)
 
 	if(high_score_timeout_count == 4):
 		finish_showing_high_score()

@@ -48,7 +48,7 @@ func _ready():
 	$Light2D.color = get_parent().modulate
 
 	$LaserParticleEffect.emitting = true
-
+	Global.vibrate_controller(total_time,0.3,0,1)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

@@ -353,11 +353,13 @@ func get_direction_to_shoot():
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
 
 func spawn_bullet():
+#	Global.vibrate_controller(0.1,0.3)
 	var bullet = bullet_scene.instance()
 	$SoundFX/BulletFireAudio.play()
 	if(has_powerup["Incendiary"]):
 		$SoundFX/IncendiaryBulletFire.play()
 		Global.shakes["misc"].start()
+		Global.vibrate_controller(0.2,0.9,0.9,0)
 
 
 	bullet.direction = get_direction_to_shoot()
@@ -382,6 +384,7 @@ func damage():
 	if(has_powerup["Opalescence"]):
 		get_parent().find_node("EnemyFactory").kill_all(true)
 	elif(has_powerup["OverShield"]):
+		Global.vibrate_controller(0.3,0.7,0.7,0)
 		$ShieldDestroyedParticles.emitting = true
 		$SoundFX/OverSheildLostAudio.play()
 		has_powerup["OverShield"] = false
@@ -393,7 +396,8 @@ func damage():
 
 func die():
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
-
+	Global.vibrate_controller(1,1,1,1)
+	
 	$SoundFX/PlayerExplosionSound.play()
 	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
@@ -715,6 +719,7 @@ func _on_Vision_timeout():
 	$OuterLight.scale = light_size
 
 func play_enemey_explosion_sound(explosion_pitch=1.0, volume_db_mod=0.0):
+	Global.vibrate_controller(0.2,0.9)
 	$SoundFX/EnemyExplosionSound.pitch_scale = explosion_pitch
 	if($SoundFX/EnemyExplosionSound.playing):
 		$SoundFX/EnemyExplosionSound.volume_db = default_enemy_explosion_vol
