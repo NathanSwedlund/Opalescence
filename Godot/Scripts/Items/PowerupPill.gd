@@ -2,18 +2,29 @@ extends KinematicBody2D
 
 export var speed = 40
 export var rot_speed = 6
-
+export var is_powerup = true
+var powerup_name
 # Will be set by pointFactory
 var player:Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	powerup_name = get_parent().name
+	if(is_powerup):
+		print("Loading ", "res://Resources/Textures/Items/"+powerup_name+" Icon.png")
+		$IconSprite.texture = load("res://Resources/Textures/Items/"+powerup_name+" Icon.png")
+	else:
+		$IconSprite.visible = false
+		
 	add_to_group("Powerups")
 	$OuterLight.color = get_parent().modulate
 	$InnerLight.color = get_parent().modulate
 
 func _process(delta):
 	rotate(rot_speed*delta)
+#	if(is_powerup):
+#		$IconSprite.rotate(-rot_speed*delta)
+		
 	var dist = global_position.distance_squared_to(player.global_position)
 	if(dist < player.gravity_radius*player.gravity_radius):
 		var position_diff = (player.global_position - global_position)
