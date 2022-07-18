@@ -38,7 +38,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-base_damge = 1.0
 heat_seeking_turn_speed = 0.04
 
 [node name="Sprite" type="Sprite" parent="."]

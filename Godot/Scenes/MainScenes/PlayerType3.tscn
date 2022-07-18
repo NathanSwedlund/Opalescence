@@ -9,4 +9,4 @@ texture = ExtResource( 2 )
 script = ExtResource( 1 )
 bullets_per_burst_mod = 2
 bullet_scale = 1.4
-laser_scale = 0.65
+laser_scale = 0.5

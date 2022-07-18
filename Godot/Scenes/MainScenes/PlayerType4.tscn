@@ -7,7 +7,9 @@
 scale = Vector2( 1.09, 0.83 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
+speed_scale = 0.9
+light_scale = 1.2
 bullets_per_burst_mod = -2
 laser_scale = 0.6
 bomb_scale = 1.2
-bomb_num_max = 6
+bomb_num_max = 8
