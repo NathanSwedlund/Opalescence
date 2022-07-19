@@ -40,8 +40,8 @@ var factory_default = {
 	"point_color_override":null,
 
 	"enemy_is_active":true,
-	"enemy_time_min":0.8,
-	"enemy_time_max":1.5,
+	"enemy_time_min":1.2,
+	"enemy_time_max":0.7,
 	"enemy_spawn_time_speed":1.0,
 	"enemy_spawn_away_radius":200,
 	"enemy_blocker_prob":0.05,

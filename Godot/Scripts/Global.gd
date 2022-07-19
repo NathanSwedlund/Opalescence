@@ -67,8 +67,7 @@ func _process(delta):
 	var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
 	if(left_stick_direction != 0):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		
-	print(Input.get_connected_joypads())
+	
 
 const VIB_DEVICE = 0
 var last_vibration_priority = 0

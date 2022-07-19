@@ -352,6 +352,7 @@ func shoot():
 func get_direction_to_shoot():
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
 
+var BULLET_SPAWN_DIST = 25
 func spawn_bullet():
 #	Global.vibrate_controller(0.1,0.3)
 	var bullet = bullet_scene.instance()
@@ -363,7 +364,7 @@ func spawn_bullet():
 
 
 	bullet.direction = get_direction_to_shoot()
-	bullet.position = position
+	bullet.position = position + (bullet.direction * BULLET_SPAWN_DIST)
 	bullet.add_to_group("Bullets")
 	bullet.modulate = modulate
 	bullet.incendiary = is_shooting_indendiary
