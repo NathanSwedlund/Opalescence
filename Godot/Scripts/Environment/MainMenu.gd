@@ -274,7 +274,8 @@ export var standard_diff_settings = {
 	"ExtraEasy":{
 		"is_mission":false,
 		"mission_title":"ExtraEasyStandard",
-		"points_scale":0.25,
+		"powerup_time_max":10,
+		"points_scale":0.2,
 		"starting_health":5,
 		"enemy_health_scale":0.4,
 		"enemy_time_max":1.0,
@@ -282,6 +283,7 @@ export var standard_diff_settings = {
 		"light_scale":2.5,
 	},
 	"Easy":{
+		"powerup_time_max":15,
 		"is_mission":false,
 		"mission_title":"EasyStandard",
 		"points_scale":0.5,
@@ -292,6 +294,7 @@ export var standard_diff_settings = {
 		"light_scale":2.0,
 	},
 	"Medium":{
+		"powerup_time_max":20,
 		"is_mission":false,
 		"mission_title":"MediumStandard",
 		"points_scale":1.0,
@@ -303,6 +306,7 @@ export var standard_diff_settings = {
 		"chaser_min_scale":0.15,
 	},
 	"Hard":{
+		"powerup_time_max":25,
 		"is_mission":false,
 		"mission_title":"HardStandard",
 		"points_scale":1.5,
@@ -315,6 +319,7 @@ export var standard_diff_settings = {
 		"chaser_min_scale":0.15,
 	},
 	"ExtraHard":{
+		"powerup_time_max":40,
 		"is_mission":false,
 		"mission_title":"ExtraHardStandard",
 		"points_scale":2.0,
@@ -329,6 +334,7 @@ export var standard_diff_settings = {
 		"shooter_missile_speed_scale":1.5,
 	},
 	"Nightmare":{
+		"powerup_time_max":40,
 		"is_mission":false,
 		"mission_title":"ExtraHardStandard",
 		"points_scale":4.0,
