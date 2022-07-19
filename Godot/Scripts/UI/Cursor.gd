@@ -31,7 +31,6 @@ func _process(_delta):
 		if(OS.keep_screen_on == true):
 			OS.keep_screen_on = false
 		
-	
 	$Sprite.visible = is_in_controller_mode
 	right_stick_direction = Vector2.ZERO
 	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
@@ -40,8 +39,6 @@ func _process(_delta):
 
 	if(left_stick_direction != 0 and is_in_controller_mode == false):
 		is_in_controller_mode = true
-	
-
 	
 	if(right_stick_direction != Vector2.ZERO and is_in_controller_mode):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

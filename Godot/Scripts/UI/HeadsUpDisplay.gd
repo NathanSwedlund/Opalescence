@@ -19,6 +19,9 @@ func _process(delta):
 	if(expected_controllers != Input.get_connected_joypads()):
 		pause()
 	
+	if(Input.is_action_just_pressed("controller_home")):
+		pause()
+	
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
 		var current_scale = get_parent().find_node("MusicShuffler").pitch_scale
