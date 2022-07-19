@@ -93,14 +93,14 @@ position = Vector2( -4, 863 )
 title = "Player Light Scale"
 setting_name = "light_scale"
 default_price = 5.0
-max_val = 2.0
+max_val = 2.5
 
 [node name="StoreSkillPanel5" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 1, 0.698039, 0.345098, 1 )
 position = Vector2( -1, 689 )
 title = "Powerup Time Scale"
 setting_name = "powerup_time_scale"
-default_price = 1.0
+default_price = 2.0
 max_val = 1.51
 
 [node name="StoreSkillPanel4" parent="UI/Panels" instance=ExtResource( 9 )]
@@ -111,7 +111,7 @@ setting_name = "starting_health_mod"
 default_price = 100.0
 price_mult = 5.0
 val_step = 1.0
-max_val = 2.1
+max_val = 4.1
 
 [node name="StoreSkillPanel" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
@@ -120,7 +120,7 @@ setting_name = "default_bullets_per_burst_mod"
 default_price = 5.0
 price_mult = 3.0
 val_step = 1.0
-max_val = 5.1
+max_val = 8.1
 
 [node name="StoreSkillPanel3" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 1, 0.588235, 0.588235, 1 )
@@ -137,7 +137,7 @@ modulate = Color( 0.501961, 1, 0.658824, 1 )
 position = Vector2( 1, 509 )
 title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
-default_price = 8.0
+default_price = 20.0
 price_mult = 3.0
 val_step = 0.25
 max_val = 2.1
@@ -147,10 +147,10 @@ modulate = Color( 0, 0.882353, 1, 1 )
 position = Vector2( -2, 1027 )
 title = "Laser Damage Scale"
 setting_name = "laser_damage_scale"
-default_price = 20.0
+default_price = 25.0
 price_mult = 4.0
 val_step = 0.25
-max_val = 1.6
+max_val = 3.1
 
 [node name="Background3" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.780392 )
