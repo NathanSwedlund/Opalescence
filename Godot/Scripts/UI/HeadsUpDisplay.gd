@@ -7,6 +7,7 @@ var is_pitching_music = false
 var old_high_score =  HighScore.get_score(Settings.world["mission_title"])
 
 var points_suffix = " s" if Settings.world["has_point_goal"] else ""
+var expected_controllers = Input.get_connected_joypads()
 func _ready():
 	if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 		$BombDisplay.visible = false
@@ -15,6 +16,9 @@ var is_racking_points = false
 var is_showing_new_high_score = false
 
 func _process(delta):
+	if(expected_controllers != Input.get_connected_joypads()):
+		pause()
+	
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
 		var current_scale = get_parent().find_node("MusicShuffler").pitch_scale
@@ -42,6 +46,7 @@ func unpause():
 	get_tree().paused = false
 
 func pause():
+	expected_controllers = Input.get_connected_joypads()
 	$PausePopup/Buttons.is_active = true
 	is_pitching_music = true
 	can_unpause = false

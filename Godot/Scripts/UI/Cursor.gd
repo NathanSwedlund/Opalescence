@@ -37,10 +37,11 @@ func _process(_delta):
 	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
 	right_stick_direction.x = Input.get_action_strength("controller_right_stick_right") - Input.get_action_strength("controller_right_stick_left")
 	var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
-	print(left_stick_direction)
-	print(right_stick_direction.y)
+
 	if(left_stick_direction != 0 and is_in_controller_mode == false):
 		is_in_controller_mode = true
+	
+
 	
 	if(right_stick_direction != Vector2.ZERO and is_in_controller_mode):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

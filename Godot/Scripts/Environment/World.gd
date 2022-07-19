@@ -25,6 +25,7 @@ func game_over():
 
 var active_states = [true, true, true]
 var initial_settings
+
 func _ready():
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
@@ -102,6 +103,8 @@ func _process(delta):
 		if($HeadsUpDisplay/CountdownLabel.visible):
 			$HeadsUpDisplay/CountdownLabel.modulate.a = move_toward($HeadsUpDisplay/CountdownLabel.modulate.a, 0, countdown_fade_speed * delta)
 
+		
+	
 var countdown_sound_target_pitch = 1.7
 func _on_CountdownTimer_timeout():
 	countdown_is_over = false

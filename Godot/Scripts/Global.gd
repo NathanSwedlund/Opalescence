@@ -62,6 +62,13 @@ func _process(delta):
 		vibration_is_happening = false
 	else:
 		time_left_vibrating -= delta
+		
+		
+	var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
+	if(left_stick_direction != 0):
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		
+	print(Input.get_connected_joypads())
 
 const VIB_DEVICE = 0
 var last_vibration_priority = 0
@@ -81,3 +88,9 @@ func vibrate_controller(dur=0.5, weak_mag_mult=1.0, strong_mag_mult=1.0, priorit
 		Input.stop_joy_vibration(VIB_DEVICE)
 		Input.start_joy_vibration(VIB_DEVICE,weak_mag_mult, strong_mag_mult, dur)
 		time_left_vibrating = dur
+		
+		
+func _input(event):
+	if (event is InputEventMouseMotion):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
