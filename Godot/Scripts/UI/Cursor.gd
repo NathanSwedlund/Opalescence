@@ -18,6 +18,7 @@ func _input(event):
 		mouse_direction_from_player = (mouse_position - player.global_position).normalized()
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 var right_stick_direction
 func _process(_delta):
@@ -35,7 +36,14 @@ func _process(_delta):
 	right_stick_direction = Vector2.ZERO
 	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
 	right_stick_direction.x = Input.get_action_strength("controller_right_stick_right") - Input.get_action_strength("controller_right_stick_left")
-	if(right_stick_direction != Vector2.ZERO or is_in_controller_mode):
+	var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
+	print(left_stick_direction)
+	print(right_stick_direction.y)
+	if(left_stick_direction != 0 and is_in_controller_mode == false):
+		is_in_controller_mode = true
+	
+	if(right_stick_direction != Vector2.ZERO and is_in_controller_mode):
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		is_in_controller_mode = true
 		if(OS.keep_screen_on == false):
 			OS.keep_screen_on = true
