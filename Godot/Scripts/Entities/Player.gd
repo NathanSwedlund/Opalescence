@@ -372,10 +372,11 @@ func spawn_bullet():
 	bullet.small_bullet_explosion_scene = small_bullet_explosion_scene
 	get_parent().add_child(bullet)
 
-func drop_bomb(_scale=1.0):
+func drop_bomb(_scale=1.0, is_max_bomb=false):
 	var bomb = bomb_scene.instance()
 	bomb.find_node("PowerupPill").change_color(modulate)
 	bomb.position = position
+	bomb.find_node("PowerupPill").is_max_bomb = is_max_bomb
 	if(Settings.world["is_mission"] == false or _scale == max_bomb_bomb_scale):
 		bomb.scale *= Settings.shop["bomb_scale"] * _scale
 	$SoundFX/DropBombAudio.play()
@@ -570,10 +571,11 @@ func _on_LaserChargeTimer_timeout():
 
 func _on_LaserCooldownTimer_timeout(make_sound=true):
 	$LaserCooldown.emitting = false
-	$LaserReady.emitting = true
 	$SoundFX/LaserCooldownAudio.stop()
-	if(make_sound):
-		$SoundFX/LaserCooldownCompleteAudio.play()
+	if(get_parent().game_is_over == false and can_shoot_laser == false):
+		if(make_sound):
+			$SoundFX/LaserCooldownCompleteAudio.play()
+		$LaserReady.emitting = true
 	can_shoot_laser = Settings.player["can_shoot_laser"]
 
 func _on_RespawnTimer_timeout():
@@ -639,7 +641,7 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/Incendiary.wait_time, _color, _powerup)
 		is_shooting_indendiary = true
 	if(_powerup == "MaxBomb"):
-		drop_bomb(max_bomb_bomb_scale)
+		drop_bomb(max_bomb_bomb_scale, true)
 		current_bombs = max_bombs
 		$SoundFX/MaxBombAudio.play()
 		heads_up_display.update_bombs(current_bombs)

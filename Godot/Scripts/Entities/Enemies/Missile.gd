@@ -33,12 +33,30 @@ func _physics_process(delta):
 func take_damage(damage, play_sound=true, color_override=null):
 	die()
 	
+var has_died = false
 func die():
-	if(has_explosion):
-		var expl = explosion_scene.instance()
-		expl.scale_mod = expl_scale
-		expl.point_reward = point_reward
-		expl.position = position
-		get_parent().add_child(expl)
-	
+	if(has_died == false):
+		has_died = true
+		if(has_explosion):
+			var expl = explosion_scene.instance()
+			expl.scale_mod = expl_scale
+			expl.point_reward = point_reward
+			expl.position = position
+			get_parent().add_child(expl)
+		
+		$ExplosionParticles.emitting = true
+		if($CollisionShape2D != null):
+			$CollisionShape2D.queue_free()
+		elif($CollisionShape2D.is_queued_for_deletion() == false):
+			$CollisionShape2D.queue_free()
+			
+		$Sprite.visible = false
+		$Particles2D.visible = false
+		$Light2D.visible = false
+		
+		$DeleteTimer.wait_time = $ExplosionParticles.lifetime
+		$DeleteTimer.start()
+
+
+func _on_Timer_timeout():
 	queue_free()

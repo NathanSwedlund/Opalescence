@@ -11,6 +11,7 @@ export var explosion_scale = 1.5
 var growing = true
 var exploding = false
 var damage = 40
+var is_max_bomb = false
 
 # Called when the node enters the scene tree for the first time.
 var shrink_speed
@@ -60,6 +61,12 @@ func explode():
 	shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true
 	exploding = true
+	
+	if(is_max_bomb):
+		$AudioStreamPlayer.pitch_scale = 0.4
+		$AudioStreamPlayer.volume_db = 3
+		
+	
 	$AudioStreamPlayer.play()
 	$ExplosionTimer.start()
 	$OuterLight.scale *= 12
