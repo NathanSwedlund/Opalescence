@@ -58,7 +58,7 @@ export var starting_bombs = 3
 var inf_bombs = false
 
 var default_laser_charge_time
-
+var opalescence_projectile_scene = load("res://Scenes/HelperScenes/Powerups/OpalescenceProjectile.tscn")
 
 var bullet_audio_default_pitch = 1.0
 var incendiary_audio_pitch = 0.7
@@ -382,12 +382,23 @@ func drop_bomb(_scale=1.0, is_max_bomb=false):
 	$SoundFX/DropBombAudio.play()
 	get_parent().add_child(bomb)
 
-func damage():
+func damage(_enemy=null):
+	if(_enemy != null):
+		_enemy.die()
 	if(has_powerup["Opalescence"]):
-		get_parent().find_node("EnemyFactory").kill_all(true)
+		var ens = get_tree().get_nodes_in_group("Enemies")
+		print(ens)
+		for en in ens:
+			if(en != _enemy):
+				var new_op_pro = opalescence_projectile_scene.instance()
+				new_op_pro.position = position
+				new_op_pro.find_node("KinematicBody2D").target = en.position-position
+				get_parent().add_child(new_op_pro)
+	
 	elif(has_powerup["OverShield"]):
 		Global.vibrate_controller(0.3,0.7,0.7,0)
 		$ShieldDestroyedParticles.emitting = true
+		$ShieldDestroyedParticles2.emitting = true
 		$SoundFX/OverSheildLostAudio.play()
 		has_powerup["OverShield"] = false
 		heads_up_display.update_health(current_health, has_powerup["OverShield"])
@@ -525,7 +536,7 @@ func _physics_process(delta):
 	var _collision = move_and_collide(velocity*delta)
 	if(_collision != null):
 		if(_collision.collider.is_in_group("Enemies")):
-			damage()
+			damage(_collision.collider)
 
 func _input(event):
 	# Mouse in viewport coordinates.

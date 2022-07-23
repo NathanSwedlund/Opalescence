@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/BossAlarm.wav" type="AudioStream" id=1]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Environment/BossBase.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=4]
 
@@ -16,6 +17,7 @@ autostart = true
 stream = ExtResource( 1 )
 pitch_scale = 0.64
 autoplay = true
+script = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]
 position = Vector2( 646.5, 350 )

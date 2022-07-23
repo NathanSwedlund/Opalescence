@@ -27,7 +27,7 @@ func _physics_process(delta):
 			if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blockers") == false):
 				collision.collider.take_damage(damage)
 			elif(collision.collider.name == "Player"):
-				collision.collider.damage()
+				collision.collider.damage(self)
 			die()
 
 func take_damage(damage, play_sound=true, color_override=null):

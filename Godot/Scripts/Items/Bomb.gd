@@ -64,7 +64,7 @@ func explode():
 	
 	if(is_max_bomb):
 		$AudioStreamPlayer.pitch_scale = 0.4
-		$AudioStreamPlayer.volume_db = 3
+		$AudioStreamPlayer.volume_db += 3
 		
 	
 	$AudioStreamPlayer.play()

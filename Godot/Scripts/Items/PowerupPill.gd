@@ -24,16 +24,18 @@ func _process(delta):
 	rotate(rot_speed*delta)
 #	if(is_powerup):
 #		$IconSprite.rotate(-rot_speed*delta)
-		
-	var dist = global_position.distance_squared_to(player.global_position)
-	if(dist < player.gravity_radius*player.gravity_radius):
-		var position_diff = (player.global_position - global_position)
-		var position_diff_normalized = position_diff.normalized()
-		var speed_mod  = 1/( abs(position_diff.x)+abs(position_diff.y) ) * player.gravity_pull_scale
-		var move_speed = speed*delta * speed_mod
+	if(player != null):
+		var dist = global_position.distance_squared_to(player.global_position)
+		if(dist < player.gravity_radius*player.gravity_radius):
+			var position_diff = (player.global_position - global_position)
+			var position_diff_normalized = position_diff.normalized()
+			var speed_mod  = 1/( abs(position_diff.x)+abs(position_diff.y) ) * player.gravity_pull_scale
+			var move_speed = speed*delta * speed_mod
 
-		var collision = move_and_collide( position_diff_normalized * move_speed)
-		if(collision != null):
-			if(collision.collider.name == player.name):
-				player.get_powerup(get_parent().name, get_parent().modulate)
-				get_parent().queue_free()
+			var collision = move_and_collide( position_diff_normalized * move_speed)
+			if(collision != null):
+				if(collision.collider.name == player.name):
+					player.get_powerup(get_parent().name, get_parent().modulate)
+					get_parent().queue_free()
+	else:
+		player = Global.player

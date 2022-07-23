@@ -225,20 +225,20 @@ color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" type="Node2D" parent="."]
 
-[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+[node name="LeftWall" type="StaticBody2D" parent="Walls" groups=["Walls"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
 position = Vector2( 0, 298.5 )
 shape = SubResource( 1 )
 
-[node name="RightWall" type="StaticBody2D" parent="Walls"]
+[node name="RightWall" type="StaticBody2D" parent="Walls" groups=["Walls"]]
 position = Vector2( 1010, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
 position = Vector2( 12, 297 )
 shape = SubResource( 1 )
 
-[node name="TopWall" type="StaticBody2D" parent="Walls"]
+[node name="TopWall" type="StaticBody2D" parent="Walls" groups=["Walls"]]
 position = Vector2( 820, -1 )
 rotation = 1.5708
 
@@ -246,7 +246,7 @@ rotation = 1.5708
 position = Vector2( 0.500014, 308 )
 shape = SubResource( 1 )
 
-[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+[node name="BottomWall" type="StaticBody2D" parent="Walls" groups=["Walls"]]
 position = Vector2( 850, 589 )
 rotation = 1.5708
 
@@ -898,6 +898,10 @@ shake_name = "bomb"
 
 [node name="MiscScreenShake" parent="Camera2D" instance=ExtResource( 6 )]
 shake_name = "misc"
+
+[node name="tempCam" type="Camera2D" parent="."]
+offset = Vector2( 500, 300 )
+zoom = Vector2( 2, 2 )
 
 [connection signal="about_to_show" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="activate"]
 [connection signal="popup_hide" from="HeadsUpDisplay/GameOverPopup" to="HeadsUpDisplay/GameOverPopup/Buttons" method="deactivate"]

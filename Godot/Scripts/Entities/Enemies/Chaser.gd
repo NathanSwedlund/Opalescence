@@ -35,8 +35,9 @@ func _process(delta):
 		var collision = move_and_collide( position_diff_normalized * speed*delta)
 		if(collision != null):
 			if(collision.collider.name == player.name):
-				player.damage()
+				player.damage(self)
 				die()
+					
 			elif(collision.collider.is_in_group("Enemies")):
 				if(collision.collider.is_in_group("Chasers")):
 					collision.collider.die()
@@ -50,6 +51,7 @@ func _process(delta):
 #			elif(collision.collider.is_in_group("Lasers")):
 #				take_damage(collision.collider.damage)
 				#collision.collider.queue_free() # delete the point if it runs into it
+	
 var damage_audio_base_pitch = 1.0
 var damage_audio_max_pith = 1.2
 func take_damage(damage, play_sound=true, color_override=null):	

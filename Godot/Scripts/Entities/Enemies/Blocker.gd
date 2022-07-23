@@ -29,7 +29,7 @@ func _physics_process(delta):
 		var collision = move_and_collide(move_direction*speed*delta, delta)
 		if(collision != null):
 			if(collision.collider.name == "Player"):
-				collision.collider.damage()
+				collision.collider.damage(self)
 			elif(collision.collider.is_in_group("Blockers")):
 				take_damage(blocker_damage_mod * collision_damage * delta)
 			elif(collision.collider.is_in_group("Enemies")):

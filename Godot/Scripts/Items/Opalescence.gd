@@ -1,14 +1,9 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 var shift_speed = 1
 var target_color
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	target_color = colors[randi()%len(colors)]
 
@@ -19,3 +14,13 @@ func _process(delta):
 	
 	if(modulate == target_color):
 		target_color = colors[randi()%len(colors)]
+		
+	if($KinematicBody2D/InnerLight != null):
+		$KinematicBody2D/InnerLight.color = modulate
+	if($KinematicBody2D/OuterLight != null):
+		$KinematicBody2D/OuterLight.color = modulate
+
+	if($PowerupPill/InnerLight != null):
+		$PowerupPill/InnerLight.color = modulate
+	if($PowerupPill/OuterLight != null):
+		$PowerupPill/OuterLight.color = modulate
