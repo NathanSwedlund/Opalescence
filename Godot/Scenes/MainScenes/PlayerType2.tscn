@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/MainScenes/PlayerType2.gd" type="Script" id=5]
 
 [sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( 1.66667, 0, 19, -6.66667, 0.333333, -3.33333, 0.666667, 4, 19, 7 )
+polygon = PoolVector2Array( 3, 0.666667, 16.6667, -5.66667, 0.333333, -3.33333, 0.666667, 4, 16.6667, 7 )
 
 [node name="PlayerTypeContainer" type="Sprite"]
 texture = ExtResource( 2 )
@@ -30,16 +30,17 @@ texture = ExtResource( 4 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="PlayerType2"]
 light_mask = 2
+position = Vector2( 7, -2 )
 scale = Vector2( 3, 3 )
 occluder = SubResource( 1 )
 light_mask = 2
 
 [node name="Light2D" type="Light2D" parent="PlayerType2"]
 light_mask = 2
-position = Vector2( 24, 0 )
+position = Vector2( 31, 0 )
 scale = Vector2( 3.5, 3.5 )
 texture = ExtResource( 3 )
-texture_scale = 1.2
-energy = 2.6
+texture_scale = 2.3
+energy = 1.4
 shadow_enabled = true
 shadow_item_cull_mask = 3
