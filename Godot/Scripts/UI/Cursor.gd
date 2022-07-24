@@ -10,6 +10,8 @@ var auto_aim_radius_squared = 700*700
 var auto_aim_frame_wait = 3
 var auto_aim_is_engaged = false
 var current_frame = 0
+var auto_aim_change_speed = 600
+var auto_aim_target = null
 
 func _input(event):
 	# Mouse in viewport coordinates.
@@ -21,7 +23,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 var right_stick_direction
-func _process(_delta):
+func _process(delta):
 	current_frame += 1
 	
 	if(not is_in_controller_mode):
@@ -53,16 +55,19 @@ func _process(_delta):
 		if(current_frame % auto_aim_frame_wait == 0):
 			auto_aim_is_engaged = false
 			var enemy_dirs = []
-			var current_target = null
+			auto_aim_target = null
 			var current_target_dist = INF
 			for e in get_tree().get_nodes_in_group("Enemies"):
 				var enemy_dist = e.global_position.distance_squared_to(Global.player.global_position)
 				var enemy_dir = (e.global_position - player.global_position).normalized()
+				
 				var aim_dist = enemy_dir.distance_squared_to(right_stick_direction)
-				if(current_target == null or current_target_dist > enemy_dist):
-					if(aim_dist < auto_aim_bias and enemy_dist < auto_aim_radius_squared and e.is_in_group("Explosion") == false):
-						position = enemy_dir * cursor_sep_from_player
+				if(auto_aim_target == null or current_target_dist > enemy_dist):
+					if(aim_dist < auto_aim_bias and enemy_dist < auto_aim_radius_squared and e.is_in_group("Explosion") == false and e.is_in_group("Missiles") == false):
 						auto_aim_is_engaged = true
-						current_target = e
+						auto_aim_target = e
 						current_target_dist = enemy_dist
-
+						
+		if(is_instance_valid(auto_aim_target)):
+			var enemy_dir = (auto_aim_target.global_position - player.global_position).normalized()
+			position = position.move_toward(enemy_dir * cursor_sep_from_player, auto_aim_change_speed*delta)
