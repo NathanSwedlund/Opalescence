@@ -237,6 +237,7 @@ func load_player_type():
 
 		player_type = Global.player_type_scenes[index].instance()
 		player_type.name = "PlayerType"
+		player_type.player = self
 		add_child(player_type)
 
 func add_points(points_num):

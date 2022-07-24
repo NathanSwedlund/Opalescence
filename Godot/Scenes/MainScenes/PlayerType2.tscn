@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/HelperScenes/PlayerType.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/Entities/player2Hi-Res.png" type="Texture" id=2]
+[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/MainScenes/PlayerType2.gd" type="Script" id=5]
 
-[node name="PlayerType1" type="Sprite"]
+[sub_resource type="OccluderPolygon2D" id=1]
+polygon = PoolVector2Array( 1.66667, 0, 19, -6.66667, 0.333333, -3.33333, 0.666667, 4, 19, 7 )
+
+[node name="PlayerTypeContainer" type="Sprite"]
 texture = ExtResource( 2 )
 script = ExtResource( 1 )
 speed_scale = 0.8
@@ -11,3 +17,29 @@ light_scale = 1.3
 bullets_per_burst_mod = -2
 laser_scale = 1.9
 bomb_num_max = 2
+
+[node name="PlayerType2" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="Background" type="Sprite" parent="PlayerType2"]
+visible = false
+modulate = Color( 0.239216, 0.239216, 0.239216, 1 )
+position = Vector2( 3, 6 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="PlayerType2"]
+light_mask = 2
+scale = Vector2( 3, 3 )
+occluder = SubResource( 1 )
+light_mask = 2
+
+[node name="Light2D" type="Light2D" parent="PlayerType2"]
+light_mask = 2
+position = Vector2( 24, 0 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 3 )
+texture_scale = 1.2
+energy = 2.6
+shadow_enabled = true
+shadow_item_cull_mask = 3
