@@ -12,9 +12,11 @@ var point_reward = 550
 var dist_ahead_to_spawn_missile = 70
 var missiles_have_explosion = true
 var can_shoot = true
+var shoot_speed_scale
 
 var dist_squared_to_erase_points = 1000
 func _ready():
+	shoot_speed_scale = Settings.get_setting_if_exists(Settings.enemy, "shooter_shoot_speed_scale", 1.0)
 	scale *= Settings.get_setting_if_exists(Settings.enemy, "shooter_gen_scale", 1.0)
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "shooter_point_reward", point_reward)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
@@ -29,7 +31,7 @@ func _ready():
 			point.queue_free()
 			
 func reset_shoot_timer():
-	var new_time = rand_range(shoot_freq_range[0], shoot_freq_range[1])
+	var new_time = rand_range(shoot_freq_range[0], shoot_freq_range[1]) * shoot_speed_scale
 	$ShootTimer.wait_time = new_time	
 	$ShootTimer.start()
 	

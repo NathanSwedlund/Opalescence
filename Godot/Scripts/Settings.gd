@@ -87,7 +87,8 @@ var enemy_default = {
 	"shooter_missile_speed_scale":1.0,
 	"shooter_missile_health":1,
 	"shooter_missile_damage":5,
-
+	"shooter_shoot_speed_scale":1.0,
+	
 	"blocker_gen_scale":1.0,
 	"blocker_point_reward":4000,
 	"blocker_health":50,

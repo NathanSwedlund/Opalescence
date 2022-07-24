@@ -281,6 +281,7 @@ export var standard_diff_settings = {
 		"enemy_time_max":1.0,
 		"enemy_time_min":1.0,
 		"light_scale":2.5,
+		"shooter_shoot_speed_scale":1.0,
 	},
 	"Easy":{
 		"powerup_time_max":15,
@@ -292,6 +293,7 @@ export var standard_diff_settings = {
 		"enemy_time_max":1.0,
 		"enemy_time_min":0.7,
 		"light_scale":2.0,
+		"shooter_shoot_speed_scale":0.8,
 	},
 	"Medium":{
 		"powerup_time_max":20,
@@ -304,6 +306,7 @@ export var standard_diff_settings = {
 		"enemy_time_min":0.5,
 		"light_scale":1.6,
 		"chaser_min_scale":0.15,
+		"shooter_shoot_speed_scale":0.65,
 	},
 	"Hard":{
 		"powerup_time_max":25,
@@ -317,6 +320,7 @@ export var standard_diff_settings = {
 		"light_scale":1.4,
 		"shrink_scale":0.95,
 		"chaser_min_scale":0.15,
+		"shooter_shoot_speed_scale":0.45,
 	},
 	"ExtraHard":{
 		"powerup_time_max":40,
@@ -332,6 +336,7 @@ export var standard_diff_settings = {
 		"chaser_min_scale":0.15,
 		"chaser_max_scale":0.5,
 		"shooter_missile_speed_scale":1.5,
+		"shooter_shoot_speed_scale":0.3,
 	},
 	"Nightmare":{
 		"powerup_time_max":40,
@@ -348,6 +353,7 @@ export var standard_diff_settings = {
 		"chaser_min_scale":0.15,
 		"chaser_max_scale":0.35,
 		"shooter_missile_speed_scale":1.8,
+		"shooter_shoot_speed_scale":0.1,
 	},
 }
 
