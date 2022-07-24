@@ -101,6 +101,7 @@ var bomb_scale = 1.0
 export var default_bullets_cooldown_wait_time = 0.3
 var max_bomb_bomb_scale = 3.0
 var default_enemy_explosion_vol
+var default_laser_cooldown_time = 5.0
 func _ready():
 	Global.points_this_round = 0
 
@@ -151,11 +152,13 @@ func reset_settings():
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
+		$LaserCooldownTimer.wait_time = default_laser_cooldown_time * Settings.get_setting_if_exists(Settings.player, "laser_cooldown_scale", 1.0)
 
 	light_size = default_light_size
 	speed = default_speed
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
+	$LaserCooldownTimer.wait_time *= player_type.laser_cooldown_scale
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 

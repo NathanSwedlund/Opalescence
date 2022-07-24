@@ -114,6 +114,7 @@ var player_default = {
 	"bomb_scale":1.0,
 	"bullet_damage_scale":1.0,
 	"laser_damage_scale":1.0,
+	"laser_cooldown_scale":1.0,
 	"gravity_radius_scale":1.0,
 
 	"starting_bombs":3,
