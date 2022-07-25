@@ -4,7 +4,7 @@ var direction = Vector2.ZERO
 export var speed = 0
 export var speed_accel = 500.0
 export var speed_accel_scale = 3
-var speed_max = 5000.0
+var speed_max = 8000.0
 
 export var base_damge = 2.0
 export var max_damage = 8.0
@@ -24,16 +24,19 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	speed *= 1+(speed_accel_scale*delta)
 	if(speed < speed_max):
+		speed *= 1+(speed_accel_scale*delta)
 		speed += delta * speed_accel
 		
 	modulate = Global.player.modulate
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
+		print(speed_ratio)
 		if(collision.collider.is_in_group("Enemies")):
-			collision.collider.take_damage(max(base_damge, max_damage)*damage_mod * speed_ratio)
+			var damage = min(base_damge*damage_mod*speed_ratio, max_damage)
+			print("Damage, ", damage)
+			collision.collider.take_damage(damage)
 		
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position

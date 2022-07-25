@@ -43,8 +43,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-speed_accel = 20.0
-speed_accel_scale = 7
+speed_accel = 15.0
+speed_accel_scale = 9
 base_damge = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
