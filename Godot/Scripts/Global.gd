@@ -19,6 +19,9 @@ var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load
 var shakes = {}
 var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}
 
+func _ready():
+	pause_mode = PAUSE_MODE_PROCESS
+
 func save_var(path, _var):
 	var file = File.new()
 	file.open(path, File.WRITE)
@@ -56,17 +59,18 @@ func _process(delta):
 		Settings.save()
 		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
 	
-	if(time_left_vibrating < 0):
-		time_left_vibrating = 0
-		last_vibration_priority = 0
-		vibration_is_happening = false
-	else:
-		time_left_vibrating -= delta
+	if(get_tree().paused == false):
+		if(time_left_vibrating < 0):
+			time_left_vibrating = 0
+			last_vibration_priority = 0
+			vibration_is_happening = false
+		else:
+			time_left_vibrating -= delta
 		
 		
-	var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
-	if(left_stick_direction != 0):
-		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
+		if(left_stick_direction != 0):
+			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	
 
 const VIB_DEVICE = 0
