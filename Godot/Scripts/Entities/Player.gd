@@ -28,7 +28,8 @@ var mouse_direction_from_player = Vector2.ZERO
 
 # bomb variables
 export var can_bomb = true
-var max_bombs = 3
+var default_max_bombs = 3
+var max_bombs
 var current_health
 var current_bombs
 var bomb_scene = load("res://Scenes/HelperScenes/Powerups/Bomb.tscn")
@@ -102,6 +103,7 @@ export var default_bullets_cooldown_wait_time = 0.3
 var max_bomb_bomb_scale = 3.0
 var default_enemy_explosion_vol
 var default_laser_cooldown_time = 5.0
+var laser_cooldown_time
 func _ready():
 	Global.points_this_round = 0
 
@@ -125,6 +127,8 @@ var first_load = true
 func reset_settings():
 	load_player_type()
 	can_shoot = can_shoot and player_type.can_shoot
+	laser_cooldown_time = default_laser_cooldown_time
+	max_bombs = default_max_bombs
 	if(use_global_settings):
 		default_speed = Settings.get_setting_if_exists(Settings.player, "speed", speed) * Settings.get_setting_if_exists(Settings.player, "player_speed_scale", 1.0)
 		starting_health = Settings.get_setting_if_exists(Settings.player, "starting_health", starting_health)
@@ -152,13 +156,16 @@ func reset_settings():
 		default_bullets_cooldown_wait_time = Settings.get_setting_if_exists(Settings.player, "default_bullets_cooldown_wait_time", default_bullets_cooldown_wait_time)
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
-		$LaserCooldownTimer.wait_time = default_laser_cooldown_time * Settings.get_setting_if_exists(Settings.player, "laser_cooldown_scale", 1.0)
+		max_bombs += Settings.get_setting_if_exists(Settings.shop, "additional_max_bombs", 0)
+		print(Settings.shop)
+		laser_cooldown_time /= Settings.get_setting_if_exists(Settings.shop, "laser_recharge_scale", 1.0)
 
+	laser_cooldown_time /= player_type.laser_recharge_scale
+	
 	light_size = default_light_size
 	speed = default_speed
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
-	$LaserCooldownTimer.wait_time *= player_type.laser_cooldown_scale
 	bullets_per_burst = default_bullets_per_burst
 	bullets_to_shoot = default_bullets_per_burst
 
@@ -167,7 +174,7 @@ func reset_settings():
 	laser_scale = default_laser_scale *  player_type.laser_scale
 	bullet_scale = default_bullet_scale *  player_type.bullet_scale
 	bomb_scale = default_bomb_scale * player_type.bomb_scale
-	max_bombs = player_type.bomb_num_max
+	max_bombs += player_type.max_bomb_mod
 	Settings.world["points_scale"] *= player_type.points_scale
 	bomb_scene = load(player_type.bomb_scene_path)
 	
@@ -178,6 +185,7 @@ func reset_settings():
 	can_bomb = can_bomb and player_type.can_bomb
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
 	$OuterLight.scale = light_size
+	
 
 	if(Settings.world["is_mission"] == false):
 		for pt in powerup_times:
@@ -198,6 +206,8 @@ func reset_settings():
 
 	default_player_speed = speed
 	first_load = false
+	
+	$LaserCooldownTimer.wait_time = laser_cooldown_time
 
 var shift_speed = 1
 var colors = Settings.get_setting_if_exists(Settings.saved_settings, "colors", [Color.white])

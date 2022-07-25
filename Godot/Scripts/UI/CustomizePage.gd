@@ -115,5 +115,5 @@ func _on_ResetButton_pressed():
 		Settings.shop = Settings.shop_default.duplicate()
 
 func _on_AddTokensButton_pressed():
-	Settings.shop["tokens"] += 100
+	Settings.shop["tokens"] += 1000
 	update_labels()

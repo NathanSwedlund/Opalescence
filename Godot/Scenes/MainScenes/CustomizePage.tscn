@@ -48,6 +48,7 @@ font_data = ExtResource( 3 )
 
 [node name="CustomizePage" type="Node2D"]
 script = ExtResource( 6 )
+shift_speed = 2700.0
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
@@ -139,8 +140,27 @@ title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
 default_price = 20.0
 price_mult = 3.0
-val_step = 0.25
+val_step = 0.2
 max_val = 2.1
+
+[node name="StoreSkillPanel12" parent="UI/Panels" instance=ExtResource( 9 )]
+modulate = Color( 0.270588, 0.603922, 0.376471, 1 )
+position = Vector2( 1, 509 )
+title = "Additional Max Bomb"
+setting_name = "additional_max_bombs"
+default_price = 60.0
+price_mult = 5.0
+val_step = 1.0
+max_val = 5.0
+
+[node name="StoreSkillPanel11" parent="UI/Panels" instance=ExtResource( 9 )]
+modulate = Color( 0.592157, 0.952941, 1, 1 )
+position = Vector2( -4, 2054 )
+title = "Laser Cooldown Scale"
+setting_name = "laser_recharge_scale"
+default_price = 25.0
+val_step = 0.25
+max_val = 3.1
 
 [node name="StoreSkillPanel7" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0, 0.882353, 1, 1 )
@@ -198,7 +218,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -230,7 +249,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddTokensButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0

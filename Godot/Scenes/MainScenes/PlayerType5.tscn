@@ -12,5 +12,5 @@ light_scale = 10.0
 light_fade_scale = -16.0
 bullets_per_burst_mod = 1
 laser_scale = 1.2
-bomb_scale = 4.0
-bomb_num_max = 1
+bomb_scale = 2.0
+max_bomb_mod = -2

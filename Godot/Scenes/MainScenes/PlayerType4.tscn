@@ -12,5 +12,5 @@ light_scale = 1.2
 bullets_per_burst_mod = -2
 laser_scale = 0.6
 bomb_scale = 1.2
-bomb_num_max = 8
+max_bomb_mod = 4
 bomb_scene_path = "res://Scenes/HelperScenes/Powerups/ClusterBomb.tscn"

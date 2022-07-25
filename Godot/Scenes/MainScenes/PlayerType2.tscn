@@ -16,8 +16,8 @@ speed_scale = 0.65
 light_scale = 1.3
 bullets_per_burst_mod = -2
 laser_scale = 1.4
-bomb_num_max = 2
-laser_cooldown_scale = 0.75
+max_bomb_mod = -1
+laser_recharge_scale = 1.5
 
 [node name="PlayerType2" type="Node2D" parent="."]
 script = ExtResource( 5 )

@@ -114,7 +114,6 @@ var player_default = {
 	"bomb_scale":1.0,
 	"bullet_damage_scale":1.0,
 	"laser_damage_scale":1.0,
-	"laser_cooldown_scale":1.0,
 	"gravity_radius_scale":1.0,
 
 	"starting_bombs":3,
@@ -147,6 +146,8 @@ var shop_default = {
 	"gravity_radius_scale":1000.0,
 	"bullet_burst_speed_scale":1.0,
 	"powerup_time_scale":0.5,
+	"laser_recharge_scale":1.0,
+	"additional_max_bombs":0,
 
 	"hard_mode_unlocked":false,
 	"extra_hard_mode_unlocked":false,
