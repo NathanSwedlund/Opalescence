@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
@@ -152,6 +152,25 @@ flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 500.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 56.3
+tangential_accel = 16.35
+damping = 200.0
+angle = 74.7
+angle_random = 1.0
+scale = 6.0
+scale_random = 1.0
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=24]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1000.0
 orbit_velocity = 0.0
 orbit_velocity_random = 1.0
 radial_accel = 56.3
@@ -484,6 +503,17 @@ speed_scale = 0.6
 explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 18 )
+script = ExtResource( 27 )
+
+[node name="GetPoweup" type="Particles2D" parent="."]
+emitting = false
+amount = 500
+lifetime = 2.0
+one_shot = true
+speed_scale = 0.6
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 24 )
 script = ExtResource( 27 )
 
 [node name="GameOverWaitTimer" type="Timer" parent="."]

@@ -613,6 +613,8 @@ func powerup_count():
 	return pc
 
 func get_powerup(_powerup, _color):
+	$GetPoweup.restart()
+	$GetPoweup.emitting = true
 	var a = $SoundFX.find_node(_powerup+"Audio")
 	if(a != null):
 		a.play()
