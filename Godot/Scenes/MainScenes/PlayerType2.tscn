@@ -37,9 +37,8 @@ occluder = SubResource( 1 )
 light_mask = 2
 
 [node name="Light2D" type="Light2D" parent="PlayerType2"]
-visible = false
 light_mask = 2
-position = Vector2( 31, 0 )
+position = Vector2( 34, 0 )
 scale = Vector2( 3.5, 3.5 )
 texture = ExtResource( 3 )
 texture_scale = 2.6

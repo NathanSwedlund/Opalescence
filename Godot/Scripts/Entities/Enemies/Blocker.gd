@@ -32,6 +32,7 @@ func _physics_process(delta):
 				collision.collider.damage(self)
 			elif(collision.collider.is_in_group("Blockers")):
 				take_damage(blocker_damage_mod * collision_damage * delta)
+				get_new_point_target()
 			elif(collision.collider.is_in_group("Enemies")):
 				collision.collider.die()
 				take_damage(collision_damage)
@@ -46,20 +47,22 @@ func _physics_process(delta):
 
 func _on_PointCheckTimer_timeout():
 	if(looking_for_point):
-		looking_for_point = false
-		var closest_dist = INF
-		var closest_point = null
-		for i in get_tree().get_nodes_in_group("Points"):
-			var dist_to_i = position.distance_squared_to(i.position)
-			if(dist_to_i < closest_dist):
-				closest_dist = dist_to_i
-				closest_point = i
-
-		point_to_cover = closest_point
-
+		get_new_point_target()
 	else:
 		if(point_to_cover == null):
 			looking_for_point = true
+
+func get_new_point_target():
+	looking_for_point = false
+	var closest_dist = INF
+	var closest_point = null
+	for i in get_tree().get_nodes_in_group("Points"):
+		var dist_to_i = position.distance_squared_to(i.position)
+		if(dist_to_i < closest_dist and randi() % 2 != 0):
+			closest_dist = dist_to_i
+			closest_point = i
+
+	point_to_cover = closest_point
 
 var damage_audio_base_pitch = 0.2
 var damage_audio_max_pith = 3.5
