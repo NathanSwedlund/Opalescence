@@ -19,6 +19,7 @@ var steps_already_taken = 0
 
 var page
 
+var spawned_particle_gens = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Light2D.color = modulate
@@ -39,6 +40,12 @@ func try_buy():
 		Settings.shop[setting_name] = current_val
 		update_labels()
 		$BuyAudio.play()
+		
+		var p = $IncreaseParticles.duplicate()
+		p.emitting = true
+		add_child(p)
+		spawned_particle_gens.append(p)
+
 
 func try_sell():
 	if(is_selected == false ):
@@ -54,6 +61,12 @@ func try_sell():
 		Settings.shop[setting_name] = current_val
 		update_labels()
 		$BuyAudio.play()
+		$DecreaseParticles.emitting = true
+
+		var p = $DecreaseParticles.duplicate()
+		p.emitting = true
+		add_child(p)
+		spawned_particle_gens.append(p)
 
 func update():
 	Settings.shop[setting_name] = current_val
@@ -121,3 +134,10 @@ func right():
 
 func left():
 	try_sell()
+	
+func _process(delta):
+	for i in range(len(spawned_particle_gens)):
+		if(spawned_particle_gens[i].emitting == false):
+			spawned_particle_gens[i].queue_free()
+			spawned_particle_gens.remove(i)
+			break
