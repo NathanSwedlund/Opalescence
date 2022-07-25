@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BuyAudioRiser2.wav-ad9bf2e7b87c2a691dd35e2e3e8a8062.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/FX/BuyAudioRiser2.wav"
+dest_files=[ "res://.import/BuyAudioRiser2.wav-ad9bf2e7b87c2a691dd35e2e3e8a8062.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/UI/StorePanelBool.gd" type="Script" id=6]
+[ext_resource path="res://Resources/Audio/FX/LaserCooling.wav" type="AudioStream" id=7]
+[ext_resource path="res://Resources/Audio/FX/NewHighScore.wav" type="AudioStream" id=8]
+[ext_resource path="res://Resources/Audio/FX/LaserCooldown.wav" type="AudioStream" id=9]
+[ext_resource path="res://Resources/Audio/FX/BuyAudioRiser3.wav" type="AudioStream" id=10]
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.639752, 0.667045 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -23,6 +27,87 @@ orbit_velocity_random = 0.0
 scale = 5.0
 scale_curve = SubResource( 6 )
 
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=11]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 20.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 300.0
+radial_accel_random = 0.1
+scale = 15.0
+scale_random = 0.72
+scale_curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=18]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 300.0
+radial_accel_random = 0.1
+scale = 15.0
+scale_random = 0.72
+scale_curve = SubResource( 11 )
+
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0, 0.173913, 0.614907, 0.832298 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 1, 1, 1, 0.865905, 0.738117, 0.738117, 0.738117, 0.738117 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 9 )
+
+[sub_resource type="Curve" id=15]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.570652, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.804348, 0.996591 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=16]
+curve = SubResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=14]
+emission_shape = 1
+emission_sphere_radius = 500.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.05
+orbit_velocity_random = 1.0
+linear_accel = 47.2
+radial_accel = -500.0
+damping = 100.0
+scale = 20.0
+scale_random = 0.54
+scale_curve = SubResource( 16 )
+color_ramp = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=13]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.1
+orbit_velocity_random = 1.0
+radial_accel = 100.0
+radial_accel_random = 0.1
+scale = 30.0
+scale_random = 0.72
+scale_curve = SubResource( 11 )
+color_ramp = SubResource( 8 )
+
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 2 )
@@ -37,6 +122,7 @@ font_data = ExtResource( 2 )
 
 [node name="StorePanelBool" type="Node2D"]
 position = Vector2( -1, -1 )
+scale = Vector2( 0.9, 0.9 )
 script = ExtResource( 6 )
 
 [node name="Light2D" type="Light2D" parent="."]
@@ -55,11 +141,84 @@ energy = 2.5
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
 position = Vector2( 5, -21 )
+z_index = 5
 process_material = SubResource( 7 )
+
+[node name="BuyExplosionParticles2" type="Particles2D" parent="."]
+position = Vector2( 42, -31 )
+z_index = 5
+emitting = false
+amount = 80
+lifetime = 4.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.9
+local_coords = false
+process_material = SubResource( 17 )
+
+[node name="BuyExplosionParticles3" type="Particles2D" parent="."]
+position = Vector2( -140, -32 )
+rotation = 3.14159
+z_index = 5
+emitting = false
+amount = 80
+lifetime = 4.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.9
+local_coords = false
+process_material = SubResource( 17 )
+
+[node name="BuyExplosionParticles4" type="Particles2D" parent="."]
+position = Vector2( -56, -4 )
+rotation = 3.14159
+z_index = 5
+emitting = false
+amount = 200
+lifetime = 4.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 18 )
+
+[node name="BuyImplosionParticles" type="Particles2D" parent="."]
+position = Vector2( -51, -6 )
+z_index = 5
+emitting = false
+amount = 50
+speed_scale = 3.0
+local_coords = false
+process_material = SubResource( 14 )
+
+[node name="BuyExplosionParticles" type="Particles2D" parent="."]
+position = Vector2( -51, -6 )
+z_index = 5
+emitting = false
+amount = 500
+lifetime = 8.0
+one_shot = true
+speed_scale = 3.0
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 13 )
 
 [node name="Frames" type="Node2D" parent="."]
 
-[node name="SelectionFrame" type="Sprite" parent="Frames"]
+[node name="UnpurchasedFrame" type="Node2D" parent="Frames"]
+modulate = Color( 0.776471, 0.776471, 0.776471, 1 )
+
+[node name="UnpurchasedFrame2" type="Sprite" parent="Frames/UnpurchasedFrame"]
+position = Vector2( -55.5556, -70 )
+scale = Vector2( 3.11, 3.47 )
+texture = ExtResource( 3 )
+
+[node name="UnpurchasedFrame3" type="Sprite" parent="Frames/UnpurchasedFrame"]
+position = Vector2( -57.7778, -4.44444 )
+scale = Vector2( 3.08, 3.13 )
+texture = ExtResource( 3 )
+
+[node name="UnpurchasedFrame2" type="Sprite" parent="Frames"]
 position = Vector2( -56, -66.285 )
 scale = Vector2( 3.00935, 3.6715 )
 texture = ExtResource( 3 )
@@ -70,10 +229,10 @@ scale = Vector2( 3, 2.843 )
 texture = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="."]
-margin_left = -414.0
-margin_top = -141.0
-margin_right = 303.0
-margin_bottom = -106.0
+margin_left = -411.111
+margin_top = -152.222
+margin_right = 305.889
+margin_bottom = -117.222
 custom_fonts/font = SubResource( 1 )
 text = "TITLE"
 align = 1
@@ -98,7 +257,37 @@ flat = true
 
 [node name="BuyAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-pitch_scale = 1.48
+pitch_scale = 0.68
 script = ExtResource( 1 )
 
+[node name="BuyAudio2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 0.9
+script = ExtResource( 1 )
+
+[node name="BuyAudio3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -5.0
+pitch_scale = 1.2
+script = ExtResource( 1 )
+default_vol = -5.0
+
+[node name="BuyAudioRiser" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+script = ExtResource( 1 )
+default_vol = -5.0
+
+[node name="BuyAudioRiser2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+pitch_scale = 1.5
+script = ExtResource( 1 )
+default_vol = -5.0
+
+[node name="BuyParticlesTimer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="pressed" from="BuyButton" to="." method="_on_BuyButton_pressed"]
+[connection signal="timeout" from="BuyParticlesTimer" to="." method="_on_BuyParticlesTimer_timeout"]

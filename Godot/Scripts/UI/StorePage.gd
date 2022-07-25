@@ -95,7 +95,7 @@ func select(num):
 		ui_elements[selected].select()
 		
 func update_point_label():
-	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
+	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(int(Settings.shop["points"]), ["b", "m", "k"]))
 
 func _on_BackButton_pressed():
 	back_to_main_menu()
@@ -113,7 +113,7 @@ func _on_NextPanelButton_pressed():
 		select_next()
 
 func _on_AddPointButton_pressed():
-	Settings.shop["points"] += 1000000000
+	Settings.shop["points"] += 1000000
 	update_point_label()
 
 func _on_ResetButton_pressed():
@@ -128,3 +128,34 @@ func _on_SuperPanelLastButton_pressed():
 
 func _on_SuperPanelNextButton_pressed():
 	Input.action_press("ui_right")
+	
+var is_deducting_points = false
+var current_point_deductions = 0
+var base_total_point_deductions = 18
+var target_point_deductions
+var previous_points
+var current_price
+var current_deduct_juice_scale
+var end_points_val
+func start_point_deduction_event(price, juice_scale):
+	current_price = price
+	is_deducting_points = true
+	current_deduct_juice_scale = juice_scale
+	$PointLabelEventTimer.start()
+	target_point_deductions = base_total_point_deductions * current_deduct_juice_scale
+	end_points_val = int(Settings.shop["points"]-current_price)
+
+
+func _on_PointLabelEventTimer_timeout():
+	if(current_point_deductions < target_point_deductions):
+		current_point_deductions += 1
+		Settings.shop["points"] = move_toward(Settings.shop["points"], Settings.shop["points"]-current_price, float(current_price)/target_point_deductions)
+		$PointDeductAudio.play()
+		update_point_label()
+	else:
+		is_deducting_points = false
+		current_point_deductions = 0
+		$PointLabelEventTimer.stop()
+		Settings.shop["points"] = end_points_val
+		update_point_label()
+		Settings.save()
