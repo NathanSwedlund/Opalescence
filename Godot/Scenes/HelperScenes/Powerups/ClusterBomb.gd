@@ -11,10 +11,18 @@ var side_bomb_dirs = [Vector2.UP+Vector2.RIGHT, Vector2.UP+Vector2.LEFT, Vector2
 
 func _ready():
 	side_bombs = [$Bomb1, $Bomb2, $Bomb3, $Bomb4]
+	for i in range(4):
+		if(is_instance_valid(side_bombs[i])):
+			var t = side_bombs[i].find_node("PowerupPill").find_node("CountdownTimer")
+			t.stop()
+			t.wait_time += randf()/2
+			t.start()
+			
 
 func _process(delta):
 	for i in range(4):
 		if(is_instance_valid(side_bombs[i])):
 			side_bombs[i].position += side_bomb_dirs[i]*delta*side_bomb_speed
+			
 	if(get_child_count() == 0):
 		queue_free()

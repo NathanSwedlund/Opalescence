@@ -16,7 +16,9 @@ var is_max_bomb = false
 # Called when the node enters the scene tree for the first time.
 var shrink_speed
 func _ready():
-	pass
+	modulate = Global.player.modulate
+	$OuterLight.color = modulate
+	$InnerLight.color = modulate
 
 var frames_per_update_options = {"Min":10, "Low":5, "Mid":3, "High":2, "Ultra":1}
 var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
