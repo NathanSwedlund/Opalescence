@@ -314,6 +314,7 @@ scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel4/Panels" instance=ExtResource( 7 )]
 position = Vector2( 0, 0 )
+scale = Vector2( 1.1, 1.1 )
 title = "Mono-color Scheme"
 setting_name = "monocolor_mode_unlocked"
 price = 350000
@@ -386,6 +387,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
+visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -417,6 +419,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
+visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
