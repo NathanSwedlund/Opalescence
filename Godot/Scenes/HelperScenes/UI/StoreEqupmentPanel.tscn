@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -8,10 +8,28 @@
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=6]
 [ext_resource path="res://Resources/Textures/Entities/player1Hi-Res.png" type="Texture" id=7]
 
+[sub_resource type="Curve" id=16]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=17]
+curve = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+emission_shape = 2
+emission_box_extents = Vector3( 1, 1, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_curve = SubResource( 17 )
+
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.639752, 0.667045 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=6]
+[sub_resource type="CurveTexture" id=18]
 curve = SubResource( 5 )
 
 [sub_resource type="ParticlesMaterial" id=7]
@@ -22,7 +40,7 @@ gravity = Vector3( 0, 200, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-scale_curve = SubResource( 6 )
+scale_curve = SubResource( 18 )
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -52,6 +70,26 @@ script = ExtResource( 3 )
 position = Vector2( -49, -67 )
 scale = Vector2( 0.33, 0.33 )
 texture = ExtResource( 7 )
+
+[node name="DecreaseParticles" type="Particles2D" parent="."]
+position = Vector2( -170, -63 )
+scale = Vector2( 1.6275, 0.7225 )
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.96
+draw_order = 1
+process_material = SubResource( 15 )
+
+[node name="IncreaseParticles" type="Particles2D" parent="."]
+position = Vector2( 57, -63 )
+scale = Vector2( 1.6275, 0.7225 )
+emitting = false
+amount = 10
+one_shot = true
+explosiveness = 0.96
+draw_order = 1
+process_material = SubResource( 15 )
 
 [node name="Light2D" type="Light2D" parent="."]
 visible = false

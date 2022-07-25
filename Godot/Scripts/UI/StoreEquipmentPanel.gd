@@ -14,6 +14,8 @@ var image_num = 0
 var index = 0
 var page
 
+var spawned_particle_gens = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	image_num = len(images)
@@ -69,6 +71,10 @@ func _on_ApplyLess_pressed():
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
 	else:
 		$EquipAudio.pitch_scale = equip_audio_pitch
+		var p = $DecreaseParticles.duplicate()
+		p.emitting = true
+		add_child(p)
+		spawned_particle_gens.append(p)
 		
 	$EquipAudio.play()
 	select_image( index )
@@ -84,6 +90,10 @@ func _on_ApplyMore_pressed():
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
 	else:
 		$EquipAudio.pitch_scale = equip_audio_pitch
+		var p = $IncreaseParticles.duplicate()
+		p.emitting = true
+		add_child(p)
+		spawned_particle_gens.append(p)
 		
 	$EquipAudio.play()
 	select_image( index )
@@ -97,3 +107,10 @@ func right():
 
 func left():
 	_on_ApplyLess_pressed()
+
+func _process(delta):
+	for i in range(len(spawned_particle_gens)):
+		if(spawned_particle_gens[i].emitting == false):
+			spawned_particle_gens[i].queue_free()
+			spawned_particle_gens.remove(i)
+			break

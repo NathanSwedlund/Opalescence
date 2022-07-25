@@ -11,6 +11,7 @@ export var colors = [null, Color.white, Color.red, Color.blue, Color.yellow, Col
 var color_num = 0
 var index = 0
 var page
+var spawned_particle_gens = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,6 +68,11 @@ func _on_ApplyLess_pressed():
 	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
 	
+	var p = $DecreaseParticles.duplicate()
+	p.emitting = true
+	add_child(p)
+	spawned_particle_gens.append(p)
+	
 	if(colors[index] != null):
 		modulate = colors[index]
 		$Sprite2.visible = true
@@ -87,6 +93,11 @@ func _on_ApplyMore_pressed():
 	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
 	
+	var p = $IncreaseParticles.duplicate()
+	p.emitting = true
+	add_child(p)
+	spawned_particle_gens.append(p)
+	
 	if(colors[index] != null):
 		modulate = colors[index]
 		$Sprite2.visible = true
@@ -105,3 +116,10 @@ func right():
 
 func left():
 	_on_ApplyLess_pressed()
+
+func _process(delta):
+	for i in range(len(spawned_particle_gens)):
+		if(spawned_particle_gens[i].emitting == false):
+			spawned_particle_gens[i].queue_free()
+			spawned_particle_gens.remove(i)
+			break
