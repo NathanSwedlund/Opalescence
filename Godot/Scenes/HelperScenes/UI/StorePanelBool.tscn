@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Resources/Audio/FX/NewHighScore.wav" type="AudioStream" id=8]
 [ext_resource path="res://Resources/Audio/FX/LaserCooldown.wav" type="AudioStream" id=9]
 [ext_resource path="res://Resources/Audio/FX/BuyAudioRiser3.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=11]
 
 [sub_resource type="Curve" id=5]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.639752, 0.667045 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -143,6 +144,7 @@ visible = false
 position = Vector2( 5, -21 )
 z_index = 5
 process_material = SubResource( 7 )
+script = ExtResource( 11 )
 
 [node name="BuyExplosionParticles2" type="Particles2D" parent="."]
 position = Vector2( 42, -31 )
@@ -155,6 +157,7 @@ speed_scale = 5.0
 explosiveness = 0.9
 local_coords = false
 process_material = SubResource( 17 )
+script = ExtResource( 11 )
 
 [node name="BuyExplosionParticles3" type="Particles2D" parent="."]
 position = Vector2( -140, -32 )
@@ -168,6 +171,7 @@ speed_scale = 5.0
 explosiveness = 0.9
 local_coords = false
 process_material = SubResource( 17 )
+script = ExtResource( 11 )
 
 [node name="BuyExplosionParticles4" type="Particles2D" parent="."]
 position = Vector2( -56, -4 )
@@ -181,6 +185,7 @@ speed_scale = 5.0
 explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 18 )
+script = ExtResource( 11 )
 
 [node name="BuyImplosionParticles" type="Particles2D" parent="."]
 position = Vector2( -51, -6 )
@@ -190,6 +195,7 @@ amount = 50
 speed_scale = 3.0
 local_coords = false
 process_material = SubResource( 14 )
+script = ExtResource( 11 )
 
 [node name="BuyExplosionParticles" type="Particles2D" parent="."]
 position = Vector2( -51, -6 )
@@ -202,6 +208,7 @@ speed_scale = 3.0
 explosiveness = 0.8
 local_coords = false
 process_material = SubResource( 13 )
+script = ExtResource( 11 )
 
 [node name="Frames" type="Node2D" parent="."]
 
