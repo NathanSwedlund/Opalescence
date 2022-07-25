@@ -230,9 +230,9 @@ texture = ExtResource( 3 )
 
 [node name="Title" type="Label" parent="."]
 margin_left = -411.111
-margin_top = -152.222
+margin_top = -141.111
 margin_right = 305.889
-margin_bottom = -117.222
+margin_bottom = -106.111
 custom_fonts/font = SubResource( 1 )
 text = "TITLE"
 align = 1

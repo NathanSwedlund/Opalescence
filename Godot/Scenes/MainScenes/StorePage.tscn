@@ -83,7 +83,7 @@ texture = ExtResource( 10 )
 [node name="Panels" type="Node2D" parent="UI"]
 
 [node name="StoreSuperPanel" type="Node2D" parent="UI/Panels"]
-position = Vector2( -1, -1 )
+position = Vector2( 0, -1 )
 scale = Vector2( 0.91, 0.91 )
 script = ExtResource( 11 )
 title = "Game Modes"
@@ -98,11 +98,10 @@ text = "TITLE"
 align = 1
 
 [node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel"]
-position = Vector2( 61.5385, 5.49454 )
 scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
-position = Vector2( 464.92, -3.38129 )
+position = Vector2( 464.92, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard Hard Mode"
 setting_name = "hard_mode_unlocked"
@@ -111,7 +110,7 @@ purchased_color = Color( 0.823529, 0.580392, 0.00784314, 1 )
 purchase_juice_scale = 0.8
 
 [node name="StorePanelBool2" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
-position = Vector2( 839.56, 3.05176e-05 )
+position = Vector2( 839.56, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard Extra Hard Mode"
 setting_name = "extra_hard_mode_unlocked"
@@ -120,7 +119,7 @@ purchased_color = Color( 0.878431, 0.431373, 0, 1 )
 purchase_juice_scale = 1.2
 
 [node name="StorePanelBool3" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
-position = Vector2( 1293.41, -2.19781 )
+position = Vector2( 1293.41, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Standard NIGHTMARE Mode"
 setting_name = "nightmare_mode_unlocked"
@@ -129,7 +128,7 @@ purchased_color = Color( 1, 0, 0, 1 )
 purchase_juice_scale = 1.5
 
 [node name="StorePanelBool4" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
-position = Vector2( 0, 0 )
+position = Vector2( -74.3872, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Challenge Game Mode"
 setting_name = "challenge_mode_unlocked"
@@ -142,7 +141,7 @@ pitch_scale = 0.7
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel2" type="Node2D" parent="UI/Panels"]
-position = Vector2( 3, 217 )
+position = Vector2( 0, 217 )
 scale = Vector2( 0.91, 0.91 )
 script = ExtResource( 11 )
 title = "Pellet Types"
@@ -157,7 +156,6 @@ text = "TITLE"
 align = 1
 
 [node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel2"]
-position = Vector2( 27.4725, 5.49454 )
 scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool5" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
@@ -211,7 +209,7 @@ pitch_scale = 0.7
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel3" type="Node2D" parent="UI/Panels"]
-position = Vector2( 3, 421 )
+position = Vector2( 0, 421 )
 scale = Vector2( 0.91, 0.91 )
 script = ExtResource( 11 )
 title = "Player Types"
@@ -226,7 +224,6 @@ text = "TITLE"
 align = 1
 
 [node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel3"]
-position = Vector2( 27.4725, 5.49451 )
 scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool7" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
@@ -295,7 +292,7 @@ pitch_scale = 0.7
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel4" type="Node2D" parent="UI/Panels"]
-position = Vector2( 6, 635 )
+position = Vector2( 0, 635 )
 scale = Vector2( 0.91, 0.91 )
 script = ExtResource( 11 )
 title = "Misc."

@@ -19,6 +19,7 @@ export var purchase_juice_scale = 1.0
 func _ready():
 	has_purchased = Settings.get_setting_if_exists(Settings.shop, setting_name, false)
 	$Frames/UnpurchasedFrame.visible = !has_purchased
+	$Frames/UnpurchasedFrame2.visible = !has_purchased
 	modulate = base_color if has_purchased == false else purchased_color
 	
 	$Light2D.color = modulate
