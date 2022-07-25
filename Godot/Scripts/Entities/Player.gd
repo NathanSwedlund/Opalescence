@@ -169,7 +169,8 @@ func reset_settings():
 	bomb_scale = default_bomb_scale * player_type.bomb_scale
 	max_bombs = player_type.bomb_num_max
 	Settings.world["points_scale"] *= player_type.points_scale
-
+	bomb_scene = load(player_type.bomb_scene_path)
+	
 	starting_bombs = max_bombs
 	if(first_load):
 		current_bombs = max_bombs

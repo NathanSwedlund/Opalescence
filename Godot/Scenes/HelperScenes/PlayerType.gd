@@ -14,4 +14,4 @@ export var bomb_num_max = 3
 export var points_scale = 1.0
 export var laser_cooldown_scale = 1.0
 var player = null
-
+export var bomb_scene_path = "res://Scenes/HelperScenes/Powerups/Bomb.tscn"
