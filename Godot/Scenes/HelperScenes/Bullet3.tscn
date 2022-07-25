@@ -43,8 +43,8 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-speed_accel = 200.0
-speed_accel_scale = 5
+speed_accel = 20.0
+speed_accel_scale = 7
 base_damge = 8.0
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -59,7 +59,7 @@ shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 material = SubResource( 7 )
-amount = 900
+amount = 100
 lifetime = 0.5
 local_coords = false
 process_material = SubResource( 3 )

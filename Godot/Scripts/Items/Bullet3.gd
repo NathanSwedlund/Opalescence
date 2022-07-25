@@ -7,6 +7,7 @@ export var speed_accel_scale = 3
 var speed_max = 5000.0
 
 export var base_damge = 2.0
+export var max_damage = 8.0
 var damage_mod = 1.0
 var incendiary = false
 
@@ -32,17 +33,17 @@ func _process(delta):
 	if(collision != null):
 		var speed_ratio = speed/speed_max
 		if(collision.collider.is_in_group("Enemies")):
-			collision.collider.take_damage(base_damge*damage_mod * speed_ratio)
+			collision.collider.take_damage(max(base_damge, max_damage)*damage_mod * speed_ratio)
 		
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.scale_mod = explosion_scale * speed_ratio  * scale.x
-		explosion.explosion_pitch = 1.5-speed_ratio
+		explosion.explosion_pitch = max(1.5-speed_ratio, 0.65)
 		if(incendiary):
 			explosion.scale_mod *= 3
 		explosion.rotation = $Sprite.rotation
 		explosion.grow_speed = 1.17
-		explosion.shrink_speed = 0.93
+		explosion.shrink_speed = 0.7
 		explosion.modulate = modulate
 		
 			
