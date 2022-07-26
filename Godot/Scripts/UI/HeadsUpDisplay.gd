@@ -83,10 +83,15 @@ var tokens_this_round
 func game_over():
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
 	var is_mission = Settings.world["is_mission"]
+	var is_challenge_mode = Settings.world["mission_title"] == "challenge"
+	
 	var mission_complete = false
 	var mission_title = Settings.world["mission_title"]
 	if(!is_mission):
 		HighScore.record_score(Global.points_this_round, mission_title)
+	elif(is_challenge_mode):
+		var p = Global.round_float(Global.points_this_round * Settings.world["points_scale"], 0)
+		HighScore.record_score(p, mission_title, true)
 	else:
 		if(Settings.world["has_point_goal"] and Settings.world["point_goal"] <= Global.points_this_round):
 			HighScore.record_score(Global.round_float(Global.play_time, 3), mission_title, false)
@@ -109,6 +114,8 @@ func game_over():
 				made_new_high_score = (old_high_score > Global.play_time) or (old_high_score == 0)
 			else: # time goal
 				old_high_score < Global.points_this_round
+	elif(is_challenge_mode):
+		made_new_high_score = old_high_score < Global.points_this_round * Settings.world["points_scale"]
 	else:
 		made_new_high_score = old_high_score < Global.points_this_round
 
@@ -270,6 +277,9 @@ func _on_HighScoreWaitTimer_timeout():
 		$HighScorePopup/AudioStreamPlayer.play()
 		if(Settings.world["has_point_goal"]):
 			$HighScorePopup/HighScoreLabel2.text = str(Global.play_time) + points_suffix
+		elif(Settings.world["mission_title"] == "challenge"):
+			var p = Global.round_float(Global.points_this_round * Settings.world["points_scale"], 0)
+			$HighScorePopup/HighScoreLabel2.text = str(p) + points_suffix
 		else:
 			$HighScorePopup/HighScoreLabel2.text = str(Global.points_this_round) + points_suffix
 		$HighScorePopup/Particles2D.emitting = true
