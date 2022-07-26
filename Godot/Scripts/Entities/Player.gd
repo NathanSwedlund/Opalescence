@@ -332,9 +332,9 @@ func get_input():
 			if(heads_up_display != null):
 				heads_up_display.update_bombs(current_bombs)
 			drop_bomb(bomb_scale)
-	if(Input.is_action_just_pressed("mouse_left") and can_shoot):
+	if(Input.is_action_pressed("mouse_left") and can_shoot):
 		shoot()
-	if(can_shoot_laser and Input.is_action_just_pressed("mouse_right")):
+	if(is_charging_laser == false and can_shoot_laser and Input.is_action_pressed("mouse_right")):
 		is_charging_laser = true
 		$LaserChargeTimer.start()
 		$SoundFX/LaserChargeAudio.play()
