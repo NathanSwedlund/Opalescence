@@ -879,6 +879,7 @@ script = ExtResource( 20 )
 [node name="LevelController" type="Node2D" parent="."]
 script = ExtResource( 23 )
 level_count = 9
+level_time_lengths = [ 4, 60, 60, 60, 60, 60, 60, 60, 60, 60 ]
 
 [node name="CountdownTimer" type="Timer" parent="LevelController"]
 

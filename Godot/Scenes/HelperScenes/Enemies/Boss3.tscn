@@ -41,12 +41,6 @@ position = Vector2( 850, 63 )
 [node name="Shooter11" parent="Shooters" instance=ExtResource( 1 )]
 position = Vector2( 933, 62 )
 
-[node name="Shooter12" parent="Shooters" instance=ExtResource( 1 )]
-position = Vector2( 1014, 62 )
-
-[node name="Shooter13" parent="Shooters" instance=ExtResource( 1 )]
-position = Vector2( 1097, 63 )
-
 [node name="PauseShootingTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="PauseShootingTimer" to="." method="_on_PauseShootingTimer_timeout"]

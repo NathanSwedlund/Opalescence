@@ -29,7 +29,7 @@ func _ready():
 
 	bosses[2] = load("res://Scenes/HelperScenes/Enemies/Boss1.tscn")
 	bosses[4] = load("res://Scenes/HelperScenes/Boss2Container.tscn")
-	bosses[6] = load("res://Scenes/HelperScenes/Boss3Container.tscn")
+	bosses[1] = load("res://Scenes/HelperScenes/Boss3Container.tscn")
 
 
 	currrent_level = starting_level
