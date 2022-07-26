@@ -13,7 +13,7 @@ func _ready():
 		
 	points_num *=  Settings.world["points_scale"]
 	$Label.modulate = color
-	$Label.text = Global.point_num_to_string(points_num, ["b", "m", "k"]) #+ "pts"
+	$Label.text = Global.point_num_to_string(Global.round_float(points_num, 0), ["b", "m", "k"]) #+ "pts"
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
