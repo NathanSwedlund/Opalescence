@@ -463,3 +463,9 @@ func _on_NoButton_pressed():
 
 func _on_YesButton_pressed():
 	reset_all_content()
+
+
+func _on_ResetHighScoreButton_pressed():
+	HighScore.reset_high_scores()
+	HighScore.save_high_scores()
+	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
