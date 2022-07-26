@@ -10,13 +10,18 @@ var small_bullet_explosion_scene
 func _ready():
 	var step = (deg_sep*2)/get_child_count()
 	var weight = step
-	for b in get_children():
-		var sep = deg2rad(rand_range(deg_sep,-deg_sep)) #deg2rad(move_toward(deg_sep, -deg_sep, weight))
-		weight += step
-		b.rotate(sep)
-		b.direction = direction.rotated(sep)
+	if(incendiary):
+		$AudioStreamPlayer.pitch_scale = Global.player.incendiary_audio_pitch
 		
-		b.set_incendiary(incendiary)
-		b.small_bullet_explosion_scene = small_bullet_explosion_scene
+	for b in get_children():
+		if(b != $AudioStreamPlayer):
+			var sep = deg2rad(rand_range(deg_sep,-deg_sep)) #deg2rad(move_toward(deg_sep, -deg_sep, weight))
+			weight += step
+			b.rotate(sep)
+			b.direction = direction.rotated(sep)
+			
+			b.set_incendiary(incendiary)
+			b.small_bullet_explosion_scene = small_bullet_explosion_scene
 	
-	
+func _on_AudioStreamPlayer_finished():
+	$AudioStreamPlayer.queue_free()

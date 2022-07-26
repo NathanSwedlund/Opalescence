@@ -13,6 +13,7 @@ func _ready():
 	base_damge *= Settings.player["bullet_damage_scale"]
 
 	if(incendiary):
+		$AudioStreamPlayer.pitch_scale = Global.player.incendiary_audio_pitch
 		speed *= 2.2
 		damage_mod = 3
 		scale *= 2.2
@@ -43,3 +44,7 @@ func _process(delta):
 				
 			get_parent().add_child(explosion)
 			queue_free()
+
+
+func _on_AudioStreamPlayer_finished():
+	$AudioStreamPlayer.queue_free()

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BulletFire10.wav-ce11956a9c94fbcccc94aa3372b3e94f.sample"
+
+[deps]
+
+source_file="res://Resources/Audio/FX/BulletFire10.wav"
+dest_files=[ "res://.import/BulletFire10.wav-ce11956a9c94fbcccc94aa3372b3e94f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

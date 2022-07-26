@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Items/Bullet3.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/Items/bullet-3Hi-Res.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Audio/FX/BulletFire7.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=7]
 light_mode = 1
@@ -44,8 +46,9 @@ __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
 speed_accel = 15.0
-speed_accel_scale = 9
-base_damge = 8.0
+speed_accel_scale = 13
+base_damge = 13.0
+max_damage = 13.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 7 )
@@ -64,3 +67,10 @@ lifetime = 0.5
 local_coords = false
 process_material = SubResource( 3 )
 script = ExtResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+script = ExtResource( 5 )
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

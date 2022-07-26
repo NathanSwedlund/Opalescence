@@ -371,7 +371,6 @@ var BULLET_SPAWN_DIST = 25
 func spawn_bullet():
 #	Global.vibrate_controller(0.1,0.3)
 	var bullet = bullet_scene.instance()
-	$SoundFX/BulletFireAudio.play()
 	if(has_powerup["Incendiary"]):
 		$SoundFX/IncendiaryBulletFire.play()
 		Global.shakes["misc"].start()
@@ -664,7 +663,6 @@ func get_powerup(_powerup, _color):
 		start_powerup_timer($PowerupTimers/GravityWell.wait_time, _color, _powerup)
 	if(_powerup == "Incendiary"):
 		$PowerupTimers/Incendiary.start()
-		$SoundFX/BulletFireAudio.pitch_scale = incendiary_audio_pitch
 		$SoundFX/BulletHitFail.pitch_scale = incendiary_audio_pitch
 		start_powerup_timer($PowerupTimers/Incendiary.wait_time, _color, _powerup)
 		is_shooting_indendiary = true
@@ -729,7 +727,6 @@ func _on_GravityWell_timeout():
 
 func _on_Incendiary_timeout():
 	has_powerup["Incendiary"] = false
-	$SoundFX/BulletFireAudio.pitch_scale = bullet_audio_default_pitch
 	$SoundFX/BulletHitFail.pitch_scale = bullet_audio_default_pitch
 	is_shooting_indendiary = false
 

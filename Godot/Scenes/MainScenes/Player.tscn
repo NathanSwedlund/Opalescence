@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://Resources/Audio/FX/GainBomb.wav" type="AudioStream" id=15]
 [ext_resource path="res://Resources/Audio/FX/BulletTime.wav" type="AudioStream" id=16]
 [ext_resource path="res://Resources/Audio/FX/LaserCharge.wav" type="AudioStream" id=17]
-[ext_resource path="res://Resources/Audio/FX/BulletFire.wav" type="AudioStream" id=18]
 [ext_resource path="res://Resources/Audio/FX/BombDeploy.wav" type="AudioStream" id=19]
 [ext_resource path="res://Resources/Audio/FX/Opalescence.wav" type="AudioStream" id=20]
 [ext_resource path="res://Resources/Audio/FX/OverSheildLost.wav" type="AudioStream" id=21]
@@ -353,12 +352,6 @@ stream = ExtResource( 16 )
 volume_db = 10.0
 script = ExtResource( 26 )
 default_vol = 10.0
-
-[node name="BulletFireAudio" type="AudioStreamPlayer" parent="SoundFX"]
-stream = ExtResource( 18 )
-volume_db = 4.0
-script = ExtResource( 26 )
-default_vol = 4.0
 
 [node name="BulletHitFail" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 24 )
