@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Grand Mistake.mp3-d4c6002378f3e72604e46e84f119383d.mp3str"
+
+[deps]
+
+source_file="res://Resources/Audio/Music/World/Grand Mistake.mp3"
+dest_files=[ "res://.import/Grand Mistake.mp3-d4c6002378f3e72604e46e84f119383d.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

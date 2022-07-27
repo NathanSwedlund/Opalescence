@@ -908,7 +908,7 @@ script = null
 [node name="MusicShuffler" parent="." instance=ExtResource( 12 )]
 pause_mode = 2
 autoplay = true
-song_paths = [ "res://Resources/Audio/Music/World/Impurity2.mp3", "res://Resources/Audio/Music/World/Jagged Skies.mp3", "res://Resources/Audio/Music/World/Knight City.mp3", "res://Resources/Audio/Music/World/OPALESCNECEGame2.mp3", "res://Resources/Audio/Music/World/Subject#39.mp3", "res://Resources/Audio/Music/World/The Wayward Mines.mp3" ]
+song_paths = [ "res://Resources/Audio/Music/World/Impurity2.mp3", "res://Resources/Audio/Music/World/Jagged Skies.mp3", "res://Resources/Audio/Music/World/Knight City.mp3", "res://Resources/Audio/Music/World/OPALESCNECEGame2.mp3", "res://Resources/Audio/Music/World/Subject#39.mp3", "res://Resources/Audio/Music/World/The Wayward Mines.mp3", "res://Resources/Audio/Music/World/Grand Mistake.mp3" ]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
