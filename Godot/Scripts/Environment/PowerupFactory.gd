@@ -113,6 +113,9 @@ func spawn_powerup():
 
 	for key in powerup_probabilities:
 		r -= powerup_probabilities[key]
+		if(key == "bomb_up"):
+			return
+			
 		if(r <= 0 and get_node(key_to_name[key]) == null): # spawn the current powerup
 			var powerup = powerup_scenes[key].instance()
 			var position_x = rand_range(left_bound, right_bound)

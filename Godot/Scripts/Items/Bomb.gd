@@ -48,7 +48,7 @@ func _process(delta):
 		current_frame += 1
 		if(current_frame % frames_per_update == 0):
 			for e in get_tree().get_nodes_in_group("Enemies"):
-				if(global_position.distance_squared_to(e.global_position) < 40000*get_parent().global_scale.x):
+				if(global_position.distance_squared_to(e.global_position) < 100000*get_parent().global_scale.x):
 					e.take_damage(damage * delta * frames_per_update, true, modulate)
 					print("damaging ", e)
 

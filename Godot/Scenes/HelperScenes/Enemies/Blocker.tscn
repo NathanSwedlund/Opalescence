@@ -9,7 +9,7 @@
 light_mode = 1
 
 [sub_resource type="OccluderPolygon2D" id=1]
-polygon = PoolVector2Array( -0.5, -40, 11.5, -28.5, 28, -28, 28.5, -11.5, 40, -0.5, 28.5, 10, 28.5, 27, 11.5, 27, -0.5, 39.5, -12.5, 27.5, -28, 27, -28.5, 12, -40, -0.5, -28, -13, -28, -28, -12.5, -28 )
+polygon = PoolVector2Array( -0.416667, -39.1667, 10.8333, -27.9167, 27.5, -27.5, 28.5, -11.5, 37.9167, -0.416667, 27.9167, 10, 27.5, 26.6667, 10.8333, 26.6667, -0.416667, 37.9167, -11.6667, 26.6667, -27.5, 26.6667, -27.5, 10.8333, -39.1667, -0.416667, -27.5, -11.6667, -27.5, -27.5, -11.6667, -27.9167 )
 
 [node name="Blocker" type="KinematicBody2D"]
 modulate = Color( 0, 0, 0, 1 )
@@ -24,6 +24,7 @@ scale = Vector2( 0.33, 0.33 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PoolVector2Array( 26, -28, 27, -12, 37, -1, 26, 10, 27, 25, 13, 25, 0, 36, -11, 25, -26, 25, -25, 13, -37, -1, -27, -10, -26, -26, -12, -26, 0, -37, 10, -26 )
 
 [node name="PointCheckTimer" type="Timer" parent="."]

@@ -49,6 +49,7 @@ speed_accel = 15.0
 speed_accel_scale = 13
 base_damge = 13.0
 max_damage = 13.0
+explosion_scale = 0.45
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 7 )

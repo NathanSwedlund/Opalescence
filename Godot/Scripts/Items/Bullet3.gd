@@ -42,12 +42,15 @@ func _process(delta):
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.scale_mod = explosion_scale * speed_ratio  * scale.x
-		explosion.explosion_pitch = max(1.5-speed_ratio, 0.65)
+		explosion.explosion_pitch = max(1.5-speed_ratio, 0.7)
+		explosion.find_node("Light2D2").visible = false
+		explosion.find_node("Light2D").energy *= 1.5
+
 		if(incendiary):
 			explosion.scale_mod *= 3
 		explosion.rotation = $Sprite.rotation
 		explosion.grow_speed = 1.17
-		explosion.shrink_speed = 0.7
+		explosion.shrink_speed = 0.85
 		explosion.modulate = modulate
 		
 			
