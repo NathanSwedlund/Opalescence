@@ -40,12 +40,15 @@ func _ready():
 	update_labels()
 
 func _on_BuyButton_pressed():
+	print(" _on_BuyButton_pressed")
 	try_buy()
 	
 func try_buy():
-	if(is_selected == false):
+	print("try buy")
+	if(is_selected == false or page.buying_event_is_playing == true):
 		return
 		
+	page.buying_event_is_playing = true
 	if(Settings.shop["points"] >= price and !has_purchased):
 		has_purchased = true
 		page.start_point_deduction_event(price, purchase_juice_scale)
@@ -105,6 +108,7 @@ func _on_BuyParticlesTimer_timeout():
 	$BuyExplosionParticles.emitting = true
 	$BuyImplosionParticles.emitting = false
 	$BuyImplosionParticles.visible = false
+	page.buying_event_is_playing = false
 	modulate = purchased_color
 	$Frames/UnpurchasedFrame2.visible = false
 	$Light2D.color = modulate

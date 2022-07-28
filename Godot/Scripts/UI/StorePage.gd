@@ -12,6 +12,7 @@ var panel_num
 
 export var panel_sep_dist = 230
 export var starting_panel_loc = Vector2.ZERO
+var buying_event_is_playing = false
 
 var is_shifting = false
 export var shift_speed = 1800.0

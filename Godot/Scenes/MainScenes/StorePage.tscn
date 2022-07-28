@@ -403,6 +403,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
+visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -434,6 +435,7 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
+visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
@@ -490,6 +492,7 @@ margin_bottom = 698.0
 focus_mode = 0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
+enabled_focus_mode = 0
 flat = true
 
 [node name="LastPanelButton" type="Button" parent="."]
@@ -500,6 +503,7 @@ margin_bottom = 268.0
 focus_mode = 0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
+enabled_focus_mode = 0
 flat = true
 
 [node name="SuperPanelNextButton" type="Button" parent="."]
@@ -507,8 +511,10 @@ margin_left = 683.0
 margin_top = 285.0
 margin_right = 1376.0
 margin_bottom = 458.0
+focus_mode = 0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
+enabled_focus_mode = 0
 flat = true
 
 [node name="SuperPanelLastButton" type="Button" parent="."]
@@ -516,8 +522,10 @@ margin_left = -471.0
 margin_top = 261.0
 margin_right = 215.0
 margin_bottom = 456.0
+focus_mode = 0
 custom_styles/pressed = SubResource( 7 )
 custom_styles/focus = SubResource( 8 )
+enabled_focus_mode = 0
 flat = true
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="."]
