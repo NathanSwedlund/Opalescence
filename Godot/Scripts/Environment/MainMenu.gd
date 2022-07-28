@@ -274,7 +274,7 @@ export var standard_diff_settings = {
 	"ExtraEasy":{
 		"is_mission":false,
 		"mission_title":"ExtraEasyStandard",
-		"powerup_time_max":10,
+		"powerup_time_max":7,
 		"points_scale":0.2,
 		"starting_health":5,
 		"enemy_health_scale":1.0,

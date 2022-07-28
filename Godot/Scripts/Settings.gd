@@ -55,7 +55,6 @@ var factory_default = {
 	"powerup_time_max":20,
 	"powerup_spawn_time_speed":1.0,
 	"powerup_barrage_prob":1,
-	"powerup_bomb_up_prob":0,
 	"powerup_bombastic_prob":1,
 	"powerup_bulet_time_prob":1,
 	"powerup_gravity_well_prob":1,

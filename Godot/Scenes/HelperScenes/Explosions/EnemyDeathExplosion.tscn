@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
@@ -52,9 +52,6 @@ scale_random = 1.0
 color = Color( 0, 0, 0, 1 )
 color_ramp = SubResource( 2 )
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 200.0
-
 [node name="EnemyDeathExplosion" type="Node2D"]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
@@ -105,10 +102,3 @@ explosiveness = 0.85
 local_coords = false
 process_material = SubResource( 5 )
 script = ExtResource( 4 )
-
-[node name="Area2D" type="Area2D" parent="."]
-scale = Vector2( 0.45, 0.45 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-scale = Vector2( 1.13793, 1.13793 )
-shape = SubResource( 6 )

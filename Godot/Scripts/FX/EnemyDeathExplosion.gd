@@ -75,9 +75,12 @@ func _process(delta):
 					is_growing = false
 				else:
 					scale *= pow(grow_speed, frames_per_update)
-				for i in $Area2D.get_overlapping_bodies():
-					if(i.is_in_group("Enemies")):
-						i.take_damage(damage * delta * frames_per_update, true, Color.white)
+#				for i in $Area2D.():
+#					if(i.is_in_group("Enemies")):
+#						i.take_damage(damage * delta * frames_per_update, true, Color.white)
+				for e in get_tree().get_nodes_in_group("Enemies"):
+					if(global_position.distance_squared_to(e.global_position) < 40000*scale.x):
+						e.take_damage(damage * delta * frames_per_update, true, Color.white)
 			else:
 				if(scale.x <= min_size * scale_mod):
 					queue_free()

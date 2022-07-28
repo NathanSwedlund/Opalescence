@@ -28,7 +28,6 @@ export var settings = {
 	"powerup_time_min":null,
 	"powerup_time_max":null,
 	"powerup_barrage_prob":null,
-	"powerup_bomb_up_prob":null,
 	"powerup_bombastic_prob":null,
 	"powerup_bulet_time_prob":null,
 	"powerup_gravity_well_prob":null,

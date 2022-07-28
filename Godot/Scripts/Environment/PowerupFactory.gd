@@ -13,7 +13,6 @@ export var time_max = 60.0
 export var powerup_probabilities = {
 	"barrage":1/20.0,
 	"bombastic":1.0/20.0,
-	"bomb_up":4.0/20.0,
 	"bullet_time":1.0/20.0,
 	"gravity_well":1.0/20.0,
 	"incendiary":1.0/20.0,
@@ -28,7 +27,6 @@ export var powerup_probabilities = {
 export var key_to_name = {
 	"barrage":"Barrage",
 	"bombastic":"Bombastic",
-	"bomb_up":"BombUp",
 	"bullet_time":"BulletTime",
 	"gravity_well":"GravityWell",
 	"incendiary":"Incendiary",
@@ -43,7 +41,6 @@ export var key_to_name = {
 var powerup_scenes = {
 	"barrage":load("res://Scenes/HelperScenes/Powerups/Barrage.tscn"),
 	"bombastic":load("res://Scenes/HelperScenes/Powerups/Bombastic.tscn"),
-	"bomb_up":load("res://Scenes/HelperScenes/Powerups/BombUp.tscn"),
 	"bullet_time":load("res://Scenes/HelperScenes/Powerups/BulletTime.tscn"),
 	"gravity_well":load("res://Scenes/HelperScenes/Powerups/GravityWell.tscn"),
 	"incendiary":load("res://Scenes/HelperScenes/Powerups/Incendiary.tscn"),
@@ -71,7 +68,6 @@ func _ready():
 		powerup_spawn_time_speed = Settings.get_setting_if_exists(Settings.factory, "powerup_spawn_time_speed", powerup_spawn_time_speed)
 		
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
-		powerup_probabilities["bomb_up"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_bomb_up_prob", powerup_probabilities["bomb_up"])
 		powerup_probabilities["bombastic"]    = Settings.get_setting_if_exists(Settings.factory, "powerup_bombastic_prob", powerup_probabilities["bombastic"])
 		powerup_probabilities["bullet_time"]  = Settings.get_setting_if_exists(Settings.factory, "powerup_bullet_time_prob", powerup_probabilities["bullet_time"])
 		powerup_probabilities["gravity_well"] = Settings.get_setting_if_exists(Settings.factory, "powerup_gravity_well_prob", powerup_probabilities["gravity_well"])
@@ -85,7 +81,6 @@ func _ready():
 
 		if(Settings.get_setting_if_exists(Settings.player, "can_bomb", true) == false):
 			powerup_probabilities["bombastic"] = 0.0
-			powerup_probabilities["bomb_up"] = 0.0
 			powerup_probabilities["max_bomb"] = 0.0
 		if(Settings.get_setting_if_exists(Settings.player, "can_shoot", true) == false):
 			powerup_probabilities["incendiary"] = 0.0
