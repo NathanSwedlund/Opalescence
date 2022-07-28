@@ -18,8 +18,13 @@ var shake_amp = 12
 var shake_dur = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low", "Mid"]):
+	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low"]):
 		$Light2D2.visible = false
+#		$Light2D2.shadow_enabled = false
+		$Light2D.shadow_enabled = false
+#	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low", "Mid"]):
+#		$Light2D2.shadow_enabled = false
+		
 	explosion_vol_db_mod = (scale_mod-1)*5
 	explosion_pitch -= scale_mod/5
 	shake_dur *= scale_mod

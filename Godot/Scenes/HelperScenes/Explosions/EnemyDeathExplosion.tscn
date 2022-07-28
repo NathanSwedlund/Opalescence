@@ -65,12 +65,15 @@ shrink_speed = 0.95
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 2 )
 energy = 3.3
+shadow_enabled = true
+shadow_buffer_size = 400
 
 [node name="Light2D2" type="Light2D" parent="."]
 rotation = 0.727802
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 energy = 6.0
+shadow_buffer_size = 400
 
 [node name="WhiteBlast" type="Particles2D" parent="."]
 emitting = false

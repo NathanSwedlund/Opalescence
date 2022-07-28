@@ -13,6 +13,7 @@ export var expl_scale = 0.5
 var point_reward = 0
 
 func _ready():
+	$LaunchParticles.emitting = true
 	speed  = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed",  speed) * Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed_scale",  1.0)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_health", health)
 	damage = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_damage", damage)

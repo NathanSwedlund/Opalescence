@@ -214,6 +214,7 @@ texture = ExtResource( 4 )
 texture_scale = 1.5
 energy = 2.73
 shadow_enabled = true
+shadow_buffer_size = 400
 
 [node name="OuterLight" type="Light2D" parent="."]
 position = Vector2( 15, 7.25006 )
@@ -221,12 +222,14 @@ texture = ExtResource( 2 )
 texture_scale = 2.5
 energy = 2.0
 shadow_enabled = true
+shadow_buffer_size = 400
 
 [node name="MidLight" type="Light2D" parent="OuterLight"]
 texture = ExtResource( 4 )
 texture_scale = 0.5
 energy = 2.4
 shadow_enabled = true
+shadow_buffer_size = 400
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

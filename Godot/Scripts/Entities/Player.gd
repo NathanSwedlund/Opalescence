@@ -468,6 +468,7 @@ func die():
 	is_charging_laser = false
 	can_shoot = false
 	can_shoot_laser = false
+	can_bomb = false
 	$LaserChargeTimer.stop()
 	$SoundFX/LaserChargeAudio.stop()
 	$LaserChargeEffect.emitting = false
@@ -505,7 +506,6 @@ func respawn():
 
 	position = respawn_position
 	visible = true
-
 	can_shoot = Settings.player["can_shoot"] and player_type.can_shoot
 	can_shoot_laser = Settings.player["can_shoot_laser"] and player_type.can_shoot_laser
 	can_bomb = Settings.player["can_bomb"] and player_type.can_bomb

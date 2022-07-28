@@ -99,7 +99,7 @@ custom_styles/focus = SubResource( 14 )
 text = "Ready"
 flat = true
 script = ExtResource( 12 )
-right_margin_mod_on_hover = -500
+right_margin_mod_on_hover = 100
 
 [node name="Light2D" type="Light2D" parent="ReadyButton"]
 visible = false
@@ -369,6 +369,9 @@ position = Vector2( 512.4, 307.917 )
 scale = Vector2( 5.116, 2.79444 )
 texture = ExtResource( 13 )
 
+[connection signal="mouse_entered" from="ReadyButton" to="." method="_on_ReadyButton_mouse_entered"]
 [connection signal="pressed" from="ReadyButton" to="." method="_on_ReadyButton_pressed"]
+[connection signal="focus_entered" from="BackButton" to="." method="_on_BackButton_focus_entered"]
+[connection signal="mouse_entered" from="BackButton" to="." method="_on_BackButton_mouse_entered"]
 [connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
 [connection signal="timeout" from="PanelAppearTimer" to="." method="_on_PanelAppearTimer_timeout"]

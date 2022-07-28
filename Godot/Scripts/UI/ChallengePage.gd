@@ -93,15 +93,21 @@ func select_ui_element(ui_element_num):
 	
 		
 func select_panel(panel_num):
-	$ChallengePanels.get_child(selected).is_ui_selected = true
-	$ChallengePanels.get_child(selected).scale *= panel_selection_scale
-	$ChallengePanels.get_child(selected).find_node("Light2D").visible = true
+	if(panel_num < len(panels)):
+		$ChallengePanels.get_child(panel_num).is_ui_selected = true
+		$ChallengePanels.get_child(panel_num).scale *= panel_selection_scale
+		$ChallengePanels.get_child(panel_num).find_node("Light2D").visible = true
+	else:
+		buttons[panel_num-len(panels)].select()
 
 func deselect_panel(panel_num):
-	$ChallengePanels.get_child(selected).is_ui_selected = false
-	$ChallengePanels.get_child(selected).scale /= panel_selection_scale
-	$ChallengePanels.get_child(selected).find_node("Light2D").visible = false
-
+	if(panel_num < len(panels)):
+		$ChallengePanels.get_child(panel_num).is_ui_selected = false
+		$ChallengePanels.get_child(panel_num).scale /= panel_selection_scale
+		$ChallengePanels.get_child(panel_num).find_node("Light2D").visible = false
+	else:
+		buttons[panel_num-len(panels)].deselect()
+	
 func change_panel(panel_num):
 	if(panel_num == selected):
 		return
@@ -156,3 +162,13 @@ func back_to_main_menu():
 
 func _on_BackButton_pressed():
 	back_to_main_menu()
+
+func _on_BackButton_mouse_entered():
+	deselect_panel(selected)
+	selected = len(panels)
+	select_panel(selected)
+
+func _on_ReadyButton_mouse_entered():
+	deselect_panel(selected)
+	selected = len(panels) + 1
+	select_panel(selected)

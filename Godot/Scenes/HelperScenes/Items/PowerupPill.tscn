@@ -85,9 +85,11 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 3 )
 energy = 3.0
 shadow_enabled = true
+shadow_buffer_size = 350
 
 [node name="InnerLight" type="Light2D" parent="."]
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 3 )
 energy = 3.0
 shadow_enabled = true
+shadow_buffer_size = 350
