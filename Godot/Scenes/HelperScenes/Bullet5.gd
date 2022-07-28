@@ -30,7 +30,7 @@ func _process(delta):
 			
 			if( collision.collider.is_in_group("Blockers") == false or incendiary):
 				collision.collider.take_damage(base_damge*damage_mod)
-				Global.entity_effects[collision.collider] = "poison" 
+				Global.increase_status_leve(collision.collider, "poison_level", 1)
 			if(collision.collider.is_in_group("Blockers") and !incendiary):
 				Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
 			queue_free()	

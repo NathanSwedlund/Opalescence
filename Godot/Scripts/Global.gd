@@ -51,11 +51,10 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 
 var last_full_screen = null
 var time_left_vibrating = 0
-var frames_per_status_calc = 40
-var current_frame = 0
-var poison_damage = 8
+var seconds_per_status_effect_calc = 0.3
+var seconds_since_last_status_effect_calc = 0.0
+var poison_damage = 1
 func _process(delta):
-	current_frame += 1
 	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
 		last_full_screen = Settings.saved_settings["fullscreen_mode"]
 		OS.keep_screen_on = last_full_screen
@@ -76,13 +75,15 @@ func _process(delta):
 		if(left_stick_direction != 0):
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 			
-		if(current_frame % frames_per_status_calc == 0):
+		seconds_since_last_status_effect_calc += delta
+		if(seconds_since_last_status_effect_calc >= seconds_per_status_effect_calc):
+			seconds_since_last_status_effect_calc = 0.0
 			for key in entity_effects.keys():
-				if(entity_effects[key] == "poison"):
-					if(is_instance_valid(key)):
-						key.take_damage(poison_damage*delta*frames_per_status_calc)
-					else:
-						entity_effects.erase(key)
+				if(is_instance_valid(key)):
+					if(entity_effects[key].has("poison_level")):
+						key.take_damage(poison_damage*entity_effects[key]["poison_level"])
+				else:
+					entity_effects.erase(key)
 	
 
 const VIB_DEVICE = 0
@@ -104,6 +105,15 @@ func vibrate_controller(dur=0.5, weak_mag_mult=1.0, strong_mag_mult=1.0, priorit
 		Input.start_joy_vibration(VIB_DEVICE,weak_mag_mult, strong_mag_mult, dur)
 		time_left_vibrating = dur
 		
+	
+func increase_status_leve(entity, status_name, increase_amount=1):
+	if(entity_effects.has(entity) == false):
+		entity_effects[entity] = {}
+		
+	if(entity_effects[entity].has(status_name) == false):
+		entity_effects[entity][status_name] = 0
+		
+	entity_effects[entity][status_name] += increase_amount
 		
 func _input(event):
 	if (event is InputEventMouseMotion):

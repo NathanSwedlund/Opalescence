@@ -41,14 +41,14 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [ -114.0 ]
 }
-speed = 300
+speed = 350
 base_damge = 1.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 6 )
 position = Vector2( -3.03169, 1.15707e-05 )
 rotation = -1.5708
-scale = Vector2( 0.116, 0.161 )
+scale = Vector2( 0.2, 0.3 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
