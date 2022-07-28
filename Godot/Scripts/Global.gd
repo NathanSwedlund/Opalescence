@@ -13,9 +13,10 @@ var play_time = 0.0
 var main_menu_has_faded = false
 var return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 var ui_states = {}
-var bullet_type_scenes = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"),load("res://Scenes/HelperScenes/Bullet4.tscn") ]
+var bullet_type_scenes = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"),load("res://Scenes/HelperScenes/Bullet4.tscn"), load("res://Scenes/HelperScenes/Bullet5.tscn") ]
 var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn"), load("res://Scenes/MainScenes/PlayerType4.tscn"), load("res://Scenes/MainScenes/PlayerType5.tscn")]
 
+var entity_effects = {}
 var shakes = {}
 var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}
 
@@ -50,7 +51,11 @@ func point_num_to_string(point_num, suffixes=["b", "m", "k"]):
 
 var last_full_screen = null
 var time_left_vibrating = 0
+var frames_per_status_calc = 40
+var current_frame = 0
+var poison_damage = 8
 func _process(delta):
+	current_frame += 1
 	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
 		last_full_screen = Settings.saved_settings["fullscreen_mode"]
 		OS.keep_screen_on = last_full_screen
@@ -67,10 +72,17 @@ func _process(delta):
 		else:
 			time_left_vibrating -= delta
 		
-		
 		var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
 		if(left_stick_direction != 0):
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+			
+		if(current_frame % frames_per_status_calc == 0):
+			for key in entity_effects.keys():
+				if(entity_effects[key] == "poison"):
+					if(is_instance_valid(key)):
+						key.take_damage(poison_damage*delta*frames_per_status_calc)
+					else:
+						entity_effects.erase(key)
 	
 
 const VIB_DEVICE = 0

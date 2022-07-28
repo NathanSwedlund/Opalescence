@@ -74,9 +74,9 @@ locked_settings = [ "player1_is_unlocked", "player2_is_unlocked", "player3_is_un
 position = Vector2( -3, 1376 )
 title = "Pellet Type"
 setting_name = "bullet_type"
-images = [ "res://Resources/Textures/Items/bullet-1Hi-Res.png", "res://Resources/Textures/Items/bullet-2Hi-Res.png", "res://Resources/Textures/Items/bullet-3Hi-Res.png", "res://Resources/Textures/Items/bullet-4Hi-Res.png" ]
-names = [ "Piercing", "Target-Seeking", "Heavy", "Scatter" ]
-locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked", "bullet4_is_unlocked" ]
+images = [ "res://Resources/Textures/Items/bullet-1Hi-Res.png", "res://Resources/Textures/Items/bullet-2Hi-Res.png", "res://Resources/Textures/Items/bullet-3Hi-Res.png", "res://Resources/Textures/Items/bullet-4Hi-Res.png", "res://Resources/Textures/Items/bullet-5Hi-Res.png" ]
+names = [ "Piercing", "Target-Seeking", "Heavy", "Scatter", "Poison" ]
+locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_unlocked", "bullet4_is_unlocked", "bullet5_is_unlocked" ]
 
 [node name="StoreSkillPanel10" parent="UI/Panels" instance=ExtResource( 10 )]
 position = Vector2( -3, 1376 )
