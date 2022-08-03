@@ -233,18 +233,18 @@ func reset_settings():
 #		shop["points"] += 1000322
 		
 
-var min_vol = -50
+var min_vol = -33
 func apply_sound_settings():
 	for c in get_tree().get_nodes_in_group("Music"):
 		if(Settings.saved_settings["music_volume"] == 0):
 			c.volume_db = -80
 		else:
-			c.volume_db = Settings.saved_settings["music_volume"]/2 + min_vol + c.default_vol
+			c.volume_db = Settings.saved_settings["music_volume"]/3 + min_vol + c.default_vol
 	for c in get_tree().get_nodes_in_group("FX"):
 		if(Settings.saved_settings["fx_volume"] == 0):
 			c.volume_db = -80
 		else:
-			c.volume_db = Settings.saved_settings["fx_volume"]/2 + min_vol + c.default_vol
+			c.volume_db = Settings.saved_settings["fx_volume"]/3 + min_vol + c.default_vol
 
 func change_settings(new_settings, exceptions=[]):
 	var setting_dicts = [world, player, enemy, factory]
