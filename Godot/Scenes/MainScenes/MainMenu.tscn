@@ -1193,6 +1193,11 @@ song_paths = [ "res://Resources/Audio/Music/Menus/G-One.mp3", "res://Resources/A
 wait_time = 0.1
 one_shot = true
 
+[node name="MusicStartTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+autostart = true
+
 [connection signal="mouse_entered" from="MenuCanvas/MainSelection/PlayButton" to="MenuCanvas/MainSelection/PlayButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="MenuCanvas/MainSelection/PlayButton" to="MenuCanvas/MainSelection/PlayButton" method="mouse_exited"]
 [connection signal="pressed" from="MenuCanvas/MainSelection/PlayButton" to="." method="_on_PlayButton_pressed"]
@@ -1277,3 +1282,4 @@ one_shot = true
 [connection signal="pressed" from="MenuCanvas/ResetConfirmSelection/YesButton" to="." method="_on_YesButton_pressed"]
 [connection signal="timeout" from="ButtonShiftTimer" to="." method="_on_ButtonShiftTimer_timeout"]
 [connection signal="timeout" from="UpdateFulscreenButtonTimer" to="." method="_on_UpdateFulscreenButtonTimer_timeout"]
+[connection signal="timeout" from="MusicStartTimer" to="." method="_on_MusicStartTimer_timeout"]

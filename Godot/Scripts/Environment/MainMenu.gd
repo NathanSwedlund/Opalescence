@@ -10,7 +10,7 @@ var modulated_button_selections
 var is_fading_in = true
 var is_fading_in_music = true
 var target_music_db = 0
-var current_music_db = -33
+var current_music_db = -50
 var target_player_scale
 export var fade_speed = 1
 export var music_fade_speed = 8
@@ -32,7 +32,7 @@ func _ready():
 	else:	
 		$MusicShuffler.volume_db = current_music_db
 	
-	$MusicShuffler.play()
+
 	reset()
 	
 func reset():
@@ -470,3 +470,7 @@ func _on_ResetHighScoreButton_pressed():
 	HighScore.reset_high_scores()
 	HighScore.save_high_scores()
 	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
+
+
+func _on_MusicStartTimer_timeout():
+	$MusicShuffler.play()
