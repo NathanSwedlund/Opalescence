@@ -341,7 +341,7 @@ export var standard_diff_settings = {
 	"Nightmare":{
 		"powerup_time_max":20,
 		"is_mission":false,
-		"mission_title":"ExtraHardStandard",
+		"mission_title":"NightmareStandard",
 		"points_scale":4.0,
 		"starting_health":1,
 		"enemy_health_scale":6,
