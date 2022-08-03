@@ -14,7 +14,7 @@ var current_music_db = -50
 var target_player_scale
 export var fade_speed = 1
 export var music_fade_speed = 8
-
+var last_color = Color.white
 func _ready():
 	update_mode_availability()
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
@@ -32,7 +32,16 @@ func _ready():
 	else:	
 		$MusicShuffler.volume_db = current_music_db
 	
-
+	if(Settings.shop["monocolor_color"] != null):
+		last_color = Settings.shop["monocolor_color"]
+		$LabelContainer/OpalescenceLabel.modulate = last_color
+		$VersionLabel.modulate = last_color
+		$PointsLabel.modulate = last_color
+		$TokensLabel.modulate = last_color
+		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
+		for b_sel in button_selections:
+			b_sel.modulate = last_color
+	
 	reset()
 	
 func reset():
@@ -68,7 +77,7 @@ func _on_ChallengeButton_pressed():
 	Settings.current_main_menu_button_selection = current_button_selection
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/ChallengePage.tscn")
 
-var last_color = Color.white
+
 func _process(_delta):
 	if(Input.is_action_just_pressed("fullscreen")):
 		$UpdateFulscreenButtonTimer.start()

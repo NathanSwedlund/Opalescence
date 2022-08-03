@@ -37,6 +37,10 @@ func _on_CharTimer_timeout():
 		$Particles2D.emitting = true
 		$CharsFinished.play()
 		$LabelContainer/Label.modulate = Color.white
+		if(Settings.shop["monocolor_color"] != null):
+			$LabelContainer/Label.modulate = Settings.shop["monocolor_color"]
+			$Particles2D.modulate = Settings.shop["monocolor_color"]
+			$Particles2D2.modulate = Settings.shop["monocolor_color"]
 		chars_appearing = false
 		$CharTimer.stop()
 		$WaitTimer.start()
