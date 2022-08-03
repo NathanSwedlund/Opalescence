@@ -19,3 +19,6 @@ func _on_PauseShootingTimer_timeout():
 	for s in $Shooters.get_children():
 		if(s.is_in_group("Shooters")):
 			s.can_shoot = true
+
+func take_damage():
+	pass

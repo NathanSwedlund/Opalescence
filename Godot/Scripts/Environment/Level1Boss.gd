@@ -51,6 +51,9 @@ func _on_MissileTimer_timeout():
 		should_fade_light_out = true
 		$MissileTimer.stop()
 
+func take_damage():
+	pass
+
 func die():
 	for c in get_children():
 		if((c in [$MissileTimer, $MissileSpawnAudio, $WaitTimer, $Light2D, $BossAlarm]) == false):
