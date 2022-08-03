@@ -19,6 +19,9 @@ var shake_amp = 12
 var shake_dur = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var explosion_count = len(get_tree().get_nodes_in_group("Explosions"))
+	shrink_speed *= min((explosion_count/7.5), 1)
+		
 	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low"]):
 		$Light2D2.visible = false
 #		$Light2D2.shadow_enabled = false

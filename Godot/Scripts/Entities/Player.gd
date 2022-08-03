@@ -421,6 +421,7 @@ func damage(_enemy=null):
 		die()
 
 func die():
+	return
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	Global.vibrate_controller(1,1,1,1)
 	
@@ -448,9 +449,8 @@ func die():
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").kill_all()
 	get_parent().find_node("PowerupFactory").kill_all()
-
+	
 	get_parent().find_node("EnemyFactory").is_active = false
-
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
 
