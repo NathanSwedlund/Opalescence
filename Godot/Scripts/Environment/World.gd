@@ -33,7 +33,7 @@ func _ready():
 	
 	if(Settings.world["mission_title"] == "NightmareStandard"):
 		$MusicShuffler.pitch_scale *= 1.05
-
+	
 	Global.world = self
 	initial_settings = [Settings.world.duplicate(), Settings.factory.duplicate(), Settings.enemy.duplicate(), Settings.player.duplicate()]
 	Settings.apply_sound_settings()

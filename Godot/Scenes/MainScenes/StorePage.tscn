@@ -215,7 +215,7 @@ title = "Poison Pellets"
 setting_name = "bullet5_is_unlocked"
 price = 1200000
 purchased_color = Color( 0.266667, 0.537255, 0.180392, 1 )
-purchase_juice_scale = 0.8
+purchase_juice_scale = 1.2
 
 [node name="Bullet-pixel4" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool10"]
 position = Vector2( 175.385, -34.9233 )
