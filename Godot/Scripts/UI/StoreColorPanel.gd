@@ -81,6 +81,8 @@ func _on_ApplyLess_pressed():
 		modulate = Color.white
 		$Sprite2.visible = false
 		Settings.shop["monocolor_color"] = null
+		
+	page.update_color(modulate)
 
 func _on_ApplyMore_pressed():
 	if(Settings.shop["monocolor_mode_unlocked"] == false):
@@ -107,6 +109,8 @@ func _on_ApplyMore_pressed():
 		$Sprite2.visible = false
 		Settings.shop["monocolor_color"] = null
 		
+	page.update_color(modulate)
+	
 func reset():
 	index = 0
 	update_labels()

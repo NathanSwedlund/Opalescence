@@ -35,7 +35,10 @@ func _ready():
 	update_labels()
 	select(0)
 	update_color()
-
+	if(Settings.shop["monocolor_color"] != null):
+		update_color(Settings.shop["monocolor_color"])
+		modulate = Settings.shop["monocolor_color"]
+		
 func _process(delta):
 	if(is_shifting):
 		$UI/Panels.position.y = move_toward($UI/Panels.position.y, panel_sep_dist*selected * -1, shift_speed*delta)
@@ -62,14 +65,19 @@ func _process(delta):
 			if(selected >= panel_num): # is a button, not a panel
 				ui_elements[selected].emit_signal("pressed")
 
-func update_color():
-	if(selected < panel_num):
+func update_color(color_override=null):
+	if(color_override != null):
+		modulate = color_override
+		$TokensLabel.modulate = color_override
+		$LastPanelButton.modulate = color_override
+		$StoreLabel.modulate = color_override
+		$UI/BackButton.modulate = color_override
+	elif(selected < panel_num):
 		var c = panels[selected].modulate
 		$TokensLabel.modulate = c
 		$LastPanelButton.modulate = c
 		$StoreLabel.modulate = c
 		$UI/BackButton.modulate = c
-		$Light2D.color = c
 
 func select_next():
 	select( (selected + 1) % ui_element_num )

@@ -41,7 +41,9 @@ func _ready():
 		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
 		for b_sel in button_selections:
 			b_sel.modulate = last_color
-	
+			for b in b_sel.get_children():
+				b.find_node("Light2D").color = last_color
+		
 	reset()
 	
 func reset():
@@ -106,18 +108,15 @@ func _process(_delta):
 			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
-			var new_color = $Player.modulate
-			$LabelContainer/OpalescenceLabel.modulate = new_color
-			for button_selection in modulated_button_selections:
-				button_selection.modulate = new_color
-				for b in button_selection.get_children():
-					b.get_node("Light2D").color = new_color
-					
-			$VersionLabel.modulate = new_color
-			$PointsLabel.modulate = new_color
-			$TokensLabel.modulate = new_color
-			
-			last_color = new_color
+			$LabelContainer/OpalescenceLabel.modulate = last_color
+			$VersionLabel.modulate = last_color
+			$PointsLabel.modulate = last_color
+			$TokensLabel.modulate = last_color
+			button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
+			for b_sel in button_selections:
+				b_sel.modulate = last_color
+				for b in b_sel.get_children():
+					b.find_node("Light2D").color = last_color
 
 		if(Input.is_action_just_pressed("ui_cancel") and is_shifting_button_selection == false):
 			if(current_button_selection == 2):

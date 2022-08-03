@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/UI/CustomizePage.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=7]
-[ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreSkillPanel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreEqupmentPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
@@ -82,6 +81,7 @@ locked_settings = [ "bullet1_is_unlocked", "bullet2_is_unlocked", "bullet3_is_un
 position = Vector2( -3, 1376 )
 script = ExtResource( 11 )
 title = "Mono-col. Color"
+colors = [ null, Color( 1, 1, 1, 1 ), Color( 1, 0.298039, 0.298039, 1 ), Color( 0.262745, 0.262745, 1, 1 ), Color( 1, 1, 0.12549, 1 ), Color( 0.133333, 1, 0.133333, 1 ), Color( 1, 0.341176, 0.67451, 1 ), Color( 0.262745, 1, 1, 1 ), Color( 1, 0.721569, 0.2, 1 ), Color( 1, 0.65098, 1, 1 ), Color( 0.666667, 0.835294, 1, 1 ), Color( 0.662745, 1, 0.258824, 1 ), Color( 0.392157, 1, 0.701961, 1 ), Color( 0.588235, 0.356863, 1, 1 ), Color( 0.596078, 0.596078, 0.596078, 1 ), Color( 0.72549, 0.901961, 0, 1 ) ]
 
 [node name="Sprite2" type="Sprite" parent="UI/Panels/StoreSkillPanel10"]
 visible = false
@@ -321,11 +321,6 @@ flat = true
 stream = ExtResource( 2 )
 pitch_scale = 0.7
 script = ExtResource( 1 )
-
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 517.75, 113 )
-scale = Vector2( 2.44125, 0.46 )
-texture = ExtResource( 8 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )

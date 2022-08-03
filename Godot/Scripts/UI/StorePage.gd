@@ -36,6 +36,8 @@ func _ready():
 	update_point_label()
 	select(0)
 	update_color()
+	if(Settings.shop["monocolor_color"] != null):
+		modulate = Settings.shop["monocolor_color"]
 
 func _process(delta):
 	if(is_shifting):

@@ -21,6 +21,8 @@ func about_to_change_scenes():
 	Global.ui_states[ui_name] = current_panel
 
 func _ready():
+	if(Settings.shop["monocolor_color"] != null):
+		get_parent().modulate = Settings.shop["monocolor_color"]
 	Settings.apply_sound_settings()
 	Settings.reset_settings()
 	panels = $Pages.get_children()
