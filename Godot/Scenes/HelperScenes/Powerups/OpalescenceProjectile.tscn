@@ -70,7 +70,7 @@ damping = 87.02
 scale = 10.0
 scale_curve = SubResource( 13 )
 
-[node name="OpalescenceProjectile" type="Node2D"]
+[node name="OpalescenceProjectile" type="Node2D" groups=["OpalescenceProjectile"]]
 scale = Vector2( 1.2, 1.2 )
 script = ExtResource( 2 )
 
@@ -139,10 +139,16 @@ default_vol = 2.0
 stream = ExtResource( 8 )
 pitch_scale = 1.6
 script = ExtResource( 7 )
-default_vol = -12.0
+default_vol = -4.0
 
 [node name="Timer" type="Timer" parent="KinematicBody2D"]
 wait_time = 20.0
 autostart = true
 
+[node name="InitialWallIgnoreTimer" type="Timer" parent="KinematicBody2D"]
+wait_time = 0.3
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="KinematicBody2D/Timer" to="KinematicBody2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="KinematicBody2D/InitialWallIgnoreTimer" to="KinematicBody2D" method="_on_InitialWallIgnoreTimer_timeout"]
