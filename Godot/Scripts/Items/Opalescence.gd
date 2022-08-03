@@ -24,3 +24,5 @@ func _process(delta):
 		$PowerupPill/InnerLight.color = modulate
 	if($PowerupPill/OuterLight != null):
 		$PowerupPill/OuterLight.color = modulate
+
+

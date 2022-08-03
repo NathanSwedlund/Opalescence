@@ -401,7 +401,6 @@ func damage(_enemy=null):
 		_enemy.die()
 	if(has_powerup["Opalescence"]):
 		var ens = get_tree().get_nodes_in_group("Enemies")
-		print(ens)
 		for en in ens:
 			if(en != _enemy):
 				var new_op_pro = opalescence_projectile_scene.instance()
@@ -445,6 +444,7 @@ func die():
 	$BulletBurstTimer.stop()
 
 	visible = false
+		
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").kill_all()
 	get_parent().find_node("PowerupFactory").kill_all()
