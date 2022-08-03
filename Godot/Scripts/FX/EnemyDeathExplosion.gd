@@ -7,6 +7,7 @@ export var shrink_speed = 0.94
 export var point_reward = 0.0
 export var scale_mod = 1.0
 
+var shrink_speed_optimized
 var explosion_pitch = 1.2
 var explosion_vol_db_mod = null
 var max_vol_db = 6
@@ -35,7 +36,6 @@ func _ready():
 		if(explosion_vol_db_mod < min_vol_db):
 			explosion_vol_db_mod = min_vol_db
 	
-	print("explosion_vol_db_mod", explosion_vol_db_mod)
 	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
@@ -73,16 +73,21 @@ func _process(delta):
 		
 		if(current_frame % frames_per_update == 0):
 			# optimization for explosions
+			shrink_speed_optimized = shrink_speed
 			var fps = Engine.get_frames_per_second()
 			if (fps < 10):
-				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*10
+				queue_free()
+			elif (fps < 20):
+				shrink_speed_optimized /= 10
 			elif (fps < 30):
-				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*4
+				shrink_speed_optimized /= 3
+			elif (fps < 40):
+				shrink_speed_optimized /= 2
 			elif (fps < 50):
-				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*2
-			
-			print(fps)
-			print(frames_per_update)
+				shrink_speed_optimized /= 1.5
+				
+			print("fps", fps)
+			print("frames_per_update", frames_per_update)
 			
 			# explosion changing calcs
 			if(is_growing):
@@ -100,7 +105,7 @@ func _process(delta):
 				if(scale.x <= min_size * scale_mod):
 					queue_free()
 				else:
-					var shrink_speed_modded = pow(shrink_speed, frames_per_update)
+					var shrink_speed_modded = pow(shrink_speed_optimized, frames_per_update)
 					scale *= shrink_speed_modded
 					modulate.a *= shrink_speed_modded
 					$Light2D.color.a *= shrink_speed_modded
