@@ -38,6 +38,19 @@ export var key_to_name = {
 	"vision":"Vision"
 }
 
+var readable_names = {
+	"Barrage":"Barrage",
+	"Bombastic":"Bombastic",
+	"BulletTime":"Bullet Time",
+	"GravityWell":"Gravity Well",
+	"Incendiary":"Incendiary",
+	"MaxBomb":"Max Bomb",
+	"OneUp":"One Up",
+	"Opalescence":"Opalescence",
+	"OverShield":"Overshield",
+	"Unmaker":"Unmaker",
+	"Vision":"Vision"
+}
 var powerup_scenes = {
 	"barrage":load("res://Scenes/HelperScenes/Powerups/Barrage.tscn"),
 	"bombastic":load("res://Scenes/HelperScenes/Powerups/Bombastic.tscn"),

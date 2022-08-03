@@ -421,7 +421,6 @@ func damage(_enemy=null):
 		die()
 
 func die():
-	return
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	Global.vibrate_controller(1,1,1,1)
 	
@@ -629,7 +628,7 @@ func get_powerup(_powerup, _color):
 		a.play()
 
 	change_color(_color)
-	$CanvasLayer/PowerupLabel.show_powerup(_powerup)
+	$CanvasLayer/PowerupLabel.show_powerup(get_parent().find_node("PowerupFactory").readable_names[_powerup])
 	add_points(powerup_point_value)
 	spawn_get_point_label(powerup_point_value)
 	heads_up_display.update_points(points)
