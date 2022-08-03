@@ -8,9 +8,9 @@ export var point_reward = 0.0
 export var scale_mod = 1.0
 
 var explosion_pitch = 1.2
-var explosion_vol_db_mod
+var explosion_vol_db_mod = null
 var max_vol_db = 6
-var min_vol_db = -6
+var min_vol_db = -10
 
 var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
@@ -25,15 +25,17 @@ func _ready():
 #	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low", "Mid"]):
 #		$Light2D2.shadow_enabled = false
 		
-	explosion_vol_db_mod = (scale_mod-1)*5
-	explosion_pitch -= scale_mod/5
-	shake_dur *= scale_mod
-	shake_amp *= scale_mod
-	if(explosion_vol_db_mod > max_vol_db):
-		explosion_vol_db_mod = max_vol_db
-	if(explosion_vol_db_mod < min_vol_db):
-		explosion_vol_db_mod = min_vol_db
+	if(explosion_vol_db_mod == null):
+		explosion_vol_db_mod = (scale_mod-1)*5
+		explosion_pitch -= scale_mod/5
+		shake_dur *= scale_mod
+		shake_amp *= scale_mod
+		if(explosion_vol_db_mod > max_vol_db):
+			explosion_vol_db_mod = max_vol_db
+		if(explosion_vol_db_mod < min_vol_db):
+			explosion_vol_db_mod = min_vol_db
 	
+	print("explosion_vol_db_mod", explosion_vol_db_mod)
 	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
@@ -68,8 +70,21 @@ func _process(delta):
 	if(current_time > target_time):
 		current_frame += 1
 		current_time = 0.0
-		$Light2D2.rotate(0.01)
+		
 		if(current_frame % frames_per_update == 0):
+			# optimization for explosions
+			var fps = Engine.get_frames_per_second()
+			if (fps < 10):
+				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*10
+			elif (fps < 30):
+				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*4
+			elif (fps < 50):
+				frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]*2
+			
+			print(fps)
+			print(frames_per_update)
+			
+			# explosion changing calcs
 			if(is_growing):
 				if(scale.x >= max_size * scale_mod):
 					is_growing = false

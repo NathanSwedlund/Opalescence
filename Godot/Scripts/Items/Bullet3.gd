@@ -33,16 +33,17 @@ func _process(delta):
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
-		print(speed_ratio)
+#		print(speed_ratio)
 		if(collision.collider.is_in_group("Enemies")):
 			var damage = min(base_damge*damage_mod*speed_ratio, max_damage)
-			print("Damage, ", damage)
+#			print("Damage, ", damage)
 			collision.collider.take_damage(damage)
 		
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.scale_mod = explosion_scale * speed_ratio  * scale.x
-		explosion.explosion_pitch = max(1.5-speed_ratio, 0.7)
+		explosion.explosion_pitch = max(1.5-speed_ratio, 0.8)
+		explosion.explosion_vol_db_mod = -6
 		explosion.find_node("Light2D2").visible = false
 		explosion.find_node("Light2D").energy *= 1.5
 
