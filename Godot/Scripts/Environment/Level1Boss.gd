@@ -51,7 +51,7 @@ func _on_MissileTimer_timeout():
 		should_fade_light_out = true
 		$MissileTimer.stop()
 
-func take_damage():
+func take_damage(damage, play_sound=true, color_override=null):
 	pass
 
 func die():

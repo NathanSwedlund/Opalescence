@@ -20,5 +20,5 @@ func _on_PauseShootingTimer_timeout():
 		if(s.is_in_group("Shooters")):
 			s.can_shoot = true
 
-func take_damage():
+func take_damage(damage, play_sound=true, color_override=null):
 	pass
