@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://BouncyText.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Audio/FX/BulletFire4.wav" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="BouncyText" type="Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "ouqwebfqufifwl"
+script = ExtResource( 1 )
+
+[node name="DownTween" type="Tween" parent="."]
+
+[node name="UpTween" type="Tween" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -15.0
+pitch_scale = 3.0
+script = ExtResource( 3 )
+default_vol = -15.0
+
+[connection signal="tween_all_completed" from="DownTween" to="." method="_on_DownTween_tween_all_completed"]
+[connection signal="tween_all_completed" from="UpTween" to="." method="_on_UpTween_tween_all_completed"]

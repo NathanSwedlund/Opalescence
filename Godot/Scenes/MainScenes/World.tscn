@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/PointFactory.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/MainScenes/EnemyFactory.tscn" type="PackedScene" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://Scripts/UI/PowerupTimer.gd" type="Script" id=18]
 [ext_resource path="res://Resources/Audio/FX/countdown.wav" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=20]
+[ext_resource path="res://Scenes/HelperScenes/UI/BouncyText.tscn" type="PackedScene" id=21]
 [ext_resource path="res://Resources/Textures/LightTRansparetn.png" type="Texture" id=22]
 [ext_resource path="res://Scripts/Environment/LevelController.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/UI/FadeInLabel.gd" type="Script" id=24]
@@ -349,10 +350,24 @@ script = ExtResource( 8 )
 [node name="PointsLabel" type="Label" parent="HeadsUpDisplay"]
 margin_left = 37.0
 margin_top = 19.0
-margin_right = 203.0
+margin_right = 331.0
 margin_bottom = 40.0
 custom_fonts/font = SubResource( 17 )
 text = "Points: "
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="BouncyPointsLabel" parent="HeadsUpDisplay" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 172.0
+margin_top = 17.0
+margin_right = 466.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 17 )
+text = ""
+play_audio_on_bounce = true
 
 [node name="HighScoreLabel" type="Label" parent="HeadsUpDisplay"]
 margin_left = 493.0
@@ -384,13 +399,16 @@ position = Vector2( 0.315002, 0.999985 )
 scale = Vector2( 0.715, 0.731707 )
 texture = ExtResource( 10 )
 
-[node name="Label" type="Label" parent="HeadsUpDisplay/HealthDisplay"]
+[node name="Label" parent="HeadsUpDisplay/HealthDisplay" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 37.315
 margin_top = -10.0
-margin_right = 98.315
+margin_right = 331.315
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 28 )
 text = "x 3"
+bounciness_scale = 2.0
 
 [node name="BombDisplay" type="Node2D" parent="HeadsUpDisplay"]
 position = Vector2( 1082, 650 )
@@ -776,6 +794,7 @@ pitch_scale = 0.7
 script = SubResource( 44 )
 
 [node name="PointAddPopup" type="Popup" parent="HeadsUpDisplay"]
+visible = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -793,6 +812,17 @@ margin_right = 740.0
 margin_bottom = 341.0
 custom_fonts/font = SubResource( 33 )
 text = "Total Points: "
+
+[node name="TotalPointsLabel2" parent="HeadsUpDisplay/PointAddPopup" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 673.0
+margin_top = 297.0
+margin_right = 967.0
+margin_bottom = 347.0
+custom_fonts/font = SubResource( 33 )
+text = ""
+bounciness_scale = 0.4
 
 [node name="Node2D" type="Node2D" parent="HeadsUpDisplay/PointAddPopup"]
 position = Vector2( 53, 19 )
@@ -813,6 +843,17 @@ margin_right = 735.0
 margin_bottom = 175.0
 custom_fonts/font = SubResource( 33 )
 text = "Points Earned:"
+
+[node name="PointsLabel2" parent="HeadsUpDisplay/PointAddPopup" instance=ExtResource( 21 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 728.0
+margin_top = 132.0
+margin_right = 1022.0
+margin_bottom = 182.0
+custom_fonts/font = SubResource( 33 )
+text = ""
+bounciness_scale = 0.4
 
 [node name="TokensEarnedLabel" type="Label" parent="HeadsUpDisplay/PointAddPopup"]
 margin_left = 39.0

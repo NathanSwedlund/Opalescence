@@ -77,7 +77,7 @@ func update_bombs(bomb_count):
 		$BombDisplay/BombLabel.text = str(Global.player.current_bombs)
 
 func update_points(points):
-	$PointsLabel.text = "Points: " + Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
+	$BouncyPointsLabel.text = Global.point_num_to_string(Global.round_float(points, 2), ["b", "m"])
 
 var tokens_this_round
 func game_over():
@@ -192,9 +192,14 @@ func point_add_popup_event():
 	point_num2 = Settings.shop["points"]
 	Settings.shop["points"] += points_this_round
 
-	$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(points_this_round)
-	$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(Settings.shop["points"]-points_this_round)
-
+	$PointAddPopup/PointsLabel2.bounce_on_change = false
+	$PointAddPopup/PointsLabel2.text = Global.point_num_to_string(points_this_round)
+	$PointAddPopup/PointsLabel2.bounce_on_change = true
+	
+	$PointAddPopup/TotalPointsLabel2.bounce_on_change = false
+	$PointAddPopup/TotalPointsLabel2.text = Global.point_num_to_string(Settings.shop["points"]-points_this_round)
+	$PointAddPopup/TotalPointsLabel2.bounce_on_change = true
+	
 	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
 		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
 
@@ -222,8 +227,8 @@ func _on_RackingTimer_timeout():
 			$PointAddPopup/WaitTimer.start()
 			Input.stop_joy_vibration(Global.VIB_DEVICE)
 
-		$PointAddPopup/PointsLabel.text = "Points Earned: " + Global.point_num_to_string(point_num1)
-		$PointAddPopup/TotalPointsLabel.text = "Total Points: " + Global.point_num_to_string(point_num2)
+		$PointAddPopup/PointsLabel2.text = Global.point_num_to_string(point_num1)
+		$PointAddPopup/TotalPointsLabel2.text = Global.point_num_to_string(point_num2)
 		
 		if(Global.vibration_is_happening == false):
 			print("racking vibe")
