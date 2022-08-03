@@ -10,7 +10,7 @@ var modulated_button_selections
 var is_fading_in = true
 var is_fading_in_music = true
 var target_music_db = 0
-var current_music_db = -50
+var current_music_db = -33
 var target_player_scale
 export var fade_speed = 1
 export var music_fade_speed = 8
@@ -74,7 +74,7 @@ func _process(_delta):
 		$UpdateFulscreenButtonTimer.start()
 	
 	if(target_music_db != current_music_db):
-		target_music_db = Settings.saved_settings["music_volume"]/2 + Settings.min_vol	
+		target_music_db = Settings.saved_settings["music_volume"]/3 + Settings.min_vol	
 		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
 		$MusicShuffler.volume_db = current_music_db
 		
@@ -89,10 +89,11 @@ func _process(_delta):
 		for c in $MenuCanvas.get_children():
 			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
 			
-		if($Player.modulate.a == 1.0):
+		if($Player.modulate.a >= 1.0):
 			is_fading_in = false
 			reset()
 			Global.main_menu_has_faded = true
+			Settings.apply_sound_settings()
 			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
