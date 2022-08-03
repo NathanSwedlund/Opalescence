@@ -102,9 +102,11 @@ func kill_all():
 			c.queue_free()
 
 func spawn_powerup():
+	print("trying spawn powerup")
 	if(!is_active):
 		return
-
+	print("powerup Factory not active")
+	
 	var mult = 0.0 # multiple of probabilities
 	for key in powerup_probabilities:
 		mult += powerup_probabilities[key]
@@ -114,8 +116,8 @@ func spawn_powerup():
 	for key in powerup_probabilities:
 		r -= powerup_probabilities[key]
 		if(key == "bomb_up"):
-			return
-			
+			continue
+		
 		if(r <= 0 and get_node(key_to_name[key]) == null): # spawn the current powerup
 			var powerup = powerup_scenes[key].instance()
 			var position_x = rand_range(left_bound, right_bound)
