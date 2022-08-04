@@ -24,7 +24,7 @@ func _ready():
 func _physics_process(delta):
 	var collision = move_and_collide(direction*speed*delta)
 	if(collision):
-		if(collision.collider != parent_shooter):
+		if(collision.collider != parent_shooter and collision.collider.is_in_group("Explosions") == false):
 			if(collision.collider.is_in_group("Enemies") and collision.collider.is_in_group("Blockers") == false):
 				collision.collider.take_damage(damage)
 			elif(collision.collider.name == "Player"):
@@ -40,7 +40,9 @@ func die():
 		has_died = true
 		if(has_explosion):
 			var expl = explosion_scene.instance()
-			expl.scale_mod = expl_scale
+			expl.scale_mod = expl_scale*2
+			expl.grow_speed = 1.3
+			expl.shrink_speed = 0.6
 			expl.point_reward = point_reward
 			expl.position = position
 			get_parent().add_child(expl)

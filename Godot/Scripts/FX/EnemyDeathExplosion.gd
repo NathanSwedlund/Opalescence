@@ -20,7 +20,7 @@ var shake_dur = 0.3
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var explosion_count = len(get_tree().get_nodes_in_group("Explosions"))
-	shrink_speed *= min((explosion_count/7.5), 1)
+#	shrink_speed *= min((explosion_count/7.5), 1)
 		
 	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low"]):
 		$Light2D2.visible = false
@@ -81,13 +81,20 @@ func _process(delta):
 			if (fps < 10):
 				queue_free()
 			elif (fps < 20):
-				shrink_speed_optimized /= 10
-			elif (fps < 30):
-				shrink_speed_optimized /= 3
-			elif (fps < 40):
-				shrink_speed_optimized /= 2
-			elif (fps < 50):
 				shrink_speed_optimized /= 1.5
+				$Light2D2.visible = false
+				grow_speed *= 1.5
+			elif (fps < 30):
+				shrink_speed_optimized /= 1.2
+				$Light2D2.visible = false
+				grow_speed *= 1.2
+			elif (fps < 40):
+				shrink_speed_optimized /= 1.05
+				$Light2D2.visible = false
+				grow_speed *= 1.05
+			elif (fps < 50):
+				shrink_speed_optimized /= 1.02
+				grow_speed *= 1.02
 				
 			print("fps", fps)
 			print("frames_per_update", frames_per_update)
@@ -102,7 +109,7 @@ func _process(delta):
 #					if(i.is_in_group("Enemies")):
 #						i.take_damage(damage * delta * frames_per_update, true, Color.white)
 				for e in get_tree().get_nodes_in_group("Enemies"):
-					if(global_position.distance_squared_to(e.global_position) < 40000*scale.x):
+					if(global_position.distance_squared_to(e.global_position) < 40000*scale.x and e.is_in_group("Missiles") == false):
 						e.take_damage(damage * delta * frames_per_update, true, Color.white)
 			else:
 				if(scale.x <= min_size * scale_mod):
