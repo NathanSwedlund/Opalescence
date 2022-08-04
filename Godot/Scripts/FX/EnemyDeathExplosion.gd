@@ -17,15 +17,12 @@ var is_growing = true
 var point_get_label_scene = load("res://Scenes/HelperScenes/UI/PointGetLabel.tscn")
 var shake_amp = 12
 var shake_dur = 0.3
+var damage = 7
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var explosion_count = len(get_tree().get_nodes_in_group("Explosions"))
 #	shrink_speed *= min((explosion_count/7.5), 1)
-		
-	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low"]):
-		$Light2D2.visible = false
-#		$Light2D2.shadow_enabled = false
-		$Light2D.shadow_enabled = false
 #	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low", "Mid"]):
 #		$Light2D2.shadow_enabled = false
 		
@@ -57,7 +54,12 @@ func _ready():
 	$BlackBlast.emitting = true
 	
 	$Light2D.color = modulate
-	$Light2D2.color = modulate
+	
+	
+	# Initial damage
+	for e in get_tree().get_nodes_in_group("Enemies"):
+		if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Explosions") == false):
+			e.take_damage(damage*3, true, Color.white)
 
 var target_time = 1.0/70.0
 var current_time = 0.0
@@ -66,7 +68,6 @@ var frames_per_update_options = {"Min":20, "Low":4, "Mid":3, "High":2, "Ultra":1
 var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
 
-var damage = 7
 
 func _process(delta):
 	current_time += delta
@@ -82,15 +83,12 @@ func _process(delta):
 				queue_free()
 			elif (fps < 20):
 				shrink_speed_optimized /= 1.5
-				$Light2D2.visible = false
 				grow_speed *= 1.5
 			elif (fps < 30):
 				shrink_speed_optimized /= 1.2
-				$Light2D2.visible = false
 				grow_speed *= 1.2
 			elif (fps < 40):
 				shrink_speed_optimized /= 1.05
-				$Light2D2.visible = false
 				grow_speed *= 1.05
 			elif (fps < 50):
 				shrink_speed_optimized /= 1.02
@@ -109,7 +107,7 @@ func _process(delta):
 #					if(i.is_in_group("Enemies")):
 #						i.take_damage(damage * delta * frames_per_update, true, Color.white)
 				for e in get_tree().get_nodes_in_group("Enemies"):
-					if(global_position.distance_squared_to(e.global_position) < 40000*scale.x and e.is_in_group("Missiles") == false):
+					if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false):
 						e.take_damage(damage * delta * frames_per_update, true, Color.white)
 			else:
 				if(scale.x <= min_size * scale_mod):
@@ -119,6 +117,5 @@ func _process(delta):
 					scale *= shrink_speed_modded
 					modulate.a *= shrink_speed_modded
 					$Light2D.color.a *= shrink_speed_modded
-					$Light2D2.color.a *= shrink_speed_modded
 
 	#$LightTimer.start()

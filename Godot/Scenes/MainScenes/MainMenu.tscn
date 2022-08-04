@@ -98,7 +98,6 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Background"]
-scale = Vector2( 1, 1 )
 color = Color( 0, 0, 0, 1 )
 
 [node name="Walls" type="Node2D" parent="."]

@@ -54,12 +54,14 @@ func _process(delta):
 	
 var damage_audio_base_pitch = 1.0
 var damage_audio_max_pith = 1.2
+var has_died = false
 func take_damage(damage, play_sound=true, color_override=null):	
 	health -= damage
 	$DamageTimer.start()
 
 	if(health <= 0):
-		die()
+		if(has_died == false):
+			die()
 		return 
 		
 	var color_target= Global.player.modulate if color_override == null else color_override
@@ -72,6 +74,7 @@ func take_damage(damage, play_sound=true, color_override=null):
 	$DamageAudio.play()
 	
 func die():
+	has_died = true
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
 	explosion.point_reward = point_reward

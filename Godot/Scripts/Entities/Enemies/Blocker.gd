@@ -66,6 +66,7 @@ func get_new_point_target():
 
 var damage_audio_base_pitch = 0.2
 var damage_audio_max_pith = 3.5
+var has_died = false
 func take_damage(damage, play_sound=true, color_override=null):
 	$DamageTimer.start()
 	health -= damage
@@ -77,7 +78,7 @@ func take_damage(damage, play_sound=true, color_override=null):
 	modulate.r = ratio * target_color.r*0.6
 	modulate.g = ratio * target_color.g*0.6
 	modulate.b = ratio * target_color.b*0.6
-	if(health <= 0):
+	if(health <= 0 and has_died == false):
 		die()
 
 	if(play_sound):
@@ -85,6 +86,7 @@ func take_damage(damage, play_sound=true, color_override=null):
 		$DamageAudio.play()
 
 func die():
+	has_died = true
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
 	explosion.point_reward = point_reward

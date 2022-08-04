@@ -56,6 +56,7 @@ func shoot():
 
 var damage_audio_base_pitch = 0.8
 var damage_audio_max_pith = 2.0
+var has_died = false
 func take_damage(damage, play_sound=true, color_override=null):
 	$DamageAudio.play()
 	$DamageTimer.start()
@@ -67,13 +68,14 @@ func take_damage(damage, play_sound=true, color_override=null):
 	modulate.g = ratio * color_target.g*0.6
 	modulate.b = ratio * color_target.b*0.6
 	
-	if(health <= 0):
+	if(health <= 0 and has_died == false):
 		die()
 	
 	$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 	$DamageAudio.play()
 	
 func die():
+	has_died = true
 	var explosion = death_explosion_scene.instance()
 	explosion.position = position
 	explosion.point_reward = point_reward

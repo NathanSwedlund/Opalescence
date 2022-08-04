@@ -56,6 +56,11 @@ func _process(delta):
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
 
 func explode():
+	# Initial damage
+	for e in get_tree().get_nodes_in_group("Enemies"):
+		if(global_position.distance_squared_to(e.global_position) < 100000*get_parent().global_scale.x):
+			e.take_damage(damage*0.25, true, modulate)
+			
 	Global.vibrate_controller(1.5,0.4,0.4,1)
 	if(exploding):
 		return

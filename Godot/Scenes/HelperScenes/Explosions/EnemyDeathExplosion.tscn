@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/FX/EnemyDeathExplosion.gd" type="Script" id=1]
-[ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=2]
-[ext_resource path="res://Resources/Textures/FX/EnemyLight.png" type="Texture" id=3]
+[ext_resource path="res://Resources/Textures/FX/EnemyExplosionLight.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
 
 [sub_resource type="Gradient" id=1]
@@ -61,15 +60,9 @@ shrink_speed = 0.95
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 2 )
-energy = 3.3
+texture_scale = 0.6
+energy = 5.0
 shadow_enabled = true
-shadow_buffer_size = 400
-
-[node name="Light2D2" type="Light2D" parent="."]
-rotation = 0.727802
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 3 )
-energy = 6.0
 shadow_buffer_size = 400
 
 [node name="WhiteBlast" type="Particles2D" parent="."]

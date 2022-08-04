@@ -421,7 +421,6 @@ func damage(_enemy=null):
 		die()
 
 func die():
-	return
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	Global.vibrate_controller(1,1,1,1)
 	
