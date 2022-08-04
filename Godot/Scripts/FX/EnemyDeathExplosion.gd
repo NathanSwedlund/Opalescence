@@ -10,6 +10,8 @@ export var scale_mod = 1.0
 var shrink_speed_optimized
 var explosion_pitch = 1.2
 var explosion_vol_db_mod = null
+var max_pitch = 2.0
+var min_pitch = 0.4
 var max_vol_db = 6
 var min_vol_db = -10
 
@@ -22,10 +24,7 @@ var damage = 7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var explosion_count = len(get_tree().get_nodes_in_group("Explosions"))
-#	shrink_speed *= min((explosion_count/7.5), 1)
-#	if(Settings.saved_settings["graphical_quality"] in ["Min", "Low", "Mid"]):
-#		$Light2D2.shadow_enabled = false
-		
+	
 	if(explosion_vol_db_mod == null):
 		explosion_vol_db_mod = (scale_mod-1)*5
 		explosion_pitch -= scale_mod/5
@@ -49,7 +48,7 @@ func _ready():
 
 		Global.player.add_points(point_reward)
 
-	Global.player.play_enemey_explosion_sound(explosion_pitch, explosion_vol_db_mod)
+
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
 	
@@ -59,7 +58,23 @@ func _ready():
 	# Initial damage
 	for e in get_tree().get_nodes_in_group("Enemies"):
 		if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Explosions") == false):
-			e.take_damage(damage*3, true, Color.white)
+			e.take_damage(damage/1.5, true, Color.white)
+			
+	if($EnemyExplosionSound != null):
+		if(Global.seconds_since_last_enemy_explosion_sound < 0.035):
+			$EnemyExplosionSound.volume_db -= 10*explosion_count
+		else:
+			print("\n$EnemyExplosionSound.volume_db1, ", $EnemyExplosionSound.volume_db)
+			$EnemyExplosionSound.volume_db -= 1*explosion_count
+			print("$EnemyExplosionSound.volume_db, ", $EnemyExplosionSound.volume_db)
+			$EnemyExplosionSound.pitch_scale = min( max(explosion_pitch, min_pitch), max_pitch)
+			if(explosion_vol_db_mod != null):
+				$EnemyExplosionSound.volume_db += explosion_vol_db_mod
+
+		$EnemyExplosionSound.play()
+
+	Global.seconds_since_last_enemy_explosion_sound = 0.0
+	
 
 var target_time = 1.0/70.0
 var current_time = 0.0
@@ -93,10 +108,6 @@ func _process(delta):
 			elif (fps < 50):
 				shrink_speed_optimized /= 1.02
 				grow_speed *= 1.02
-				
-			print("fps", fps)
-			print("frames_per_update", frames_per_update)
-			
 			# explosion changing calcs
 			if(is_growing):
 				if(scale.x >= max_size * scale_mod):

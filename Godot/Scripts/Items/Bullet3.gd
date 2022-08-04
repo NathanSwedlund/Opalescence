@@ -43,8 +43,7 @@ func _process(delta):
 		explosion.position = position
 		explosion.scale_mod = explosion_scale * speed_ratio  * scale.x
 		explosion.explosion_pitch = max(1.5-speed_ratio, 0.8)
-		explosion.explosion_vol_db_mod = -6
-		explosion.find_node("Light2D2").visible = false
+		explosion.explosion_vol_db_mod = 1/max(speed_ratio, 0.3)*-2
 		explosion.find_node("Light2D").energy *= 1.5
 
 		if(incendiary):

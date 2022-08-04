@@ -1,6 +1,5 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=48 format=2]
 
-[ext_resource path="res://Resources/Audio/FX/EnemyExplosion4.wav" type="AudioStream" id=1]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=3]
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=4]
@@ -364,9 +363,7 @@ default_vol = -4.0
 
 [node name="DropBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 19 )
-volume_db = 10.0
 script = ExtResource( 26 )
-default_vol = 10.0
 
 [node name="GravityWellAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 11 )
@@ -446,10 +443,6 @@ volume_db = 10.0
 pitch_scale = 0.73
 script = ExtResource( 26 )
 default_vol = 10.0
-
-[node name="EnemyExplosionSound" type="AudioStreamPlayer" parent="SoundFX"]
-stream = ExtResource( 1 )
-script = ExtResource( 26 )
 
 [node name="ShieldSprite" type="Sprite" parent="."]
 visible = false
@@ -534,6 +527,5 @@ one_shot = true
 [connection signal="timeout" from="PowerupTimers/OpalescenceColorShift" to="." method="_on_OpalescenceColorShift_timeout"]
 [connection signal="timeout" from="PowerupTimers/Unmaker" to="." method="_on_Unmaker_timeout"]
 [connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
-[connection signal="finished" from="SoundFX/EnemyExplosionSound" to="." method="_on_EnemyExplosionSound_finished"]
 [connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]
 [connection signal="timeout" from="LaserExistsTimer" to="." method="_on_LaserExistsTimer_timeout"]

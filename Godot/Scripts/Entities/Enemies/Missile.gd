@@ -41,9 +41,11 @@ func die():
 		if(has_explosion):
 			var expl = explosion_scene.instance()
 			expl.scale_mod = expl_scale*2
-			expl.grow_speed = 1.3
-			expl.shrink_speed = 0.6
+			expl.grow_speed = 1.2
+			expl.shrink_speed = 0.7
 			expl.point_reward = point_reward
+			expl.explosion_pitch = 1.8
+			expl.explosion_vol_db_mod = -4
 			expl.position = position
 			get_parent().add_child(expl)
 		

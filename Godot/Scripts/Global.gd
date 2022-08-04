@@ -54,7 +54,9 @@ var time_left_vibrating = 0
 var seconds_per_status_effect_calc = 0.3
 var seconds_since_last_status_effect_calc = 0.0
 var poison_damage = 1
+var seconds_since_last_enemy_explosion_sound = 0.0
 func _process(delta):
+	seconds_since_last_enemy_explosion_sound += delta
 	if(Settings.saved_settings["fullscreen_mode"] != last_full_screen):
 		last_full_screen = Settings.saved_settings["fullscreen_mode"]
 		OS.keep_screen_on = last_full_screen
