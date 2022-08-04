@@ -157,7 +157,7 @@ func reset_settings():
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
 		max_bombs += Settings.get_setting_if_exists(Settings.shop, "additional_max_bombs", 0)
-		print(Settings.shop)
+		#print(Settings.shop)
 		laser_cooldown_time /= Settings.get_setting_if_exists(Settings.shop, "laser_recharge_scale", 1.0)
 
 	laser_cooldown_time /= player_type.laser_recharge_scale

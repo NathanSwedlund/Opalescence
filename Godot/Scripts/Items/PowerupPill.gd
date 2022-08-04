@@ -11,7 +11,7 @@ var player:Node2D
 func _ready():
 	powerup_name = get_parent().name
 	if(is_powerup):
-		print("Loading ", "res://Resources/Textures/Items/"+powerup_name+" Icon.png")
+		#print("Loading ", "res://Resources/Textures/Items/"+powerup_name+" Icon.png")
 		$IconSprite.texture = load("res://Resources/Textures/Items/"+powerup_name+" Icon.png")
 	else:
 		$IconSprite.visible = false

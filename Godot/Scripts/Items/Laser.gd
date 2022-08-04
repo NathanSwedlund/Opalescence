@@ -54,7 +54,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	rotation = Vector2.ZERO.angle_to_point(get_parent().get_direction_to_shoot(name))
-	print(name, " ", rotation)
+	#print(name, " ", rotation)
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
 			scale.y += fade_in_speed * (1-fade_in_time_ratio) * _delta

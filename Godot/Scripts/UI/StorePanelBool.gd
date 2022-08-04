@@ -40,11 +40,11 @@ func _ready():
 	update_labels()
 
 func _on_BuyButton_pressed():
-	print(" _on_BuyButton_pressed")
+	#print(" _on_BuyButton_pressed")
 	try_buy()
 	
 func try_buy():
-	print("try buy")
+	#print("try buy")
 	if(is_selected == false or page.buying_event_is_playing == true):
 		return
 		

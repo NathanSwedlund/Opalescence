@@ -27,7 +27,7 @@ func _ready():
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
 	default_val = Settings.get_setting_if_exists(Settings.shop_default, setting_name, default_val)
-	print("Setting, default, ", setting_name, ", ", default_val)
+	#print("Setting, default, ", setting_name, ", ", default_val)
 	current_val = Settings.get_setting_if_exists(Settings.shop, setting_name, default_val)
 	update_labels()
 

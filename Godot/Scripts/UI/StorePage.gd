@@ -172,9 +172,9 @@ func _on_PointLabelEventTimer_timeout():
 		Settings.save()
 
 func stop_input_actions():
-	print("ignoring_actions")
+	#print("ignoring_actions")
 	should_ignore_input = true
 	
 func resume_input_actions():
-	print("resumeing_actions")
+	#print("resumeing_actions")
 	should_ignore_input = false

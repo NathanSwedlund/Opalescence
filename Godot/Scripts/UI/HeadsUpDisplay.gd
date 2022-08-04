@@ -136,7 +136,7 @@ func new_high_score_event():
 		return
 	is_showing_new_high_score = true
 	$HighScorePopup/HighScoreLabel2.text = str(old_high_score) + points_suffix
-	print("old_high_score, ", old_high_score)
+	#print("old_high_score, ", old_high_score)
 	$HighScorePopup/HighScoreWaitTimer.start()
 	$HighScorePopup.show()
 
@@ -231,7 +231,7 @@ func _on_RackingTimer_timeout():
 		$PointAddPopup/TotalPointsLabel2.text = Global.point_num_to_string(point_num2)
 		
 		if(Global.vibration_is_happening == false):
-			print("racking vibe")
+			#print("racking vibe")
 			Global.vibrate_controller(2.5,1.0,0.5,1)
 func _on_ShopButton_pressed():
 	pass

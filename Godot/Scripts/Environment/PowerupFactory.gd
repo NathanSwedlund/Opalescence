@@ -115,10 +115,10 @@ func kill_all():
 			c.queue_free()
 
 func spawn_powerup():
-	print("trying spawn powerup")
+	#print("trying spawn powerup")
 	if(!is_active):
 		return
-	print("powerup Factory not active")
+	#print("powerup Factory not active")
 	
 	var mult = 0.0 # multiple of probabilities
 	for key in powerup_probabilities:

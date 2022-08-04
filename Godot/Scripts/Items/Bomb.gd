@@ -50,7 +50,7 @@ func _process(delta):
 			for e in get_tree().get_nodes_in_group("Enemies"):
 				if(global_position.distance_squared_to(e.global_position) < 100000*get_parent().global_scale.x):
 					e.take_damage(damage * delta * frames_per_update, true, modulate)
-					print("damaging ", e)
+					#print("damaging ", e)
 
 			get_parent().scale.x -= shrink_speed * delta * frames_per_update
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update

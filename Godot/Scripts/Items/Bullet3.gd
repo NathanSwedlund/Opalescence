@@ -33,10 +33,10 @@ func _process(delta):
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
-#		print(speed_ratio)
+#		#print(speed_ratio)
 		if(collision.collider.is_in_group("Enemies")):
 			var damage = min(base_damge*damage_mod*speed_ratio, max_damage)
-#			print("Damage, ", damage)
+#			#print("Damage, ", damage)
 			collision.collider.take_damage(damage)
 		
 		var explosion = small_bullet_explosion_scene.instance()

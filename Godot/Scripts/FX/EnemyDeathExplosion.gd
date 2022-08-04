@@ -64,9 +64,9 @@ func _ready():
 		if(Global.seconds_since_last_enemy_explosion_sound < 0.035):
 			$EnemyExplosionSound.volume_db -= 10*explosion_count
 		else:
-			print("\n$EnemyExplosionSound.volume_db1, ", $EnemyExplosionSound.volume_db)
+			#print("\n$EnemyExplosionSound.volume_db1, ", $EnemyExplosionSound.volume_db)
 			$EnemyExplosionSound.volume_db -= 1*explosion_count
-			print("$EnemyExplosionSound.volume_db, ", $EnemyExplosionSound.volume_db)
+			#print("$EnemyExplosionSound.volume_db, ", $EnemyExplosionSound.volume_db)
 			$EnemyExplosionSound.pitch_scale = min( max(explosion_pitch, min_pitch), max_pitch)
 			if(explosion_vol_db_mod != null):
 				$EnemyExplosionSound.volume_db += explosion_vol_db_mod

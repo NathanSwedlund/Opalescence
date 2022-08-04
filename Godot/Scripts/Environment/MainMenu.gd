@@ -108,7 +108,7 @@ func _process(_delta):
 			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
-			print("shifting Color")
+			#print("shifting Color")
 			last_color = $Player.modulate
 			$LabelContainer/OpalescenceLabel.modulate = last_color
 			$VersionLabel.modulate = last_color
