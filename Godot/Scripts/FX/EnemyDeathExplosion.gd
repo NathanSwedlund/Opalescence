@@ -57,7 +57,7 @@ func _ready():
 	
 	# Initial damage
 	for e in get_tree().get_nodes_in_group("Enemies"):
-		if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Explosions") == false):
+		if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Explosions") == false and e.is_in_group("Bosses") == false):
 			e.take_damage(damage/1.5, true, Color.white)
 			
 	if($EnemyExplosionSound != null):

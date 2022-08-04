@@ -40,7 +40,7 @@ func _ready():
 
 func increase_level():
 	currrent_level += 1
-
+	
 	if(level_has_boss(currrent_level)):
 		var boss = bosses[currrent_level].instance()
 		get_parent().find_node("EnemyFactory").find_node("Enemies").add_child(boss)
@@ -108,6 +108,6 @@ func stop():
 #		if(c != $CountdownTimer and c != $LevelLabel):
 #			c.queue_free()
 
-#func _process(delta):
-#	if(Input.is_action_just_pressed("ui_q")):
-#		increase_level()
+func _process(delta):
+	if(Input.is_action_just_pressed("ui_q")):
+		increase_level()
