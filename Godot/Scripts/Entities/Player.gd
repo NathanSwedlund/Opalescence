@@ -120,7 +120,7 @@ func _ready():
 	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	default_laser_charge_time = Global.laser_type_charge_times[Settings.shop["laser_type"]]
-	$LaserChargeTimer.wait_time = default_laser_charge_time
+	$LaserChargeTimer.wait_time *= laser_cooldown_time
 	reset()
 
 var first_load = true
@@ -590,8 +590,8 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 		var unmaker_laser_time = laser.lifetime * 6
 		if(use_global_settings):
 			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
-		if(Settings.shop["laser_type"] == 1): # Strike Beam
-			unmaker_laser_time *= 10
+		if(Settings.shop["laser_type"] == 2): # Strike Beam
+			unmaker_laser_time *= 2
 			
 		laser.lifetime = unmaker_laser_time
 		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")

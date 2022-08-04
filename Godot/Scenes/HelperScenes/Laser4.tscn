@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Items/Bomb.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://Scenes/HelperScenes/Laser4.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Audio/FX/countdown.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/HelperScenes/Items/PowerupPill.tscn" type="PackedScene" id=8]
+
+[sub_resource type="CanvasItemMaterial" id=9]
+light_mode = 1
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.891304, 0 ), 0.0, 0.0, 0, 0 ]
@@ -47,10 +50,10 @@ scale = 3.0
 scale_curve = SubResource( 7 )
 
 [node name="Laser4" type="KinematicBody2D"]
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 2, 2 )
 collision_layer = 0
 script = ExtResource( 6 )
-lifetime = 3.0
+lifetime = 1.6
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -83,6 +86,7 @@ script = ExtResource( 2 )
 default_vol = -5.0
 
 [node name="ExplosionParticles" type="Particles2D" parent="Bomb/PowerupPill"]
+material = SubResource( 9 )
 emitting = false
 amount = 300
 lifetime = 3.0
@@ -97,6 +101,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="LaserParticleEffect" type="Particles2D" parent="."]
+material = SubResource( 9 )
 scale = Vector2( 2, 2 )
 amount = 60
 lifetime = 0.5

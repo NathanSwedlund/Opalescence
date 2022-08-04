@@ -22,8 +22,10 @@ var laser_vol
 export var lifetime = 0.15
 export var ball_speed = 1000
 var current_dir
+var init_scale
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	init_scale = scale
 	current_dir = Global.player.get_direction_to_shoot()
 	Global.shakes["laser"].start(max_fade_in_width/10.0, total_time*0.8, 200)
 	
@@ -52,12 +54,14 @@ func _process(delta):
 	if(collision != null):
 		if(collision.collider.is_in_group("Walls")):
 			$LaserSound2.play()
-#			$LaserSound2.pitch_scale =  1/max(($DeleteTimer.time_left/$DeleteTimer.wait_time), 0.6)
+
 			if(collision.collider.name in ["TopWall", "BottomWall"]):
 				current_dir.y *= -1
 			else: # right or left wall
 				current_dir.x *= -1
-#	scale = Vector2.ONE * min(($DeleteTimer.wait_time/$DeleteTimer.time_left), 5)
+	
+	$LaserSound2.volume_db -= delta * 5
+	scale = init_scale * ($DeleteTimer.time_left/$DeleteTimer.wait_time)
 			
 func _on_DeleteTimer_timeout():
 	queue_free()
