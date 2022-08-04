@@ -13,7 +13,7 @@ var panel_num
 export var panel_sep_dist = 230
 export var starting_panel_loc = Vector2.ZERO
 var buying_event_is_playing = false
-
+var should_ignore_input = false
 var is_shifting = false
 export var shift_speed = 1800.0
 
@@ -47,7 +47,8 @@ func _process(delta):
 			panels[selected].select()
 			update_color()
 			$SelectAudio.play()
-	else:
+			resume_input_actions()
+	elif(should_ignore_input == false):
 		if(Input.is_action_just_pressed("ui_up")):
 			select_last()
 		if(Input.is_action_just_pressed("ui_down")):
@@ -67,6 +68,7 @@ func update_color():
 		
 func change_color(c):
 	$PointsLabel.modulate = c
+	$PointsLabel2.modulate = c
 	$LastPanelButton.modulate = c
 	$StoreLabel.modulate = c
 	$UI/BackButton.modulate = c
@@ -93,12 +95,13 @@ func select(num):
 	
 	if(num < panel_num):
 		is_shifting = true
+		stop_input_actions()	
 	else:
 		$SelectAudio.play()
 		ui_elements[selected].select()
 		
 func update_point_label():
-	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(int(Settings.shop["points"]), ["b", "m", "k"]))
+	$PointsLabel2.text = str(Global.point_num_to_string(int(Settings.shop["points"]), ["b", "m", "k"]))
 
 func _on_BackButton_pressed():
 	back_to_main_menu()
@@ -126,10 +129,15 @@ func _on_ResetButton_pressed():
 
 
 func _on_SuperPanelLastButton_pressed():
+	if(should_ignore_input):
+		return
+		
 	Input.action_press("ui_left")
 
 
 func _on_SuperPanelNextButton_pressed():
+	if(should_ignore_input):
+		return
 	Input.action_press("ui_right")
 	
 var is_deducting_points = false
@@ -162,3 +170,11 @@ func _on_PointLabelEventTimer_timeout():
 		Settings.shop["points"] = end_points_val
 		update_point_label()
 		Settings.save()
+
+func stop_input_actions():
+	print("ignoring_actions")
+	should_ignore_input = true
+	
+func resume_input_actions():
+	print("resumeing_actions")
+	should_ignore_input = false

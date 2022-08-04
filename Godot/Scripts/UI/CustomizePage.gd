@@ -69,12 +69,14 @@ func update_color(color_override=null):
 	if(color_override != null):
 		modulate = color_override
 		$TokensLabel.modulate = color_override
+		$TokensLabel2.modulate = color_override
 		$LastPanelButton.modulate = color_override
 		$StoreLabel.modulate = color_override
 		$UI/BackButton.modulate = color_override
 	elif(selected < panel_num):
 		var c = panels[selected].modulate
 		$TokensLabel.modulate = c
+		$TokensLabel2.modulate = c
 		$LastPanelButton.modulate = c
 		$StoreLabel.modulate = c
 		$UI/BackButton.modulate = c
@@ -100,7 +102,7 @@ func select(num):
 		ui_elements[selected].select()
 		
 func update_labels():
-	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
+	$TokensLabel2.text = str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
 
 func _on_BackButton_pressed():
 	back_to_main_menu()

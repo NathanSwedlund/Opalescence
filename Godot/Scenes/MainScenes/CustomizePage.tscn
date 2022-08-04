@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/UI/MenuButton.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/UI/CustomizePage.gd" type="Script" id=6]
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/HelperScenes/UI/BouncyText.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreSkillPanel.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/HelperScenes/UI/StoreEqupmentPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
@@ -296,6 +297,16 @@ margin_right = 958.0
 margin_bottom = 119.0
 custom_fonts/font = SubResource( 5 )
 text = "Tokens: "
+
+[node name="TokensLabel2" parent="." instance=ExtResource( 8 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 936.0
+margin_top = 91.0
+margin_right = 1230.0
+margin_bottom = 121.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
 
 [node name="NextPanelButton" type="Button" parent="."]
 margin_left = 39.0

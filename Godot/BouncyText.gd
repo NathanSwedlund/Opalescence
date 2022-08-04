@@ -6,6 +6,8 @@ export var bounce_amount = 10
 export var bounce_time = 0.02
 export var bounce_up_first = false
 export var play_audio_on_bounce = false
+export var bounce_on_first_change = false
+var first_change_has_happened = false
 var bouncing = false
 var last_value
 
@@ -19,7 +21,9 @@ func _ready():
 func _process(_delta):
 	if(text != last_value and bounce_on_change):
 		last_value = text
-		bounce()
+		if(first_change_has_happened or bounce_on_first_change == true):
+			bounce()
+		first_change_has_happened = true
 		
 func bounce():
 	if(bouncing == true):
@@ -29,7 +33,6 @@ func bounce():
 		$AudioStreamPlayer.play()
 	bouncing = true
 	
-	print("bouncing")
 	if(bounce_up_first):
 		bounce_up()
 	else:

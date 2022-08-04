@@ -34,13 +34,15 @@ func _ready():
 	
 func _process(delta):
 	if(! is_shifting_subpanels):
-		if(is_selected and Input.is_action_just_pressed("ui_right")):
-			shift_subpanel( (subpanel_index+1) % subpanel_num)
-		if(is_selected and Input.is_action_just_pressed("ui_left")):
-			shift_subpanel( (subpanel_index-1+subpanel_num) % subpanel_num)
+		if(page.should_ignore_input == false):
+			if(is_selected and Input.is_action_just_pressed("ui_right")):
+				shift_subpanel( (subpanel_index+1) % subpanel_num)
+			if(is_selected and Input.is_action_just_pressed("ui_left")):
+				shift_subpanel( (subpanel_index-1+subpanel_num) % subpanel_num)
 	else:
 		$Panels.position.x = move_toward($Panels.position.x, shift_x_target, shift_speed*delta)
 		if(int($Panels.position.x) == int(shift_x_target)):
+			page.resume_input_actions()
 			is_shifting_subpanels = false	
 			subpanels[subpanel_index].select()
 			$SelectAudio.play()
@@ -48,6 +50,7 @@ func _process(delta):
 			
 		
 func shift_subpanel(new_index):
+	page.stop_input_actions()	
 	subpanels[subpanel_index].deselect()
 	subpanel_index = new_index
 	is_shifting_subpanels = true

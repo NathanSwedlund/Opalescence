@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Resources/Audio/Music/Menus/Opalescence Shop.mp3" type="AudioStream" id=19]
 [ext_resource path="res://Scenes/HelperScenes/UI/ScreenShake.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Resources/Textures/Items/bullet-5Hi-Res.png" type="Texture" id=21]
+[ext_resource path="res://Scenes/HelperScenes/UI/BouncyText.tscn" type="PackedScene" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -403,7 +404,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -435,7 +435,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
@@ -483,6 +482,18 @@ margin_right = 685.0
 margin_bottom = 130.0
 custom_fonts/font = SubResource( 5 )
 text = "Points: "
+
+[node name="PointsLabel2" parent="." instance=ExtResource( 22 )]
+material = SubResource( 10 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 659.0
+margin_top = 105.0
+margin_right = 953.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 5 )
+text = "0"
+bounce_amount = 5
 
 [node name="NextPanelButton" type="Button" parent="."]
 margin_left = 42.0

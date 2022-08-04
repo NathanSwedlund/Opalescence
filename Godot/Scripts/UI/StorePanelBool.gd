@@ -49,6 +49,7 @@ func try_buy():
 		return
 		
 	page.buying_event_is_playing = true
+	page.stop_input_actions()
 	if(Settings.shop["points"] >= price and !has_purchased):
 		has_purchased = true
 		page.start_point_deduction_event(price, purchase_juice_scale)
@@ -117,3 +118,4 @@ func _on_BuyParticlesTimer_timeout():
 	Global.shakes["bomb"].start(100*purchase_juice_scale, 0.4*purchase_juice_scale, 80, 1)
 	Global.shakes["laser"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
 	page.change_color(modulate)
+	page.resume_input_actions()
