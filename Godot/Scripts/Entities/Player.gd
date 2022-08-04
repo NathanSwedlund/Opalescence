@@ -591,7 +591,7 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 		if(use_global_settings):
 			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
 		if(Settings.shop["laser_type"] == 1): # Strike Beam
-			unmaker_laser_time *= 3
+			unmaker_laser_time *= 10
 			
 		laser.lifetime = unmaker_laser_time
 		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")

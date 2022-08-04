@@ -21,8 +21,6 @@ export var laser_sound_fade_scale = 3
 var laser_vol
 export var lifetime = 0.15
 export var ball_speed = 1000
-
-
 var current_dir
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,7 +35,6 @@ func _ready():
 		$LaserParticleEffect.amount *= particle_intensity_scale*3
 
 	add_to_group("Lasers")
-	$LaserParticleEffect.lifetime = lifetime
 	$DeleteTimer.wait_time = lifetime
 	$DeleteTimer.start()
 	$LaserParticleEffect.emitting = true
@@ -45,7 +42,8 @@ func _ready():
 
 	$Bomb.add_to_group("Lasers")
 	$Bomb/PowerupPill.explode()
-	$Bomb/PowerupPill.shrink_speed = 1.0
+	$Bomb/PowerupPill.damage = damage
+	$Bomb/PowerupPill.shrink_speed = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -53,11 +51,13 @@ func _process(delta):
 	var collision = move_and_collide(current_dir*ball_speed*delta, delta)
 	if(collision != null):
 		if(collision.collider.is_in_group("Walls")):
+			$LaserSound2.play()
+#			$LaserSound2.pitch_scale =  1/max(($DeleteTimer.time_left/$DeleteTimer.wait_time), 0.6)
 			if(collision.collider.name in ["TopWall", "BottomWall"]):
 				current_dir.y *= -1
 			else: # right or left wall
 				current_dir.x *= -1
-	$Bomb.scale = Vector2.ONE * $DeleteTimer.time_left/$DeleteTimer.wait_time
+#	scale = Vector2.ONE * min(($DeleteTimer.wait_time/$DeleteTimer.time_left), 5)
 			
 func _on_DeleteTimer_timeout():
 	queue_free()

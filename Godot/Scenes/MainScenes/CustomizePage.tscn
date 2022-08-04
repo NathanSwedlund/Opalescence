@@ -83,7 +83,7 @@ position = Vector2( -3, 1376 )
 title = "Laser Type"
 setting_name = "laser_type"
 images = [ "res://Resources/Textures/Items/LaserUIImage.png", "res://Resources/Textures/Items/LaserUIImage2.png", "res://Resources/Textures/Items/LaserUIImage3.png", "res://Resources/Textures/Items/LaserUIImage4.png" ]
-names = [ "Mono-Beam", "Tri-Beam", "Laser Strike", "Laser Ball" ]
+names = [ "Mono-Beam", "Tri-Beam", "Laser Strike", "Ball Lightning" ]
 locked_settings = [ "laser1_is_unlocked", "laser2_is_unlocked", "laser3_is_unlocked", "laser4_is_unlocked" ]
 
 [node name="StoreSkillPanel10" parent="UI/Panels" instance=ExtResource( 10 )]
