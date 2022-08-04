@@ -363,7 +363,9 @@ default_vol = -4.0
 
 [node name="DropBombAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 19 )
+volume_db = 4.0
 script = ExtResource( 26 )
+default_vol = 4.0
 
 [node name="GravityWellAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 11 )

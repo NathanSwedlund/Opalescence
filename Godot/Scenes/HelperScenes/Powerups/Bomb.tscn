@@ -44,8 +44,10 @@ autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PowerupPill"]
 stream = ExtResource( 3 )
+volume_db = 5.0
 pitch_scale = 0.9
 script = ExtResource( 4 )
+default_vol = 5.0
 
 [node name="ExplosionParticles" type="Particles2D" parent="PowerupPill"]
 emitting = false
