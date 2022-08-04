@@ -14,8 +14,9 @@ var main_menu_has_faded = false
 var return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 var ui_states = {}
 var bullet_type_scenes = [load("res://Scenes/HelperScenes/Bullet.tscn"), load("res://Scenes/HelperScenes/Bullet2.tscn"), load("res://Scenes/HelperScenes/Bullet3.tscn"),load("res://Scenes/HelperScenes/Bullet4.tscn"), load("res://Scenes/HelperScenes/Bullet5.tscn") ]
+var laser_type_scenes = [load("res://Scenes/HelperScenes/Laser.tscn"), load("res://Scenes/HelperScenes/Laser2.tscn"), load("res://Scenes/HelperScenes/Laser3.tscn"), load("res://Scenes/HelperScenes/Laser4.tscn")]
+var laser_type_charge_times = [1.5, 1.5, 3.0, 1.0]
 var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn"), load("res://Scenes/MainScenes/PlayerType4.tscn"), load("res://Scenes/MainScenes/PlayerType5.tscn")]
-
 var entity_effects = {}
 var shakes = {}
 var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}

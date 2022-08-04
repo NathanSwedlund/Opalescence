@@ -129,6 +129,8 @@ var player_default = {
 	"default_bullets_per_burst":3,
 	"can_shoot_laser":true,
 	"bullet_type_override":null,
+	"laser_type_override":null,
+	"bomb_type_override":null,
 	"player_type_override":null,
 }
 
@@ -160,6 +162,18 @@ var shop_default = {
 	"bullet3_is_unlocked":false,
 	"bullet4_is_unlocked":false,
 	"bullet5_is_unlocked":false,
+
+	"laser_type":0,
+	"laser1_is_unlocked":true,
+	"laser2_is_unlocked":false,
+	"laser3_is_unlocked":false,
+	"laser4_is_unlocked":false,
+
+	"bomb_type":0,
+	"bomb1_is_unlocked":true,
+	"bomb2_is_unlocked":false,
+	"bomb3_is_unlocked":false,
+	"bomb4_is_unlocked":false,
 
 	"player_type":0,
 	"player1_is_unlocked":true,

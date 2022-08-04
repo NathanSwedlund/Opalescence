@@ -66,7 +66,8 @@ func explode():
 		return
 
 	Global.shakes["bomb"].start(15*get_parent().scale.x, 0.9, 80, 1)
-	shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
+	if($ExplosionTimer != null):
+		shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true
 	exploding = true
 	
@@ -76,7 +77,8 @@ func explode():
 		
 	
 	$AudioStreamPlayer.play()
-	$ExplosionTimer.start()
+	if($ExplosionTimer != null):
+		$ExplosionTimer.start()
 	$OuterLight.scale *= 12
 	$InnerLight.energy *= 1.9
 	$InnerLight.scale *= 9

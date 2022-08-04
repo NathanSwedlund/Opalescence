@@ -60,7 +60,7 @@ var inf_bombs = false
 
 var default_laser_charge_time
 var opalescence_projectile_scene = load("res://Scenes/HelperScenes/Powerups/OpalescenceProjectile.tscn")
-
+var unmaker_strike_beam_time = 1.2
 var bullet_audio_default_pitch = 1.0
 var incendiary_audio_pitch = 0.7
 
@@ -86,7 +86,7 @@ var vision_light_scale = 3.0
 
 # Secondary fire variables
 var is_charging_laser = false
-var laser_scene = load("res://Scenes/HelperScenes/Laser.tscn")
+var laser_scene
 export var default_laser_scale = 1.0
 var laser_scale
 var can_shoot_laser = true
@@ -119,7 +119,8 @@ func _ready():
 
 	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
-	default_laser_charge_time = $LaserChargeTimer.wait_time
+	default_laser_charge_time = Global.laser_type_charge_times[Settings.shop["laser_type"]]
+	$LaserChargeTimer.wait_time = default_laser_charge_time
 	reset()
 
 var first_load = true
@@ -202,7 +203,7 @@ func reset_settings():
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
-
+			
 	default_player_speed = speed
 	first_load = false
 	
@@ -236,6 +237,11 @@ func reset():
 	bullet_scene = Global.bullet_type_scenes[Settings.shop["bullet_type"]]
 	if(Settings.player["bullet_type_override"] != null):
 		bullet_scene = Global.bullet_type_scenes[Settings.player["bullet_type_override"]]
+
+
+	laser_scene = Global.laser_type_scenes[Settings.shop["laser_type"]]
+	if(Settings.player["laser_type_override"] != null):
+		laser_scene = Global.laser_type_scenes[Settings.player["laser_type_override"]]
 
 	respawn()
 
@@ -363,7 +369,7 @@ func shoot():
 		spawn_bullet()
 		$BulletCooldownTimer.start()
 
-func get_direction_to_shoot():
+func get_direction_to_shoot(_name=null):
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
 
 var BULLET_SPAWN_DIST = 25
@@ -571,21 +577,34 @@ func _on_BulletBurstTimer_timeout():
 	else:
 		$BulletCooldownTimer.start()
 
-func spawn_laser(_scale=1.0, _laser_time=-1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
-
-
+func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 	var laser = laser_scene.instance()
 	laser.scale *= _scale
 	laser.max_fade_in_width *= _scale
-	if(_laser_time != -1.0):
-		laser.total_time = _laser_time
-		laser.particle_intensity_scale = _particle_intensity_scale
+	laser.particle_intensity_scale = _particle_intensity_scale
+	
+	if(has_powerup["Unmaker"] == false):
+		$LaserExistsTimer.wait_time = laser.lifetime
+		$LaserExistsTimer.start()
 	else:
-		if(has_powerup["Unmaker"] == false):
-			$LaserExistsTimer.wait_time = laser.total_time
-			$LaserExistsTimer.start()
+		var unmaker_laser_time = laser.lifetime * 6
+		if(use_global_settings):
+			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
+		if(Settings.shop["laser_type"] == 1): # Strike Beam
+			unmaker_laser_time *= 3
+			
+		laser.lifetime = unmaker_laser_time
+		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")
+		$PowerupTimers/Unmaker.wait_time = unmaker_laser_time
+		$PowerupTimers/Unmaker.start()
+		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")
+				
 	laser.find_node("LaserSound").pitch_scale *= _pitch_scale
-	add_child(laser)
+	if(Settings.shop["laser_type"] == 3): # Ball Lightning
+		laser.position = position
+		get_parent().add_child(laser)
+	else:
+		add_child(laser)
 
 func _on_LaserChargeTimer_timeout():
 	can_shoot_laser = false
@@ -690,9 +709,7 @@ func get_powerup(_powerup, _color):
 		var unmaker_pitch_scale = 0.5
 		has_powerup["Unmaker"] = true
 		can_shoot_laser = false
-		spawn_laser(unmaker_scale, $PowerupTimers/Unmaker.wait_time, unmaker_particle_intensity, unmaker_pitch_scale)
-		$PowerupTimers/Unmaker.start()
-		start_powerup_timer($PowerupTimers/Unmaker.wait_time, _color, _powerup)
+		spawn_laser(unmaker_scale, unmaker_particle_intensity, unmaker_pitch_scale)
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
 		start_powerup_timer($PowerupTimers/Vision.wait_time, _color, _powerup)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
@@ -22,6 +22,9 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/ScreenShake.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Resources/Textures/Items/bullet-5Hi-Res.png" type="Texture" id=21]
 [ext_resource path="res://Scenes/HelperScenes/UI/BouncyText.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Resources/Textures/Items/LaserUIImage4.png" type="Texture" id=23]
+[ext_resource path="res://Resources/Textures/Items/LaserUIImage3.png" type="Texture" id=24]
+[ext_resource path="res://Resources/Textures/Items/LaserUIImage2.png" type="Texture" id=25]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -224,6 +227,74 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 21 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel2"]
+stream = ExtResource( 5 )
+pitch_scale = 0.7
+script = ExtResource( 2 )
+
+[node name="StoreSuperPanel5" type="Node2D" parent="UI/Panels"]
+position = Vector2( 0, 217 )
+scale = Vector2( 0.91, 0.91 )
+script = ExtResource( 11 )
+title = "Laser Types"
+
+[node name="Title" type="Label" parent="UI/Panels/StoreSuperPanel5"]
+margin_left = -319.22
+margin_top = -157.483
+margin_right = 161.78
+margin_bottom = -122.483
+custom_fonts/font = SubResource( 1 )
+text = "TITLE"
+align = 1
+
+[node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel5"]
+scale = Vector2( 0.65, 0.65 )
+
+[node name="StorePanelBool5" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
+modulate = Color( 0.462745, 0.847059, 1, 1 )
+position = Vector2( 0, 0 )
+scale = Vector2( 1.0989, 1.0989 )
+title = "Tri-beam Laser"
+setting_name = "laser2_is_unlocked"
+price = 800000
+purchased_color = Color( 0.415686, 1, 0.862745, 1 )
+purchase_juice_scale = 1.1
+
+[node name="Bullet-pixel2" type="Sprite" parent="UI/Panels/StoreSuperPanel5/Panels/StorePanelBool5"]
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 25 )
+
+[node name="StorePanelBool6" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
+modulate = Color( 1, 0.282353, 0, 1 )
+position = Vector2( 406.593, -2.19781 )
+scale = Vector2( 1.0989, 1.0989 )
+title = "Laser Strike"
+setting_name = "laser3_is_unlocked"
+price = 950000
+purchased_color = Color( 0.564706, 0, 0.556863, 1 )
+purchase_juice_scale = 1.2
+
+[node name="Bullet-pixel3" type="Sprite" parent="UI/Panels/StoreSuperPanel5/Panels/StorePanelBool6"]
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 24 )
+
+[node name="StorePanelBool7" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
+modulate = Color( 1, 0.282353, 0, 1 )
+position = Vector2( 406.593, -2.19781 )
+scale = Vector2( 1.0989, 1.0989 )
+title = "Laser Ball"
+setting_name = "laser4_is_unlocked"
+price = 1000000
+purchased_color = Color( 0.878431, 1, 0.176471, 1 )
+purchase_juice_scale = 1.2
+
+[node name="Bullet-pixel3" type="Sprite" parent="UI/Panels/StoreSuperPanel5/Panels/StorePanelBool7"]
+position = Vector2( 175.385, -34.9233 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 23 )
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel5"]
 stream = ExtResource( 5 )
 pitch_scale = 0.7
 script = ExtResource( 2 )

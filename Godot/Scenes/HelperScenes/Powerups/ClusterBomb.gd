@@ -13,7 +13,7 @@ func _ready():
 	side_bombs = [$Bomb1, $Bomb2, $Bomb3, $Bomb4]
 	for i in range(4):
 		if(is_instance_valid(side_bombs[i])):
-			side_bombs[i].find_node("PowerupPill").find_node("InnerLight").visible = false
+			side_bombs[i].find_node("PowerupPill").find_node("AudioStreamPlayer").volume_db = -15
 			side_bombs[i].find_node("PowerupPill").find_node("OuterLight").shadow_enabled = false
 			var t = side_bombs[i].find_node("PowerupPill").find_node("CountdownTimer")
 			t.stop()
