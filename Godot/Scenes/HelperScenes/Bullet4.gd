@@ -13,8 +13,11 @@ func _ready():
 	if(incendiary):
 		$AudioStreamPlayer.pitch_scale = Global.player.incendiary_audio_pitch
 		
+	$Particles2D.process_material.direction.x = direction.x
+	$Particles2D.process_material.direction.y = direction.y
+	$Particles2D.emitting = true
 	for b in get_children():
-		if(b != $AudioStreamPlayer):
+		if(b != $AudioStreamPlayer and b != $Particles2D):
 			var sep = deg2rad(rand_range(deg_sep,-deg_sep)) #deg2rad(move_toward(deg_sep, -deg_sep, weight))
 			weight += step
 			b.rotate(sep)
@@ -25,3 +28,6 @@ func _ready():
 	
 func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.queue_free()
+
+func _process(delta):
+	modulate = Global.player.modulate

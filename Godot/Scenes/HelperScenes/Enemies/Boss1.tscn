@@ -35,5 +35,9 @@ scale = Vector2( 0.5, 2.845 )
 texture = ExtResource( 4 )
 energy = 7.0
 
+[node name="PostLastMissileTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="MissileTimer" to="." method="_on_MissileTimer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_WaitTimer_timeout"]
+[connection signal="timeout" from="PostLastMissileTimer" to="." method="_on_PostLastMissileTimer_timeout"]

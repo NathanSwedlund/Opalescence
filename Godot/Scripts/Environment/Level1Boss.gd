@@ -56,7 +56,7 @@ func take_damage(damage, play_sound=true, color_override=null):
 
 func die():
 	for c in get_children():
-		if((c in [$MissileTimer, $MissileSpawnAudio, $WaitTimer, $Light2D, $BossAlarm]) == false):
+		if((c in [$PostLastMissileTimer, $MissileTimer, $MissileSpawnAudio, $WaitTimer, $Light2D, $BossAlarm]) == false):
 			c.die()
 
 func _on_WaitTimer_timeout():
@@ -65,8 +65,12 @@ func _on_WaitTimer_timeout():
 		$MissileTimer.start()
 		$WaitTimer.stop()
 	if(count > missile_num):
-		boss_fight_completed()
-		queue_free()
+		$PostLastMissileTimer.start()
 
 func boss_fight_completed():
 	Global.level_timer.start_level_timer()
+
+
+func _on_PostLastMissileTimer_timeout():
+	boss_fight_completed()
+	queue_free()

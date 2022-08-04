@@ -21,7 +21,7 @@ func _process(delta):
 	if(speed < speed_max):
 		speed += delta * speed_accel
 		
-	modulate = Global.player.modulate
+
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
