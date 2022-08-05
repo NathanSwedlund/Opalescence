@@ -41,9 +41,10 @@ func _ready():
 		$TokensLabel.modulate = last_color
 		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
 		for b_sel in button_selections:
-			b_sel.modulate = last_color
 			for b in b_sel.get_children():
-				b.find_node("Light2D").color = last_color
+				if(b != $MenuCanvas/ResetConfirmSelection/YesButton and b != $MenuCanvas/ResetConfirmSelection/NoButton and b != $MenuCanvas/ResetSelection/ResetAllContentButton):
+					b.modulate = last_color
+					b.find_node("Light2D").color = last_color
 	reset()
 	
 func reset():
@@ -120,11 +121,14 @@ func _process(_delta):
 			$PointsLabel.modulate = last_color
 			$TokensLabel.modulate = last_color
 			button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
+			
 			for b_sel in button_selections:
-				b_sel.modulate = last_color
 				for b in b_sel.get_children():
-					b.find_node("Light2D").color = last_color
-
+					if(b != $MenuCanvas/ResetConfirmSelection/YesButton and b != $MenuCanvas/ResetConfirmSelection/NoButton and b != $MenuCanvas/ResetSelection/ResetAllContentButton):
+						b.modulate = last_color
+						b.find_node("Light2D").color = last_color
+			print("modulate, ", modulate)
+			print("$MenuCanvas/ResetConfirmSelection/YesButton , ", $MenuCanvas/ResetConfirmSelection/YesButton.modulate)
 		if(Input.is_action_just_pressed("ui_cancel") and is_shifting_button_selection == false):
 			if(current_button_selection == 2):
 				Settings.save()
@@ -250,7 +254,7 @@ func _on_StorePage_pressed():
 	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
 		return 
 
-	Settings.current_main_menu_button_selection = 0
+	set_ui_state()
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/StorePage.tscn")
 
@@ -420,20 +424,16 @@ func load_standard(settings):
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
 
 func _on_CustomizeButton_pressed():
-	Settings.current_main_menu_button_selection = 0
+	set_ui_state()
 	get_tree().change_scene("res://Scenes/MainScenes/CustomizePage.tscn")
 
 func _on_ScreenShakeScaleOption_pressed(_value):
 	Settings.saved_settings["screen_shake_scale"] = _value
 
-
-
 func _on_StandardBackButton_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
 		return
 	shift_button_selection(1)
-
-
 
 func _on_UpdateFulscreenButtonTimer_timeout():
 	$MenuCanvas/OptionsSelection/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], false, false)
@@ -449,7 +449,27 @@ func _on_ResetSettingsButton_pressed():
 	Settings.save()
 	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
 
+var reset_menu_music_vol_descrease_amount = 10
+var reset_menu_music_pitch_descrease_amount = 0.2
 func _on_ResetAllContentButton_pressed():
+	$PointFactory.is_active = false
+	$PointFactory.kill_all()	
+	$Player.visible = false
+	$MusicVolTween.interpolate_property($MusicShuffler, "volume_db", 
+		$MusicShuffler.volume_db, 
+		$MusicShuffler.volume_db-reset_menu_music_vol_descrease_amount, 1.0,
+		Tween.TRANS_LINEAR, 
+		Tween.EASE_IN_OUT)
+	$MusicVolTween.start()
+	
+	$MusicPitchTween.interpolate_property($MusicShuffler, "pitch_scale", 
+		$MusicShuffler.pitch_scale, 
+		$MusicShuffler.pitch_scale-reset_menu_music_pitch_descrease_amount, 1.0,
+		Tween.TRANS_LINEAR, 
+		Tween.EASE_IN_OUT)
+	$MusicPitchTween.start()
+	
+	print("starting music vol down")
 	$ResetConfirmPopup.show()
 	$ResetPopup.hide()
 	shift_button_selection(5)
@@ -473,6 +493,20 @@ func _on_ResetButton_pressed():
 	$ResetPopup.show()
 
 func _on_NoButton_pressed():
+	$Player.visible = true
+	$PointFactory.is_active = true
+	$MusicVolTween.interpolate_property($MusicShuffler, 
+	"volume_db", $MusicShuffler.volume_db, 
+	$MusicShuffler.volume_db+reset_menu_music_vol_descrease_amount,
+	1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$MusicVolTween.start()
+	
+	$MusicPitchTween.interpolate_property($MusicShuffler, 
+	"pitch_scale", $MusicShuffler.pitch_scale,
+	$MusicShuffler.pitch_scale+reset_menu_music_pitch_descrease_amount, 
+	1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$MusicPitchTween.start()
+	
 	$ResetPopup.show()
 	$ResetConfirmPopup.hide()
 	shift_button_selection(4)

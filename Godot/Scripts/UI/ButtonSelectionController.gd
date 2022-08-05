@@ -29,7 +29,6 @@ func select(button_index):
 	if(button_index == selected_button):
 		return
 		
-	print("Selecting ", button_index, " ", name)
 	get_child(selected_button).deselect()
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
