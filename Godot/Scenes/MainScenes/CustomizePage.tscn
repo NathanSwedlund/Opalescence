@@ -50,7 +50,7 @@ font_data = ExtResource( 3 )
 [node name="CustomizePage" type="Node2D"]
 script = ExtResource( 6 )
 loop_shift_speed = 6500
-shift_speed = 2700.0
+shift_speed = 2400.0
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )
