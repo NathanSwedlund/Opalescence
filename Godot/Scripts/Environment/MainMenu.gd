@@ -15,6 +15,7 @@ var target_player_scale
 export var fade_speed = 1
 export var music_fade_speed = 8
 var last_color = Color.white
+export var ui_name = ""
 func _ready():
 	update_mode_availability()
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
@@ -43,7 +44,6 @@ func _ready():
 			b_sel.modulate = last_color
 			for b in b_sel.get_children():
 				b.find_node("Light2D").color = last_color
-		
 	reset()
 	
 func reset():
@@ -69,14 +69,19 @@ func reset():
 		$MenuCanvas/OptionsSelection/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
 		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
 		modulated_button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection,]
-		shift_button_selection(Settings.current_main_menu_button_selection, false)
+
 		$MenuCanvas/OptionsSelection/MusicVolumeOption.update_current_val(Settings.saved_settings["music_volume"])
 		$MenuCanvas/OptionsSelection/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
 		$MenuCanvas/OptionsSelection/ScreenShakeScaleOption.update_current_val(Settings.saved_settings["screen_shake_scale"])
 		$MusicShuffler.volume_db = -80
 		
+		if(Global.ui_states.has(ui_name)):
+			shift_button_selection(Global.ui_states[ui_name]["button_selection"], false)
+			button_selections[Global.ui_states[ui_name]["button_selection"]].select(Global.ui_states[ui_name]["button_index"])
+			
+		
 func _on_ChallengeButton_pressed():
-	Settings.current_main_menu_button_selection = current_button_selection
+	set_ui_state()
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/ChallengePage.tscn")
 
 
@@ -139,11 +144,11 @@ func _on_QuitButton_pressed():
 	get_tree().quit()
 
 func _on_ArcadeButton_pressed():
-	Settings.current_main_menu_button_selection = current_button_selection
+	set_ui_state()
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/MissionPage.tscn")
 
 func _on_TutorialsButton_pressed():
-	Settings.current_main_menu_button_selection = current_button_selection
+	set_ui_state()
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/TutorialsMissionPage.tscn")
 
 func toggle_button_selection():
@@ -409,7 +414,7 @@ func _on_NightmareMode_pressed():
 	load_standard(standard_diff_settings["Nightmare"])
 	
 func load_standard(settings):
-	Settings.current_main_menu_button_selection = 3
+	set_ui_state()
 	Settings.change_settings(settings)
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
 	get_tree().change_scene("res://Scenes/MainScenes/World.tscn")
@@ -484,3 +489,11 @@ func _on_ResetHighScoreButton_pressed():
 
 func _on_MusicStartTimer_timeout():
 	$MusicShuffler.play()
+
+func set_ui_state():
+	if(Global.ui_states.has(ui_name) == false):
+		Global.ui_states[ui_name] = {}
+
+	Global.ui_states[ui_name]["button_selection"] = current_button_selection
+	Global.ui_states[ui_name]["button_index"] = button_selections[current_button_selection].selected_button
+	print("Global.ui_states[ui_name], ", Global.ui_states[ui_name])

@@ -89,6 +89,7 @@ font_data = ExtResource( 15 )
 [node name="MainMenu" type="Node2D"]
 scale = Vector2( 1.25, 1.2 )
 script = ExtResource( 2 )
+ui_name = "main_menu"
 
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 1 )

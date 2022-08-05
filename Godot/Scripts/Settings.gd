@@ -191,8 +191,6 @@ var shop_settings_path = "user://shop.dat"
 var saved_settings_path = "user://settings.dat"
 var save_path = "user://save.dat"
 
-var current_main_menu_button_selection = 0
-
 func _ready():
 	saved_settings["colors"] = default_colors
 	var saved_settings_from_file = Global.load_var(saved_settings_path)
