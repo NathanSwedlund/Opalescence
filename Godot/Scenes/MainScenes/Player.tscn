@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Entities/Player.gd" type="Script" id=3]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Resources/Audio/FX/Barrage.wav" type="AudioStream" id=10]
 [ext_resource path="res://Resources/Audio/FX/GravityWell.wav" type="AudioStream" id=11]
 [ext_resource path="res://Resources/Audio/FX/Vision.wav" type="AudioStream" id=12]
-[ext_resource path="res://Resources/Audio/FX/Unmaker.wav" type="AudioStream" id=13]
 [ext_resource path="res://Resources/Audio/FX/OverSheild.wav" type="AudioStream" id=14]
 [ext_resource path="res://Resources/Audio/FX/GainBomb.wav" type="AudioStream" id=15]
 [ext_resource path="res://Resources/Audio/FX/BulletTime.wav" type="AudioStream" id=16]
@@ -419,11 +418,13 @@ script = ExtResource( 26 )
 default_vol = 2.0
 
 [node name="UnmakerAudio" type="AudioStreamPlayer" parent="SoundFX"]
-stream = ExtResource( 13 )
-volume_db = -3.816
-pitch_scale = 0.7
+stream = ExtResource( 28 )
+volume_db = 15.0
+pitch_scale = 0.6
 script = ExtResource( 26 )
-default_vol = -80.0
+default_vol = 15.0
+
+[node name="VolTween" type="Tween" parent="SoundFX/UnmakerAudio"]
 
 [node name="VisionAudio" type="AudioStreamPlayer" parent="SoundFX"]
 stream = ExtResource( 12 )

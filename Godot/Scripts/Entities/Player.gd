@@ -63,7 +63,7 @@ var opalescence_projectile_scene = load("res://Scenes/HelperScenes/Powerups/Opal
 var unmaker_strike_beam_time = 1.2
 var bullet_audio_default_pitch = 1.0
 var incendiary_audio_pitch = 0.7
-
+var default_unmaker_vol
 # Powerup variables
 export var powerup_times = {
 	"Barrage":5.0,
@@ -105,6 +105,7 @@ var default_enemy_explosion_vol
 var default_laser_cooldown_time = 5.0
 var laser_cooldown_time
 func _ready():
+	default_unmaker_vol = $SoundFX/UnmakerAudio.volume_db
 	Global.points_this_round = 0
 
 	default_speed *= global_scale.x
@@ -120,8 +121,10 @@ func _ready():
 	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
 	default_laser_charge_time = Global.laser_type_charge_times[Settings.shop["laser_type"]]
-	$LaserChargeTimer.wait_time *= laser_cooldown_time
 	reset()
+	$LaserChargeTimer.wait_time *= max(laser_cooldown_time /2, 1.0)
+	print("$LaserChargeTimer.wait_time, ", $LaserChargeTimer.wait_time)
+	print("$laser_cooldown_timet_time, ", laser_cooldown_time)
 
 var first_load = true
 func reset_settings():
@@ -399,6 +402,9 @@ func drop_bomb(_scale=1.0, is_max_bomb=false):
 	if(Settings.world["is_mission"] == false or _scale == max_bomb_bomb_scale):
 		bomb.scale *= Settings.shop["bomb_scale"] * _scale
 	$SoundFX/DropBombAudio.play()
+	if(Settings.shop["player_type"] == 4):
+		bomb.find_node("PowerupPill").find_node("CountdownTimer").wait_time = 0.05
+		
 	get_parent().add_child(bomb)
 
 func damage(_enemy=null):
@@ -584,14 +590,17 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 	laser.particle_intensity_scale = _particle_intensity_scale
 	
 	if(has_powerup["Unmaker"] == false):
-		$LaserExistsTimer.wait_time = laser.lifetime
+		if(Settings.shop["laser_type"] == 3): # Ball lightning
+			$LaserExistsTimer.wait_time = laser.lifetime/3
+		else:
+			$LaserExistsTimer.wait_time = laser.lifetime
 		$LaserExistsTimer.start()
 	else:
+		$SoundFX/UnmakerAudio/VolTween.start()
 		var unmaker_laser_time = laser.lifetime * 6
+		$SoundFX/UnmakerAudio/VolTween.interpolate_property($SoundFX/UnmakerAudio, "volume_db", default_unmaker_vol, -20, unmaker_laser_time-0.5)		
 		if(use_global_settings):
 			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
-		if(Settings.shop["laser_type"] == 2): # Strike Beam
-			unmaker_laser_time *= 2
 			
 		laser.lifetime = unmaker_laser_time
 		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")
@@ -709,6 +718,7 @@ func get_powerup(_powerup, _color):
 		var unmaker_pitch_scale = 0.5
 		has_powerup["Unmaker"] = true
 		can_shoot_laser = false
+		$SoundFX/UnmakerAudio.volume_db = default_unmaker_vol
 		spawn_laser(unmaker_scale, unmaker_particle_intensity, unmaker_pitch_scale)
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
@@ -757,6 +767,9 @@ func _on_Opalescence_timeout():
 
 func _on_Unmaker_timeout():
 	can_shoot_laser = Settings.player["can_shoot_laser"]
+	$SoundFX/UnmakerAudio.stop()
+	$SoundFX/UnmakerAudio/VolTween.stop($SoundFX/UnmakerAudio, "volume_db")
+	$SoundFX/UnmakerAudio.volume_db = default_unmaker_vol
 	has_powerup["Unmaker"] = false
 
 

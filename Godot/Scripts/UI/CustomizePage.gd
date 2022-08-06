@@ -12,8 +12,9 @@ var panel_num
 
 export var panel_sep_dist = 230
 export var starting_panel_loc = Vector2.ZERO
-
+export var loop_shift_speed  = 10000
 var is_shifting = false
+var is_loop_shifting = false
 export var shift_speed = 1800.0
 
 # Called when the node enters the scene tree for the first time.
@@ -41,8 +42,13 @@ func _ready():
 		
 func _process(delta):
 	if(is_shifting):
-		$UI/Panels.position.y = move_toward($UI/Panels.position.y, panel_sep_dist*selected * -1, shift_speed*delta)
-		if($UI/Panels.position.y == panel_sep_dist*selected * -1):
+		var target = panel_sep_dist*selected * -1
+		var current = $UI/Panels.position.y
+		if(is_loop_shifting):
+			$UI/Panels.position.y = move_toward(current, target, loop_shift_speed * delta )		
+		else:
+			$UI/Panels.position.y = move_toward(current, target, shift_speed * delta )
+		if($UI/Panels.position.y == target):
 			is_shifting = false
 			panels[selected].select()
 			update_color()
@@ -91,7 +97,18 @@ func select(num):
 	if(num == selected):
 		return 
 
+
 	num %= ui_element_num
+	is_loop_shifting = (num == 0 and selected == panel_num) or (selected == panel_num and num == panel_num-1)
+	if(is_loop_shifting):
+		$LoopSound.play()
+		
+	print("--")
+	print("is_loop_shifting, ", is_loop_shifting)
+	print("num, ", num)
+	print("selected, ", selected)
+	print("panel_num, ", panel_num)
+	print("--")
 	ui_elements[selected].deselect()
 	selected = num
 	

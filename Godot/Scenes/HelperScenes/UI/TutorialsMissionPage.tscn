@@ -567,7 +567,7 @@ settings = {
 "powerup_point_value": null,
 "powerup_time_max": 5.0,
 "powerup_time_min": 3.0,
-"powerup_unmaker_prob": null,
+"powerup_unmaker_prob": 100.0,
 "powerup_vision_prob": null,
 "shooter_health": null,
 "shooter_missile_damage": null,

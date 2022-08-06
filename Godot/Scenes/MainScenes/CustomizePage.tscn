@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection.wav" type="AudioStream" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scripts/UI/StoreColorPanel.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=12]
 [ext_resource path="res://Resources/Audio/Music/Menus/Opalescence Shop.mp3" type="AudioStream" id=13]
+[ext_resource path="res://Resources/Audio/FX/NewHighScore.wav" type="AudioStream" id=14]
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
@@ -48,6 +49,7 @@ font_data = ExtResource( 3 )
 
 [node name="CustomizePage" type="Node2D"]
 script = ExtResource( 6 )
+loop_shift_speed = 6500
 shift_speed = 2700.0
 
 [node name="Background" type="Sprite" parent="."]
@@ -348,6 +350,13 @@ autoplay = true
 script = ExtResource( 1 )
 default_vol = 4.0
 is_music = true
+
+[node name="LoopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -20.0
+pitch_scale = 2.0
+script = ExtResource( 1 )
+default_vol = -20.0
 
 [connection signal="mouse_entered" from="UI/BackButton" to="UI/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="UI/BackButton" to="UI/BackButton" method="mouse_exited"]

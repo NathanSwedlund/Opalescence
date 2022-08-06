@@ -53,7 +53,7 @@ scale_curve = SubResource( 7 )
 scale = Vector2( 2, 2 )
 collision_layer = 0
 script = ExtResource( 6 )
-lifetime = 1.6
+lifetime = 2.2
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
