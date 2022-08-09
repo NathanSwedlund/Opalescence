@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Scripts/UI/StoreSkillPanel.gd" type="Script" id=4]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=5]
 [ext_resource path="res://Resources/Audio/FX/UI_Change_Selection2.wav" type="AudioStream" id=6]
+[ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=7]
+[ext_resource path="res://Resources/Audio/FX/LaserCooldown.wav" type="AudioStream" id=8]
 
 [sub_resource type="Curve" id=14]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -64,6 +66,27 @@ font_data = ExtResource( 2 )
 [sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+radial_accel = 300.0
+radial_accel_random = 0.1
+scale = 15.0
+scale_random = 0.72
+scale_curve = SubResource( 19 )
 
 [node name="StoreSkillPanel" type="Node2D"]
 position = Vector2( -1, -1 )
@@ -190,6 +213,27 @@ custom_styles/focus = SubResource( 12 )
 shortcut_in_tooltip = false
 text = "<"
 flat = true
+
+[node name="MaxedExplosion" type="Particles2D" parent="."]
+position = Vector2( -56, -4 )
+rotation = 3.14159
+z_index = 5
+emitting = false
+amount = 200
+lifetime = 4.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 20 )
+script = ExtResource( 7 )
+
+[node name="MaxedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -2.0
+pitch_scale = 0.8
+script = ExtResource( 1 )
+default_vol = -2.0
 
 [connection signal="pressed" from="ApplyMore" to="." method="_on_ApplyMore_pressed"]
 [connection signal="pressed" from="ApplyLess" to="." method="_on_ApplyLess_pressed"]

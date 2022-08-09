@@ -26,7 +26,7 @@ func _ready():
 	$Light2D2.color = modulate
 	default_val = Settings.get_setting_if_exists(Settings.shop_default, setting_name, default_val)
 	current_val = Settings.get_setting_if_exists(Settings.shop, setting_name, default_val)
-	update_labels()
+	update_labels(true)
 
 func try_buy():
 	if(is_selected == false):
@@ -72,7 +72,7 @@ func update():
 	Settings.shop[setting_name] = current_val
 	update_labels()
 
-func update_labels():
+func update_labels(init=false):
 	$Title.text = title
 
 	steps_already_taken = (current_val - default_val)/val_step
@@ -91,6 +91,10 @@ func update_labels():
 		$Last.text = "Last: " + str(last)
 		$Price.text = "MAXED"
 		$Next.text = "Next: _"
+		if(init == false):
+			$MaxedAudio.play()
+			$MaxedExplosion.restart()
+			$MaxedExplosion.emitting = true
 		$Light2D2.color = modulate
 		$ApplyMore.visible = false
 	else:

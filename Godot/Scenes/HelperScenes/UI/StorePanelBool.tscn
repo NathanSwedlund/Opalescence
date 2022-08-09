@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/public-pixel-font/PublicPixel-eZPz6.ttf" type="DynamicFontData" id=2]
@@ -28,11 +28,11 @@ orbit_velocity_random = 0.0
 scale = 5.0
 scale_curve = SubResource( 6 )
 
-[sub_resource type="Curve" id=10]
+[sub_resource type="Curve" id=18]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=11]
-curve = SubResource( 10 )
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
 
 [sub_resource type="ParticlesMaterial" id=17]
 emission_shape = 1
@@ -47,9 +47,15 @@ radial_accel = 300.0
 radial_accel_random = 0.1
 scale = 15.0
 scale_random = 0.72
-scale_curve = SubResource( 11 )
+scale_curve = SubResource( 19 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="Curve" id=10]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=20]
+curve = SubResource( 10 )
+
+[sub_resource type="ParticlesMaterial" id=21]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -62,7 +68,7 @@ radial_accel = 300.0
 radial_accel_random = 0.1
 scale = 15.0
 scale_random = 0.72
-scale_curve = SubResource( 11 )
+scale_curve = SubResource( 20 )
 
 [sub_resource type="Gradient" id=9]
 offsets = PoolRealArray( 0, 0.173913, 0.614907, 0.832298 )
@@ -106,7 +112,7 @@ radial_accel = 100.0
 radial_accel_random = 0.1
 scale = 30.0
 scale_random = 0.72
-scale_curve = SubResource( 11 )
+scale_curve = SubResource( 19 )
 color_ramp = SubResource( 8 )
 
 [sub_resource type="DynamicFont" id=1]
@@ -184,7 +190,7 @@ one_shot = true
 speed_scale = 5.0
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 18 )
+process_material = SubResource( 21 )
 script = ExtResource( 11 )
 
 [node name="BuyImplosionParticles" type="Particles2D" parent="."]
