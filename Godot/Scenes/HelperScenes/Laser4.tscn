@@ -50,7 +50,7 @@ scale = 3.0
 scale_curve = SubResource( 7 )
 
 [node name="Laser4" type="KinematicBody2D"]
-scale = Vector2( 3, 3 )
+scale = Vector2( 5, 5 )
 collision_layer = 0
 script = ExtResource( 6 )
 lifetime = 3.0

@@ -112,11 +112,11 @@ func _ready():
 	for c in $SoundFX.get_children():
 		c.add_to_group("FX")
 
-	reset_settings()
 	Settings.apply_sound_settings()
 	Global.player = self
 	for tp in transformative_powerups:
 		has_powerup[tp] = false
+	reset_settings()
 
 	Settings.world["default_points_scale"] = Settings.world["points_scale"]
 	$BulletCooldownTimer.wait_time = default_bullets_cooldown_wait_time
@@ -129,7 +129,7 @@ func _ready():
 var first_load = true
 func reset_settings():
 	load_player_type()
-	can_shoot = can_shoot and player_type.can_shoot
+	can_shoot = (can_shoot and player_type.can_shoot) or has_powerup["Barrage"]
 	laser_cooldown_time = default_laser_cooldown_time
 	max_bombs = default_max_bombs
 	if(use_global_settings):
@@ -170,7 +170,8 @@ func reset_settings():
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
 	bullets_per_burst = default_bullets_per_burst
-	bullets_to_shoot = default_bullets_per_burst
+	if(has_powerup["Barrage"] == false): 
+		bullets_to_shoot = default_bullets_per_burst
 
 	light_size *= player_type.light_scale
 	shrink_scalar = default_shrink_scalar * player_type.light_fade_scale
@@ -351,15 +352,16 @@ func get_input():
 		$SoundFX/LaserChargeAudio.stop()
 		$LaserChargeEffect.emitting = is_charging_laser
 
+var shoot_num = 0
 func shoot():
+	shoot_num += 1
+	print("shooting #",shoot_num)
 	if(can_shoot == false and has_powerup["Barrage"] == false):
 		return
 
 	if(has_powerup["Barrage"] == false):
 		bullets_per_burst = default_bullets_per_burst
 		bullets_to_shoot = bullets_per_burst
-
-
 
 	if(bullets_to_shoot > 1):
 		can_shoot = false
@@ -373,8 +375,11 @@ func shoot():
 func get_direction_to_shoot(_name=null):
 	return ($Cursor.position).normalized() if ($Cursor.position).normalized() != Vector2(0,0) else Vector2(0,-1)
 
+var shoot_num2 = 0
 var BULLET_SPAWN_DIST = 25
 func spawn_bullet():
+	shoot_num2 += 1
+	print("spawn bullet #",shoot_num2)
 #	Global.vibrate_controller(0.1,0.3)
 	var bullet = bullet_scene.instance()
 	if(has_powerup["Incendiary"]):

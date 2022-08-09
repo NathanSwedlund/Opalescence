@@ -118,7 +118,7 @@ func _process(delta):
 #					if(i.is_in_group("Enemies")):
 #						i.take_damage(damage * delta * frames_per_update, true, Color.white)
 				for e in get_tree().get_nodes_in_group("Enemies"):
-					if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false):
+					if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Bosses") == false):
 						e.take_damage(damage * delta * frames_per_update, true, Color.white)
 			else:
 				if(scale.x <= min_size * scale_mod):
