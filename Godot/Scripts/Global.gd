@@ -7,7 +7,7 @@ var world = null
 var target_frame_rate = 60.0
 var points_this_round = 0
 
-var version = "v1.2.2"
+var version = "v1.2.3"
 var play_time = 0.0
 
 var main_menu_has_faded = false
@@ -19,7 +19,7 @@ var laser_type_charge_times = [1.5, 1.5, 3.0, 2.0]
 var player_type_scenes = [load("res://Scenes/MainScenes/PlayerType1.tscn"), load("res://Scenes/MainScenes/PlayerType2.tscn"), load("res://Scenes/MainScenes/PlayerType3.tscn"), load("res://Scenes/MainScenes/PlayerType4.tscn"), load("res://Scenes/MainScenes/PlayerType5.tscn")]
 var entity_effects = {}
 var shakes = {}
-var partical_scales_per_graphical_setting = {"Min":0.1, "Low":0.3, "Mid":0.7, "High": 1.0, "Ultra":1.5}
+var partical_scales_per_graphical_setting = {"Min":0.2, "Low":0.3, "Mid":0.8, "High": 1.0, "Ultra":1.5}
 
 func _ready():
 	pause_mode = PAUSE_MODE_PROCESS
