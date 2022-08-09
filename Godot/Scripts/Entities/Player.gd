@@ -281,8 +281,7 @@ func spawn_get_point_label(points_num):
 	gpl.position = position
 	get_parent().add_child(gpl)
 
-var points_per_points_collected = 400
-
+var points_per_points_collected = 1000
 func gain_point(_color):
 	if(powerup_count() == 0 or (has_powerup["OverShield"] and powerup_count() == 1)):
 		change_color(_color)

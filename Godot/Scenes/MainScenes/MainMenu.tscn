@@ -1114,7 +1114,6 @@ margin_bottom = 40.0
 [node name="Node2D" type="Node2D" parent="ResetConfirmPopup"]
 material = SubResource( 15 )
 position = Vector2( 64, -5.83333 )
-scale = Vector2( 1, 1 )
 z_index = 5
 
 [node name="Label" type="Label" parent="ResetConfirmPopup/Node2D"]
@@ -1143,17 +1142,6 @@ gravity_radius = 400
 respawn_position = Vector2( 700, 400 )
 is_active = false
 can_bomb = false
-powerup_times = {
-"Barrage": 5.0,
-"Bombastic": 3.0,
-"BulletTime": 1.0,
-"GravityWell": 10.0,
-"Incendiary": 5.0,
-"Opalescence": 10.0,
-"OpalescenceColorShift": 0.05,
-"Unmaker": 10.0,
-"Vision": 15.0
-}
 use_global_settings = false
 can_collect_points = false
 
