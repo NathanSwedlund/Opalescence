@@ -53,13 +53,13 @@ func _process(delta):
 			select_last()
 		if(Input.is_action_just_pressed("ui_down")):
 			select_next()
-		if(Input.is_action_just_pressed("ui_cancel")):
-			back_to_main_menu()
 		if(Input.is_action_just_pressed("ui_accept")):
 			if(selected < panel_num): # Shop Panel
 				ui_elements[selected].try_buy()
 			else: # Button
 				ui_elements[selected].emit_signal("pressed")
+	if(Input.is_action_just_pressed("ui_cancel")):
+			back_to_main_menu()
 
 func update_color():
 	if(selected < panel_num):

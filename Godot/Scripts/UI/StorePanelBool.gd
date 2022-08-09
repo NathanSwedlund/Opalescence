@@ -31,7 +31,8 @@ func _ready():
 	$BuyExplosionParticles4.amount *= (1+purchase_juice_scale)/2
 
 	$BuyImplosionParticles.scale *= purchase_juice_scale
-	$BuyImplosionParticles.amount *= (1+purchase_juice_scale)/2
+	$BuyImplosionParticles.amount *= (1+purchase_juice_scale * purchase_juice_scale)/2
+	$BuyImplosionParticles.lifetime *= purchase_juice_scale
 	
 	$BuyAudioRiser.pitch_scale *= 2/(1+purchase_juice_scale)
 	$BuyAudio2.pitch_scale *= 2/(1+purchase_juice_scale)
@@ -63,7 +64,7 @@ func try_buy():
 		$BuyExplosionParticles3.emitting = true
 		$BuyExplosionParticles4.emitting = true
 		$Frames/UnpurchasedFrame.visible = false
-		Global.shakes["laser"].start(15*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
+		Global.shakes["laser"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
 
 		
 func update_labels():
@@ -115,7 +116,7 @@ func _on_BuyParticlesTimer_timeout():
 	$Light2D.color = modulate
 	$Light2D2.color = modulate	
 	update_labels()
-	Global.shakes["bomb"].start(100*purchase_juice_scale, 0.4*purchase_juice_scale, 80, 1)
+	Global.shakes["bomb"].start(50*purchase_juice_scale, 0.4*purchase_juice_scale, 80, 1)
 	Global.shakes["laser"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
 	page.change_color(modulate)
 	page.resume_input_actions()
