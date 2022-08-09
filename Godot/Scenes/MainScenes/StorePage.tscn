@@ -172,7 +172,7 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Target-Seeking Pellets"
 setting_name = "bullet2_is_unlocked"
-price = 750000
+price = 450000
 purchased_color = Color( 0.905882, 0.619608, 0.0666667, 1 )
 purchase_juice_scale = 0.8
 
@@ -202,7 +202,7 @@ position = Vector2( 823.077, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Scatter Shot Pellets"
 setting_name = "bullet4_is_unlocked"
-price = 750000
+price = 1000000
 purchased_color = Color( 0.823529, 0.290196, 0.678431, 1 )
 purchase_juice_scale = 0.8
 
@@ -255,7 +255,7 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Tri-beam Laser"
 setting_name = "laser2_is_unlocked"
-price = 800000
+price = 650000
 purchased_color = Color( 0.415686, 1, 0.862745, 1 )
 purchase_juice_scale = 1.1
 
@@ -322,7 +322,7 @@ position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Laser-er"
 setting_name = "player2_is_unlocked"
-price = 1250000
+price = 800000
 purchased_color = Color( 0.513726, 0.964706, 1, 1 )
 purchase_juice_scale = 1.5
 
@@ -337,7 +337,7 @@ position = Vector2( 400, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Gunner"
 setting_name = "player3_is_unlocked"
-price = 1500000
+price = 1000000
 purchased_color = Color( 1, 0.690196, 0.356863, 1 )
 purchase_juice_scale = 1.6
 
