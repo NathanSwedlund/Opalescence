@@ -515,6 +515,10 @@ one_shot = true
 [node name="LaserExistsTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="InvincibilityTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="timeout" from="BulletBurstTimer" to="." method="_on_BulletBurstTimer_timeout"]
 [connection signal="timeout" from="BulletCooldownTimer" to="." method="_on_BulletCooldownTimer_timeout"]
 [connection signal="timeout" from="LaserCooldownTimer" to="." method="_on_LaserCooldownTimer_timeout"]
@@ -532,3 +536,4 @@ one_shot = true
 [connection signal="timeout" from="PowerupTimers/Vision" to="." method="_on_Vision_timeout"]
 [connection signal="timeout" from="GameOverWaitTimer" to="." method="_on_GameOverWaitTimer_timeout"]
 [connection signal="timeout" from="LaserExistsTimer" to="." method="_on_LaserExistsTimer_timeout"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

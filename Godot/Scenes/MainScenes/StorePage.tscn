@@ -444,6 +444,7 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="BackButton" type="Button" parent="UI"]
+visible = false
 margin_left = 569.0
 margin_top = 218.0
 margin_right = 741.0
@@ -507,7 +508,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0

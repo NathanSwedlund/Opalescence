@@ -405,9 +405,13 @@ func drop_bomb(_scale=1.0, is_max_bomb=false):
 		
 	get_parent().add_child(bomb)
 
+var is_invincible = false
 func damage(_enemy=null):
 	if(_enemy != null):
 		_enemy.die()
+	if(is_invincible):
+		return 
+		
 	if(has_powerup["Opalescence"]):
 		var ens = get_tree().get_nodes_in_group("Enemies")
 		for en in ens:
@@ -418,6 +422,8 @@ func damage(_enemy=null):
 				get_parent().add_child(new_op_pro)
 	
 	elif(has_powerup["OverShield"]):
+		is_invincible = true
+		$InvincibilityTimer.start()
 		Global.vibrate_controller(0.3,0.7,0.7,0)
 		$ShieldDestroyedParticles.emitting = true
 		$ShieldDestroyedParticles2.emitting = true
@@ -433,6 +439,9 @@ func die():
 	if(get_parent().game_is_over):
 		return
 		
+	if(is_invincible):
+		return
+		 
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	Global.vibrate_controller(1,1,1,1)
 	
@@ -504,7 +513,6 @@ func respawn():
 	_on_Opalescence_timeout()
 	_on_Unmaker_timeout()
 	_on_Vision_timeout()
-
 	resume_bosses()
 
 	if(get_parent().has_method("start_factories")):
@@ -815,3 +823,7 @@ func _on_EnemyExplosionSound_finished():
 func _on_LaserExistsTimer_timeout():
 	$LaserCooldown.emitting = true
 	$SoundFX/LaserCooldownAudio.play()
+
+
+func _on_InvincibilityTimer_timeout():
+	is_invincible = false

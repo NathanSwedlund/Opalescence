@@ -301,7 +301,7 @@ export var standard_diff_settings = {
 		"enemy_health_scale":1.0,
 		"enemy_time_max":1.0,
 		"enemy_time_min":0.8,
-		"light_scale":3,
+		"light_scale":2.5,
 		"shooter_shoot_speed_scale":1.0,
 	},
 	"Easy":{
