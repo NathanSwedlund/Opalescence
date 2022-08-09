@@ -330,17 +330,6 @@ powerup_probabilities = {
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 510, 300 )
 respawn_position = Vector2( 510, 300 )
-powerup_times = {
-"Barrage": 5.0,
-"Bombastic": 3.0,
-"BulletTime": 1.0,
-"GravityWell": 10.0,
-"Incendiary": 5.0,
-"Opalescence": 10.0,
-"OpalescenceColorShift": 0.05,
-"Unmaker": 10.0,
-"Vision": 15.0
-}
 
 [node name="HeadsUpDisplay" type="CanvasLayer" parent="."]
 pause_mode = 2

@@ -17,6 +17,7 @@ export var music_fade_speed = 8
 var last_color = Color.white
 export var ui_name = ""
 func _ready():
+	button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
 	update_mode_availability()
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
@@ -39,7 +40,7 @@ func _ready():
 		$VersionLabel.modulate = last_color
 		$PointsLabel.modulate = last_color
 		$TokensLabel.modulate = last_color
-		button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
+		
 		for b_sel in button_selections:
 			for b in b_sel.get_children():
 				if(b != $MenuCanvas/ResetConfirmSelection/YesButton and b != $MenuCanvas/ResetConfirmSelection/NoButton and b != $MenuCanvas/ResetSelection/ResetAllContentButton):

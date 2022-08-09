@@ -120,7 +120,7 @@ purchase_juice_scale = 0.8
 [node name="StorePanelBool2" parent="UI/Panels/StoreSuperPanel/Panels" instance=ExtResource( 7 )]
 position = Vector2( 839.56, 0 )
 scale = Vector2( 1.0989, 1.0989 )
-title = "Standard Extra Hard Mode"
+title = "Standard Very Hard Mode"
 setting_name = "extra_hard_mode_unlocked"
 price = 1500000
 purchased_color = Color( 0.878431, 0.431373, 0, 1 )
