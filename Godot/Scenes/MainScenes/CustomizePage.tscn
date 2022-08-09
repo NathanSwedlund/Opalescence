@@ -104,7 +104,9 @@ texture = ExtResource( 12 )
 position = Vector2( -4, 863 )
 title = "Player Light Scale"
 setting_name = "light_scale"
-default_price = 5.0
+default_price = 65.0
+price_mult = 2.3
+val_step = 0.25
 max_val = 2.5
 
 [node name="StoreSkillPanel5" parent="UI/Panels" instance=ExtResource( 9 )]
@@ -113,7 +115,8 @@ position = Vector2( -1, 689 )
 title = "Powerup Time Scale"
 setting_name = "powerup_time_scale"
 default_price = 2.0
-max_val = 1.51
+price_mult = 1.5
+max_val = 2.1
 
 [node name="StoreSkillPanel4" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.266667, 1, 0, 1 )
@@ -121,7 +124,7 @@ position = Vector2( -1, 339 )
 title = "Additional Starting Health"
 setting_name = "starting_health_mod"
 default_price = 100.0
-price_mult = 5.0
+price_mult = 4.0
 val_step = 1.0
 max_val = 4.1
 
@@ -129,8 +132,8 @@ max_val = 4.1
 modulate = Color( 0.996078, 0.262745, 0.262745, 1 )
 title = "Additional Pellets Per Burst"
 setting_name = "default_bullets_per_burst_mod"
-default_price = 5.0
-price_mult = 3.0
+default_price = 10.0
+price_mult = 2.1
 val_step = 1.0
 max_val = 8.1
 
@@ -139,28 +142,27 @@ modulate = Color( 1, 0.588235, 0.588235, 1 )
 position = Vector2( -1, 170 )
 title = "Pellet Burst Speed Scale"
 setting_name = "bullet_burst_speed_scale"
-default_price = 4.0
-price_mult = 3.0
-val_step = 0.2
-max_val = 2.1
+default_price = 8.0
+price_mult = 1.75
+val_step = 0.15
+max_val = 2.6
 
 [node name="StoreSkillPanel2" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.501961, 1, 0.658824, 1 )
 position = Vector2( 1, 509 )
 title = "Bomb Size Multiplier"
 setting_name = "bomb_scale"
-default_price = 20.0
-price_mult = 3.0
-val_step = 0.2
-max_val = 2.1
+default_price = 40.0
+price_mult = 1.75
+val_step = 0.15
+max_val = 2.3
 
 [node name="StoreSkillPanel12" parent="UI/Panels" instance=ExtResource( 9 )]
 modulate = Color( 0.270588, 0.603922, 0.376471, 1 )
 position = Vector2( 1, 509 )
 title = "Additional Max Bomb"
 setting_name = "additional_max_bombs"
-default_price = 60.0
-price_mult = 5.0
+default_price = 120.0
 val_step = 1.0
 max_val = 5.0
 
@@ -169,7 +171,8 @@ modulate = Color( 0.592157, 0.952941, 1, 1 )
 position = Vector2( -4, 2054 )
 title = "Laser Cooldown Scale"
 setting_name = "laser_recharge_scale"
-default_price = 25.0
+default_price = 45.0
+price_mult = 1.75
 val_step = 0.25
 max_val = 3.1
 
@@ -178,8 +181,8 @@ modulate = Color( 0, 0.882353, 1, 1 )
 position = Vector2( -2, 1027 )
 title = "Laser Damage Scale"
 setting_name = "laser_damage_scale"
-default_price = 25.0
-price_mult = 4.0
+default_price = 50.0
+price_mult = 1.75
 val_step = 0.25
 max_val = 3.1
 
