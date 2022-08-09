@@ -50,18 +50,16 @@ scale = 3.0
 scale_curve = SubResource( 7 )
 
 [node name="Laser4" type="KinematicBody2D"]
-scale = Vector2( 2, 2 )
+scale = Vector2( 3, 3 )
 collision_layer = 0
 script = ExtResource( 6 )
-lifetime = 2.2
+lifetime = 3.0
 
 [node name="LaserSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -5.0
 pitch_scale = 1.2
 autoplay = true
 script = ExtResource( 2 )
-default_vol = -5.0
 
 [node name="LaserSound2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
@@ -76,7 +74,10 @@ scale = Vector2( 0.1, 0.1 )
 collision_layer = 8
 collision_mask = 3
 script = ExtResource( 1 )
-rot_speed = 6
+scale_speed = Vector2( 6, 6 )
+scale_max = 1.5
+scale_min = 0.75
+explosion_scale = 1.5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Bomb/PowerupPill"]
 stream = ExtResource( 4 )
@@ -107,5 +108,7 @@ amount = 60
 lifetime = 0.5
 explosiveness = 1.0
 process_material = SubResource( 8 )
+
+[node name="AudioTween" type="Tween" parent="."]
 
 [connection signal="timeout" from="DeleteTimer" to="." method="_on_DeleteTimer_timeout"]

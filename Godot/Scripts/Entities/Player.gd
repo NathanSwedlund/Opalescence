@@ -606,6 +606,9 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 	else:
 		$SoundFX/UnmakerAudio/VolTween.start()
 		var unmaker_laser_time = laser.lifetime * 6
+		if(Settings.shop["laser_type"] == 3): # Ball Lightning
+			unmaker_laser_time /= 3
+			
 		$SoundFX/UnmakerAudio/VolTween.interpolate_property($SoundFX/UnmakerAudio, "volume_db", default_unmaker_vol, -20, unmaker_laser_time-0.5)		
 		if(use_global_settings):
 			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
