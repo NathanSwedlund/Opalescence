@@ -28,10 +28,10 @@ func _ready():
 	init_scale = scale
 	current_dir = Global.player.get_direction_to_shoot()
 	Global.shakes["laser"].start(max_fade_in_width/10.0, total_time*0.8, 200)
-	
+
 	if(Settings.world["is_mission"] == false):
 		damage *= Settings.shop["laser_damage_scale"]
-		
+
 	if(particle_intensity_scale != 1.0):
 		$LaserParticleEffect.lifetime *= particle_intensity_scale/1.5
 		$LaserParticleEffect.amount *= particle_intensity_scale*3
@@ -65,7 +65,7 @@ func _process(delta):
 				current_dir.x *= -1
 
 	scale = init_scale * ($DeleteTimer.time_left/$DeleteTimer.wait_time)
-			
+
 func _on_DeleteTimer_timeout():
 	queue_free()
 

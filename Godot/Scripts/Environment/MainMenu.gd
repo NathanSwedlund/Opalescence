@@ -22,50 +22,50 @@ func _ready():
 	$PointsLabel.text = "Points: " + str(Global.point_num_to_string(Settings.shop["points"], ["b", "m", "k"]))
 	$TokensLabel.text = "Tokens: " + str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
 	$VersionLabel.text = Global.version
-	
+
 	is_fading_in = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	is_fading_in_music = Settings.saved_settings["show_intro"] and !Global.main_menu_has_faded
 	target_music_db = Settings.saved_settings["music_volume"] + Settings.min_vol
-	
+
 	if(Settings.saved_settings["music_volume"] == 0):
 		$MusicShuffler.volume_db = -80
 		target_music_db = -80
 		current_music_db = -80
-	else:	
+	else:
 		$MusicShuffler.volume_db = current_music_db
-	
+
 	if(Settings.shop["monocolor_color"] != null):
 		last_color = Settings.shop["monocolor_color"]
 		$LabelContainer/OpalescenceLabel.modulate = last_color
 		$VersionLabel.modulate = last_color
 		$PointsLabel.modulate = last_color
 		$TokensLabel.modulate = last_color
-		
+
 		for b_sel in button_selections:
 			for b in b_sel.get_children():
 				if(b != $MenuCanvas/ResetConfirmSelection/YesButton and b != $MenuCanvas/ResetConfirmSelection/NoButton and b != $MenuCanvas/ResetSelection/ResetAllContentButton):
 					b.modulate = last_color
 					b.find_node("Light2D").color = last_color
 	reset()
-	
+
 func reset():
 	if(is_fading_in):
 		$PointFactory.is_active = false
 		for c in $MenuCanvas.get_children():
 			c.modulate.a = 0.0
-		
+
 		target_player_scale = $Player.scale
 		$Player.modulate.a = 0.0
 		$VersionLabel.modulate.a = 0.0
 		$Player.scale = Vector2.ZERO
 		$PointsLabel.modulate.a = 0.0
 		$TokensLabel.modulate.a = 0.0
-		
+
 	else:
 		$PointFactory.is_active = true
 		Settings.apply_sound_settings()
 		$MenuCanvas/OptionsSelection/FullscreenOption.update_selected(Settings.saved_settings["fullscreen_mode"], true, false)
-		
+
 		$MenuCanvas/OptionsSelection/PaleModeOption.update_selected(Settings.saved_settings["less_flashy_mode"], false, false)
 		$MenuCanvas/OptionsSelection/ShowIntroOption.update_selected(Settings.saved_settings["show_intro"], false, false)
 		$MenuCanvas/OptionsSelection/ShowWarningOption.update_selected(Settings.saved_settings["show_epilepsy_warning"], false, false)
@@ -76,12 +76,12 @@ func reset():
 		$MenuCanvas/OptionsSelection/SFXVolumeOption.update_current_val(Settings.saved_settings["fx_volume"])
 		$MenuCanvas/OptionsSelection/ScreenShakeScaleOption.update_current_val(Settings.saved_settings["screen_shake_scale"])
 		$MusicShuffler.volume_db = -80
-		
+
 		if(Global.ui_states.has(ui_name)):
 			shift_button_selection(Global.ui_states[ui_name]["button_selection"], false)
 			button_selections[Global.ui_states[ui_name]["button_selection"]].select(Global.ui_states[ui_name]["button_index"])
-			
-		
+
+
 func _on_ChallengeButton_pressed():
 	set_ui_state()
 	get_tree().change_scene("res://Scenes/HelperScenes/UI/ChallengePage.tscn")
@@ -90,12 +90,12 @@ func _on_ChallengeButton_pressed():
 func _process(_delta):
 	if(Input.is_action_just_pressed("fullscreen")):
 		$UpdateFulscreenButtonTimer.start()
-	
+
 	if(target_music_db != current_music_db):
-		target_music_db = Settings.saved_settings["music_volume"]/3 + Settings.min_vol	
+		target_music_db = Settings.saved_settings["music_volume"]/3 + Settings.min_vol
 		current_music_db = move_toward(current_music_db, target_music_db, _delta * music_fade_speed)
 		$MusicShuffler.volume_db = current_music_db
-		
+
 	if(is_fading_in):
 		fade_speed *= 1.02
 		$Player.scale.y = move_toward($Player.scale.y, target_player_scale.y, fade_speed*_delta)
@@ -106,7 +106,7 @@ func _process(_delta):
 		$TokensLabel.modulate.a =  move_toward($TokensLabel.modulate.a, 1.0, fade_speed*_delta)
 		for c in $MenuCanvas.get_children():
 			c.modulate.a =  move_toward(c.modulate.a, 1.0, fade_speed*_delta)
-			
+
 		if($Player.modulate.a >= 1.0):
 			is_fading_in = false
 			reset()
@@ -115,21 +115,18 @@ func _process(_delta):
 			$PointFactory.is_active = true
 	else:
 		if($Player.modulate != last_color):
-			#print("shifting Color")
 			last_color = $Player.modulate
 			$LabelContainer/OpalescenceLabel.modulate = last_color
 			$VersionLabel.modulate = last_color
 			$PointsLabel.modulate = last_color
 			$TokensLabel.modulate = last_color
 			button_selections = [$MenuCanvas/MainSelection, $MenuCanvas/PlayModeSelection, $MenuCanvas/OptionsSelection, $MenuCanvas/StandardModesSelection, $MenuCanvas/ResetSelection, $MenuCanvas/ResetConfirmSelection]
-			
+
 			for b_sel in button_selections:
 				for b in b_sel.get_children():
 					if(b != $MenuCanvas/ResetConfirmSelection/YesButton and b != $MenuCanvas/ResetConfirmSelection/NoButton and b != $MenuCanvas/ResetSelection/ResetAllContentButton):
 						b.modulate = last_color
 						b.find_node("Light2D").color = last_color
-			print("modulate, ", modulate)
-			print("$MenuCanvas/ResetConfirmSelection/YesButton , ", $MenuCanvas/ResetConfirmSelection/YesButton.modulate)
 		if(Input.is_action_just_pressed("ui_cancel") and is_shifting_button_selection == false):
 			if(current_button_selection == 2):
 				Settings.save()
@@ -143,7 +140,7 @@ func _process(_delta):
 				$ResetPopup.hide()
 			if(current_button_selection == 5):
 				_on_NoButton_pressed()
-				
+
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
@@ -161,17 +158,17 @@ func toggle_button_selection():
 
 func _on_PlayButton_pressed():
 	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
-		return 
+		return
 	shift_button_selection(1)
 
 func _on_BackButton_pressed():
 	if($MenuCanvas/PlayModeSelection.is_active == false or is_fading_in):
-		return 
+		return
 	shift_button_selection(0)
 
 func _on_StandardButton_pressed():
 	if($MenuCanvas/PlayModeSelection.is_active == false or is_fading_in):
-		return 
+		return
 	shift_button_selection(3)
 
 var play_shift_audio = true
@@ -232,28 +229,28 @@ func update_mode_availability():
 	if(Settings.shop["nightmare_mode_unlocked"] == false):
 		standard_mode_buttons -= 1
 		$MenuCanvas/StandardModesSelection/NightmareMode.queue_free()
-	
-		
+
+
 	$MenuCanvas/StandardModesSelection.button_count = standard_mode_buttons
-	
+
 	var button_ind = 0
 	for b in $MenuCanvas/StandardModesSelection.get_children():
 		if(b.is_queued_for_deletion() == false):
 			b.button_shift_index = button_ind
 			b.button_index = button_ind
 			button_ind += 1
-			
-	
-		
+
+
+
 	if(Settings.shop["challenge_mode_unlocked"] == false):
 		$MenuCanvas/PlayModeSelection/ChallengeButton.queue_free()
 		$MenuCanvas/PlayModeSelection.button_count -= 1
 		$MenuCanvas/PlayModeSelection/BackButton.button_index -= 1
 		$MenuCanvas/PlayModeSelection/BackButton.button_shift_index -= 1
-		
+
 func _on_StorePage_pressed():
 	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
-		return 
+		return
 
 	set_ui_state()
 	Global.return_scene = "res://Scenes/MainScenes/MainMenu.tscn"
@@ -261,7 +258,7 @@ func _on_StorePage_pressed():
 
 func _on_OptionsButton_pressed():
 	if($MenuCanvas/MainSelection.is_active == false or is_fading_in):
-		return 
+		return
 
 	shift_button_selection(2)
 
@@ -380,44 +377,44 @@ export var standard_diff_settings = {
 
 func _on_ExtraEasyButton_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
-		
+		return
+
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraEasy"])
-	
+
 func _on_EasyButton2_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
-		
+		return
+
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Easy"])
 
 func _on_MediumButton_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
-		
+		return
+
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Medium"])
 
 func _on_HardButton_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
-		
+		return
+
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Hard"])
 
 func _on_ExtraHardButton_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
+		return
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["ExtraHard"])
 
 func _on_NightmareMode_pressed():
 	if($MenuCanvas/StandardModesSelection.is_active == false or is_fading_in):
-		return 
+		return
 	Settings.reset_settings()
 	load_standard(standard_diff_settings["Nightmare"])
-	
+
 func load_standard(settings):
 	set_ui_state()
 	Settings.change_settings(settings)
@@ -446,7 +443,7 @@ func _on_ResetSettingsButton_pressed():
 	Settings.reset_colors()
 	update()
 	shift_button_selection(0)
-	
+
 	Settings.save()
 	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
 
@@ -454,23 +451,22 @@ var reset_menu_music_vol_descrease_amount = 10
 var reset_menu_music_pitch_descrease_amount = 0.2
 func _on_ResetAllContentButton_pressed():
 	$PointFactory.is_active = false
-	$PointFactory.kill_all()	
+	$PointFactory.kill_all()
 	$Player.visible = false
-	$MusicVolTween.interpolate_property($MusicShuffler, "volume_db", 
-		$MusicShuffler.volume_db, 
+	$MusicVolTween.interpolate_property($MusicShuffler, "volume_db",
+		$MusicShuffler.volume_db,
 		$MusicShuffler.volume_db-reset_menu_music_vol_descrease_amount, 1.0,
-		Tween.TRANS_LINEAR, 
+		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT)
 	$MusicVolTween.start()
-	
-	$MusicPitchTween.interpolate_property($MusicShuffler, "pitch_scale", 
-		$MusicShuffler.pitch_scale, 
+
+	$MusicPitchTween.interpolate_property($MusicShuffler, "pitch_scale",
+		$MusicShuffler.pitch_scale,
 		$MusicShuffler.pitch_scale-reset_menu_music_pitch_descrease_amount, 1.0,
-		Tween.TRANS_LINEAR, 
+		Tween.TRANS_LINEAR,
 		Tween.EASE_IN_OUT)
 	$MusicPitchTween.start()
-	
-	print("starting music vol down")
+
 	$ResetConfirmPopup.show()
 	$ResetPopup.hide()
 	shift_button_selection(5)
@@ -481,7 +477,7 @@ func reset_all_content():
 	Settings.saved_settings = Settings.saved_settings_default.duplicate()
 	Settings.reset_colors()
 	Settings.shop = Settings.shop_default.duplicate()
-	
+
 	Settings.save()
 	get_tree().change_scene("res://Scenes/MainScenes/OpeningScene.tscn")
 
@@ -496,18 +492,18 @@ func _on_ResetButton_pressed():
 func _on_NoButton_pressed():
 	$Player.visible = true
 	$PointFactory.is_active = true
-	$MusicVolTween.interpolate_property($MusicShuffler, 
-	"volume_db", $MusicShuffler.volume_db, 
+	$MusicVolTween.interpolate_property($MusicShuffler,
+	"volume_db", $MusicShuffler.volume_db,
 	$MusicShuffler.volume_db+reset_menu_music_vol_descrease_amount,
 	1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MusicVolTween.start()
-	
-	$MusicPitchTween.interpolate_property($MusicShuffler, 
+
+	$MusicPitchTween.interpolate_property($MusicShuffler,
 	"pitch_scale", $MusicShuffler.pitch_scale,
-	$MusicShuffler.pitch_scale+reset_menu_music_pitch_descrease_amount, 
+	$MusicShuffler.pitch_scale+reset_menu_music_pitch_descrease_amount,
 	1.0, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$MusicPitchTween.start()
-	
+
 	$ResetPopup.show()
 	$ResetConfirmPopup.hide()
 	shift_button_selection(4)
@@ -531,4 +527,3 @@ func set_ui_state():
 
 	Global.ui_states[ui_name]["button_selection"] = current_button_selection
 	Global.ui_states[ui_name]["button_index"] = button_selections[current_button_selection].selected_button
-	print("Global.ui_states[ui_name], ", Global.ui_states[ui_name])

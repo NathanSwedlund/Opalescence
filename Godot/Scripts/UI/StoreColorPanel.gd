@@ -18,7 +18,7 @@ func _ready():
 	$Sprite.visible = false
 	color_num = len(colors)
 	$EquipmentName.visible = false
-	
+
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
 	if(Settings.shop["monocolor_mode_unlocked"] != false):
@@ -30,7 +30,7 @@ func _ready():
 					$Sprite2.visible = true
 					modulate = c
 					break
-	
+
 	update_labels()
 
 func update():
@@ -54,7 +54,7 @@ func deselect():
 	$Light2D2.visible = false
 	is_selected = false
 	scale /= select_scale
-	
+
 var equip_audio_fail_pitch = 1.9
 var equip_audio_pitch = 1.0
 func _on_ApplyLess_pressed():
@@ -62,17 +62,17 @@ func _on_ApplyLess_pressed():
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
 		$EquipAudio.play()
 		return
-		
+
 	var init_index = index
 	index = (index+1) % color_num
 	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
-	
+
 	var p = $DecreaseParticles.duplicate()
 	p.emitting = true
 	add_child(p)
 	spawned_particle_gens.append(p)
-	
+
 	if(colors[index] != null):
 		modulate = colors[index]
 		$Sprite2.visible = true
@@ -81,7 +81,7 @@ func _on_ApplyLess_pressed():
 		modulate = Color.white
 		$Sprite2.visible = false
 		Settings.shop["monocolor_color"] = null
-		
+
 	page.update_color(modulate)
 
 func _on_ApplyMore_pressed():
@@ -89,17 +89,17 @@ func _on_ApplyMore_pressed():
 		$EquipAudio.pitch_scale = equip_audio_fail_pitch
 		$EquipAudio.play()
 		return
-		
+
 	var init_index = index
 	index = (index-1+color_num) % color_num
 	$EquipAudio.pitch_scale = equip_audio_pitch
 	$EquipAudio.play()
-	
+
 	var p = $IncreaseParticles.duplicate()
 	p.emitting = true
 	add_child(p)
 	spawned_particle_gens.append(p)
-	
+
 	if(colors[index] != null):
 		modulate = colors[index]
 		$Sprite2.visible = true
@@ -108,13 +108,13 @@ func _on_ApplyMore_pressed():
 		modulate = Color.white
 		$Sprite2.visible = false
 		Settings.shop["monocolor_color"] = null
-		
+
 	page.update_color(modulate)
-	
+
 func reset():
 	index = 0
 	update_labels()
-	
+
 func right():
 	_on_ApplyMore_pressed()
 

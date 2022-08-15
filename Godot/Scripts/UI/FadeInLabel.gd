@@ -23,7 +23,7 @@ func fade_in():
 	modulate.a = 0.0
 	should_fade_in = true
 	should_fade_out = false
-	
+
 func fade_out():
 	modulate.a = 1.0
 	should_fade_out = true

@@ -87,7 +87,7 @@ var enemy_default = {
 	"shooter_missile_health":1,
 	"shooter_missile_damage":5,
 	"shooter_shoot_speed_scale":1.0,
-	
+
 	"blocker_gen_scale":1.0,
 	"blocker_point_reward":4000,
 	"blocker_health":50,
@@ -243,7 +243,7 @@ func reset_settings():
 ##		reset_settings()
 #		shop["points"] *= 2
 #		shop["points"] += 1000322
-		
+
 
 var min_vol = -33
 func apply_sound_settings():

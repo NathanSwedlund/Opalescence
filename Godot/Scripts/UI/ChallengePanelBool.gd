@@ -17,7 +17,7 @@ export var setting_name = ""
 func _ready():
 	$Title.text = title
 	update_selected(is_selected)
-	
+
 func _process(delta):
 	if(is_ui_selected):
 		if(Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_accept")):
@@ -29,14 +29,14 @@ func update_selected(_selected):
 	update_score_mult(is_selected)
 	update_color()
 	current_val = is_selected
-	$Button.text = "o" if is_selected else "-" 
-	
+	$Button.text = "o" if is_selected else "-"
+
 func update_current_val(val):
 	update_selected(val)
-	
+
 func get_current_val():
 	return is_selected
-	
+
 func update_score_mult(_selected):
 #	emit_signal("update_score_mult")
 	score_mult = score_mult_selected if _selected else score_mult_unselected
@@ -46,7 +46,7 @@ func update_score_mult(_selected):
 func _on_Button_pressed():
 	$ChangeAudio.play()
 	update_selected(!is_selected)
-	
+
 func update_color():
 	modulate = selected_color if is_selected else unselected_color
 

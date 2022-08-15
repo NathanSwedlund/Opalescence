@@ -24,7 +24,7 @@ var damage = 7
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var explosion_count = len(get_tree().get_nodes_in_group("Explosions"))
-	
+
 	if(explosion_vol_db_mod == null):
 		explosion_vol_db_mod = (scale_mod-1)*5
 		explosion_pitch -= scale_mod/5
@@ -34,11 +34,11 @@ func _ready():
 			explosion_vol_db_mod = max_vol_db
 		if(explosion_vol_db_mod < min_vol_db):
 			explosion_vol_db_mod = min_vol_db
-	
+
 	Global.shakes["explosion"].start(shake_amp, shake_dur, 30)
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
-		
+
 	if(point_reward != 0):
 		var gpl = point_get_label_scene.instance()
 		gpl.points_num = point_reward
@@ -51,22 +51,20 @@ func _ready():
 
 	$WhiteBlast.emitting = true
 	$BlackBlast.emitting = true
-	
+
 	$Light2D.color = modulate
-	
-	
+
+
 	# Initial damage
 	for e in get_tree().get_nodes_in_group("Enemies"):
 		if(global_position.distance_squared_to(e.global_position) < 60000*scale.x and e.is_in_group("Missiles") == false and e.is_in_group("Explosions") == false and e.is_in_group("Bosses") == false):
 			e.take_damage(damage/1.5, true, Color.white)
-			
+
 	if($EnemyExplosionSound != null):
 		if(Global.seconds_since_last_enemy_explosion_sound < 0.035):
 			$EnemyExplosionSound.volume_db -= 10*explosion_count
 		else:
-			#print("\n$EnemyExplosionSound.volume_db1, ", $EnemyExplosionSound.volume_db)
 			$EnemyExplosionSound.volume_db -= 1*explosion_count
-			#print("$EnemyExplosionSound.volume_db, ", $EnemyExplosionSound.volume_db)
 			$EnemyExplosionSound.pitch_scale = min( max(explosion_pitch, min_pitch), max_pitch)
 			if(explosion_vol_db_mod != null):
 				$EnemyExplosionSound.volume_db += explosion_vol_db_mod
@@ -74,7 +72,7 @@ func _ready():
 		$EnemyExplosionSound.play()
 
 	Global.seconds_since_last_enemy_explosion_sound = 0.0
-	
+
 
 var target_time = 1.0/70.0
 var current_time = 0.0
@@ -89,7 +87,7 @@ func _process(delta):
 	if(current_time > target_time):
 		current_frame += 1
 		current_time = 0.0
-		
+
 		if(current_frame % frames_per_update == 0):
 			# optimization for explosions
 			shrink_speed_optimized = shrink_speed

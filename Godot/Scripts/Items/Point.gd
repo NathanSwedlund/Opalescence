@@ -24,8 +24,8 @@ func _process(delta):
 		var position_diff = (player.position - position)
 		var position_diff_normalized = position_diff.normalized()
 		var speed_mod  = 1/( abs(position_diff.x)+abs(position_diff.y) ) * player.gravity_pull_scale
-		var move_speed = speed*delta * speed_mod 
-		
+		var move_speed = speed*delta * speed_mod
+
 		var collision = move_and_collide( position_diff_normalized * move_speed)
 		if(collision != null):
 			if(collision.collider.name == player.name):
@@ -37,9 +37,9 @@ func decay():
 	$OuterLight.scale *= shrink_scalar
 	$Sprite.scale *= shrink_scalar
 	decay_stage += 1
-	
+
 	if(decay_stage > max_decay_stage):
 		queue_free()
-	
+
 func _on_Timer_timeout():
 	decay()

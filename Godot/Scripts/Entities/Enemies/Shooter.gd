@@ -29,20 +29,20 @@ func _ready():
 	for point in get_tree().get_nodes_in_group("Points"):
 		if(position.distance_squared_to(point.position) < dist_squared_to_erase_points):
 			point.queue_free()
-			
+
 func reset_shoot_timer():
 	var new_time = rand_range(shoot_freq_range[0], shoot_freq_range[1]) * shoot_speed_scale
-	$ShootTimer.wait_time = new_time	
+	$ShootTimer.wait_time = new_time
 	$ShootTimer.start()
-	
+
 func _process(delta):
 	if(player != null):
 		look_at(player.global_position)
 
 func shoot():
 	if(can_shoot == false):
-		return 
-		
+		return
+
 	$ShootAudio.play()
 	var missile = missile_scene.instance()
 	var direction_to_player = global_position.direction_to(player.global_position).normalized()
@@ -62,18 +62,18 @@ func take_damage(damage, play_sound=true, color_override=null):
 	$DamageTimer.start()
 	health -= damage
 	var color_target= Global.player.modulate if color_override == null else color_override
-	
+
 	var ratio = (base_health-health)/base_health
 	modulate.r = ratio * color_target.r*0.6
 	modulate.g = ratio * color_target.g*0.6
 	modulate.b = ratio * color_target.b*0.6
-	
+
 	if(health <= 0 and has_died == false):
 		die()
-	
+
 	$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 	$DamageAudio.play()
-	
+
 func die():
 	has_died = true
 	var explosion = death_explosion_scene.instance()

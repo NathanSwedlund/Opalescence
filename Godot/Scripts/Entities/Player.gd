@@ -123,8 +123,6 @@ func _ready():
 	default_laser_charge_time = Global.laser_type_charge_times[Settings.shop["laser_type"]]
 	reset()
 	$LaserChargeTimer.wait_time *= max(laser_cooldown_time /2, 1.0)
-	print("$LaserChargeTimer.wait_time, ", $LaserChargeTimer.wait_time)
-	print("$laser_cooldown_timet_time, ", laser_cooldown_time)
 
 var first_load = true
 func reset_settings():
@@ -160,17 +158,16 @@ func reset_settings():
 		scale *= Settings.get_setting_if_exists(Settings.player, "player_scale", 1.0)
 		default_light_size = Vector2.ONE * Settings.get_setting_if_exists(Settings.player, "light_scale", 1.0)
 		max_bombs += Settings.get_setting_if_exists(Settings.shop, "additional_max_bombs", 0)
-		#print(Settings.shop)
 		laser_cooldown_time /= Settings.get_setting_if_exists(Settings.shop, "laser_recharge_scale", 1.0)
 
 	laser_cooldown_time /= player_type.laser_recharge_scale
-	
+
 	light_size = default_light_size
 	speed = default_speed
 	speed *= player_type.speed_scale
 	default_bullets_per_burst += player_type.bullets_per_burst_mod
 	bullets_per_burst = default_bullets_per_burst
-	if(has_powerup["Barrage"] == false): 
+	if(has_powerup["Barrage"] == false):
 		bullets_to_shoot = default_bullets_per_burst
 
 	light_size *= player_type.light_scale
@@ -181,15 +178,15 @@ func reset_settings():
 	max_bombs += player_type.max_bomb_mod
 	Settings.world["points_scale"] *= player_type.points_scale
 	bomb_scene = load(player_type.bomb_scene_path)
-	
+
 	starting_bombs = max_bombs
 	if(first_load):
 		current_bombs = max_bombs
-		
+
 	can_bomb = can_bomb and player_type.can_bomb
 	can_shoot_laser = can_shoot_laser and player_type.can_shoot_laser
 	$OuterLight.scale = light_size
-	
+
 	if(Settings.world["is_mission"] == false):
 		for pt in powerup_times:
 			$PowerupTimers.find_node(pt).wait_time = powerup_times[pt]
@@ -206,10 +203,10 @@ func reset_settings():
 		if(Settings.shop["powerup_time_scale"]):
 			for t in $PowerupTimers.get_children():
 				t.wait_time *= Settings.shop["powerup_time_scale"]
-			
+
 	default_player_speed = speed
 	first_load = false
-	
+
 	$LaserCooldownTimer.wait_time = laser_cooldown_time
 
 var shift_speed = 1
@@ -355,7 +352,6 @@ func get_input():
 var shoot_num = 0
 func shoot():
 	shoot_num += 1
-	print("shooting #",shoot_num)
 	if(can_shoot == false and has_powerup["Barrage"] == false):
 		return
 
@@ -379,7 +375,6 @@ var shoot_num2 = 0
 var BULLET_SPAWN_DIST = 25
 func spawn_bullet():
 	shoot_num2 += 1
-	print("spawn bullet #",shoot_num2)
 #	Global.vibrate_controller(0.1,0.3)
 	var bullet = bullet_scene.instance()
 	if(has_powerup["Incendiary"]):
@@ -407,7 +402,7 @@ func drop_bomb(_scale=1.0, is_max_bomb=false):
 	$SoundFX/DropBombAudio.play()
 	if(Settings.shop["player_type"] == 4):
 		bomb.find_node("PowerupPill").find_node("CountdownTimer").wait_time = 0.05
-		
+
 	get_parent().add_child(bomb)
 
 var is_invincible = false
@@ -415,8 +410,8 @@ func damage(_enemy=null):
 	if(_enemy != null):
 		_enemy.die()
 	if(is_invincible):
-		return 
-		
+		return
+
 	if(has_powerup["Opalescence"]):
 		var ens = get_tree().get_nodes_in_group("Enemies")
 		for en in ens:
@@ -425,7 +420,7 @@ func damage(_enemy=null):
 				new_op_pro.position = position
 				new_op_pro.find_node("KinematicBody2D").target = en.position-position
 				get_parent().add_child(new_op_pro)
-	
+
 	elif(has_powerup["OverShield"]):
 		is_invincible = true
 		$InvincibilityTimer.start()
@@ -443,13 +438,13 @@ func damage(_enemy=null):
 func die():
 	if(get_parent().game_is_over):
 		return
-		
+
 	if(is_invincible):
 		return
-		 
+
 	Global.shakes["explosion"].start(10, 0.95, 40, 1)
 	Global.vibrate_controller(1,1,1,1)
-	
+
 	$SoundFX/PlayerExplosionSound.play()
 	pause_bosses()
 	for laser in get_tree().get_nodes_in_group("Lasers"):
@@ -470,11 +465,11 @@ func die():
 	$BulletBurstTimer.stop()
 
 	visible = false
-		
+
 	get_parent().find_node("EnemyFactory").kill_all()
 	get_parent().find_node("PointFactory").kill_all()
 	get_parent().find_node("PowerupFactory").kill_all()
-	
+
 	get_parent().find_node("EnemyFactory").is_active = false
 	get_parent().find_node("PointFactory").is_active = false
 	get_parent().find_node("PowerupFactory").is_active = false
@@ -555,8 +550,6 @@ func game_over():
 #	HighScore.set_high_score(Settings.settings["current_game_mode"], points)
 
 func _physics_process(delta):
-#	print("can_shoot_laser, ", can_shoot_laser)
-#	print("has_powerup[Unmaker], ", has_powerup["Unmaker"])
 	$PlayerType.look_at(global_position + get_direction_to_shoot() )
 	play_time += delta
 	if(heads_up_display != null and !get_parent().game_is_over):
@@ -601,7 +594,7 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 	laser.scale *= _scale
 	laser.max_fade_in_width *= _scale
 	laser.particle_intensity_scale = _particle_intensity_scale
-	
+
 	if(has_powerup["Unmaker"] == false):
 		if(Settings.shop["laser_type"] == 3): # Ball lightning
 			$LaserExistsTimer.wait_time = laser.lifetime/3
@@ -613,17 +606,17 @@ func spawn_laser(_scale=1.0, _particle_intensity_scale=1.0, _pitch_scale=1.0):
 		var unmaker_laser_time = laser.lifetime * 6
 		if(Settings.shop["laser_type"] == 3): # Ball Lightning
 			unmaker_laser_time /= 3
-			
-		$SoundFX/UnmakerAudio/VolTween.interpolate_property($SoundFX/UnmakerAudio, "volume_db", default_unmaker_vol, -20, unmaker_laser_time-0.5)		
+
+		$SoundFX/UnmakerAudio/VolTween.interpolate_property($SoundFX/UnmakerAudio, "volume_db", default_unmaker_vol, -20, unmaker_laser_time-0.5)
 		if(use_global_settings):
 			unmaker_laser_time *= Settings.shop["powerup_time_scale"]
-			
+
 		laser.lifetime = unmaker_laser_time
 		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")
 		$PowerupTimers/Unmaker.wait_time = unmaker_laser_time
 		$PowerupTimers/Unmaker.start()
 		start_powerup_timer(unmaker_laser_time, modulate, "Unmaker")
-				
+
 	laser.find_node("LaserSound").pitch_scale *= _pitch_scale
 	if(Settings.shop["laser_type"] == 3): # Ball Lightning
 		laser.position = position
@@ -640,7 +633,6 @@ func _on_LaserChargeTimer_timeout():
 	can_shoot_laser = false
 
 func _on_LaserCooldownTimer_timeout(make_sound=true):
-	print("_on_LaserCooldownTimer_timeout DONE")
 	$LaserCooldown.emitting = false
 	$SoundFX/LaserCooldownAudio.stop()
 	if(get_parent() == Global.world):
@@ -737,20 +729,20 @@ func get_powerup(_powerup, _color):
 		_on_LaserChargeTimer_timeout()
 		$LaserCooldownTimer.stop()
 		_on_LaserCooldownTimer_timeout()
-		
-		# Deleting any existing laser		
+
+		# Deleting any existing laser
 		for l in get_tree().get_nodes_in_group("Lasers"):
 			l.queue_free()
-			
+
 		var unmaker_particle_intensity = 2.0
 		var unmaker_pitch_scale = 0.5
 		has_powerup["Unmaker"] = true
 		$SoundFX/UnmakerAudio.volume_db = default_unmaker_vol
-		
+
 		can_shoot_laser = true
 		spawn_laser(unmaker_scale, unmaker_particle_intensity, unmaker_pitch_scale)
 		can_shoot_laser = false
-		
+
 	if(_powerup == "Vision"):
 		$PowerupTimers/Vision.start()
 		start_powerup_timer($PowerupTimers/Vision.wait_time, _color, _powerup)
@@ -797,13 +789,12 @@ func _on_Opalescence_timeout():
 	$PowerupTimers/OpalescenceColorShift.stop()
 
 func _on_Unmaker_timeout():
-	print("UNMAKER DONE")
 	_on_LaserCooldownTimer_timeout()
 	$SoundFX/UnmakerAudio.stop()
 	$SoundFX/UnmakerAudio/VolTween.stop($SoundFX/UnmakerAudio, "volume_db")
 	$SoundFX/UnmakerAudio.volume_db = default_unmaker_vol
 	has_powerup["Unmaker"] = false
-	
+
 
 
 func _on_Vision_timeout():

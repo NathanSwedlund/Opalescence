@@ -12,7 +12,7 @@ func _ready():
 	var weight = step
 	if(incendiary):
 		$AudioStreamPlayer.pitch_scale = Global.player.incendiary_audio_pitch
-		
+
 	$Particles2D.process_material.direction.x = direction.x
 	$Particles2D.process_material.direction.y = direction.y
 	$Particles2D.emitting = true
@@ -22,10 +22,10 @@ func _ready():
 			weight += step
 			b.rotate(sep)
 			b.direction = direction.rotated(sep)
-			
+
 			b.set_incendiary(incendiary)
 			b.small_bullet_explosion_scene = small_bullet_explosion_scene
-	
+
 func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.queue_free()
 

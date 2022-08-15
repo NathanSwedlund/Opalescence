@@ -8,7 +8,7 @@ var ignoring_walls
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ignoring_walls = true
-	
+
 	var op_proj_count = len(get_tree().get_nodes_in_group("OpalescenceProjectile"))
 	if(op_proj_count > 3):
 		$AudioStreamPlayer.volume_db = -80
@@ -16,14 +16,14 @@ func _ready():
 	else:
 		$AudioStreamPlayer2.volume_db -= op_proj_count * 5
 		$AudioStreamPlayer.volume_db -= op_proj_count * 5
-	
+
 	$AudioStreamPlayer2.play()
 	if(target != null):
 		target = target.normalized()
 	else:
 		explode()
-		
-		
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -39,7 +39,7 @@ func _process(delta):
 				explode()
 	else:
 		$AudioStreamPlayer2.volume_db -= delta * 10
-			
+
 func explode():
 	if (!is_exploding):
 		is_exploding = true

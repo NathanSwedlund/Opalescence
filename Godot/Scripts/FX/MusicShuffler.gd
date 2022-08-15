@@ -21,7 +21,7 @@ func _ready():
 	stream = songs[current_song]
 	if(autoplay):
 		_on_MusicShuffler_finished()
-		
+
 
 func _process(delta):
 	if(Input.is_action_just_pressed("ui_v") or Input.is_action_just_pressed("controller_y")):

@@ -11,10 +11,10 @@ func _process(delta):
 	modulate.r = move_toward(modulate.r, target_color.r, shift_speed * delta)
 	modulate.g = move_toward(modulate.g, target_color.g, shift_speed * delta)
 	modulate.b = move_toward(modulate.b, target_color.b, shift_speed * delta)
-	
+
 	if(modulate == target_color):
 		target_color = colors[randi()%len(colors)]
-		
+
 	if($KinematicBody2D/InnerLight != null):
 		$KinematicBody2D/InnerLight.color = modulate
 	if($KinematicBody2D/OuterLight != null):

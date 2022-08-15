@@ -18,7 +18,7 @@ func _ready():
 		damage_mod = 3
 		scale *= 2.2
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	modulate = Global.player.modulate
@@ -27,21 +27,21 @@ func _process(delta):
 		if(collision.collider.is_in_group("Enemies") and (collision.collider in damaged_enemies) == false):
 			damaged_enemies.append(collision.collider)
 			add_collision_exception_with(collision.collider)
-			
+
 			if( collision.collider.is_in_group("Blockers") == false or incendiary):
 				collision.collider.take_damage(base_damge*damage_mod)
 			if(collision.collider.is_in_group("Blockers") and !incendiary):
 				Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
-				
+
 		if(collision.collider.is_in_group("Enemies") == false):
 			var explosion = small_bullet_explosion_scene.instance()
 			explosion.position = position
 			explosion.rotation = $Sprite.rotation
 			explosion.modulate = modulate
-		
+
 			if(incendiary):
 				explosion.get_node("Particles2D").amount *= 10
-				
+
 			get_parent().add_child(explosion)
 			queue_free()
 

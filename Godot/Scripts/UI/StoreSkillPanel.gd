@@ -40,7 +40,7 @@ func try_buy():
 		Settings.shop[setting_name] = current_val
 		update_labels()
 		$BuyAudio.play()
-		
+
 		var p = $IncreaseParticles.duplicate()
 		p.emitting = true
 		add_child(p)
@@ -138,7 +138,7 @@ func right():
 
 func left():
 	try_sell()
-	
+
 func _process(delta):
 	for i in range(len(spawned_particle_gens)):
 		if(spawned_particle_gens[i].emitting == false):

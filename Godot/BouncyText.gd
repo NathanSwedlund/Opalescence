@@ -24,20 +24,20 @@ func _process(_delta):
 		if(first_change_has_happened or bounce_on_first_change == true):
 			bounce()
 		first_change_has_happened = true
-		
+
 func bounce():
 	if(bouncing == true):
 		return
-		
+
 	if(play_audio_on_bounce):
 		$AudioStreamPlayer.play()
 	bouncing = true
-	
+
 	if(bounce_up_first):
 		bounce_up()
 	else:
 		bounce_down()
-	
+
 
 func bounce_up():
 	var tween = get_node("UpTween")
@@ -45,7 +45,7 @@ func bounce_up():
 		margin_top, margin_top - bounce_amount, bounce_time,
 		Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
-	
+
 func bounce_down():
 	var tween = get_node("DownTween")
 	tween.interpolate_property(self, "margin_top",

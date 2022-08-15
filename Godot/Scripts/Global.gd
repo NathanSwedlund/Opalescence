@@ -65,7 +65,7 @@ func _process(delta):
 		Settings.saved_settings["fullscreen_mode"] = !Settings.saved_settings["fullscreen_mode"]
 		Settings.save()
 		OS.window_fullscreen = Settings.saved_settings["fullscreen_mode"]
-	
+
 	if(get_tree().paused == false):
 		if(time_left_vibrating < 0):
 			time_left_vibrating = 0
@@ -73,11 +73,11 @@ func _process(delta):
 			vibration_is_happening = false
 		else:
 			time_left_vibrating -= delta
-		
+
 		var left_stick_direction = Input.get_action_strength("controller_left_stick_down") - Input.get_action_strength("controller_left_stick_up")
 		if(left_stick_direction != 0):
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-			
+
 		seconds_since_last_status_effect_calc += delta
 		if(seconds_since_last_status_effect_calc >= seconds_per_status_effect_calc):
 			seconds_since_last_status_effect_calc = 0.0
@@ -87,38 +87,38 @@ func _process(delta):
 						key.take_damage(poison_damage*entity_effects[key]["poison_level"])
 				else:
 					entity_effects.erase(key)
-	
+
 
 const VIB_DEVICE = 0
 var last_vibration_priority = 0
 var vibration_is_happening = false
 func vibrate_controller(dur=0.5, weak_mag_mult=1.0, strong_mag_mult=1.0, priority=0):
 	var start_new_vibration = false
-	
+
 	if(last_vibration_priority < priority):
 		last_vibration_priority = priority
 		start_new_vibration = true
-	
+
 	if(dur > time_left_vibrating):
 		start_new_vibration = true
-		
+
 	if(start_new_vibration or (vibration_is_happening == false)):
 		vibration_is_happening = true
 		Input.stop_joy_vibration(VIB_DEVICE)
 		Input.start_joy_vibration(VIB_DEVICE,weak_mag_mult, strong_mag_mult, dur)
 		time_left_vibrating = dur
-		
-	
+
+
 func increase_status_leve(entity, status_name, increase_amount=1):
 	if(entity_effects.has(entity) == false):
 		entity_effects[entity] = {}
-		
+
 	if(entity_effects[entity].has(status_name) == false):
 		entity_effects[entity][status_name] = 0
-		
+
 	entity_effects[entity][status_name] += increase_amount
-		
+
 func _input(event):
 	if (event is InputEventMouseMotion):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
+

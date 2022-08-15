@@ -21,7 +21,7 @@ func _ready():
 	$Frames/UnpurchasedFrame.visible = !has_purchased
 	$Frames/UnpurchasedFrame2.visible = !has_purchased
 	modulate = base_color if has_purchased == false else purchased_color
-	
+
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
 	$BuyExplosionParticles.scale *= purchase_juice_scale
@@ -33,7 +33,7 @@ func _ready():
 	$BuyImplosionParticles.scale *= purchase_juice_scale
 	$BuyImplosionParticles.amount *= (1+purchase_juice_scale * purchase_juice_scale)/2
 	$BuyImplosionParticles.lifetime *= purchase_juice_scale
-	
+
 	$BuyAudioRiser.pitch_scale *= 2/(1+purchase_juice_scale)
 	$BuyAudio2.pitch_scale *= 2/(1+purchase_juice_scale)
 	$BuyAudio3.pitch_scale *= 2/(1+purchase_juice_scale)
@@ -41,14 +41,12 @@ func _ready():
 	update_labels()
 
 func _on_BuyButton_pressed():
-	#print(" _on_BuyButton_pressed")
 	try_buy()
-	
+
 func try_buy():
-	#print("try buy")
 	if(is_selected == false or page.buying_event_is_playing == true):
 		return
-		
+
 	page.buying_event_is_playing = true
 	page.stop_input_actions()
 	if(Settings.shop["points"] >= price and !has_purchased):
@@ -56,7 +54,7 @@ func try_buy():
 		page.start_point_deduction_event(price, purchase_juice_scale)
 
 		Settings.shop[setting_name] = true
-		Settings.save()	
+		Settings.save()
 		$BuyImplosionParticles.emitting = true
 		$BuyAudioRiser.play()
 		$BuyParticlesTimer.start()
@@ -66,7 +64,7 @@ func try_buy():
 		$Frames/UnpurchasedFrame.visible = false
 		Global.shakes["laser"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
 
-		
+
 func update_labels():
 	$Title.text = title
 	if(!has_purchased):
@@ -78,7 +76,7 @@ func update_labels():
 		$Light2D2.color = Color.black
 		$BuyButton.modulate = Color.gray
 		$BuyButton.text = "PURCHASED"
-		
+
 func select():
 	$Particles2D.visible = true
 	$Light2D.visible = true
@@ -97,7 +95,7 @@ func reset():
 	Settings.shop[setting_name] = false
 	has_purchased = false
 	update_labels()
-	
+
 func set_page(_page):
 	page = _page
 
@@ -114,7 +112,7 @@ func _on_BuyParticlesTimer_timeout():
 	modulate = purchased_color
 	$Frames/UnpurchasedFrame2.visible = false
 	$Light2D.color = modulate
-	$Light2D2.color = modulate	
+	$Light2D2.color = modulate
 	update_labels()
 	Global.shakes["bomb"].start(50*purchase_juice_scale, 0.4*purchase_juice_scale, 80, 1)
 	Global.shakes["laser"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)

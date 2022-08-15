@@ -23,15 +23,15 @@ var page
 func _ready():
 	for c in $Panels.get_children():
 		subpanels.append(c)
-		
+
 	subpanel_num = len(subpanels)
 	var currentx = 0
 	for sp in subpanels:
 		sp.position.x = currentx
 		currentx += subpanel_sep_x
-		
+
 	update_labels()
-	
+
 func _process(delta):
 	if(! is_shifting_subpanels):
 		if(page.should_ignore_input == false):
@@ -43,14 +43,14 @@ func _process(delta):
 		$Panels.position.x = move_toward($Panels.position.x, shift_x_target, shift_speed*delta)
 		if(int($Panels.position.x) == int(shift_x_target)):
 			page.resume_input_actions()
-			is_shifting_subpanels = false	
+			is_shifting_subpanels = false
 			subpanels[subpanel_index].select()
 			$SelectAudio.play()
 			page.change_color(subpanels[subpanel_index].modulate)
-			
-		
+
+
 func shift_subpanel(new_index):
-	page.stop_input_actions()	
+	page.stop_input_actions()
 	subpanels[subpanel_index].deselect()
 	subpanel_index = new_index
 	is_shifting_subpanels = true
@@ -58,19 +58,19 @@ func shift_subpanel(new_index):
 
 func _on_BuyButton_pressed():
 	try_buy()
-	
+
 func try_buy():
 	subpanels[subpanel_index].try_buy()
-	
+
 func update():
 	for sp in subpanels:
 		sp.update()
-		
+
 func update_labels():
 	$Title.text = title
 	for sp in subpanels:
 		sp.update_labels()
-		
+
 func select():
 	subpanels[subpanel_index].select()
 	scale *= select_scale
@@ -81,7 +81,7 @@ func deselect():
 	subpanels[subpanel_index].deselect()
 	scale /= select_scale
 	is_selected = false
-	
+
 func set_page(_page):
 	page = _page
 	for sp in subpanels:

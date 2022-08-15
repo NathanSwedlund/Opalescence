@@ -12,7 +12,7 @@ var index = 0
 var string_num
 
 signal pressed(_value)
-	
+
 func _process(delta):
 	if(is_ui_selected and visible):
 		if(Input.is_action_just_pressed("ui_left")):
@@ -28,7 +28,7 @@ func _ready():
 			if(Settings.saved_settings[setting_name] == strings[i]):
 				index = i
 				update(false)
-				
+
 
 func _on_DecreaseButton_pressed():
 	get_parent().select(button_index)
@@ -47,7 +47,7 @@ func update(play_sound=true):
 		$ChangeAudio.play()
 	$Value.text = strings[index]
 	Settings.saved_settings[setting_name] = strings[index]
-	
+
 func select():
 	scale *= selected_scale
 	$Light2D.visible = true

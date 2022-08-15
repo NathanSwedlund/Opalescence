@@ -18,10 +18,10 @@ var is_showing_new_high_score = false
 func _process(delta):
 	if(expected_controllers != Input.get_connected_joypads()):
 		pause()
-	
+
 	if(Input.is_action_just_pressed("controller_home")):
 		pause()
-	
+
 	if(is_pitching_music):
 		var target = pause_audio_pitch_scale if get_tree().paused else 1.0
 		var current_scale = get_parent().find_node("MusicShuffler").pitch_scale
@@ -84,7 +84,7 @@ func game_over():
 	get_parent().find_node("MusicShuffler").volume_db -= point_add_music_mod
 	var is_mission = Settings.world["is_mission"]
 	var is_challenge_mode = Settings.world["mission_title"] == "challenge"
-	
+
 	var mission_complete = false
 	var mission_title = Settings.world["mission_title"]
 	if(!is_mission):
@@ -136,7 +136,6 @@ func new_high_score_event():
 		return
 	is_showing_new_high_score = true
 	$HighScorePopup/HighScoreLabel2.text = str(old_high_score) + points_suffix
-	#print("old_high_score, ", old_high_score)
 	$HighScorePopup/HighScoreWaitTimer.start()
 	$HighScorePopup.show()
 
@@ -195,11 +194,11 @@ func point_add_popup_event():
 	$PointAddPopup/PointsLabel2.bounce_on_change = false
 	$PointAddPopup/PointsLabel2.text = Global.point_num_to_string(points_this_round)
 	$PointAddPopup/PointsLabel2.bounce_on_change = true
-	
+
 	$PointAddPopup/TotalPointsLabel2.bounce_on_change = false
 	$PointAddPopup/TotalPointsLabel2.text = Global.point_num_to_string(Settings.shop["points"]-points_this_round)
 	$PointAddPopup/TotalPointsLabel2.bounce_on_change = true
-	
+
 	if(Settings.world["points_scale"]  > 1.0 and Settings.world["mission_title"] != "challenge"):
 		tokens_this_round = int(tokens_this_round * Settings.world["points_scale"])
 
@@ -229,9 +228,8 @@ func _on_RackingTimer_timeout():
 
 		$PointAddPopup/PointsLabel2.text = Global.point_num_to_string(point_num1)
 		$PointAddPopup/TotalPointsLabel2.text = Global.point_num_to_string(point_num2)
-		
+
 		if(Global.vibration_is_happening == false):
-			#print("racking vibe")
 			Global.vibrate_controller(2.5,1.0,0.5,1)
 func _on_ShopButton_pressed():
 	pass

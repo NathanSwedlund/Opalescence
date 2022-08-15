@@ -25,14 +25,14 @@ func _input(event):
 var right_stick_direction
 func _process(delta):
 	current_frame += 1
-	
+
 	if(not is_in_controller_mode):
 		mouse_direction_from_player = (mouse_position - player.global_position).normalized()
 		position = mouse_direction_from_player * cursor_sep_from_player
 		is_in_controller_mode = false
 		if(OS.keep_screen_on == true):
 			OS.keep_screen_on = false
-		
+
 	$Sprite.visible = is_in_controller_mode
 	right_stick_direction = Vector2.ZERO
 	right_stick_direction.y = Input.get_action_strength("controller_right_stick_down") - Input.get_action_strength("controller_right_stick_up")
@@ -41,13 +41,13 @@ func _process(delta):
 
 	if(left_stick_direction != 0 and is_in_controller_mode == false):
 		is_in_controller_mode = true
-	
+
 	if(right_stick_direction != Vector2.ZERO and is_in_controller_mode):
 		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 		is_in_controller_mode = true
 		if(OS.keep_screen_on == false):
 			OS.keep_screen_on = true
-		
+
 		if(right_stick_direction != Vector2.ZERO and auto_aim_is_engaged == false):
 			visible = true
 			position = right_stick_direction.normalized() * cursor_sep_from_player
@@ -60,14 +60,14 @@ func _process(delta):
 			for e in get_tree().get_nodes_in_group("Enemies"):
 				var enemy_dist = e.global_position.distance_squared_to(Global.player.global_position)
 				var enemy_dir = (e.global_position - player.global_position).normalized()
-				
+
 				var aim_dist = enemy_dir.distance_squared_to(right_stick_direction)
 				if(auto_aim_target == null or current_target_dist > enemy_dist):
 					if(aim_dist < auto_aim_bias and enemy_dist < auto_aim_radius_squared and e.is_in_group("Explosion") == false and e.is_in_group("Missiles") == false):
 						auto_aim_is_engaged = true
 						auto_aim_target = e
 						current_target_dist = enemy_dist
-						
+
 		if(is_instance_valid(auto_aim_target)):
 			var enemy_dir = (auto_aim_target.global_position - player.global_position).normalized()
 			position = position.move_toward(enemy_dir * cursor_sep_from_player, auto_aim_change_speed*delta)

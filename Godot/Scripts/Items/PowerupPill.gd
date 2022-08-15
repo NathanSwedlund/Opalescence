@@ -11,11 +11,10 @@ var player:Node2D
 func _ready():
 	powerup_name = get_parent().name
 	if(is_powerup):
-		#print("Loading ", "res://Resources/Textures/Items/"+powerup_name+" Icon.png")
 		$IconSprite.texture = load("res://Resources/Textures/Items/"+powerup_name+" Icon.png")
 	else:
 		$IconSprite.visible = false
-		
+
 	add_to_group("Powerups")
 	$OuterLight.color = get_parent().modulate
 	$InnerLight.color = get_parent().modulate

@@ -66,7 +66,7 @@ var powerup_scenes = {
 }
 
 onready var player = get_parent().find_node("Player")
-var powerup_spawn_time_speed = 1.0	
+var powerup_spawn_time_speed = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,7 +79,7 @@ func _ready():
 		time_min = Settings.get_setting_if_exists(Settings.factory, "powerup_time_min", time_min)
 		time_max = Settings.get_setting_if_exists(Settings.factory, "powerup_time_max", time_max)
 		powerup_spawn_time_speed = Settings.get_setting_if_exists(Settings.factory, "powerup_spawn_time_speed", powerup_spawn_time_speed)
-		
+
 		powerup_probabilities["barrage"]      = Settings.get_setting_if_exists(Settings.factory, "powerup_barrage_prob", powerup_probabilities["barrage"])
 		powerup_probabilities["bombastic"]    = Settings.get_setting_if_exists(Settings.factory, "powerup_bombastic_prob", powerup_probabilities["bombastic"])
 		powerup_probabilities["bullet_time"]  = Settings.get_setting_if_exists(Settings.factory, "powerup_bullet_time_prob", powerup_probabilities["bullet_time"])
@@ -115,11 +115,9 @@ func kill_all():
 			c.queue_free()
 
 func spawn_powerup():
-	#print("trying spawn powerup")
 	if(!is_active):
 		return
-	#print("powerup Factory not active")
-	
+
 	var mult = 0.0 # multiple of probabilities
 	for key in powerup_probabilities:
 		mult += powerup_probabilities[key]
@@ -130,7 +128,7 @@ func spawn_powerup():
 		r -= powerup_probabilities[key]
 		if(key == "bomb_up"):
 			continue
-		
+
 		if(r <= 0 and get_node(key_to_name[key]) == null): # spawn the current powerup
 			var powerup = powerup_scenes[key].instance()
 			var position_x = rand_range(left_bound, right_bound)

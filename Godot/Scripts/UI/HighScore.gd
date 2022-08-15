@@ -30,7 +30,7 @@ func get_score(score_title):
 		return 0
 
 	return high_scores[score_title]
-	
+
 func reset_high_scores():
 	high_scores = {}
 	high_scores_def = {}

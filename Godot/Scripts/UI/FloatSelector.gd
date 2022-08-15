@@ -13,7 +13,7 @@ export var is_ui_selected = false
 export var selected_scale = 1.2
 
 signal pressed(_value)
-	
+
 func _process(delta):
 	if(is_ui_selected and visible):
 		if(Input.is_action_just_pressed("ui_left")):
@@ -43,7 +43,7 @@ func update_current_val(val):
 	_value = val
 	var ratio = (_value-min_val)/(max_val-min_val)
 	$Value.text = str(Global.round_float(_value, 1))
-	
+
 func select():
 	scale *= selected_scale
 	$Light2D.visible = true

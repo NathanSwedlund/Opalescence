@@ -9,7 +9,7 @@ onready var selection_controller = get_parent()
 func deselect():
 	if(!is_selected):
 		return
-		
+
 	is_selected = false
 	margin_right -= right_margin_mod_on_hover
 	$Light2D.visible = false
@@ -19,16 +19,16 @@ func deselect():
 func select():
 	if(is_selected):
 		return
-	
+
 	is_selected = true
 	if(get_parent().get("selected_button") != null):
 		if(get_parent().selected_button != button_index):
 			get_parent().select(button_index)
-			
+
 #	if(get_parent().get("selected") != null):
 #		if(get_parent().selected != button_index):
 #			get_parent().select(button_index)
-		
+
 	margin_right += right_margin_mod_on_hover
 	$Light2D.visible = true
 	$Particles2D.emitting = true

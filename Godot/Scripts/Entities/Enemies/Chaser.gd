@@ -12,7 +12,7 @@ var use_global_settings = true
 
 onready var base_color = modulate
 var tags = {"enemy":true}
-var starting_health 
+var starting_health
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("Enemies")
@@ -31,13 +31,13 @@ func _process(delta):
 		look_at(player.global_position)
 		var position_diff = (player.global_position - global_position)
 		var position_diff_normalized = position_diff.normalized()
-		
+
 		var collision = move_and_collide( position_diff_normalized * speed*delta)
 		if(collision != null):
 			if(collision.collider.name == player.name):
 				player.damage(self)
 				die()
-					
+
 			elif(collision.collider.is_in_group("Enemies")):
 				if(collision.collider.is_in_group("Chasers")):
 					collision.collider.die()
@@ -51,28 +51,28 @@ func _process(delta):
 #			elif(collision.collider.is_in_group("Lasers")):
 #				take_damage(collision.collider.damage)
 				#collision.collider.queue_free() # delete the point if it runs into it
-	
+
 var damage_audio_base_pitch = 1.0
 var damage_audio_max_pith = 1.2
 var has_died = false
-func take_damage(damage, play_sound=true, color_override=null):	
+func take_damage(damage, play_sound=true, color_override=null):
 	health -= damage
 	$DamageTimer.start()
 
 	if(health <= 0):
 		if(has_died == false):
 			die()
-		return 
-		
+		return
+
 	var color_target= Global.player.modulate if color_override == null else color_override
 	var ratio = (starting_health-health)/starting_health
 	modulate.r = ratio * color_target.r*0.6
 	modulate.g = ratio * color_target.g*0.6
 	modulate.b = ratio * color_target.b*0.6
-	
+
 	$DamageAudio.pitch_scale = lerp(damage_audio_base_pitch, damage_audio_max_pith, ratio)
 	$DamageAudio.play()
-	
+
 func die():
 	has_died = true
 	var explosion = death_explosion_scene.instance()

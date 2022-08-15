@@ -20,7 +20,7 @@ func _process(delta):
 		if(Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_accept")):
 			get_parent().select(button_index)
 			update_selected(!is_selected)
-			
+
 
 func update_selected(_selected, emit_pressed=true, play_audio=true):
 	is_selected = _selected
@@ -35,7 +35,7 @@ func update_selected(_selected, emit_pressed=true, play_audio=true):
 func _on_Button_pressed():
 	get_parent().select(button_index)
 	update_selected(!is_selected)
-	
+
 func select():
 	scale *= selected_scale
 	is_ui_selected = true

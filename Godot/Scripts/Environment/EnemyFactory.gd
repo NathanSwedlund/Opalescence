@@ -33,7 +33,7 @@ onready var player = get_parent().find_node("Player")
 # Called when the node enters the scene tree for the first time.
 export var bound_buffer = 90
 
-func _ready():	
+func _ready():
 	enemy_probabilities = default_enemy_probabilities.duplicate()
 	if(use_global_settings):
 		left_bound = Settings.get_setting_if_exists(Settings.world, "left_bound", left_bound) + bound_buffer

@@ -19,9 +19,9 @@ func _ready():
 		speed *= 2.2
 		damage_mod = 3
 		scale *= 2.2
-		
+
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
-	
+
 func update_target():
 	for e in get_tree().get_nodes_in_group("Enemies"):
 		if(target == null):
@@ -43,16 +43,16 @@ func _process(delta):
 	if(first_target_has_been_locked == false and current_time > time_to_first_target_lock):
 		first_target_has_been_locked = true
 		update_target()
-		
+
 	if(current_time > seconds_to_update_target):
 		current_time = 0.0
 		update_target()
-		
+
 	if(is_instance_valid(target)):
 		heat_seeking_turn_speed += delta*heat_seeking_turn_speed_mod
 		rotation = move_toward(rotation, get_angle_to(target.position), heat_seeking_turn_speed)
 		direction = direction.slerp(position.direction_to(target.position), heat_seeking_turn_speed)
-		
+
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		if(collision.collider.is_in_group("Enemies")):
@@ -60,17 +60,17 @@ func _process(delta):
 				collision.collider.take_damage(base_damge*damage_mod)
 		if(collision.collider.is_in_group("Blockers") and !incendiary):
 			Global.player.find_node("SoundFX").find_node("BulletHitFail").play()
-		
+
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.rotation = $Sprite.rotation
 		explosion.modulate = modulate
-		
+
 		if(incendiary):
 			explosion.get_node("Particles2D").amount *= 10
-			
+
 		get_parent().add_child(explosion)
 		queue_free()
-	
+
 func _on_AudioStreamPlayer_finished():
 	$AudioStreamPlayer.queue_free()

@@ -21,13 +21,13 @@ export var shift_speed = 1800.0
 func _ready():
 	buttons = [$UI/BackButton]#, $UI/ResetButton, $UI/AddTokensButton]
 	button_num = len(buttons)
-	
+
 	panels = $UI/Panels.get_children()
 	panel_num = len(panels)
-	
+
 	ui_element_num = button_num + panel_num
 	ui_elements = panels + buttons
-	
+
 	for i in range(panel_num):
 		panels[i].position = starting_panel_loc
 		panels[i].position.y += i * panel_sep_dist
@@ -39,13 +39,13 @@ func _ready():
 	if(Settings.shop["monocolor_color"] != null):
 		update_color(Settings.shop["monocolor_color"])
 		modulate = Settings.shop["monocolor_color"]
-		
+
 func _process(delta):
 	if(is_shifting):
 		var target = panel_sep_dist*selected * -1
 		var current = $UI/Panels.position.y
 		if(is_loop_shifting):
-			$UI/Panels.position.y = move_toward(current, target, loop_shift_speed * delta )		
+			$UI/Panels.position.y = move_toward(current, target, loop_shift_speed * delta )
 		else:
 			$UI/Panels.position.y = move_toward(current, target, shift_speed * delta )
 		if($UI/Panels.position.y == target):
@@ -60,13 +60,13 @@ func _process(delta):
 			select_next()
 		if(Input.is_action_just_pressed("ui_cancel")):
 			back_to_main_menu()
-			
+
 		if(Input.is_action_just_pressed("ui_right")):
 			if(selected < panel_num): # Shop Panel
 				ui_elements[selected].right()
 		if(Input.is_action_just_pressed("ui_left")):
 			if(selected < panel_num): # Shop Panel
-				ui_elements[selected].left()	
+				ui_elements[selected].left()
 		if(Input.is_action_just_pressed("ui_accept")):
 			if(selected >= panel_num): # is a button, not a panel
 				ui_elements[selected].emit_signal("pressed")
@@ -89,29 +89,29 @@ func update_color(color_override=null):
 
 func select_next():
 	select( (selected + 1) % ui_element_num )
-	
+
 func select_last():
 	select( (selected - 1 + ui_element_num) % ui_element_num )
-	
+
 func select(num):
 	if(num == selected):
-		return 
+		return
 
 
 	num %= ui_element_num
 	if(($UI/Panels.position.y + (panel_sep_dist*num) in [0, panel_sep_dist]) == false and selected == panel_num):
 		is_loop_shifting = true
 		$LoopSound.play()
-		
+
 	ui_elements[selected].deselect()
 	selected = num
-	
+
 	if(num < panel_num):
 		is_shifting = true
 	else:
 		$SelectAudio.play()
 		ui_elements[selected].select()
-		
+
 func update_labels():
 	$TokensLabel2.text = str(Global.point_num_to_string(Settings.shop["tokens"], ["b", "m", "k"]))
 

@@ -50,7 +50,6 @@ func _process(delta):
 			for e in get_tree().get_nodes_in_group("Enemies"):
 				if(global_position.distance_squared_to(e.global_position) < 100000*get_parent().global_scale.x):
 					e.take_damage(damage * delta * frames_per_update, true, modulate)
-					#print("damaging ", e)
 
 			get_parent().scale.x -= shrink_speed * delta * frames_per_update
 			get_parent().scale.y -= shrink_speed * delta * frames_per_update
@@ -60,7 +59,7 @@ func explode():
 	for e in get_tree().get_nodes_in_group("Enemies"):
 		if(global_position.distance_squared_to(e.global_position) < 100000*get_parent().global_scale.x):
 			e.take_damage(damage*0.25, true, modulate)
-			
+
 	Global.vibrate_controller(1.5,0.4,0.4,1)
 	if(exploding):
 		return
@@ -70,12 +69,12 @@ func explode():
 		shrink_speed = get_parent().scale.x/$ExplosionTimer.wait_time
 	$ExplosionParticles.emitting = true
 	exploding = true
-	
+
 	if(is_max_bomb):
 		$AudioStreamPlayer.pitch_scale = 0.4
 		$AudioStreamPlayer.volume_db += 3
-		
-	
+
+
 	$AudioStreamPlayer.play()
 	if($ExplosionTimer != null):
 		$ExplosionTimer.start()

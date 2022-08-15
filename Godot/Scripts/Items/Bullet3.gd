@@ -11,7 +11,7 @@ export var max_damage = 8.0
 var damage_mod = 1.0
 var incendiary = false
 
-var small_bullet_explosion_scene 
+var small_bullet_explosion_scene
 export var explosion_scale = 0.3
 func _ready():
 	small_bullet_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
@@ -22,23 +22,21 @@ func _ready():
 		damage_mod = 3
 		scale *= 2.2
 	$Sprite.rotate((Vector2.ZERO).angle_to_point(direction))
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(speed < speed_max):
 		speed *= 1+(speed_accel_scale*delta)
 		speed += delta * speed_accel
-		
+
 	modulate = Global.player.modulate
 	var collision = move_and_collide(direction*speed*delta, delta)
 	if(collision != null):
 		var speed_ratio = speed/speed_max
-#		#print(speed_ratio)
 		if(collision.collider.is_in_group("Enemies")):
 			var damage = min(base_damge*damage_mod*speed_ratio, max_damage)
-#			#print("Damage, ", damage)
 			collision.collider.take_damage(damage)
-		
+
 		var explosion = small_bullet_explosion_scene.instance()
 		explosion.position = position
 		explosion.scale_mod = explosion_scale * speed_ratio  * scale.x
@@ -52,8 +50,8 @@ func _process(delta):
 		explosion.grow_speed = 1.17
 		explosion.shrink_speed = 0.85
 		explosion.modulate = modulate
-		
-			
+
+
 		get_parent().add_child(explosion)
 		queue_free()
 

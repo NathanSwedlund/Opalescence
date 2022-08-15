@@ -4,7 +4,7 @@ export var default_vol = 0.0
 export var is_music = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():	
+func _ready():
 	if(is_music):
 		add_to_group("Music")
 		if(Settings.saved_settings["music_volume"] == 0):

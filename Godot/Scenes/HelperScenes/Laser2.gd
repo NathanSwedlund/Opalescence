@@ -14,7 +14,6 @@ func _ready():
 			c.particle_intensity_scale = particle_intensity_scale
 			c.lifetime = lifetime
 			c._ready()
-			print("c.lifetime, ", c.lifetime)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -30,4 +29,4 @@ func get_direction_to_shoot(_name):
 		return Vector2.LEFT.rotated(deg2rad(-20))
 	else:
 		return Vector2.LEFT
-	
+

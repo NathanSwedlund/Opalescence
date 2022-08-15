@@ -17,10 +17,10 @@ func _ready():
 	speed  = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed",  speed) * Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_speed_scale",  1.0)
 	health = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_health", health)
 	damage = Settings.get_setting_if_exists(Settings.enemy, "shooter_missile_damage", damage)
-	
+
 	add_to_group("Enemies")
 	add_to_group("Missiles")
-		
+
 func _physics_process(delta):
 	var collision = move_and_collide(direction*speed*delta)
 	if(collision):
@@ -33,7 +33,7 @@ func _physics_process(delta):
 
 func take_damage(damage, play_sound=true, color_override=null):
 	die()
-	
+
 var has_died = false
 func die():
 	if(has_died == false):
@@ -48,17 +48,17 @@ func die():
 			expl.explosion_vol_db_mod = -4
 			expl.position = position
 			get_parent().add_child(expl)
-		
+
 		$ExplosionParticles.emitting = true
 		if($CollisionShape2D != null):
 			$CollisionShape2D.queue_free()
 		elif($CollisionShape2D.is_queued_for_deletion() == false):
 			$CollisionShape2D.queue_free()
-			
+
 		$Sprite.visible = false
 		$Particles2D.visible = false
 		$Light2D.visible = false
-		
+
 		$DeleteTimer.wait_time = $ExplosionParticles.lifetime
 		$DeleteTimer.start()
 

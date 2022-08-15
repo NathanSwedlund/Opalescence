@@ -16,7 +16,7 @@ func _process(_delta):
 	if(is_active and get_child(selected_button).visible):
 		if(get_parent().is_class("Popup")):
 			if(get_parent().visible == false):
-				return 
+				return
 		if(action_pressed("ui_down") or (action_pressed("ui_focus_next") and ! action_pressed("ui_focus_prev")) ):
 			select((selected_button + 1) % button_count)
 		elif(action_pressed("ui_up") or action_pressed("ui_focus_prev")):
@@ -24,17 +24,17 @@ func _process(_delta):
 		elif(Input.is_action_just_pressed("ui_accept")):
 			if(get_child(selected_button).get("is_selected") != null):
 				get_child(selected_button).emit_signal("pressed")
-	
+
 func select(button_index):
 	if(button_index == selected_button):
 		return
-		
+
 	get_child(selected_button).deselect()
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
 	get_parent().get_parent().find_node("ButtonSelectAudio").play()
 	selected_button = button_index
-	
+
 	if(get_child(selected_button) != null):
 		get_child(selected_button).select()
-	
-	
+
+

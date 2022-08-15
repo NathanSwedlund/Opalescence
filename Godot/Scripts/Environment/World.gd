@@ -30,11 +30,11 @@ func _ready():
 	if(Settings.shop["monocolor_color"] != null):
 		modulate = Settings.shop["monocolor_color"]
 		modulate = modulate.lightened(0.3)
-	
+
 	if(Settings.world["mission_title"] == "NightmareStandard"):
 		$MusicShuffler.pitch_scale *= 1.05
 		AudioStreamPlayer
-	
+
 	Global.world = self
 	initial_settings = [Settings.world.duplicate(), Settings.factory.duplicate(), Settings.enemy.duplicate(), Settings.player.duplicate()]
 	Settings.apply_sound_settings()
@@ -107,8 +107,8 @@ func _process(delta):
 		if($HeadsUpDisplay/CountdownLabel.visible):
 			$HeadsUpDisplay/CountdownLabel.modulate.a = move_toward($HeadsUpDisplay/CountdownLabel.modulate.a, 0, countdown_fade_speed * delta)
 
-		
-	
+
+
 var countdown_sound_target_pitch = 1.7
 func _on_CountdownTimer_timeout():
 	countdown_is_over = false

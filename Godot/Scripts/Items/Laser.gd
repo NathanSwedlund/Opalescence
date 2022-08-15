@@ -26,14 +26,14 @@ var current_frame = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Global.shakes["laser"].start(max_fade_in_width/10.0, lifetime*0.8, 200)
-	
+
 	if(Settings.world["is_mission"] == false):
 		damage *= Settings.shop["laser_damage_scale"]
 
 	if($LaserSound != null):
 		laser_vol = $LaserSound.volume_db
 		$LaserSound.volume_db = min_vol
-	
+
 	if(particle_intensity_scale != 1.0):
 		$LaserParticleEffect.lifetime *= particle_intensity_scale/1.5
 		$LaserParticleEffect.amount *= particle_intensity_scale*3
@@ -54,7 +54,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	rotation = Vector2.ZERO.angle_to_point(get_parent().get_direction_to_shoot(name))
-	#print(name, " ", rotation)
 	if(is_fading_in):
 		if(scale.y < max_fade_in_width):
 			scale.y += fade_in_speed * (1-fade_in_time_ratio) * _delta
@@ -69,7 +68,7 @@ func _process(_delta):
 				$LaserSound.volume_db = move_toward($LaserSound.volume_db, min_vol, fade_out_speed * (1-fade_out_time_ratio) * _delta * laser_sound_fade_scale)
 		if(scale.y <= 0.0):
 			queue_free()
-	
+
 	current_frame = (current_frame + 1) % frames_per_damage
 	if(current_frame == 0):
 		for i in get_overlapping_bodies():

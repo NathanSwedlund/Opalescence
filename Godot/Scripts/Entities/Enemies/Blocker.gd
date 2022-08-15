@@ -17,7 +17,7 @@ func _ready():
 	point_reward = Settings.get_setting_if_exists(Settings.enemy, "blocker_point_reward", point_reward)
 	health = Settings.get_setting_if_exists(Settings.enemy, "blocker_health", health) * Settings.get_setting_if_exists(Settings.enemy, "enemy_health_scale", 1.0)
 	base_health = health
-	
+
 	add_to_group("Enemies")
 	add_to_group("Blockers")
 
@@ -73,7 +73,7 @@ func take_damage(damage, play_sound=true, color_override=null):
 	var target_color = Global.player.modulate
 	if(color_override != null):
 		target_color = color_override
-		
+
 	var ratio = (base_health-health)/base_health
 	modulate.r = ratio * target_color.r*0.6
 	modulate.g = ratio * target_color.g*0.6

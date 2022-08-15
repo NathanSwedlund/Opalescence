@@ -13,5 +13,5 @@ func _ready():
 #		players[i].position.y = y_loc
 #
 #		players[i].rotation_degrees = -45
-		
+
 	$VersionLabel.text = Global.version

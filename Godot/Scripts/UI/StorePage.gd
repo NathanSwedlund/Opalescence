@@ -21,18 +21,18 @@ export var shift_speed = 1800.0
 func _ready():
 	buttons = [$UI/BackButton]
 	button_num = len(buttons)
-	
+
 	panels = $UI/Panels.get_children()
 	panel_num = len(panels)
-	
+
 	ui_element_num = button_num + panel_num
 	ui_elements = panels + buttons
-	
+
 	for i in range(panel_num):
 		panels[i].position = starting_panel_loc
 		panels[i].position.y += i * panel_sep_dist
 		panels[i].set_page(self)
-	
+
 	update_point_label()
 	select(0)
 	update_color()
@@ -65,7 +65,7 @@ func update_color():
 	if(selected < panel_num):
 		var c = panels[selected].modulate
 		change_color(c)
-		
+
 func change_color(c):
 	$PointsLabel.modulate = c
 	$PointsLabel2.modulate = c
@@ -77,29 +77,29 @@ func change_color(c):
 	$UI/SepBar2.modulate = c
 	for p in $UI/Panels.get_children():
 		p.modulate = c
-			
+
 func select_next():
 	select( (selected + 1) % ui_element_num )
-	
+
 func select_last():
 	select( (selected - 1 + ui_element_num) % ui_element_num )
-	
+
 func select(num):
 	if(num == selected):
-		return 
+		return
 
 	num %= ui_element_num
-	
+
 	ui_elements[selected].deselect()
 	selected = num
-	
+
 	if(num < panel_num):
 		is_shifting = true
-		stop_input_actions()	
+		stop_input_actions()
 	else:
 		$SelectAudio.play()
 		ui_elements[selected].select()
-		
+
 func update_point_label():
 	$PointsLabel2.text = str(Global.point_num_to_string(int(Settings.shop["points"]), ["b", "m", "k"]))
 
@@ -131,7 +131,7 @@ func _on_ResetButton_pressed():
 func _on_SuperPanelLastButton_pressed():
 	if(should_ignore_input):
 		return
-		
+
 	Input.action_press("ui_left")
 
 
@@ -139,7 +139,7 @@ func _on_SuperPanelNextButton_pressed():
 	if(should_ignore_input):
 		return
 	Input.action_press("ui_right")
-	
+
 var is_deducting_points = false
 var current_point_deductions = 0
 var base_total_point_deductions = 18
@@ -172,9 +172,7 @@ func _on_PointLabelEventTimer_timeout():
 		Settings.save()
 
 func stop_input_actions():
-	#print("ignoring_actions")
 	should_ignore_input = true
-	
+
 func resume_input_actions():
-	#print("resumeing_actions")
 	should_ignore_input = false

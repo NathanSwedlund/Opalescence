@@ -19,12 +19,12 @@ func _ready():
 			t.stop()
 			t.wait_time += randf()/2
 			t.start()
-			
+
 
 func _process(delta):
 	for i in range(4):
 		if(is_instance_valid(side_bombs[i])):
 			side_bombs[i].position += side_bomb_dirs[i]*delta*side_bomb_speed
-			
+
 	if(get_child_count() == 0):
 		queue_free()

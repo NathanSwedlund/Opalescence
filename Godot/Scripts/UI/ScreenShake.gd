@@ -17,7 +17,7 @@ func start(amplitude = 4.5, duration = 0.1, Freq = 35, priority = 0):
 	Freq *= Settings.saved_settings["screen_shake_scale"]/2
 	if(amplitude == 0):
 		return
-		
+
 	if (priority >= self.priority):
 		self.priority = priority
 		self.amplitude = amplitude
