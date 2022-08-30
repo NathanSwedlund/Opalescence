@@ -58,7 +58,6 @@ func _on_WaitTimer_timeout():
 		c.use_global_settings = false
 		c.base_health = 400
 		c.base_speed *= 10
-		c.point_reward = 5000
 		add_child(c)
 		starting = false
 		fade_light_out()

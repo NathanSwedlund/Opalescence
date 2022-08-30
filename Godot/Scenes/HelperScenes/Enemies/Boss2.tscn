@@ -19,7 +19,9 @@ collision_layer = 2
 collision_mask = 91
 script = ExtResource( 2 )
 base_speed = 50
-base_health = 4
+base_health = 3
+point_reward = 50000
+use_global_settings = false
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )

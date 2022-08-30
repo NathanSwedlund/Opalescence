@@ -7,14 +7,16 @@ var player:Node2D
 export var base_health = 10
 var health
 var death_explosion_scene = load("res://Scenes/HelperScenes/Explosions/EnemyDeathExplosion.tscn")
-var point_reward = 400
-var use_global_settings = true
+export var point_reward = 400
+export var use_global_settings = true
 
 onready var base_color = modulate
 var tags = {"enemy":true}
 var starting_health
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("point_reward, ", point_reward)
+	print("use_global_settings, ", use_global_settings)
 	add_to_group("Enemies")
 	add_to_group("Chasers")
 	if(use_global_settings):
@@ -24,6 +26,7 @@ func _ready():
 	speed = base_speed * 1/(scale.y)
 	health = scale.y * base_health
 	starting_health = health
+	print("point_reward, ", point_reward)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
