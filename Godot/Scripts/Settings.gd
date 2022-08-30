@@ -182,7 +182,7 @@ var shop_default = {
 	"player4_is_unlocked":false,
 	"player5_is_unlocked":false,
 
-	"monocolor_mode_unlocked":false,
+	"monocolor_mode_unlocked":true,
 	"monocolor_color":null,
 }
 
@@ -192,6 +192,7 @@ var saved_settings_path = "user://settings.dat"
 var save_path = "user://save.dat"
 
 func _ready():
+	shop["monocolor_mode_unlocked"] = true # always updates to true. it was removed from the store and thus in the update previous players should unlock it immediately
 	saved_settings["colors"] = default_colors
 	var saved_settings_from_file = Global.load_var(saved_settings_path)
 	if(saved_settings_from_file == null):

@@ -382,39 +382,6 @@ stream = ExtResource( 5 )
 pitch_scale = 0.7
 script = ExtResource( 2 )
 
-[node name="StoreSuperPanel4" type="Node2D" parent="UI/Panels"]
-position = Vector2( 0, 635 )
-scale = Vector2( 0.91, 0.91 )
-script = ExtResource( 11 )
-title = "Misc."
-
-[node name="Title" type="Label" parent="UI/Panels/StoreSuperPanel4"]
-margin_left = -319.22
-margin_top = -157.483
-margin_right = 161.78
-margin_bottom = -122.483
-custom_fonts/font = SubResource( 1 )
-text = "TITLE"
-align = 1
-
-[node name="Panels" type="Node2D" parent="UI/Panels/StoreSuperPanel4"]
-scale = Vector2( 0.65, 0.65 )
-
-[node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel4/Panels" instance=ExtResource( 7 )]
-position = Vector2( 0, 0 )
-scale = Vector2( 1.1, 1.1 )
-title = "Mono-color Scheme"
-setting_name = "monocolor_mode_unlocked"
-price = 350000
-base_color = Color( 0.521569, 0.521569, 0.521569, 1 )
-purchased_color = Color( 1, 1, 1, 1 )
-purchase_juice_scale = 0.8
-
-[node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel4"]
-stream = ExtResource( 5 )
-pitch_scale = 0.7
-script = ExtResource( 2 )
-
 [node name="Darkener" type="Sprite" parent="UI"]
 modulate = Color( 0.0823529, 0.0823529, 0.0823529, 0.87451 )
 position = Vector2( -769, 49 )

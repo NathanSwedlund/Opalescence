@@ -103,6 +103,12 @@ func game_over():
 
 	tokens_this_round = default_token_reward
 	tokens_this_round = int(Global.player.play_time/7.5)
+	var pt_temp = Global.player.play_time
+	
+	while (pt_temp > 60):
+		pt_temp -= 60
+		tokens_this_round *= 1.5
+		
 	if(Settings.world["mission_title"] != "challenge"):
 		tokens_this_round *= Settings.world["points_scale"]
 		tokens_this_round = int(tokens_this_round)
