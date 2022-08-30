@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Items/Bullet2.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Textures/Items/bullet-2Hi-Res.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=3]
-[ext_resource path="res://Resources/Audio/FX/BulletFir6.wav" type="AudioStream" id=4]
+[ext_resource path="res://Resources/Audio/FX/BulletFire3.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=5]
 
 [sub_resource type="CanvasItemMaterial" id=6]
@@ -66,5 +66,6 @@ stream = ExtResource( 4 )
 pitch_scale = 1.07
 autoplay = true
 script = ExtResource( 5 )
+default_vol = -4.0
 
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]
