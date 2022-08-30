@@ -16,6 +16,11 @@ var is_racking_points = false
 var is_showing_new_high_score = false
 
 func _process(delta):
+	if($"../LevelController"):
+		if($LevelLabel.text != $"../LevelController".level_title):
+			$LevelLabel.fade_out()
+		$LevelLabel.text = $"../LevelController".level_title
+		$LevelLabel2.text = $"../LevelController".level_title
 	if(expected_controllers != Input.get_connected_joypads()):
 		pause()
 
@@ -149,7 +154,7 @@ func new_high_score_event():
 
 func change_color(new_color):
 	for c in get_children():
-		if(c.get("modulate") != null):
+		if(c.get("modulate") != null and c != $LevelLabel):
 			c.modulate = new_color
 
 	$GameOverPopup/Buttons/MenuButton/Light2D.color = new_color
@@ -308,3 +313,5 @@ func finish_showing_high_score():
 	$HighScorePopup/HighScoreWaitTimer.stop()
 	$HighScorePopup.hide()
 	point_add_popup_event()
+	
+

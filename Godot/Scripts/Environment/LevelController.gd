@@ -12,6 +12,7 @@ export var universal_level_settings_scales = {
 	"enemy_health_scale":1.1,
 }
 
+export var level_title = "Level 0"
 export var level_count = 0
 export var starting_level = 0
 export var level_time_lengths = [60, 60, 60, 60, 60, 60, 60, 60, 60, 60]
@@ -33,10 +34,8 @@ func _ready():
 
 
 	currrent_level = starting_level
-	$LevelLabel.fade_out()
 	$CountdownTimer.wait_time = level_time_lengths[currrent_level]
 	$CountdownTimer.start()
-	$LevelLabel2.text = "Level: " + str(currrent_level)
 
 func increase_level():
 	currrent_level += 1
@@ -44,9 +43,7 @@ func increase_level():
 	if(level_has_boss(currrent_level)):
 		var boss = bosses[currrent_level].instance()
 		get_parent().find_node("EnemyFactory").find_node("Enemies").add_child(boss)
-		$LevelLabel.text = "Level " + str(currrent_level) + " Boss"
-		$LevelLabel2.text = "Level: " + str(currrent_level) + " Boss"
-		$LevelLabel.fade_out()
+		level_title = "Level " + str(currrent_level) + " Boss"
 		$CountdownTimer.stop()
 
 	else:
@@ -88,9 +85,7 @@ func level_has_boss(level):
 	return true
 
 func start_level_timer():
-	$LevelLabel.text = "Level " + str(currrent_level)
-	$LevelLabel2.text = "Level: " + str(currrent_level)
-	$LevelLabel.fade_out()
+	level_title = "Level " + str(currrent_level)
 	$CountdownTimer.stop()
 	if(currrent_level < level_count):
 		$CountdownTimer.wait_time = level_time_lengths[currrent_level]
@@ -108,6 +103,9 @@ func stop():
 #		if(c != $CountdownTimer and c != $LevelLabel):
 #			c.queue_free()
 #
-func _process(delta):
-	if(Input.is_action_just_pressed("ui_q")):
-		increase_level()
+#func _process(delta):
+##	if(Global.player):
+##		$LevelLabel2.modulate = Global.player.modulate
+##		print($LevelLabel2.modulate)
+#	if(Input.is_action_just_pressed("ui_q")):
+#		increase_level()
