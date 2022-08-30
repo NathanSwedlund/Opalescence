@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Resources/Textures/Environment/background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/MainScenes/Audio.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Scenes/HelperScenes/UI/StorePanelBool.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Resources/Textures/FX/PlayerLight.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/UI/StorePage.gd" type="Script" id=9]
-[ext_resource path="res://Resources/Textures/FX/pixel.png" type="Texture" id=10]
 [ext_resource path="res://Scripts/UI/StoreSuperPanel.gd" type="Script" id=11]
 [ext_resource path="res://Resources/Textures/Items/bullet-3Hi-Res.png" type="Texture" id=12]
 [ext_resource path="res://Resources/Textures/Items/bullet-4Hi-Res.png" type="Texture" id=13]
@@ -26,9 +25,141 @@
 [ext_resource path="res://Resources/Textures/Items/LaserUIImage3.png" type="Texture" id=24]
 [ext_resource path="res://Resources/Textures/Items/LaserUIImage2.png" type="Texture" id=25]
 
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.498489, 1 )
+colors = PoolColorArray( 0.0823529, 0.0823529, 0.0823529, 1, 1, 1, 1, 1, 0.0823529, 0.0823529, 0.0823529, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
 [sub_resource type="DynamicFont" id=1]
 size = 20
 font_data = ExtResource( 3 )
+
+[sub_resource type="GDScript" id=13]
+script/source = "extends Node2D
+
+export var title = \"\"
+export var setting_name = \"\"
+export var price = 100
+
+export var button_index = 0
+
+export var is_selected = false
+export var select_scale = 1.1
+
+var has_purchased
+var page
+export var base_color = Color.white
+export var purchased_color = Color()
+export var purchase_juice_scale = 1.0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	has_purchased = Settings.get_setting_if_exists(Settings.shop, setting_name, false)
+	$Frames/UnpurchasedFrame.visible = !has_purchased
+	$Frames/UnpurchasedFrame2.visible = !has_purchased
+	modulate = base_color if has_purchased == false else purchased_color
+
+	$Light2D.color = modulate
+	$Light2D2.color = modulate
+	$BuyExplosionParticles.scale *= (1+purchase_juice_scale)/2
+	$BuyExplosionParticles.amount *= (1+purchase_juice_scale)/2
+	$BuyExplosionParticles2.amount *= (1+purchase_juice_scale)/2
+	$BuyExplosionParticles3.amount *= (1+purchase_juice_scale)/2
+	$BuyExplosionParticles4.amount *= (1+purchase_juice_scale)/2
+	print(\"$BuyExplosionParticles4.amount\", $BuyExplosionParticles4.amount)
+	$BuyExplosionParticles4.lifetime *= (1+purchase_juice_scale)/2
+
+	$BuyImplosionParticles.scale *= (1+purchase_juice_scale)/2
+	$BuyImplosionParticles.amount *= (1+purchase_juice_scale * purchase_juice_scale)/2
+	$BuyImplosionParticles.lifetime *= (1+purchase_juice_scale)/2
+
+	$BuyAudioRiser.pitch_scale *= 2/(1+purchase_juice_scale)
+	$BuyAudio2.pitch_scale *= 2/(1+purchase_juice_scale)
+	$BuyAudio3.pitch_scale *= 2/(1+purchase_juice_scale)
+	$BuyParticlesTimer.wait_time *= purchase_juice_scale
+	update_labels()
+
+func _on_BuyButton_pressed():
+	try_buy()
+
+func try_buy():
+	if(has_purchased or is_selected == false or page.buying_event_is_playing == true):
+		return
+
+	if(Settings.shop[\"points\"] >= price and !has_purchased):
+		page.buying_event_is_playing = true
+		page.stop_input_actions()
+		has_purchased = true
+		page.start_point_deduction_event(price, purchase_juice_scale)
+
+		Settings.shop[setting_name] = true
+		Settings.save()
+		$BuyImplosionParticles.emitting = true
+		$BuyAudioRiser.play()
+		$BuyParticlesTimer.start()
+		$BuyExplosionParticles2.emitting = true
+		$BuyExplosionParticles3.emitting = true
+		$BuyExplosionParticles4.emitting = true
+		$Frames/UnpurchasedFrame.visible = false
+		Global.shakes[\"laser\"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
+
+
+func update_labels():
+	$Title.text = title
+	if(!has_purchased):
+		$Price.text = \"Price: \"+str(Global.point_num_to_string(price, [\"b\", \"m\", \"k\"]))
+		$Light2D2.color = modulate
+		$BuyButton.modulate = modulate
+	else:
+		$Price.text = \"\"
+		$Light2D2.color = Color.black
+		$BuyButton.modulate = Color.gray
+		$BuyButton.text = \"PURCHASED\"
+
+func select():
+	$Particles2D.visible = true
+	$Light2D.visible = true
+	$Light2D2.visible = true
+	is_selected = true
+	scale *= select_scale
+
+func deselect():
+	$Particles2D.visible = false
+	$Light2D.visible = false
+	$Light2D2.visible = false
+	is_selected = false
+	scale /= select_scale
+
+func reset():
+	Settings.shop[setting_name] = false
+	has_purchased = false
+	update_labels()
+
+func set_page(_page):
+	page = _page
+
+
+func _on_BuyParticlesTimer_timeout():
+	$BuyAudioRiser.stop()
+	$BuyAudio.play()
+	$BuyAudio2.play()
+	$BuyAudio3.play()
+	$BuyExplosionParticles.emitting = true
+	$BuyImplosionParticles.emitting = false
+	$BuyImplosionParticles.visible = false
+	page.buying_event_is_playing = false
+	modulate = purchased_color
+	$Frames/UnpurchasedFrame2.visible = false
+	$Light2D.color = modulate
+	$Light2D2.color = modulate
+	update_labels()
+	Global.shakes[\"bomb\"].start(50*purchase_juice_scale, 0.4*purchase_juice_scale, 80, 1)
+	Global.shakes[\"laser\"].start(7*purchase_juice_scale, 1.6*purchase_juice_scale, 80, 1)
+	page.change_color(modulate)
+	page.resume_input_actions()
+"
 
 [sub_resource type="DynamicFont" id=6]
 size = 40
@@ -75,18 +206,21 @@ scale = Vector2( 15.0703, 8.64844 )
 texture = ExtResource( 1 )
 centered = false
 
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+color = Color( 0, 0, 0, 1 )
+
 [node name="UI" type="Node2D" parent="."]
 position = Vector2( 482, 406 )
 
 [node name="SepBar" type="Sprite" parent="UI"]
-position = Vector2( -29.9999, -117.09 )
-scale = Vector2( 450, 1.82 )
-texture = ExtResource( 10 )
+position = Vector2( -60, -119 )
+scale = Vector2( 0.156, 3.35 )
+texture = SubResource( 12 )
 
 [node name="SepBar2" type="Sprite" parent="UI"]
-position = Vector2( -29.9999, 38.91 )
-scale = Vector2( 450, 1.82 )
-texture = ExtResource( 10 )
+position = Vector2( -60, 37 )
+scale = Vector2( 0.156, 3.35 )
+texture = SubResource( 12 )
 
 [node name="Panels" type="Node2D" parent="UI"]
 
@@ -167,14 +301,12 @@ align = 1
 scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool5" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.462745, 0.847059, 1, 1 )
 position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Target-Seeking Pellets"
 setting_name = "bullet2_is_unlocked"
 price = 450000
 purchased_color = Color( 0.905882, 0.619608, 0.0666667, 1 )
-purchase_juice_scale = 0.8
 
 [node name="Bullet-pixel2" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool5"]
 position = Vector2( 175.385, -34.9233 )
@@ -182,14 +314,12 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 14 )
 
 [node name="StorePanelBool6" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
-modulate = Color( 1, 0.282353, 0, 1 )
 position = Vector2( 406.593, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Heavy Pellets"
 setting_name = "bullet3_is_unlocked"
 price = 750000
 purchased_color = Color( 0.411765, 0.34902, 0.772549, 1 )
-purchase_juice_scale = 0.8
 
 [node name="Bullet-pixel3" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool6"]
 position = Vector2( 175.385, -34.9233 )
@@ -197,14 +327,12 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 12 )
 
 [node name="StorePanelBool9" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.0916443, 0.710938, 0.362585, 1 )
 position = Vector2( 823.077, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Scatter Shot Pellets"
 setting_name = "bullet4_is_unlocked"
 price = 1000000
 purchased_color = Color( 0.823529, 0.290196, 0.678431, 1 )
-purchase_juice_scale = 0.8
 
 [node name="Bullet-pixel4" type="Sprite" parent="UI/Panels/StoreSuperPanel2/Panels/StorePanelBool9"]
 position = Vector2( 175.385, -34.9233 )
@@ -212,7 +340,6 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 13 )
 
 [node name="StorePanelBool10" parent="UI/Panels/StoreSuperPanel2/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.0916443, 0.710938, 0.362585, 1 )
 position = Vector2( 823.077, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Poison Pellets"
@@ -250,7 +377,6 @@ align = 1
 scale = Vector2( 0.65, 0.65 )
 
 [node name="StorePanelBool5" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
-modulate = Color( 0.462745, 0.847059, 1, 1 )
 position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Tri-beam Laser"
@@ -265,7 +391,6 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 25 )
 
 [node name="StorePanelBool6" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
-modulate = Color( 1, 0.282353, 0, 1 )
 position = Vector2( 406.593, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Laser Strike"
@@ -280,7 +405,6 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 24 )
 
 [node name="StorePanelBool7" parent="UI/Panels/StoreSuperPanel5/Panels" instance=ExtResource( 7 )]
-modulate = Color( 1, 0.282353, 0, 1 )
 position = Vector2( 406.593, -2.19781 )
 scale = Vector2( 1.0989, 1.0989 )
 title = "Ball Lightning"
@@ -320,10 +444,11 @@ scale = Vector2( 0.65, 0.65 )
 [node name="StorePanelBool7" parent="UI/Panels/StoreSuperPanel3/Panels" instance=ExtResource( 7 )]
 position = Vector2( 0, 0 )
 scale = Vector2( 1.0989, 1.0989 )
+script = SubResource( 13 )
 title = "Laser-er"
 setting_name = "player2_is_unlocked"
 price = 800000
-purchased_color = Color( 0.513726, 0.964706, 1, 1 )
+purchased_color = Color( 0.658824, 0.952941, 1, 1 )
 purchase_juice_scale = 1.5
 
 [node name="Player2" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool7"]
@@ -338,7 +463,7 @@ scale = Vector2( 1.0989, 1.0989 )
 title = "Gunner"
 setting_name = "player3_is_unlocked"
 price = 1000000
-purchased_color = Color( 1, 0.690196, 0.356863, 1 )
+purchased_color = Color( 1, 0.607843, 0.184314, 1 )
 purchase_juice_scale = 1.6
 
 [node name="Player3" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool8"]
@@ -353,7 +478,7 @@ scale = Vector2( 1.0989, 1.0989 )
 title = "Bomber"
 setting_name = "player4_is_unlocked"
 price = 2000000
-purchased_color = Color( 0.65098, 1, 0.658824, 1 )
+purchased_color = Color( 0.835294, 1, 0.839216, 1 )
 purchase_juice_scale = 1.7
 
 [node name="Player4" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool9"]
@@ -368,7 +493,7 @@ scale = Vector2( 1.0989, 1.0989 )
 title = "Speeder"
 setting_name = "player5_is_unlocked"
 price = 3500000
-purchased_color = Color( 0.647059, 0.380392, 1, 1 )
+purchased_color = Color( 0.760784, 0.580392, 1, 1 )
 purchase_juice_scale = 2.1
 
 [node name="Player5" type="Sprite" parent="UI/Panels/StoreSuperPanel3/Panels/StorePanelBool10"]
@@ -442,7 +567,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="ResetButton" type="Button" parent="UI"]
-visible = false
 margin_left = 546.0
 margin_top = 102.0
 margin_right = 758.0
@@ -474,7 +598,6 @@ lifetime = 1.5
 process_material = SubResource( 3 )
 
 [node name="AddPointButton" type="Button" parent="UI"]
-visible = false
 margin_left = 363.0
 margin_top = 160.0
 margin_right = 775.0
@@ -619,6 +742,18 @@ wait_time = 0.08
 [node name="PointDeductAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 script = ExtResource( 2 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 404, 348 )
+texture = ExtResource( 6 )
+texture_scale = 1.5
+energy = 1.33
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 1134, 650 )
+texture = ExtResource( 6 )
+texture_scale = 0.5
+energy = 1.33
 
 [connection signal="mouse_entered" from="UI/BackButton" to="UI/BackButton" method="mouse_entered"]
 [connection signal="mouse_exited" from="UI/BackButton" to="UI/BackButton" method="mouse_exited"]

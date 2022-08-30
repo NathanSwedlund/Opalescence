@@ -19,6 +19,7 @@ export var shift_speed = 1800.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	buttons = [$UI/BackButton]
 	button_num = len(buttons)
 
@@ -96,7 +97,11 @@ func select(num):
 	if(num < panel_num):
 		is_shifting = true
 		stop_input_actions()
+		$"UI/SepBar".visible = true
+		$"UI/SepBar2".visible = true
 	else:
+		$"UI/SepBar".visible = false
+		$"UI/SepBar2".visible = false
 		$SelectAudio.play()
 		ui_elements[selected].select()
 

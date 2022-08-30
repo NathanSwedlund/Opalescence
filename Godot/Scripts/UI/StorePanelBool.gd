@@ -24,15 +24,17 @@ func _ready():
 
 	$Light2D.color = modulate
 	$Light2D2.color = modulate
-	$BuyExplosionParticles.scale *= purchase_juice_scale
+
+	$BuyExplosionParticles.scale *= (1+purchase_juice_scale)/2
 	$BuyExplosionParticles.amount *= (1+purchase_juice_scale)/2
 	$BuyExplosionParticles2.amount *= (1+purchase_juice_scale)/2
 	$BuyExplosionParticles3.amount *= (1+purchase_juice_scale)/2
 	$BuyExplosionParticles4.amount *= (1+purchase_juice_scale)/2
+	$BuyExplosionParticles4.lifetime *= (1+purchase_juice_scale)/2
 
-	$BuyImplosionParticles.scale *= purchase_juice_scale
+	$BuyImplosionParticles.scale *= (1+purchase_juice_scale)/2
 	$BuyImplosionParticles.amount *= (1+purchase_juice_scale * purchase_juice_scale)/2
-	$BuyImplosionParticles.lifetime *= purchase_juice_scale
+	$BuyImplosionParticles.lifetime *= (1+purchase_juice_scale)/2
 
 	$BuyAudioRiser.pitch_scale *= 2/(1+purchase_juice_scale)
 	$BuyAudio2.pitch_scale *= 2/(1+purchase_juice_scale)
@@ -44,12 +46,12 @@ func _on_BuyButton_pressed():
 	try_buy()
 
 func try_buy():
-	if(is_selected == false or page.buying_event_is_playing == true):
+	if(has_purchased or is_selected == false or page.buying_event_is_playing == true):
 		return
 
-	page.buying_event_is_playing = true
-	page.stop_input_actions()
 	if(Settings.shop["points"] >= price and !has_purchased):
+		page.buying_event_is_playing = true
+		page.stop_input_actions()
 		has_purchased = true
 		page.start_point_deduction_event(price, purchase_juice_scale)
 

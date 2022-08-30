@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Resources/Textures/FX/pointLight.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Textures/Items/point.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://Scripts/FX/Particles.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=6]
+light_mode = 1
 
 [sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.785185, 0.888889, 1 )
@@ -24,6 +27,9 @@ orbit_velocity_random = 1.0
 scale = 3.0
 color_ramp = SubResource( 4 )
 
+[sub_resource type="CanvasItemMaterial" id=5]
+light_mode = 1
+
 [node name="Point" type="KinematicBody2D"]
 collision_layer = 12
 script = ExtResource( 3 )
@@ -33,12 +39,6 @@ speed = 15000
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 2 )
 
-[node name="OuterLight" type="Light2D" parent="."]
-visible = false
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 1 )
-shadow_enabled = true
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
@@ -47,6 +47,7 @@ autostart = true
 shape = SubResource( 1 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
+material = SubResource( 6 )
 local_coords = false
 process_material = SubResource( 2 )
 script = ExtResource( 4 )
@@ -55,6 +56,11 @@ script = ExtResource( 4 )
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 1 )
 energy = 2.0
-shadow_enabled = true
+
+[node name="Sprite2" type="Sprite" parent="."]
+visible = false
+material = SubResource( 5 )
+scale = Vector2( 0.04, 0.04 )
+texture = ExtResource( 1 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

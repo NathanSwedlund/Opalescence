@@ -71,8 +71,8 @@ scale_random = 0.72
 scale_curve = SubResource( 20 )
 
 [sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0, 0.173913, 0.614907, 0.832298 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.951351, 0.951351, 0.951351, 0.951351, 1, 1, 1, 0.865905, 0.738117, 0.738117, 0.738117, 0.738117 )
+offsets = PoolRealArray( 0, 0.00325733, 0.100977, 0.614907, 0.832298 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0.981433, 1, 1, 1, 0.865905, 0.738117, 0.738117, 0.738117, 0.738117 )
 
 [sub_resource type="GradientTexture" id=8]
 gradient = SubResource( 9 )
@@ -208,7 +208,7 @@ script = ExtResource( 11 )
 position = Vector2( -51, -6 )
 z_index = 5
 emitting = false
-amount = 500
+amount = 1000
 lifetime = 8.0
 one_shot = true
 speed_scale = 3.0

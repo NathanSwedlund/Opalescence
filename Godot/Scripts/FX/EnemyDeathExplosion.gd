@@ -77,7 +77,7 @@ func _ready():
 var target_time = 1.0/70.0
 var current_time = 0.0
 
-var frames_per_update_options = {"Min":20, "Low":4, "Mid":3, "High":2, "Ultra":1}
+var frames_per_update_options = {"Min":5, "Low":3, "Mid":2, "High":1, "Ultra":1}
 var frames_per_update = frames_per_update_options[Settings.saved_settings["graphical_quality"]]
 var current_frame = 0
 
@@ -92,18 +92,13 @@ func _process(delta):
 			# optimization for explosions
 			shrink_speed_optimized = shrink_speed
 			var fps = Engine.get_frames_per_second()
-			if (fps < 10):
-				queue_free()
-			elif (fps < 20):
-				shrink_speed_optimized /= 1.5
-				grow_speed *= 1.5
-			elif (fps < 30):
+			if (fps < 20):
 				shrink_speed_optimized /= 1.2
 				grow_speed *= 1.2
+			elif (fps < 30):
+				shrink_speed_optimized /= 1.1
+				grow_speed *= 1.1
 			elif (fps < 40):
-				shrink_speed_optimized /= 1.05
-				grow_speed *= 1.05
-			elif (fps < 50):
 				shrink_speed_optimized /= 1.02
 				grow_speed *= 1.02
 			# explosion changing calcs
