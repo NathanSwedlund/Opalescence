@@ -29,7 +29,10 @@ func _physics_process(delta):
 				collision.collider.take_damage(damage)
 			elif(collision.collider.name == "Player"):
 				collision.collider.damage(self)
+			elif(collision.collider.is_in_group("Bombs")):
+				collision.collider.explode()
 			die()
+			
 
 func take_damage(damage, play_sound=true, color_override=null):
 	die()
