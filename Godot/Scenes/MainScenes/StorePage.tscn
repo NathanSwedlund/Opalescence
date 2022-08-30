@@ -279,7 +279,7 @@ purchased_color = Color( 0.686275, 1, 0, 1 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel"]
 stream = ExtResource( 5 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel2" type="Node2D" parent="UI/Panels"]
@@ -355,7 +355,7 @@ texture = ExtResource( 21 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel2"]
 stream = ExtResource( 5 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel5" type="Node2D" parent="UI/Panels"]
@@ -420,7 +420,7 @@ texture = ExtResource( 23 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel5"]
 stream = ExtResource( 5 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 2 )
 
 [node name="StoreSuperPanel3" type="Node2D" parent="UI/Panels"]
@@ -504,7 +504,7 @@ texture = ExtResource( 18 )
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="UI/Panels/StoreSuperPanel3"]
 stream = ExtResource( 5 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 2 )
 
 [node name="Darkener" type="Sprite" parent="UI"]
@@ -704,7 +704,7 @@ flat = true
 
 [node name="SelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="."]

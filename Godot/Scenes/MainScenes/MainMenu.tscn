@@ -1161,7 +1161,7 @@ script = ExtResource( 12 )
 
 [node name="ButtonSelectAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
-pitch_scale = 0.7
+pitch_scale = 0.5
 script = ExtResource( 12 )
 
 [node name="VersionLabel" type="Label" parent="."]

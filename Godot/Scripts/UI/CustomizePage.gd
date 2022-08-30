@@ -102,6 +102,8 @@ func select(num):
 	if(($UI/Panels.position.y + (panel_sep_dist*num) in [0, panel_sep_dist]) == false and selected == panel_num):
 		is_loop_shifting = true
 		$LoopSound.play()
+	else:
+		is_loop_shifting = false
 
 	ui_elements[selected].deselect()
 	selected = num
